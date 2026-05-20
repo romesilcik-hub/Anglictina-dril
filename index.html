@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AJ Dril</title>
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css">
   <!-- PWA -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#2e75b6">
@@ -50,6 +50,7 @@
   <!-- Nastavení -->
   <details class="settings-panel" id="settingsPanel" style="display:none">
     <summary>⚙ Nastavení hlasů a přehrávání</summary>
+    <div class="settings-inner">
 
     <div style="margin-top:.9rem;padding-bottom:.75rem;border-bottom:1px solid var(--color-border-light);display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
       <span style="font-size:.8rem;color:var(--color-text-muted);">Databáze:</span>
@@ -139,6 +140,7 @@
         </div>
       </div>
     </div>
+    </div><!-- /.settings-inner -->
   </details>
 
   <!-- Filtry -->
@@ -338,24 +340,31 @@ speechSynthesis.onvoiceschanged=loadVoices;
 loadVoices();
 
 // ── TTS ───────────────────────────────────────────────────────────────────────
-function speak(text,voiceName,rate,cb) {
+function speak(text,voiceName,rate,cb,forceLang) {
   if(!window.speechSynthesis){if(cb)cb();return;}
   const u=new SpeechSynthesisUtterance(text);
-  const v=speechSynthesis.getVoices().find(v=>v.name===voiceName);
-  if(v){u.voice=v;u.lang=v.lang;}
+  const all=speechSynthesis.getVoices();
+  const v=all.find(v=>v.name===voiceName);
+  if(v){
+    u.voice=v;
+    u.lang=v.lang;
+  } else if(forceLang) {
+    // Hlas není dostupný — nastav aspoň jazyk, Chrome zkusí systémový TTS
+    u.lang=forceLang;
+  }
   u.rate=parseFloat(rate)||1;
   if(cb) u.onend=cb;
   speechSynthesis.cancel();
   speechSynthesis.speak(u);
 }
 
-function replayCZ(){speak(document.getElementById('sentCZ').textContent,document.getElementById('czVoice').value,cfg.czRate);}
-function replayEN(){document.getElementById('sentEN').classList.add('visible');playENRepeated(document.getElementById('sentEN').textContent);}
+function replayCZ(){speak(document.getElementById('sentCZ').textContent,document.getElementById('czVoice').value,cfg.czRate,null,'cs-CZ');}
+function replayEN(){document.getElementById('sentEN').classList.add('visible');playENRepeated(document.getElementById('sentEN').textContent,null,'en-GB');}
 
-function playENRepeated(text,onDone) {
+function playENRepeated(text,onDone,forceLang) {
   const repeats=parseInt(document.getElementById('enRepeat').value)||1;
   let count=0;
-  function one(){count++;speak(text,document.getElementById('enVoice').value,cfg.enRate,count<repeats?one:onDone);}
+  function one(){count++;speak(text,document.getElementById('enVoice').value,cfg.enRate,count<repeats?one:onDone,forceLang||'en-GB');}
   one();
 }
 
@@ -597,7 +606,7 @@ function showCurrent() {
     setTimeout(()=>{
       const playCZ=document.getElementById('playCZ').checked;
       const playEN=document.getElementById('playEN').checked;
-      if(playCZ){speak(sent.cz,document.getElementById('czVoice').value,cfg.czRate,()=>scheduleEN(sent.en,playEN));}
+      if(playCZ){speak(sent.cz,document.getElementById('czVoice').value,cfg.czRate,()=>scheduleEN(sent.en,playEN),'cs-CZ');}
       else{scheduleEN(sent.en,playEN);}
     },80);
   },250);
@@ -609,7 +618,7 @@ function scheduleEN(text,playEN) {
     const el=document.getElementById('sentEN');
     el.textContent=text;
     el.classList.add('visible');
-    if(playEN){playENRepeated(text,()=>scheduleAutoNext());}
+    if(playEN){playENRepeated(text,()=>scheduleAutoNext(),'en-GB');}
     else{scheduleAutoNext();}
   },delay);
 }
