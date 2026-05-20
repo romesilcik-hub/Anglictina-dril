@@ -37,7 +37,7 @@
   --font: 'Segoe UI', Arial, sans-serif;
 }
 html {
-  font-size: clamp(26px, 1vw + 14px, 20px);
+  font-size: clamp(26px, 1vw + 14px, 40px);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
