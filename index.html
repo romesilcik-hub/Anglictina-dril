@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJ Dril</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2e75b6">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="AJ Dril">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <style>
+    @keyframes autoPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.3)} }
+    .hidden { display:none !important; }
+
+    /* Filtry */
+    .filter-wrap { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1rem; align-items:center; }
+    .filter-lbl { font-size:.75rem; color:var(--color-text-muted); font-weight:700; text-transform:uppercase; letter-spacing:.04em; white-space:nowrap; }
+    .filter-sel { padding:5px 12px; border-radius:var(--radius-xl); border:1px solid var(--color-border); background:var(--color-surface); color:var(--color-text); font-size:.82rem; font-family:var(--font); cursor:pointer; outline:none; max-width:220px; }
+    .filter-sel:focus { border-color:var(--color-primary); }
+
+    /* Info badgy na kartě */
+    .card-meta { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:.5rem; }
+    .meta-badge { font-size:.7rem; font-weight:600; padding:2px 9px; border-radius:10px; font-family:var(--font); }
+    .mb-grammar { background:var(--color-primary-bg); color:var(--color-primary-text); }
+    .mb-level   { background:#f0f8e8; color:#2d6a2d; }
+    .mb-topic   { background:#fff8e7; color:#7a5c00; }
+    .mb-pattern { background:#f5f0ff; color:#5b3fa0; }
+  </style>
+</head>
+<body>
+<div class="app">
+
+  <div class="app-title">🇬🇧 AJ Dril</div>
+
+  <!-- Načtení databáze -->
+  <div class="load-panel" id="loadPanel">
+    <p>Nahraj databázi vět (<strong>aj_dril_databaze.json</strong> exportovaný z Excelu)</p>
+    <label class="btn btn-primary" style="cursor:pointer">
+      📂 Načíst JSON soubor
+      <input type="file" id="fileInput" accept=".json" style="display:none">
+    </label>
+    <p class="hint">Soubor se uloží v prohlížeči — příště se načte automaticky.</p>
+  </div>
+  <div class="db-status" id="dbStatus"></div>
+
+  <!-- Nastavení -->
+  <details class="settings-panel" id="settingsPanel" style="display:none">
+    <summary>⚙ Nastavení hlasů a přehrávání</summary>
+
+    <div style="margin-top:.9rem;padding-bottom:.75rem;border-bottom:1px solid var(--color-border-light);display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+      <span style="font-size:.8rem;color:var(--color-text-muted);">Databáze:</span>
+      <label class="btn btn-sm" style="cursor:pointer;">
+        📂 Načíst jiný JSON
+        <input type="file" id="fileInput2" accept=".json" style="display:none">
+      </label>
+      <button class="btn btn-sm" style="color:var(--color-danger);border-color:var(--color-danger);" onclick="clearDB()">🗑 Vymazat</button>
+    </div>
+
+    <div class="settings-grid">
+      <div class="setting-group">
+        <span>🇨🇿 Hlas — česká věta</span>
+        <select id="czVoice" onchange="saveSetting('czVoice',this.value)"></select>
+      </div>
+      <div class="setting-group">
+        <span>Rychlost CZ</span>
+        <div class="slider-row">
+          <input type="range" id="czRate" min="0.5" max="1.5" step="0.05" value="0.9"
+                 oninput="saveSetting('czRate',this.value);document.getElementById('czRateVal').textContent=parseFloat(this.value).toFixed(2)">
+          <span class="slider-val" id="czRateVal">0.90</span>
+        </div>
+      </div>
+      <div class="setting-group">
+        <span>🇬🇧 Hlas — anglická věta</span>
+        <select id="enVoice" onchange="saveSetting('enVoice',this.value)"></select>
+      </div>
+      <div class="setting-group">
+        <span>Rychlost EN</span>
+        <div class="slider-row">
+          <input type="range" id="enRate" min="0.5" max="1.5" step="0.05" value="0.85"
+                 oninput="saveSetting('enRate',this.value);document.getElementById('enRateVal').textContent=parseFloat(this.value).toFixed(2)">
+          <span class="slider-val" id="enRateVal">0.85</span>
+        </div>
+      </div>
+      <div class="settings-divider"></div>
+      <div class="setting-group">
+        <span>Pauza před EN odpovědí</span>
+        <div class="slider-row">
+          <input type="range" id="pauseSec" min="0" max="8" step="1" value="3"
+                 oninput="saveSetting('pauseSec',this.value);document.getElementById('pauseVal').textContent=this.value+'s'">
+          <span class="slider-val" id="pauseVal">3s</span>
+        </div>
+      </div>
+      <div class="setting-group">
+        <span>Opakování EN věty</span>
+        <div class="slider-row">
+          <input type="range" id="enRepeat" min="1" max="5" step="1" value="1"
+                 oninput="saveSetting('enRepeat',this.value);document.getElementById('enRepeatVal').textContent=this.value+'×'">
+          <span class="slider-val" id="enRepeatVal">1×</span>
+        </div>
+      </div>
+      <div class="settings-divider"></div>
+      <div class="setting-group" style="gap:.5rem">
+        <label class="checkbox-row">
+          <input type="checkbox" id="playCZ" checked onchange="saveSetting('playCZ',this.checked)">
+          Přehrávat českou větu
+        </label>
+        <label class="checkbox-row">
+          <input type="checkbox" id="playEN" checked onchange="saveSetting('playEN',this.checked)">
+          Přehrávat anglickou větu
+        </label>
+      </div>
+      <div class="setting-group" style="gap:.5rem">
+        <label class="checkbox-row">
+          <input type="checkbox" id="shuffleBlocks" onchange="saveSetting('shuffleBlocks',this.checked);reloadActive()">
+          Náhodné pořadí bloků
+        </label>
+        <label class="checkbox-row">
+          <input type="checkbox" id="shuffleSents" onchange="saveSetting('shuffleSents',this.checked);reloadActive()">
+          Náhodné pořadí vět v bloku
+        </label>
+      </div>
+      <div class="settings-divider"></div>
+      <div class="setting-group" style="gap:.5rem">
+        <label class="checkbox-row">
+          <input type="checkbox" id="autoMode" onchange="saveSetting('autoMode',this.checked);toggleAutoMode()">
+          Automatické pokračování
+        </label>
+      </div>
+      <div class="setting-group hidden" id="autoDelayGroup">
+        <span>Pauza mezi větami</span>
+        <div class="slider-row">
+          <input type="range" id="autoDelay" min="1" max="10" step="1" value="3"
+                 oninput="saveSetting('autoDelay',this.value);document.getElementById('autoDelayVal').textContent=this.value+'s'">
+          <span class="slider-val" id="autoDelayVal">3s</span>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <!-- Filtry -->
+  <div class="filter-wrap" id="filterWrap" style="display:none">
+    <span class="filter-lbl">Filtr:</span>
+    <select class="filter-sel" id="fLevel" onchange="onFilterChange('level')">
+      <option value="">Všechny úrovně</option>
+      <option value="A0">A0</option>
+      <option value="A1">A1</option>
+      <option value="A2">A2</option>
+      <option value="B1">B1</option>
+    </select>
+    <select class="filter-sel" id="fTopic" onchange="onFilterChange('topic')">
+      <option value="">Všechna témata</option>
+    </select>
+    <select class="filter-sel" id="fGrammar" onchange="onFilterChange('grammar')">
+      <option value="">Veškerá gramatika</option>
+    </select>
+    <select class="filter-sel" id="fPattern" onchange="onFilterChange('pattern')">
+      <option value="">Všechny typy vět</option>
+    </select>
+  </div>
+
+  <!-- Skóre -->
+  <div class="scores" id="scoresWrap" style="display:none">
+    <div class="score-card"><div class="score-num" id="sDone">0</div><div class="score-lbl">dokončeno</div></div>
+    <div class="score-card"><div class="score-num" id="sPos">1/1</div><div class="score-lbl">věta</div></div>
+    <div class="score-card"><div class="score-num" id="sTotal">0</div><div class="score-lbl">celkem</div></div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="progress-bar" id="progressBar" style="display:none">
+    <div class="progress-fill" id="progressFill" style="width:0%"></div>
+  </div>
+
+  <!-- Karta -->
+  <div class="drill-card" id="drillCard" style="display:none">
+    <div class="card-meta">
+      <span class="meta-badge mb-grammar" id="mGrammar"></span>
+      <span class="meta-badge mb-level"   id="mLevel"></span>
+      <span class="meta-badge mb-topic"   id="mTopic"></span>
+      <span class="meta-badge mb-pattern" id="mPattern"></span>
+    </div>
+    <div class="card-badge" id="cardBadge">Blok 1 · Věta 1/6</div>
+    <div class="sentence-cz" id="sentCZ">—</div>
+    <div class="sentence-divider"></div>
+    <div class="sentence-en" id="sentEN">—</div>
+    <div class="sentence-note" id="sentNote"></div>
+  </div>
+
+  <!-- Ovládání -->
+  <div class="controls" id="controlsWrap" style="display:none">
+    <button class="btn btn-sm" onclick="replayCZ()">↻ CZ</button>
+    <button class="btn btn-sm" onclick="replayEN()">↻ EN</button>
+    <button class="btn btn-primary" onclick="nextSent()">Další →</button>
+    <button class="btn btn-ghost btn-sm" onclick="skipSent()">přeskočit</button>
+  </div>
+
+  <!-- Auto indikátor -->
+  <div id="autoIndicator" style="display:none;margin-top:.75rem;padding:8px 14px;background:var(--color-primary-bg);border-radius:var(--border-radius-md);font-size:.82rem;color:var(--color-primary-text);align-items:center;gap:8px;">
+    <span style="width:8px;height:8px;border-radius:50%;background:var(--color-primary);animation:autoPulse 1s infinite;display:inline-block;"></span>
+    <span id="autoStatusText">Automatický režim</span>
+    <button onclick="toggleAutoMode(true)" style="margin-left:auto;padding:3px 10px;border-radius:12px;border:1px solid var(--color-primary);background:transparent;color:var(--color-primary-text);font-size:.78rem;cursor:pointer;">✕ Zastavit</button>
+  </div>
+
+  <div id="shortcutHint" style="display:none;margin-top:.75rem;font-size:.72rem;color:var(--color-text-light);text-align:center;">
+    Mezerník / → = další &nbsp;·&nbsp; R = přehrát EN &nbsp;·&nbsp; C = přehrát CZ &nbsp;·&nbsp; S = přeskočit &nbsp;·&nbsp; A = auto
+  </div>
+
+</div>
+
+<script>
+// ── Datový model ──────────────────────────────────────────────────────────────
+// JSON formát v3:
+// { "blocks": [ { "grammar", "level", "blok", "topic", "sentences": [{cz,en,pattern,note}] } ] }
+
+let db = null;
+let activeBlocks = [];
+let blockOrder = [], sentOrders = [];
+let bPos = 0, sPos = 0, done = 0, total = 0;
+let pauseTimer = null, autoTimer = null;
+
+const STORAGE_DB  = 'aj_dril_db_v3';
+const STORAGE_CFG = 'aj_dril_cfg_v3';
+const STORAGE_POS = 'aj_dril_pos_v3';
+
+// ── Konfigurace ───────────────────────────────────────────────────────────────
+let cfg = {
+  czVoice:'', enVoice:'', czRate:0.9, enRate:0.85,
+  pauseSec:3, enRepeat:1, playCZ:true, playEN:true,
+  shuffleBlocks:false, shuffleSents:false, autoMode:false, autoDelay:3
+};
+
+function loadCfg() {
+  try { const s=localStorage.getItem(STORAGE_CFG); if(s) cfg={...cfg,...JSON.parse(s)}; } catch(e){}
+  document.getElementById('czRate').value    = cfg.czRate;
+  document.getElementById('enRate').value    = cfg.enRate;
+  document.getElementById('pauseSec').value  = cfg.pauseSec;
+  document.getElementById('enRepeat').value  = cfg.enRepeat;
+  document.getElementById('autoDelay').value = cfg.autoDelay||3;
+  document.getElementById('czRateVal').textContent    = parseFloat(cfg.czRate).toFixed(2);
+  document.getElementById('enRateVal').textContent    = parseFloat(cfg.enRate).toFixed(2);
+  document.getElementById('pauseVal').textContent     = cfg.pauseSec+'s';
+  document.getElementById('enRepeatVal').textContent  = cfg.enRepeat+'×';
+  document.getElementById('autoDelayVal').textContent = (cfg.autoDelay||3)+'s';
+  document.getElementById('playCZ').checked       = cfg.playCZ!==false;
+  document.getElementById('playEN').checked       = cfg.playEN!==false;
+  document.getElementById('shuffleBlocks').checked = !!cfg.shuffleBlocks;
+  document.getElementById('shuffleSents').checked  = !!cfg.shuffleSents;
+  document.getElementById('autoMode').checked      = !!cfg.autoMode;
+  if(cfg.autoMode) document.getElementById('autoDelayGroup').classList.remove('hidden');
+}
+
+function saveSetting(key,val) {
+  if(val==='true')val=true; else if(val==='false')val=false;
+  else if(!isNaN(val)&&val!=='')val=parseFloat(val);
+  cfg[key]=val;
+  try{localStorage.setItem(STORAGE_CFG,JSON.stringify(cfg));}catch(e){}
+}
+
+// ── Paměť pozice ──────────────────────────────────────────────────────────────
+function savePos() {
+  try {
+    localStorage.setItem(STORAGE_POS, JSON.stringify({
+      bPos,sPos,done,total,blockOrder,sentOrders,
+      fLevel:document.getElementById('fLevel').value,
+      fTopic:document.getElementById('fTopic').value,
+      fGrammar:document.getElementById('fGrammar').value,
+      fPattern:document.getElementById('fPattern').value
+    }));
+  } catch(e){}
+}
+
+function loadPos() {
+  try {
+    const s=localStorage.getItem(STORAGE_POS); if(!s) return false;
+    const p=JSON.parse(s);
+    if(!db||!db.blocks) return false;
+    if(p.fLevel)   document.getElementById('fLevel').value   = p.fLevel;
+    if(p.fTopic)   document.getElementById('fTopic').value   = p.fTopic;
+    if(p.fGrammar) document.getElementById('fGrammar').value = p.fGrammar;
+    if(p.fPattern) document.getElementById('fPattern').value = p.fPattern;
+    applyFilters(false);
+    bPos=p.bPos||0; sPos=p.sPos||0; done=p.done||0; total=p.total||0;
+    blockOrder=p.blockOrder||[]; sentOrders=p.sentOrders||[];
+    if(bPos>=blockOrder.length||!activeBlocks.length) return false;
+    return true;
+  } catch(e){ return false; }
+}
+
+// ── Shuffle ───────────────────────────────────────────────────────────────────
+function shuffle(arr) {
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+
+function buildOrders() {
+  const n=activeBlocks.length;
+  blockOrder = cfg.shuffleBlocks ? shuffle([...Array(n).keys()]) : [...Array(n).keys()];
+  sentOrders = activeBlocks.map(b=>{
+    const m=b.sentences.length;
+    return cfg.shuffleSents ? shuffle([...Array(m).keys()]) : [...Array(m).keys()];
+  });
+  total = activeBlocks.reduce((a,b)=>a+b.sentences.length,0);
+}
+
+// ── Hlasy ─────────────────────────────────────────────────────────────────────
+function loadVoices() {
+  const all=speechSynthesis.getVoices();
+  const czV=all.filter(v=>v.lang.startsWith('cs')||v.lang.startsWith('sk'));
+  const enV=all.filter(v=>v.lang.startsWith('en'));
+  fillVoiceSelect('czVoice',czV,cfg.czVoice,['cs-CZ','cs','sk']);
+  fillVoiceSelect('enVoice',enV.length?enV:all,cfg.enVoice,['en-GB','en-US','en']);
+}
+
+function fillVoiceSelect(id,voices,savedName,prefLangs) {
+  const sel=document.getElementById(id);
+  sel.innerHTML='';
+  if(!voices.length){sel.innerHTML='<option value="">— žádný hlas —</option>';return;}
+  voices.forEach(v=>{
+    const o=document.createElement('option');
+    o.value=v.name;
+    o.textContent=v.name+' ['+v.lang+']'+(v.localService?'':' ☁');
+    sel.appendChild(o);
+  });
+  if(savedName&&voices.find(v=>v.name===savedName)){sel.value=savedName;}
+  else {
+    let pref=-1;
+    for(const lang of prefLangs){pref=voices.findIndex(v=>v.lang===lang||v.lang.startsWith(lang));if(pref>=0)break;}
+    sel.selectedIndex=pref>=0?pref:0;
+    saveSetting(id,sel.value);
+  }
+}
+
+speechSynthesis.onvoiceschanged=loadVoices;
+loadVoices();
+
+// ── TTS ───────────────────────────────────────────────────────────────────────
+function speak(text,voiceName,rate,cb) {
+  if(!window.speechSynthesis){if(cb)cb();return;}
+  const u=new SpeechSynthesisUtterance(text);
+  const v=speechSynthesis.getVoices().find(v=>v.name===voiceName);
+  if(v){u.voice=v;u.lang=v.lang;}
+  u.rate=parseFloat(rate)||1;
+  if(cb) u.onend=cb;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(u);
+}
+
+function replayCZ(){speak(document.getElementById('sentCZ').textContent,document.getElementById('czVoice').value,cfg.czRate);}
+function replayEN(){document.getElementById('sentEN').classList.add('visible');playENRepeated(document.getElementById('sentEN').textContent);}
+
+function playENRepeated(text,onDone) {
+  const repeats=parseInt(document.getElementById('enRepeat').value)||1;
+  let count=0;
+  function one(){count++;speak(text,document.getElementById('enVoice').value,cfg.enRate,count<repeats?one:onDone);}
+  one();
+}
+
+// ── Načtení souboru ───────────────────────────────────────────────────────────
+document.getElementById('fileInput').addEventListener('change',e=>handleFileLoad(e));
+document.getElementById('fileInput2').addEventListener('change',e=>handleFileLoad(e));
+
+function handleFileLoad(e) {
+  const file=e.target.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    try {
+      const data=JSON.parse(ev.target.result);
+      db = normalizeDB(data);
+      localStorage.setItem(STORAGE_DB,JSON.stringify(db));
+      localStorage.removeItem(STORAGE_POS);
+      showStatus('✓ Načteno: '+db.blocks.length+' bloků, '+countSents()+' vět',true);
+      initApp(false);
+    } catch(err){showStatus('✗ Chyba: '+err.message,false);}
+  };
+  reader.readAsText(file);
+  e.target.value='';
+}
+
+// Normalizace — podporuje v3 (grammar/blok/topic) i starší formáty
+function normalizeDB(data) {
+  // Nový formát v3
+  if(data.blocks&&Array.isArray(data.blocks)&&data.blocks[0]&&data.blocks[0].grammar!==undefined) {
+    return data;
+  }
+  // Starší v2 formát s block_id
+  if(data.blocks&&Array.isArray(data.blocks)) {
+    return {blocks: data.blocks.map(b=>({
+      grammar: b.grammar||b.grammar_id||'—',
+      level: b.level||'A1',
+      blok: b.blok||b.block_id||'—',
+      topic: b.topic||b.topic_id||'Obecné',
+      sentences: b.sentences||[]
+    }))};
+  }
+  // Nejstarší formát { "téma": [{vars:[...]}] }
+  if(typeof data==='object'&&!Array.isArray(data)) {
+    const blocks=[];
+    Object.keys(data).forEach(tema=>{
+      (data[tema]||[]).forEach(g=>{
+        if(!g.vars) return;
+        blocks.push({
+          grammar:tema, level:'A1', blok:tema, topic:'Obecné',
+          sentences:g.vars.map(v=>({cz:v.cz||'',en:v.en||'',pattern:'affirmative',note:v.note||''}))
+        });
+      });
+    });
+    return {blocks};
+  }
+  throw new Error('Neznámý formát databáze');
+}
+
+function countSents(){return db.blocks.reduce((a,b)=>a+b.sentences.length,0);}
+function showStatus(msg,ok){const el=document.getElementById('dbStatus');el.textContent=msg;el.className='db-status '+(ok?'ok':'err');}
+function tryLoadFromStorage(){try{const s=localStorage.getItem(STORAGE_DB);if(s){db=JSON.parse(s);return true;}}catch(e){}return false;}
+
+function clearDB(){
+  if(!confirm('Vymazat uloženou databázi?'))return;
+  localStorage.removeItem(STORAGE_DB);localStorage.removeItem(STORAGE_POS);db=null;
+  document.getElementById('loadPanel').style.display='';
+  ['settingsPanel','filterWrap','scoresWrap','progressBar','drillCard','controlsWrap','shortcutHint','autoIndicator']
+    .forEach(id=>document.getElementById(id).style.display='none');
+  document.getElementById('dbStatus').style.display='none';
+}
+
+// ── Filtry ────────────────────────────────────────────────────────────────────
+// Kaskádové filtry — každý filtr zužuje možnosti dalších
+function populateFilters() {
+  updateCascade();
+}
+
+function onFilterChange(changed) {
+  // Pokud změníme vyšší filtr, resetujeme nižší
+  if(changed==='level') {
+    document.getElementById('fTopic').value='';
+    document.getElementById('fGrammar').value='';
+    document.getElementById('fPattern').value='';
+  } else if(changed==='topic') {
+    document.getElementById('fGrammar').value='';
+    document.getElementById('fPattern').value='';
+  } else if(changed==='grammar') {
+    document.getElementById('fPattern').value='';
+  }
+  updateCascade();
+  applyFilters(true);
+}
+
+function updateCascade() {
+  const lvl  = document.getElementById('fLevel').value;
+  const topic= document.getElementById('fTopic').value;
+  const gram = document.getElementById('fGrammar').value;
+
+  // Filtruj bloky podle aktuálně vybraných hodnot (bez pattern)
+  const filtered = db.blocks.filter(b=>{
+    if(lvl   && b.level!==lvl)   return false;
+    if(topic && b.topic!==topic)  return false;
+    if(gram  && b.grammar!==gram) return false;
+    return true;
+  });
+
+  // Aktualizuj témata (podle úrovně)
+  const topicsFiltered = db.blocks.filter(b=> !lvl || b.level===lvl);
+  const topics = [...new Set(topicsFiltered.map(b=>b.topic).filter(Boolean))].sort();
+  const curTopic = document.getElementById('fTopic').value;
+  const fTopic = document.getElementById('fTopic');
+  fTopic.innerHTML='<option value="">Všechna témata</option>';
+  topics.forEach(t=>{
+    const o=document.createElement('option');
+    o.value=t; o.textContent=t;
+    if(t===curTopic) o.selected=true;
+    fTopic.appendChild(o);
+  });
+
+  // Aktualizuj gramatiku (podle úrovně + tématu)
+  const gramFiltered = db.blocks.filter(b=>{
+    if(lvl   && b.level!==lvl)   return false;
+    if(topic && b.topic!==topic)  return false;
+    return true;
+  });
+  const grammars = [...new Set(gramFiltered.map(b=>b.grammar).filter(Boolean))].sort();
+  const curGram = document.getElementById('fGrammar').value;
+  const fGrammar = document.getElementById('fGrammar');
+  fGrammar.innerHTML='<option value="">Veškerá gramatika</option>';
+  grammars.forEach(g=>{
+    const o=document.createElement('option');
+    o.value=g; o.textContent=g;
+    if(g===curGram) o.selected=true;
+    fGrammar.appendChild(o);
+  });
+
+  // Aktualizuj patterny (podle úrovně + tématu + gramatiky)
+  const allSents = filtered.flatMap(b=>b.sentences);
+  const patterns = [...new Set(allSents.map(s=>s.pattern).filter(Boolean))].sort();
+  const patLabels = {
+    affirmative:'Oznamovací', negative:'Záporné', question:'Otázky',
+    wh_question:'WH otázky', third_person:'3. osoba', plural:'Množné číslo',
+    imperative:'Rozkazy', passive:'Trpný rod', indirect:'Nepřímá řeč',
+    comparison:'Srovnání', tag_question:'Dovětky', conditional:'Podmínka',
+    time_clause:'Časová věta', first_person:'1. osoba', second_person:'2. osoba'
+  };
+  const curPat = document.getElementById('fPattern').value;
+  const fPattern = document.getElementById('fPattern');
+  fPattern.innerHTML='<option value="">Všechny typy vět</option>';
+  patterns.forEach(p=>{
+    const o=document.createElement('option');
+    o.value=p; o.textContent=patLabels[p]||p;
+    if(p===curPat) o.selected=true;
+    fPattern.appendChild(o);
+  });
+}
+
+function applyFilters(resetPos=true) {
+  const lvl  = document.getElementById('fLevel').value;
+  const topic= document.getElementById('fTopic').value;
+  const gram = document.getElementById('fGrammar').value;
+  const pat  = document.getElementById('fPattern').value;
+
+  activeBlocks = db.blocks.filter(b=>{
+    if(lvl   && b.level!==lvl)   return false;
+    if(topic && b.topic!==topic)  return false;
+    if(gram  && b.grammar!==gram) return false;
+    if(pat && !b.sentences.some(s=>s.pattern===pat)) return false;
+    return true;
+  });
+
+  if(pat) {
+    activeBlocks = activeBlocks.map(b=>({
+      ...b, sentences:b.sentences.filter(s=>s.pattern===pat)
+    })).filter(b=>b.sentences.length>0);
+  }
+
+  if(resetPos){bPos=0;sPos=0;done=0;buildOrders();updateScores();if(activeBlocks.length)showCurrent();}
+  document.getElementById('sTotal').textContent=activeBlocks.reduce((a,b)=>a+b.sentences.length,0);
+}
+
+function reloadActive(){if(db)applyFilters(true);}
+
+// ── Inicializace ──────────────────────────────────────────────────────────────
+function initApp(tryRestorePos) {
+  document.getElementById('loadPanel').style.display='none';
+  ['settingsPanel','filterWrap','scoresWrap','progressBar','drillCard','controlsWrap','shortcutHint']
+    .forEach(id=>document.getElementById(id).style.display='');
+  if(cfg.autoMode){document.getElementById('autoIndicator').style.display='flex';document.getElementById('autoDelayGroup').classList.remove('hidden');}
+  showStatus('✓ '+db.blocks.length+' bloků · '+countSents()+' vět',true);
+  populateFilters();
+  if(tryRestorePos&&loadPos()){updateScores();showCurrent();}
+  else{activeBlocks=[...db.blocks];buildOrders();updateScores();showCurrent();}
+}
+
+// ── Zobrazení věty ────────────────────────────────────────────────────────────
+function showCurrent() {
+  if(pauseTimer){clearTimeout(pauseTimer);pauseTimer=null;}
+  if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
+  speechSynthesis.cancel();
+
+  if(!activeBlocks.length){
+    document.getElementById('sentCZ').textContent='Žádné věty pro zvolený filtr.';
+    document.getElementById('sentEN').textContent='';
+    document.getElementById('sentEN').classList.remove('visible');
+    return;
+  }
+
+  const bi    = blockOrder[bPos%blockOrder.length];
+  const block = activeBlocks[bi];
+  const so    = sentOrders[bi];
+  const si    = so[sPos%so.length];
+  const sent  = block.sentences[si];
+
+  // Badgy
+  document.getElementById('mGrammar').textContent = block.grammar||'';
+  document.getElementById('mLevel').textContent   = block.level||'';
+  document.getElementById('mTopic').textContent   = block.topic||'';
+  document.getElementById('mPattern').textContent = sent.pattern||'';
+
+  document.getElementById('cardBadge').textContent =
+    'Blok '+(bPos%blockOrder.length+1)+'/'+blockOrder.length+
+    ' · Věta '+(sPos%so.length+1)+'/'+so.length;
+  document.getElementById('sPos').textContent=(sPos%so.length+1)+'/'+so.length;
+
+  document.getElementById('sentCZ').textContent=sent.cz||'';
+  const enEl=document.getElementById('sentEN');
+  enEl.classList.remove('visible');
+  enEl.textContent='';
+  document.getElementById('sentNote').textContent=sent.note||'';
+
+  const prog=total>0?(done/total)*100:0;
+  document.getElementById('progressFill').style.width=Math.round(prog)+'%';
+  savePos();
+
+  // Čekáme 250ms aby cancel() stihl zastavit předchozí promluvu
+  // a pak ještě jednou cancel() těsně před spuštěním nové
+  setTimeout(()=>{
+    speechSynthesis.cancel();
+    setTimeout(()=>{
+      const playCZ=document.getElementById('playCZ').checked;
+      const playEN=document.getElementById('playEN').checked;
+      if(playCZ){speak(sent.cz,document.getElementById('czVoice').value,cfg.czRate,()=>scheduleEN(sent.en,playEN));}
+      else{scheduleEN(sent.en,playEN);}
+    },80);
+  },250);
+}
+
+function scheduleEN(text,playEN) {
+  const delay=parseInt(document.getElementById('pauseSec').value)*1000;
+  pauseTimer=setTimeout(()=>{
+    const el=document.getElementById('sentEN');
+    el.textContent=text;
+    el.classList.add('visible');
+    if(playEN){playENRepeated(text,()=>scheduleAutoNext());}
+    else{scheduleAutoNext();}
+  },delay);
+}
+
+function scheduleAutoNext() {
+  if(!document.getElementById('autoMode').checked)return;
+  if(autoTimer)clearTimeout(autoTimer);
+  const delay=(parseInt(document.getElementById('autoDelay').value)||3)*1000;
+  let rem=Math.round(delay/1000);
+  document.getElementById('autoStatusText').textContent='Další věta za '+rem+'s...';
+  const cd=setInterval(()=>{rem--;if(rem>0)document.getElementById('autoStatusText').textContent='Další věta za '+rem+'s...';else clearInterval(cd);},1000);
+  autoTimer=setTimeout(()=>{clearInterval(cd);if(document.getElementById('autoMode').checked)nextSent();},delay);
+}
+
+function toggleAutoMode(forceOff) {
+  const cb=document.getElementById('autoMode');
+  if(forceOff===true)cb.checked=false;
+  const isAuto=cb.checked;
+  saveSetting('autoMode',isAuto);
+  const adg=document.getElementById('autoDelayGroup');
+  if(isAuto)adg.classList.remove('hidden');else adg.classList.add('hidden');
+  document.getElementById('autoIndicator').style.display=isAuto?'flex':'none';
+  if(!isAuto&&autoTimer){clearTimeout(autoTimer);autoTimer=null;}
+  if(isAuto)document.getElementById('autoStatusText').textContent='Automatický režim zapnut...';
+}
+
+function nextSent() {
+  if(pauseTimer){clearTimeout(pauseTimer);pauseTimer=null;}
+  if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
+  speechSynthesis.cancel();
+  done++;
+  const bi=blockOrder[bPos%blockOrder.length];
+  const so=sentOrders[bi];
+  sPos++;
+  if(sPos>=so.length){sPos=0;bPos=(bPos+1)%blockOrder.length;}
+  updateScores();showCurrent();
+}
+
+function skipSent() {
+  if(pauseTimer){clearTimeout(pauseTimer);pauseTimer=null;}
+  if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
+  speechSynthesis.cancel();
+  const bi=blockOrder[bPos%blockOrder.length];
+  const so=sentOrders[bi];
+  sPos++;
+  if(sPos>=so.length){sPos=0;bPos=(bPos+1)%blockOrder.length;}
+  showCurrent();
+}
+
+function updateScores() {
+  document.getElementById('sDone').textContent=done;
+  document.getElementById('sTotal').textContent=activeBlocks.reduce((a,b)=>a+b.sentences.length,0);
+}
+
+// ── Klávesnice ────────────────────────────────────────────────────────────────
+document.addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT'||e.target.tagName==='SELECT')return;
+  if(e.code==='Space'||e.code==='ArrowRight'){e.preventDefault();nextSent();}
+  else if(e.key==='r'||e.key==='R')replayEN();
+  else if(e.key==='c'||e.key==='C')replayCZ();
+  else if(e.key==='s'||e.key==='S')skipSent();
+  else if(e.key==='a'||e.key==='A')toggleAutoMode();
+});
+
+// ── Start ─────────────────────────────────────────────────────────────────────
+loadCfg();
+if(tryLoadFromStorage())initApp(true);
+</script>
+  <script>
+    // Registrace Service Workeru pro PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => console.log('SW registrován:', reg.scope))
+          .catch(err => console.log('SW chyba:', err));
+      });
+    }
+  </script>
+</body>
+</html>
