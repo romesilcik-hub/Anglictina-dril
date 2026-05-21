@@ -36,9 +36,7 @@
   --shadow-sm: 0 1px 4px rgba(0,0,0,.07);
   --font: 'Segoe UI', Arial, sans-serif;
 }
-html {
-  font-size: clamp(16px, 1vw + 14px, 22px);
-}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
