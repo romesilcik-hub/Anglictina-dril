@@ -81,6 +81,9 @@
       display:flex; gap:8px; margin-top:.75rem;
       animation:fadeIn .25s ease;
     }
+    .rating-wrap.rating-hidden {
+      visibility:hidden; pointer-events:none;
+    }
     .rating-btn {
       flex:1; padding:8px 6px; border-radius:var(--radius-md);
       border:1px solid var(--color-border); background:var(--color-surface);
@@ -261,7 +264,7 @@
             Přehrávat anglickou větu
           </label>
           <label class="checkbox-row">
-            <input type="checkbox" id="showRating" checked onchange="saveSetting('showRating',this.checked)">
+            <input type="checkbox" id="showRating" checked onchange="saveSetting('showRating',this.checked);document.getElementById('ratingWrap').style.display=this.checked?'':'none'">
             Zobrazovat hodnocení (✓/~/✗)
           </label>
         </div>
@@ -309,6 +312,11 @@
           </div>
         </div>
       </div>
+    </div>
+    <div onclick="document.getElementById('settingsPanel').removeAttribute('open')"
+         style="cursor:pointer;padding:.7rem 1.25rem;background:var(--color-primary-bg);border-top:1px solid var(--color-border);font-size:.82rem;font-weight:700;color:var(--color-primary-text);display:flex;align-items:center;justify-content:space-between;user-select:none;">
+      <span>⚙ Nastavení hlasů a přehrávání</span>
+      <span style="font-size:.72rem;color:var(--color-primary)">▲ Zavřít</span>
     </div>
   </details>
 
@@ -394,8 +402,8 @@
   <div class="drill-card" id="drillCard" style="display:none">
     <div style="display:flex;align-items:flex-start;gap:4px">
       <div class="card-meta" style="flex:1">
-        <span class="meta-badge mb-grammar" id="mGrammar"></span>
         <span class="meta-badge mb-level"   id="mLevel"></span>
+        <span class="meta-badge mb-grammar" id="mGrammar"></span>
         <span class="meta-badge mb-topic"   id="mTopic"></span>
         <span class="meta-badge mb-pattern" id="mPattern"></span>
         <span class="meta-badge" id="mTense" style="background:#e8f8ff;color:#0369a1;display:none"></span>
@@ -409,7 +417,7 @@
     <div class="sentence-en" id="sentEN">—</div>
     <div class="sentence-note" id="sentNote"></div>
     <!-- Hodnocení -->
-    <div class="rating-wrap hidden" id="ratingWrap">
+    <div class="rating-wrap rating-hidden" id="ratingWrap">
       <button class="rating-btn rb-good" onclick="rateSent('good')">✓ Uměl jsem</button>
       <button class="rating-btn rb-ok"   onclick="rateSent('ok')">~ Skoro</button>
       <button class="rating-btn rb-bad"  onclick="rateSent('bad')">✗ Neuměl jsem</button>
@@ -496,6 +504,7 @@ function loadCfg() {
   document.getElementById('playCZ').checked       = cfg.playCZ!==false;
   document.getElementById('playEN').checked       = cfg.playEN!==false;
   document.getElementById('showRating').checked   = cfg.showRating!==false;
+  document.getElementById('ratingWrap').style.display = cfg.showRating!==false ? '' : 'none';
   document.getElementById('shuffleBlocks').checked = !!cfg.shuffleBlocks;
   document.getElementById('shuffleSents').checked  = !!cfg.shuffleSents;
   document.getElementById('autoMode').checked      = !!cfg.autoMode;
@@ -950,6 +959,24 @@ function onFilterChange(changed) {
   applyFilters(true);
 }
 
+const PAT_LABELS = {
+  affirmative:'Oznamovací', negative:'Záporné', question:'Otázka', wh_question:'WH otázka',
+  third_person:'3. osoba', plural:'Množné číslo', imperative:'Rozkaz', passive:'Trpný rod',
+  indirect:'Nepřímá řeč', comparison:'Srovnání', tag_question:'Dovětek',
+  conditional:'Podmínka', time_clause:'Časová věta', first_person:'1. osoba', second_person:'2. osoba'
+};
+
+// Gramatiky, které samy definují formu věty — příslušný pattern se z filtru skryje
+const GRAMMAR_PATTERN_EXCLUDE = {
+  'Trpný rod':               'passive',
+  'Dovětky (question tags)': 'tag_question',
+  'Podmínka 1. typ':         'conditional',
+  'Podmínka 2. typ':         'conditional',
+  'Podmínka 3. typ':         'conditional',
+  'Přímá a nepřímá řeč':     'indirect',
+  'Rozkazy a návrhy':        'imperative',
+};
+
 // Struktura optgroup pro filtr gramatiky
 const GRAMMAR_GROUPS = [
   { label: '── Základy ──────────────', items: [
@@ -969,13 +996,14 @@ const GRAMMAR_GROUPS = [
   ]},
   { label: '── Konstrukce ───────────', items: [
     'Trpný rod','Podmínka 1. typ','Podmínka 2. typ','Podmínka 3. typ',
-    'Nepřímá řeč','Vedlejší věty','Used to','Wish','Would rather','Have something done'
+    'Přímá a nepřímá řeč','Vedlejší věty','Used to','Wish','Would rather','It\'s time','Have something done'
   ]},
   { label: '── Slovní zásoba ────────', items: [
     'Frázová slovesa','Stupňování přídavných jmen','Kvantifikátory (all/both/each)',
     'Dovětky (question tags)','Tvoření slov','Předložky místa a času',
     'There is / There are','Some / any / much / many','Sponová slovesa',
-    'Příslovce frekvence','Slovesa se dvěma předměty','Rozkazy a návrhy','Nepravidelná slovesa'
+    'Příslovce frekvence','Slovesa se dvěma předměty','Rozkazy a návrhy','Nepravidelná slovesa',
+    'Souhlasné reakce'
   ]}
 ];
 
@@ -1015,12 +1043,15 @@ function updateCascade() {
   // Typ věty — filtruje podle úrovně + gramatiky + tématu
   const filtered=db.blocks.filter(b=>(!lvl||b.level===lvl)&&(!gram2||b.grammar===gram2)&&(!topic2||b.topic===topic2));
   const allSents=filtered.flatMap(b=>b.sentences);
-  const patterns=[...new Set(allSents.map(s=>s.pattern).filter(Boolean))].sort();
-  const patLabels={affirmative:'Oznamovací',negative:'Záporné',question:'Otázky',wh_question:'WH otázky',third_person:'3. osoba',plural:'Množné číslo',imperative:'Rozkazy',passive:'Trpný rod',indirect:'Nepřímá řeč',comparison:'Srovnání',tag_question:'Dovětky',conditional:'Podmínka',time_clause:'Časová věta',first_person:'1. osoba',second_person:'2. osoba'};
+  let patterns=[...new Set(allSents.map(s=>s.pattern).filter(Boolean))].sort();
+  // Skryj pattern redundantní pro vybranou gramatiku (gramatika sama definuje formu věty)
+  const excludePat=GRAMMAR_PATTERN_EXCLUDE[gram2];
+  if(excludePat) patterns=patterns.filter(p=>p!==excludePat);
   const fPattern=document.getElementById('fPattern');
   const curP=fPattern.value;
   fPattern.innerHTML='<option value="">Všechny typy vět</option>';
-  patterns.forEach(p=>{const o=document.createElement('option');o.value=p;o.textContent=patLabels[p]||p;if(p===curP)o.selected=true;fPattern.appendChild(o);});
+  patterns.forEach(p=>{const o=document.createElement('option');o.value=p;o.textContent=PAT_LABELS[p]||p;if(p===curP)o.selected=true;fPattern.appendChild(o);});
+  if(curP && curP===excludePat) fPattern.value=''; // reset pokud byl vybrán právě vyloučený pattern
   fPattern.disabled = patterns.length<=1;
 }
 
@@ -1081,7 +1112,7 @@ function showCurrent() {
   if(pauseTimer){clearTimeout(pauseTimer);pauseTimer=null;}
   if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
   speechSynthesis.cancel();
-  document.getElementById('ratingWrap').classList.add('hidden');
+  document.getElementById('ratingWrap').classList.add('rating-hidden');
 
   if(!activeBlocks.length){
     document.getElementById('sentCZ').textContent='Žádné věty pro zvolený filtr.';
@@ -1105,7 +1136,7 @@ function showCurrent() {
   document.getElementById('mGrammar').textContent=block.grammar||'';
   document.getElementById('mLevel').textContent  =block.level||'';
   document.getElementById('mTopic').textContent  =block.topic||'';
-  document.getElementById('mPattern').textContent=sent.pattern||'';
+  document.getElementById('mPattern').textContent=PAT_LABELS[sent.pattern]||sent.pattern||'';
   const tenseEl=document.getElementById('mTense');
   tenseEl.textContent=block.tense||'';
   tenseEl.style.display=block.tense?'':'none';
@@ -1141,7 +1172,7 @@ function scheduleEN(text,playEN2) {
     el.textContent=text; el.classList.add('visible');
     // Zobraz hodnocení
     if(document.getElementById('showRating').checked) {
-      document.getElementById('ratingWrap').classList.remove('hidden');
+      document.getElementById('ratingWrap').classList.remove('rating-hidden');
     }
     if(playEN2){playENRepeated(text,()=>scheduleAutoNext(),'en-GB');}
     else{scheduleAutoNext();}
@@ -1159,7 +1190,7 @@ function rateSent(rating) {
   const sent=block.sentences[si];
   const sentId=sent.id?String(sent.id):null;
   recordRating(rating, block.grammar||'—', sentId);
-  document.getElementById('ratingWrap').classList.add('hidden');
+  document.getElementById('ratingWrap').classList.add('rating-hidden');
   // Po hodnocení automaticky přejdi na další
   if(!document.getElementById('autoMode').checked) {
     nextSent();
