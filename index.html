@@ -299,6 +299,15 @@
             <span class="slider-val" id="dailyGoalVal">20</span>
           </div>
         </div>
+        <div class="settings-divider"></div>
+        <div class="setting-group">
+          <span>Velikost písma vět</span>
+          <div class="slider-row">
+            <input type="range" id="sentScale" min="0.7" max="1.6" step="0.05" value="1"
+                   oninput="applySentScale(this.value);saveSetting('sentScale',this.value)">
+            <span class="slider-val" id="sentScaleVal">100%</span>
+          </div>
+        </div>
       </div>
     </div>
   </details>
@@ -357,11 +366,11 @@
       <option value="A2">A2</option>
       <option value="B1">B1</option>
     </select>
+    <select class="filter-sel" id="fGrammar" onchange="onFilterChange('grammar')" style="max-width:260px">
+      <option value="">Veškerá gramatika</option>
+    </select>
     <select class="filter-sel" id="fTopic" onchange="onFilterChange('topic')">
       <option value="">Všechna témata</option>
-    </select>
-    <select class="filter-sel" id="fGrammar" onchange="onFilterChange('grammar')">
-      <option value="">Veškerá gramatika</option>
     </select>
     <select class="filter-sel" id="fPattern" onchange="onFilterChange('pattern')">
       <option value="">Všechny typy vět</option>
@@ -389,6 +398,8 @@
         <span class="meta-badge mb-level"   id="mLevel"></span>
         <span class="meta-badge mb-topic"   id="mTopic"></span>
         <span class="meta-badge mb-pattern" id="mPattern"></span>
+        <span class="meta-badge" id="mTense" style="background:#e8f8ff;color:#0369a1;display:none"></span>
+        <span class="meta-badge" id="mConstruction" style="background:#fdf4ff;color:#7e22ce;display:none"></span>
       </div>
       <button class="fav-btn" id="favBtn" onclick="toggleFav()" title="Oblíbená věta">☆</button>
     </div>
@@ -457,8 +468,16 @@ let cfg = {
   shuffleBlocks:false, shuffleSents:false,
   autoMode:false, autoDelay:3,
   showRating:true, dailyGoal:20,
+  sentScale:1,
   darkMode:false
 };
+
+function applySentScale(val) {
+  val = parseFloat(val);
+  document.documentElement.style.setProperty('--sent-scale', val);
+  document.getElementById('sentScaleVal').textContent = Math.round(val*100)+'%';
+  document.getElementById('sentScale').value = val;
+}
 
 function loadCfg() {
   try { const s=localStorage.getItem(STORAGE_CFG); if(s) cfg={...cfg,...JSON.parse(s)}; } catch(e){}
@@ -482,6 +501,7 @@ function loadCfg() {
   document.getElementById('autoMode').checked      = !!cfg.autoMode;
   if(cfg.autoMode) document.getElementById('autoDelayGroup').classList.remove('hidden');
   if(cfg.darkMode) document.body.classList.add('dark');
+  applySentScale(cfg.sentScale||1);
 }
 
 function saveSetting(key,val) {
@@ -585,6 +605,7 @@ function savePos() {
       fTopic:document.getElementById('fTopic').value,
       fGrammar:document.getElementById('fGrammar').value,
       fPattern:document.getElementById('fPattern').value,
+
       favFilter
     }));
   } catch(e){}
@@ -602,10 +623,11 @@ function loadPos() {
   if(!p||!db||!db.blocks) return false;
   if(p.dbName && p.dbName !== activeDbName) return false;
   // Obnov filtry
-  if(p.fLevel)   document.getElementById('fLevel').value   = p.fLevel;
-  if(p.fTopic)   document.getElementById('fTopic').value   = p.fTopic;
-  if(p.fGrammar) document.getElementById('fGrammar').value = p.fGrammar;
-  if(p.fPattern) document.getElementById('fPattern').value = p.fPattern;
+  if(p.fLevel)        document.getElementById('fLevel').value        = p.fLevel;
+  if(p.fTopic)        document.getElementById('fTopic').value        = p.fTopic;
+  if(p.fGrammar)      document.getElementById('fGrammar').value      = p.fGrammar;
+  if(p.fPattern)      document.getElementById('fPattern').value      = p.fPattern;
+
   if(p.favFilter) { favFilter=true; document.getElementById('favFilterBtn').classList.add('active'); }
   applyFilters(false);
   return restorePos(p);
@@ -642,7 +664,8 @@ function getSentKey() {
   const so=sentOrders[bi];
   const si=so[sPos%so.length];
   const sent=block.sentences[si];
-  return (block.grammar||'')+'|'+(sent.cz||'');
+  // Preferuj id, fallback na cz text pro starší data
+  return sent.id ? String(sent.id) : (block.grammar||'')+'|'+(sent.cz||'');
 }
 
 function toggleFav() {
@@ -651,12 +674,25 @@ function toggleFav() {
   if(favs.has(key)) { favs.delete(key); btn.textContent='☆'; btn.classList.remove('active'); }
   else { favs.add(key); btn.textContent='★'; btn.classList.add('active'); }
   saveFavs();
+  updateFavFilterBtn();
 }
 
 function toggleFavFilter() {
   favFilter=!favFilter;
   document.getElementById('favFilterBtn').classList.toggle('active',favFilter);
   applyFilters(true);
+}
+
+function updateFavFilterBtn() {
+  const btn=document.getElementById('favFilterBtn');
+  const count=favs.size;
+  if(count===0){
+    btn.style.display='none';
+    if(favFilter){ favFilter=false; applyFilters(false); }
+  } else {
+    btn.style.display='';
+    btn.textContent='⭐ Oblíbené ('+count+')';
+  }
 }
 
 function updateFavBtn() {
@@ -683,7 +719,7 @@ function saveStats() {
   try { localStorage.setItem(STORAGE_STAT,JSON.stringify(stats)); } catch(e){}
 }
 
-function recordRating(rating, grammarName) {
+function recordRating(rating, grammarName, sentId) {
   stats.total++;
   stats[rating]++;
   stats.today++;
@@ -697,6 +733,13 @@ function recordRating(rating, grammarName) {
   if(!stats.byGrammar[grammarName]) stats.byGrammar[grammarName]={good:0,bad:0};
   if(rating==='good') stats.byGrammar[grammarName].good++;
   else if(rating==='bad') stats.byGrammar[grammarName].bad++;
+  // Per věta (pro budoucí SRS) — ulož výsledek s ID
+  if(sentId){
+    if(!stats.bySent) stats.bySent={};
+    if(!stats.bySent[sentId]) stats.bySent[sentId]={good:0,ok:0,bad:0,last:null};
+    stats.bySent[sentId][rating]++;
+    stats.bySent[sentId].last=new Date().toISOString().split('T')[0];
+  }
   saveStats();
   updateDailyBar();
 }
@@ -855,8 +898,8 @@ function normalizeDB(data) {
   if(data.blocks&&Array.isArray(data.blocks)) {
     return {blocks:data.blocks.map(b=>({
       grammar:b.grammar||b.grammar_id||'—',level:b.level||'A1',
-      blok:b.blok||b.block_id||'—',topic:b.topic||b.topic_id||'Obecné',
-      sentences:b.sentences||[]
+      blok:b.blok||b.block_id||'—',topic:b.topic||b.topic_id||'Obecné',tense:b.tense||'',
+      sentences:(b.sentences||[]).map((s,si)=>({id:s.id||('b'+si),cz:s.cz||'',en:s.en||'',pattern:s.pattern||'',construction:s.construction||'',note:s.note||''}))
     }))};
   }
   if(typeof data==='object'&&!Array.isArray(data)) {
@@ -865,7 +908,7 @@ function normalizeDB(data) {
       (data[tema]||[]).forEach(g=>{
         if(!g.vars) return;
         blocks.push({grammar:tema,level:'A1',blok:tema,topic:'Obecné',
-          sentences:g.vars.map(v=>({cz:v.cz||'',en:v.en||'',pattern:'affirmative',note:v.note||''}))});
+          sentences:g.vars.map((v,vi)=>({id:'old_'+tema+'_'+vi,cz:v.cz||'',en:v.en||'',pattern:'affirmative',construction:'',note:v.note||''}))});
       });
     });
     return {blocks};
@@ -894,36 +937,83 @@ function populateFilters() { updateCascade(); }
 
 function onFilterChange(changed) {
   if(changed==='level'){
+    document.getElementById('fGrammar').value='';
     document.getElementById('fTopic').value='';
-    document.getElementById('fGrammar').value='';
-    document.getElementById('fPattern').value='';
-  } else if(changed==='topic'){
-    document.getElementById('fGrammar').value='';
     document.getElementById('fPattern').value='';
   } else if(changed==='grammar'){
+    document.getElementById('fTopic').value='';
+    document.getElementById('fPattern').value='';
+  } else if(changed==='topic'){
     document.getElementById('fPattern').value='';
   }
   updateCascade();
   applyFilters(true);
 }
 
+// Struktura optgroup pro filtr gramatiky
+const GRAMMAR_GROUPS = [
+  { label: '── Základy ──────────────', items: [
+    'Sloveso být (to be)','Členy (a/an/the)','Množné číslo','Zájmena','Číslovky'
+  ]},
+  { label: '── Časy ─────────────────', items: [
+    'Přítomný čas prostý','Přítomný čas průběhový','Předpřítomný čas','Předpřítomný průběhový',
+    'Minulý čas prostý','Minulý čas průběhový','Předminulý čas',
+    'Budoucí čas (will)','Budoucí čas (going to)','Budoucí průběhový'
+  ]},
+  { label: '── Způsobová slovesa ────', items: [
+    'Způsobová — can/could','Způsobová — must/have to','Způsobová — should/ought to',
+    'Způsobová — might/may','Způsobová minulá (could have...)'
+  ]},
+  { label: '── Infinitiv a gerundium ', items: [
+    'Infinitiv','Gerundium'
+  ]},
+  { label: '── Konstrukce ───────────', items: [
+    'Trpný rod','Podmínka 1. typ','Podmínka 2. typ','Podmínka 3. typ',
+    'Nepřímá řeč','Vedlejší věty','Used to','Wish','Would rather','Have something done'
+  ]},
+  { label: '── Slovní zásoba ────────', items: [
+    'Frázová slovesa','Stupňování přídavných jmen','Kvantifikátory (all/both/each)',
+    'Dovětky (question tags)','Tvoření slov','Předložky místa a času',
+    'There is / There are','Some / any / much / many','Sponová slovesa',
+    'Příslovce frekvence','Slovesa se dvěma předměty','Rozkazy a návrhy','Nepravidelná slovesa'
+  ]}
+];
+
 function updateCascade() {
   const lvl  =document.getElementById('fLevel').value;
-  const topic=document.getElementById('fTopic').value;
   const gram =document.getElementById('fGrammar').value;
-  const topicsF=db.blocks.filter(b=>!lvl||b.level===lvl);
+  const topic=document.getElementById('fTopic').value;
+
+  // Gramatika — filtruje jen podle úrovně
+  const availGrams=new Set(db.blocks.filter(b=>!lvl||b.level===lvl).map(b=>b.grammar).filter(Boolean));
+  const fGrammar=document.getElementById('fGrammar');
+  const curG=gram;
+  fGrammar.innerHTML='<option value="">Veškerá gramatika</option>';
+  GRAMMAR_GROUPS.forEach(group=>{
+    const matchItems=group.items.filter(g=>availGrams.has(g));
+    if(!matchItems.length) return;
+    const og=document.createElement('optgroup');
+    og.label=group.label;
+    matchItems.forEach(g=>{const o=document.createElement('option');o.value=g;o.textContent=g;if(g===curG)o.selected=true;og.appendChild(o);});
+    fGrammar.appendChild(og);
+  });
+  if(curG && !availGrams.has(curG)) fGrammar.value='';
+  const gram2=fGrammar.value;
+  fGrammar.disabled = availGrams.size<=1;
+
+  // Téma — filtruje podle úrovně + gramatiky
+  const topicsF=db.blocks.filter(b=>(!lvl||b.level===lvl)&&(!gram2||b.grammar===gram2));
   const topics=[...new Set(topicsF.map(b=>b.topic).filter(Boolean))].sort();
   const fTopic=document.getElementById('fTopic');
-  const curT=fTopic.value;
+  const curT=topic;
   fTopic.innerHTML='<option value="">Všechna témata</option>';
   topics.forEach(t=>{const o=document.createElement('option');o.value=t;o.textContent=t;if(t===curT)o.selected=true;fTopic.appendChild(o);});
-  const gramF=db.blocks.filter(b=>(!lvl||b.level===lvl)&&(!topic||b.topic===topic));
-  const grammars=[...new Set(gramF.map(b=>b.grammar).filter(Boolean))].sort();
-  const fGrammar=document.getElementById('fGrammar');
-  const curG=fGrammar.value;
-  fGrammar.innerHTML='<option value="">Veškerá gramatika</option>';
-  grammars.forEach(g=>{const o=document.createElement('option');o.value=g;o.textContent=g;if(g===curG)o.selected=true;fGrammar.appendChild(o);});
-  const filtered=db.blocks.filter(b=>(!lvl||b.level===lvl)&&(!topic||b.topic===topic)&&(!gram||b.grammar===gram));
+  if(curT && !topics.includes(curT)) fTopic.value='';
+  const topic2=fTopic.value;
+  fTopic.disabled = topics.length<=1;
+
+  // Typ věty — filtruje podle úrovně + gramatiky + tématu
+  const filtered=db.blocks.filter(b=>(!lvl||b.level===lvl)&&(!gram2||b.grammar===gram2)&&(!topic2||b.topic===topic2));
   const allSents=filtered.flatMap(b=>b.sentences);
   const patterns=[...new Set(allSents.map(s=>s.pattern).filter(Boolean))].sort();
   const patLabels={affirmative:'Oznamovací',negative:'Záporné',question:'Otázky',wh_question:'WH otázky',third_person:'3. osoba',plural:'Množné číslo',imperative:'Rozkazy',passive:'Trpný rod',indirect:'Nepřímá řeč',comparison:'Srovnání',tag_question:'Dovětky',conditional:'Podmínka',time_clause:'Časová věta',first_person:'1. osoba',second_person:'2. osoba'};
@@ -931,6 +1021,7 @@ function updateCascade() {
   const curP=fPattern.value;
   fPattern.innerHTML='<option value="">Všechny typy vět</option>';
   patterns.forEach(p=>{const o=document.createElement('option');o.value=p;o.textContent=patLabels[p]||p;if(p===curP)o.selected=true;fPattern.appendChild(o);});
+  fPattern.disabled = patterns.length<=1;
 }
 
 function applyFilters(resetPos=true) {
@@ -948,11 +1039,14 @@ function applyFilters(resetPos=true) {
   });
   if(pat) filtered=filtered.map(b=>({...b,sentences:b.sentences.filter(s=>s.pattern===pat)})).filter(b=>b.sentences.length>0);
 
-  // Filtr oblíbených
+  // Filtr oblíbených — preferuj UUID, fallback na grammar|cz
   if(favFilter) {
     filtered=filtered.map(b=>({
       ...b,
-      sentences:b.sentences.filter(s=>favs.has((b.grammar||'')+'|'+(s.cz||'')))
+      sentences:b.sentences.filter(s=>{
+        const key=s.id ? String(s.id) : (b.grammar||'')+'|'+(s.cz||'');
+        return favs.has(key);
+      })
     })).filter(b=>b.sentences.length>0);
   }
 
@@ -1012,6 +1106,12 @@ function showCurrent() {
   document.getElementById('mLevel').textContent  =block.level||'';
   document.getElementById('mTopic').textContent  =block.topic||'';
   document.getElementById('mPattern').textContent=sent.pattern||'';
+  const tenseEl=document.getElementById('mTense');
+  tenseEl.textContent=block.tense||'';
+  tenseEl.style.display=block.tense?'':'none';
+  const constrEl=document.getElementById('mConstruction');
+  constrEl.textContent=sent.construction||'';
+  constrEl.style.display=sent.construction?'':'none';
   document.getElementById('cardBadge').textContent='Blok '+(bPos%blockOrder.length+1)+'/'+blockOrder.length+' · Věta '+(sPos%so.length+1)+'/'+so.length;
   document.getElementById('sPos').textContent=(sPos%so.length+1)+'/'+so.length;
   document.getElementById('sentCZ').textContent=sent.cz||'';
@@ -1054,7 +1154,11 @@ function scheduleEN(text,playEN2) {
 function rateSent(rating) {
   const bi=blockOrder[bPos%blockOrder.length];
   const block=activeBlocks[bi];
-  recordRating(rating, block.grammar||'—');
+  const so=sentOrders[bi];
+  const si=so[sPos%so.length];
+  const sent=block.sentences[si];
+  const sentId=sent.id?String(sent.id):null;
+  recordRating(rating, block.grammar||'—', sentId);
   document.getElementById('ratingWrap').classList.add('hidden');
   // Po hodnocení automaticky přejdi na další
   if(!document.getElementById('autoMode').checked) {
@@ -1169,6 +1273,7 @@ document.addEventListener('keydown',e=>{
 loadCfg();
 if(cfg.darkMode){document.getElementById('darkToggle').textContent='☀️';}
 loadFavs();
+updateFavFilterBtn();
 loadStats();
 updateDailyBar();
 if(tryLoadFromStorage())initApp(true);

@@ -5,6 +5,8 @@
    ============================================================ */
 
 :root {
+  --sent-scale: 1;
+
   --color-bg:           #f4f6f9;
   --color-surface:      #ffffff;
   --color-surface-alt:  #f0f4f8;
@@ -36,6 +38,8 @@
   --shadow-sm: 0 1px 4px rgba(0,0,0,.07);
   --font: 'Segoe UI', Arial, sans-serif;
 }
+
+html { font-size: clamp(15px, 1vw + 13px, 18px); }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -199,10 +203,14 @@ body {
   gap: .65rem;
 }
 .card-badge { font-size: .73rem; color: var(--color-text-light); }
-.sentence-cz { font-size: 1.05rem; font-weight: 600; color: var(--color-cz); line-height: 1.5; }
+.sentence-cz {
+  font-size: calc(1.1rem * var(--sent-scale));
+  font-weight: 600; color: var(--color-cz); line-height: 1.5;
+}
 .sentence-divider { height: 1px; background: var(--color-border-light); }
 .sentence-en {
-  font-size: 1rem; color: var(--color-en); font-weight: 500; line-height: 1.5;
+  font-size: calc(1.35rem * var(--sent-scale));
+  color: var(--color-en); font-weight: 700; line-height: 1.5;
   opacity: 0; transition: opacity .35s ease; min-height: 1.5em;
 }
 .sentence-en.visible { opacity: 1; }
@@ -224,9 +232,16 @@ body {
 .btn-ghost { border-color: transparent; background: transparent; color: var(--color-text-muted); }
 .btn-ghost:hover { color: var(--color-text); background: var(--color-surface-alt); }
 
+/* Disabled filtr — viditelný ale neaktivní */
+.filter-sel:disabled {
+  background: var(--color-surface-alt);
+  color: var(--color-text-light);
+  border-color: var(--color-border-light);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
 @media (max-width: 480px) {
   body { padding: 1rem .75rem 2rem; }
   .drill-card { padding: 1.1rem; }
-  .sentence-cz { font-size: .95rem; }
-  .sentence-en { font-size: .9rem; }
 }
