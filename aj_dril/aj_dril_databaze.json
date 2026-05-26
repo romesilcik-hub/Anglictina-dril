@@ -1,4 +1,699 @@
 ﻿{
   "blocks": [
+    {
+      "grammar": "Sloveso být (to be)",
+      "level": "A0",
+      "blok": "doma",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "6dee2845-948f-4023-a20e-b99fc72328e0}", "cz": "Jsem doma.", "en": "I am at home.", "pattern": "affirmative", "note": "I am = já jsem"},
+        {"id": "3d244985-430c-45cb-b7ce-ad129a4bad8b}", "cz": "Nejsem doma.", "en": "I am not at home.", "pattern": "negative", "note": "zápor: am not"},
+        {"id": "a6ec1c6a-7203-47f5-9b0c-fb3acb5a4194}", "cz": "Jsi doma?", "en": "Are you at home?", "pattern": "question", "note": "otázka: are před podmětem"},
+        {"id": "aceb4a02-d066-443a-9c51-602368a7d75c}", "cz": "Kde jsi?", "en": "Where are you?", "pattern": "wh_question", "note": "WH slovo + are"},
+        {"id": "6ba90aa2-085b-4a19-8014-a8b396d21cf8}", "cz": "On je doma.", "en": "He is at home.", "pattern": "third_person", "note": "he is = on je"},
+        {"id": "6663c458-264b-4128-a5ee-9e94bfb98909}", "cz": "Oni jsou doma.", "en": "They are at home.", "pattern": "plural", "note": "they are = oni jsou"}
+        ]
+      },
+    {
+      "grammar": "Sloveso být (to be)",
+      "level": "A0",
+      "blok": "v práci",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "f7ff5c14-b89a-46ec-bfa1-3819bce824a5}", "cz": "Jsem v práci.", "en": "I am at work.", "pattern": "affirmative", "note": "at work = v práci"},
+        {"id": "82a77eb6-c85d-4fef-82ec-b0bc4c2de76a}", "cz": "Nejsi v práci.", "en": "You are not at work.", "pattern": "negative", "note": "you are not = ty nejsi"},
+        {"id": "66cb893c-34d0-4677-aa69-ef118a6365cb}", "cz": "Jste v práci?", "en": "Are you at work?", "pattern": "question", "note": "are you = jsi/jste"},
+        {"id": "f8241687-94c4-4816-9eab-394a44f82525}", "cz": "Kde jsme?", "en": "Where are we?", "pattern": "wh_question", "note": "we are = my jsme"},
+        {"id": "a90ad3d4-20f9-4ee5-bb99-0e07ea8a3585}", "cz": "Ona je v práci.", "en": "She is at work.", "pattern": "third_person", "note": "she is = ona je"},
+        {"id": "7c084bbd-5ad4-458e-b641-55293ffa88c9}", "cz": "My jsme v práci.", "en": "We are at work.", "pattern": "plural", "note": "we are = my jsme"}
+        ]
+      },
+    {
+      "grammar": "Sloveso být (to be)",
+      "level": "A0",
+      "blok": "unavený",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "661f2632-179b-46f2-a85b-9000f2fa0609}", "cz": "Jsem unavený.", "en": "I am tired.", "pattern": "affirmative", "note": "přídavné jméno po be"},
+        {"id": "3916d933-08c7-442f-ae7a-233618e17b0e}", "cz": "Nejsme unavení.", "en": "We are not tired.", "pattern": "negative", "note": "we are not = nejsme"},
+        {"id": "c632a505-e9a2-4dd8-90aa-3b9cfed903d8}", "cz": "Jsi unavený?", "en": "Are you tired?", "pattern": "question", "note": "otázka bez do/does"},
+        {"id": "35531d3e-5c94-4e06-ae22-caa1fddba0c7}", "cz": "Proč jsi unavený?", "en": "Why are you tired?", "pattern": "wh_question", "note": "why = proč"},
+        {"id": "5e7d712e-1512-4fe3-a06d-0f8ea5d59e24}", "cz": "Ona je unavená.", "en": "She is tired.", "pattern": "third_person", "note": "she is = ona je"},
+        {"id": "47aea7c0-bbe2-4b95-a048-40b240a45d72}", "cz": "Oni jsou unavení.", "en": "They are tired.", "pattern": "plural", "note": "they are = oni jsou"}
+        ]
+      },
+    {
+      "grammar": "Sloveso být (to be)",
+      "level": "A0",
+      "blok": "v obchodě",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "c8e0574b-792f-45a2-8b54-7f6397bd3dd3}", "cz": "Jsem v obchodě.", "en": "I am in the shop.", "pattern": "affirmative", "note": "in the shop = v obchodě"},
+        {"id": "a4696814-5fa9-4936-86bf-02ad618449e1}", "cz": "On není v obchodě.", "en": "He is not in the shop.", "pattern": "negative", "note": "he isn't = on není"},
+        {"id": "bae39292-9b39-47e9-ab22-793c8b364638}", "cz": "Je ona v obchodě?", "en": "Is she in the shop?", "pattern": "question", "note": "is she = je ona"},
+        {"id": "4bbe833c-a110-4ab4-9ff6-643b2b2b09c8}", "cz": "Kde je on?", "en": "Where is he?", "pattern": "wh_question", "note": "where is = kde je"},
+        {"id": "b9d50cb1-0032-45ee-8575-3e6e4acb209c}", "cz": "Ona je v obchodě.", "en": "She is in the shop.", "pattern": "third_person", "note": "she is = ona je"},
+        {"id": "7086f910-728b-4ff9-8c66-4da4c73f8847}", "cz": "My jsme v obchodě.", "en": "We are in the shop.", "pattern": "plural", "note": "we are = my jsme"}
+        ]
+      },
+    {
+      "grammar": "Sloveso být (to be)",
+      "level": "A0",
+      "blok": "šťastný",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "fff1cc73-c8db-4604-b7fe-bf0cfe8f9438}", "cz": "Jsem šťastný.", "en": "I am happy.", "pattern": "affirmative", "note": "happy = šťastný"},
+        {"id": "6f9fb1c4-eb0b-4054-afaa-425a5a5c6443}", "cz": "Oni nejsou šťastní.", "en": "They are not happy.", "pattern": "negative", "note": "they aren't = oni nejsou"},
+        {"id": "a2af1c52-5acf-4870-8030-876581b7297e}", "cz": "Jsi šťastný?", "en": "Are you happy?", "pattern": "question", "note": "are you = jsi ty"},
+        {"id": "3c3d9653-633f-4207-b346-76e0e88e0dbb}", "cz": "Proč je ona šťastná?", "en": "Why is she happy?", "pattern": "wh_question", "note": "is she = je ona"},
+        {"id": "fb5a8e7f-118b-41c8-8616-fcf4a6c1e919}", "cz": "On je šťastný.", "en": "He is happy.", "pattern": "third_person", "note": "he is = on je"},
+        {"id": "71e740af-9c19-45ce-9852-ceb721318416}", "cz": "My jsme šťastní.", "en": "We are happy.", "pattern": "plural", "note": "we are = my jsme"}
+        ]
+      },
+    {
+      "grammar": "Členy (a/an/the)",
+      "level": "A0",
+      "blok": "v restauraci",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "e3291fe3-b137-47f4-8ef8-4ffac23483f0}", "cz": "Mám sendvič.", "en": "I have a sandwich.", "pattern": "affirmative", "note": "a = jedna neurčitá věc"},
+        {"id": "6070514c-d627-4270-8cb6-1eccf5ac7797}", "cz": "Nemám menu.", "en": "I do not have a menu.", "pattern": "negative", "note": "a před jednotným podst. jm."},
+        {"id": "5e1f83a6-8b69-4a0a-b7cb-fc6585d12f81}", "cz": "Máš účet?", "en": "Do you have the bill?", "pattern": "question", "note": "the = známá věc"},
+        {"id": "62236ae3-5b99-4dbf-a085-a7a8ffcc35c2}", "cz": "Kde je menu?", "en": "Where is the menu?", "pattern": "wh_question", "note": "the = konkrétní věc"},
+        {"id": "51782974-0a1d-4092-b056-ef707a5caddf}", "cz": "On má pomeranč.", "en": "He has an orange.", "pattern": "third_person", "note": "an před samohláskou"},
+        {"id": "f28acce4-ee29-4128-9921-a5db98a672dc}", "cz": "My máme stůl.", "en": "We have a table.", "pattern": "plural", "note": "a table = jeden stůl"}
+        ]
+      },
+    {
+      "grammar": "Členy (a/an/the)",
+      "level": "A0",
+      "blok": "v kanceláři",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "2bba1e4a-1e5f-48f1-aa89-d006bbf10e62}", "cz": "Vidím počítač.", "en": "I see a computer.", "pattern": "affirmative", "note": "a = poprvé zmíněno"},
+        {"id": "b8de20f9-1e9e-437e-9b9b-3843a3766c1f}", "cz": "Nevidím telefon.", "en": "I do not see a phone.", "pattern": "negative", "note": "a phone = neurčitý telefon"},
+        {"id": "171cb03d-c442-4e36-aef5-b73dbe31ddae}", "cz": "Vidíš dveře?", "en": "Do you see the door?", "pattern": "question", "note": "the door = konkrétní dveře"},
+        {"id": "25e91e88-b1b2-44c4-9f6a-e1ccd7a28ca7}", "cz": "Kde je počítač?", "en": "Where is the computer?", "pattern": "wh_question", "note": "the computer = známá věc"},
+        {"id": "7b6e0a32-0ed0-41dc-a39e-46fade37b8d3}", "cz": "Ona vidí jablko.", "en": "She sees an apple.", "pattern": "third_person", "note": "an apple = samohláska"},
+        {"id": "2df5dbfa-ef56-4481-a39f-11d3695c2f39}", "cz": "Oni vidí auto.", "en": "They see a car.", "pattern": "plural", "note": "a car = jedno auto"}
+        ]
+      },
+    {
+      "grammar": "Členy (a/an/the)",
+      "level": "A0",
+      "blok": "v obchodě",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "cdfb7b80-e526-40c8-9dbb-88b1f7e3be54}", "cz": "Kupuji knihu.", "en": "I am buying a book.", "pattern": "affirmative", "note": "a book = jedna kniha"},
+        {"id": "f42c9c5b-4cd3-4407-ab63-bec937e5e1b1}", "cz": "Nekupuji časopis.", "en": "I am not buying a magazine.", "pattern": "negative", "note": "a magazine = neurčitá věc"},
+        {"id": "26430cec-e0cd-46aa-a746-a941b3a9e293}", "cz": "Kupuješ ten chleba?", "en": "Are you buying the bread?", "pattern": "question", "note": "the = konkrétní chleba"},
+        {"id": "ff17bea4-fc0f-4feb-b833-3b3495f458c0}", "cz": "Kde je mléko?", "en": "Where is the milk?", "pattern": "wh_question", "note": "the u unikátní věci často není"},
+        {"id": "38434c23-0d50-4eef-8b86-ca909c58f86f}", "cz": "On kupuje vejce.", "en": "He is buying an egg.", "pattern": "third_person", "note": "an egg = před samohláskou"},
+        {"id": "629c1345-947e-469d-80b2-8cf5df68771f}", "cz": "My kupujeme mapu.", "en": "We are buying a map.", "pattern": "plural", "note": "a map = neurčitá věc"}
+        ]
+      },
+    {
+      "grammar": "Členy (a/an/the)",
+      "level": "A0",
+      "blok": "v hotelu",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "72282dc2-715a-4a3e-a6f6-6aefc2887f63}", "cz": "Potřebuji pokoj.", "en": "I need a room.", "pattern": "affirmative", "note": "a room = jeden pokoj"},
+        {"id": "8312c189-6ee4-4048-a2f3-2e37a6770aff}", "cz": "Nepotřebuji taxi.", "en": "I do not need a taxi.", "pattern": "negative", "note": "a taxi = neurčitá věc"},
+        {"id": "89cfcc08-0c63-4bd1-b179-ee564316d23b}", "cz": "Potřebuješ klíč?", "en": "Do you need the key?", "pattern": "question", "note": "the key = konkrétní klíč"},
+        {"id": "6b913ea1-e731-4614-b4e7-2c1de013001b}", "cz": "Kde je recepce?", "en": "Where is the reception?", "pattern": "wh_question", "note": "the často u míst v budově"},
+        {"id": "ba7e7003-824b-43ff-a0d2-655833ed69df}", "cz": "Ona potřebuje deštník.", "en": "She needs an umbrella.", "pattern": "third_person", "note": "an umbrella = samohláska"},
+        {"id": "572aed86-dc3b-4c58-98b4-208ca4c982ae}", "cz": "Oni potřebují pokoj.", "en": "They need a room.", "pattern": "plural", "note": "a room = jeden pokoj"}
+        ]
+      },
+    {
+      "grammar": "Členy (a/an/the)",
+      "level": "A0",
+      "blok": "na ulici",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "76ffad1f-7246-46d5-8ab6-cace86341efa}", "cz": "Slyším psa.", "en": "I hear a dog.", "pattern": "affirmative", "note": "a dog = neurčitý pes"},
+        {"id": "895d8b97-b5ac-43f0-a167-deb9010b1625}", "cz": "Neslyším alarm.", "en": "I do not hear an alarm.", "pattern": "negative", "note": "an alarm = samohláska"},
+        {"id": "188b3175-b2f3-4c74-af75-43e7d965d49e}", "cz": "Slyšíš vlak?", "en": "Do you hear the train?", "pattern": "question", "note": "the train = konkrétní vlak"},
+        {"id": "78450128-1cfe-497e-94fe-9fac533e069d}", "cz": "Kde je autobus?", "en": "Where is the bus?", "pattern": "wh_question", "note": "the bus = známý autobus"},
+        {"id": "19d70e9f-ecb6-497a-975e-03132647eb1a}", "cz": "On slyší dítě.", "en": "He hears a child.", "pattern": "third_person", "note": "a child = jednotné číslo"},
+        {"id": "1c4ef351-4219-4c98-935f-8a3362d2b6e7}", "cz": "My slyšíme letadlo.", "en": "We hear an airplane.", "pattern": "plural", "note": "an airplane = samohláska"}
+        ]
+      },
+    {
+      "grammar": "Množné číslo",
+      "level": "A0",
+      "blok": "v kanceláři",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "6c087ae1-64dc-47c7-b3ee-47889505f36b}", "cz": "Mám dvě knihy.", "en": "I have two books.", "pattern": "affirmative", "note": "pravidelně: book → books"},
+        {"id": "f48f2319-1381-4cf4-863f-9fde640e9c21}", "cz": "Nemám tři pera.", "en": "I do not have three pens.", "pattern": "negative", "note": "přidej -s"},
+        {"id": "4f63f73d-9df7-4318-a8da-4971627e0c80}", "cz": "Máš dvě židle?", "en": "Do you have two chairs?", "pattern": "question", "note": "chair → chairs"},
+        {"id": "3ebda570-c425-4f38-a28d-fd4c08931f90}", "cz": "Kde jsou moje klíče?", "en": "Where are my keys?", "pattern": "wh_question", "note": "key → keys"},
+        {"id": "8d7f1e21-86c7-466e-95f7-78fedde075b3}", "cz": "On má dva počítače.", "en": "He has two computers.", "pattern": "third_person", "note": "computer → computers"},
+        {"id": "dbe4e5d6-030d-4bba-af6e-a62b271d1fd2}", "cz": "My máme čtyři stoly.", "en": "We have four tables.", "pattern": "plural", "note": "table → tables"}
+        ]
+      },
+    {
+      "grammar": "Množné číslo",
+      "level": "A0",
+      "blok": "v obchodě",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "99858485-5706-48db-adf6-04d5ee47c871}", "cz": "Vidím dvě krabice.", "en": "I see two boxes.", "pattern": "affirmative", "note": "box → boxes"},
+        {"id": "62127cc1-c7e6-438f-9716-f9891cb572be}", "cz": "Nevidím žádné autobusy.", "en": "I do not see any buses.", "pattern": "negative", "note": "bus → buses"},
+        {"id": "6e7dc07b-56a4-4410-b37c-a90f53951c9e}", "cz": "Vidíš ty hodiny?", "en": "Do you see the watches?", "pattern": "question", "note": "watch → watches"},
+        {"id": "95caecca-4dee-498d-919e-55f7bb8c210d}", "cz": "Kde jsou rajčata?", "en": "Where are the tomatoes?", "pattern": "wh_question", "note": "tomato → tomatoes"},
+        {"id": "4a827f38-ecff-4479-892a-08100306d7c2}", "cz": "Ona vidí dvě tašky.", "en": "She sees two bags.", "pattern": "third_person", "note": "bag → bags"},
+        {"id": "29103e9c-4659-40bb-a346-f45c4ec33a3f}", "cz": "Oni vidí staré mapy.", "en": "They see old maps.", "pattern": "plural", "note": "map → maps"}
+        ]
+      },
+    {
+      "grammar": "Množné číslo",
+      "level": "A0",
+      "blok": "doma",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "1428b100-3b06-436b-bf87-ab55f3223542}", "cz": "Kupuji jablka.", "en": "I am buying apples.", "pattern": "affirmative", "note": "apple → apples"},
+        {"id": "0293104e-4d6b-46e4-958f-b88d250c399f}", "cz": "Nekupuji vejce.", "en": "I am not buying eggs.", "pattern": "negative", "note": "egg → eggs"},
+        {"id": "5c407220-b65c-4f3b-94c3-56f024ed130f}", "cz": "Kupuješ pomeranče?", "en": "Are you buying oranges?", "pattern": "question", "note": "orange → oranges"},
+        {"id": "b42b8bd2-78ec-439d-93ea-297947e079a6}", "cz": "Kde jsou banány?", "en": "Where are the bananas?", "pattern": "wh_question", "note": "banana → bananas"},
+        {"id": "f54bd0c9-0233-4df7-bea9-2e55747723c7}", "cz": "On kupuje brambory.", "en": "He is buying potatoes.", "pattern": "third_person", "note": "potato → potatoes"},
+        {"id": "9cb71ff5-e65a-4fe6-a0ba-14f3c1428267}", "cz": "My kupujeme láhve.", "en": "We are buying bottles.", "pattern": "plural", "note": "bottle → bottles"}
+        ]
+      },
+    {
+      "grammar": "Množné číslo",
+      "level": "A0",
+      "blok": "na ulici",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "ef8c3d18-3374-4531-ab97-234c29621ef5}", "cz": "Slyším děti.", "en": "I hear children.", "pattern": "affirmative", "note": "nepravidelně: child → children"},
+        {"id": "ed98a95b-fe07-4fd1-b268-84551d08b4e8}", "cz": "Neslyším muže.", "en": "I do not hear men.", "pattern": "negative", "note": "nepravidelně: man → men"},
+        {"id": "da73191d-3eab-42a1-b95d-f5918aef5c2a}", "cz": "Slyšíš ženy?", "en": "Do you hear women?", "pattern": "question", "note": "nepravidelně: woman → women"},
+        {"id": "2518a6da-4bae-4c07-972d-93a2089579d6}", "cz": "Kde jsou lidé?", "en": "Where are the people?", "pattern": "wh_question", "note": "people = lidé"},
+        {"id": "8f696f52-1c8d-4af8-8974-fb677b3165a1}", "cz": "Ona slyší nohy.", "en": "She hears feet.", "pattern": "third_person", "note": "nepravidelně: foot → feet"},
+        {"id": "18da61b3-e1ed-4440-bc37-0f623f381096}", "cz": "My slyšíme myši.", "en": "We hear mice.", "pattern": "plural", "note": "nepravidelně: mouse → mice"}
+        ]
+      },
+    {
+      "grammar": "Množné číslo",
+      "level": "A0",
+      "blok": "v hotelu",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "b88cd4a8-b4ad-4188-aa8f-171ff59d9e6d}", "cz": "Potřebuji ručníky.", "en": "I need towels.", "pattern": "affirmative", "note": "towel → towels"},
+        {"id": "05a19f37-17d8-4bad-a7e8-51beeade16b4}", "cz": "Nepotřebuji sklenice.", "en": "I do not need glasses.", "pattern": "negative", "note": "glass → glasses"},
+        {"id": "968b6b66-fa32-4341-a01b-a0ff873acde4}", "cz": "Potřebuješ boty?", "en": "Do you need shoes?", "pattern": "question", "note": "shoe → shoes"},
+        {"id": "c750994c-5d44-43c1-b064-78e1c447a4a4}", "cz": "Kde jsou kufry?", "en": "Where are the suitcases?", "pattern": "wh_question", "note": "suitcase → suitcases"},
+        {"id": "3c2bfb89-cb31-4817-b02d-a9b817cc81e5}", "cz": "On potřebuje nové ponožky.", "en": "He needs new socks.", "pattern": "third_person", "note": "sock → socks"},
+        {"id": "44e2e064-0383-4751-a467-7ec592c29853}", "cz": "Oni potřebují mapy.", "en": "They need maps.", "pattern": "plural", "note": "map → maps"}
+        ]
+      },
+    {
+      "grammar": "Zájmena",
+      "level": "A0",
+      "blok": "v kanceláři",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "a60049b0-a63f-4e9a-beb5-7fcf495fc7d9}", "cz": "On mě vidí.", "en": "He sees me.", "pattern": "affirmative", "note": "me = mě/mne"},
+        {"id": "377da346-49f7-4a97-812b-b397a632e7a9}", "cz": "Ona mě nezná.", "en": "She does not know me.", "pattern": "negative", "note": "me po slovese"},
+        {"id": "4860d337-1906-40b0-83ff-b54732611944}", "cz": "Znáš ho?", "en": "Do you know him?", "pattern": "question", "note": "him = jeho/ho"},
+        {"id": "a0159695-4939-4784-8714-a8d74a3379f7}", "cz": "Kdo tě zná?", "en": "Who knows you?", "pattern": "wh_question", "note": "you = tebe/tě"},
+        {"id": "ef5c4ffc-f657-4c77-9671-2a209d87b333}", "cz": "On zná jejího kolegu.", "en": "He knows her colleague.", "pattern": "third_person", "note": "her = její"},
+        {"id": "f12ef3f1-e779-4fef-b9b2-985b70955c0d}", "cz": "My je známe.", "en": "We know them.", "pattern": "plural", "note": "them = je"}
+        ]
+      },
+    {
+      "grammar": "Zájmena",
+      "level": "A0",
+      "blok": "v restauraci",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "863d58aa-c765-47e8-b88e-c37d5bc94be4}", "cz": "Mám svůj telefon.", "en": "I have my phone.", "pattern": "affirmative", "note": "my = můj"},
+        {"id": "2ccc3de7-54da-4870-a4bc-0e23dd48bf58}", "cz": "Nemám jeho číslo.", "en": "I do not have his number.", "pattern": "negative", "note": "his = jeho"},
+        {"id": "c8f7bf0d-d7e5-4821-88e7-015ea2e1b8bb}", "cz": "Máš její tašku?", "en": "Do you have her bag?", "pattern": "question", "note": "her = její"},
+        {"id": "9bbe1071-a276-48cb-8db0-027818e05a5f}", "cz": "Kde je tvoje káva?", "en": "Where is your coffee?", "pattern": "wh_question", "note": "your = tvůj"},
+        {"id": "d556f858-7fba-460a-a9b3-b1f7a00fa87f}", "cz": "Ona má jeho klíče.", "en": "She has his keys.", "pattern": "third_person", "note": "his = jeho"},
+        {"id": "8f83333e-97d1-4e08-918b-987772a7ecde}", "cz": "Oni mají naše menu.", "en": "They have our menu.", "pattern": "plural", "note": "our = náš"}
+        ]
+      },
+    {
+      "grammar": "Zájmena",
+      "level": "A0",
+      "blok": "doma",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "0cc7db02-bb5c-47a2-bcca-66776b17dfa5}", "cz": "Volám jí.", "en": "I am calling her.", "pattern": "affirmative", "note": "her = jí"},
+        {"id": "f2af8376-2c12-44f8-a6ed-4fc199ff173c}", "cz": "Nevolám jim.", "en": "I am not calling them.", "pattern": "negative", "note": "them = jim"},
+        {"id": "c8b5654f-4ec5-48c0-93d7-bdba19c314b6}", "cz": "Voláš mu?", "en": "Are you calling him?", "pattern": "question", "note": "him = jemu"},
+        {"id": "02196b5e-d073-43bf-9010-4653ebc6d5f3}", "cz": "Komu voláš?", "en": "Who are you calling?", "pattern": "wh_question", "note": "WH otázka bez do"},
+        {"id": "62102329-a4ac-4a69-8ef7-ff80ec0b4fa6}", "cz": "On volá své matce.", "en": "He is calling his mother.", "pattern": "third_person", "note": "his = jeho"},
+        {"id": "49c5fbcc-bbb0-451d-b92b-03c7b9b0b2f6}", "cz": "My jí voláme.", "en": "We are calling her.", "pattern": "plural", "note": "her = jí"}
+        ]
+      },
+    {
+      "grammar": "Zájmena",
+      "level": "A0",
+      "blok": "v obchodě",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "bc893e7d-486b-4969-8701-60372e578fc3}", "cz": "Pomáháš mi.", "en": "You help me.", "pattern": "affirmative", "note": "me = mně"},
+        {"id": "6e4cc6f2-f66f-4221-ac96-5a1cb641fc30}", "cz": "Nepomáháme jim.", "en": "We do not help them.", "pattern": "negative", "note": "them = jim"},
+        {"id": "6820dc1b-5b8f-435a-8dab-5d6203e27b6f}", "cz": "Pomáhá ti ona?", "en": "Does she help you?", "pattern": "question", "note": "you = tobě"},
+        {"id": "ff73e788-bfd7-4966-ad01-a1a87ccc21f2}", "cz": "Kdo pomáhá jemu?", "en": "Who helps him?", "pattern": "wh_question", "note": "him = jemu"},
+        {"id": "56cd44b6-7b61-4d62-a01f-c95dc920fef4}", "cz": "Ona pomáhá své sestře.", "en": "She helps her sister.", "pattern": "third_person", "note": "her = její"},
+        {"id": "3bfa5b89-8e97-43a6-ab11-2ab789520300}", "cz": "Oni pomáhají nám.", "en": "They help us.", "pattern": "plural", "note": "us = nám"}
+        ]
+      },
+    {
+      "grammar": "Zájmena",
+      "level": "A0",
+      "blok": "na ulici",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "201f8a0d-2bef-4f04-8542-24b99d188183}", "cz": "Slyšíš nás.", "en": "You hear us.", "pattern": "affirmative", "note": "us = nás"},
+        {"id": "ee9dd7ef-022e-4c1f-b829-bcdb96a4aca3}", "cz": "Neslyším tě.", "en": "I do not hear you.", "pattern": "negative", "note": "you = tebe"},
+        {"id": "4de4643c-e020-4286-802d-271a3339edfe}", "cz": "Slyší oni ji?", "en": "Do they hear her?", "pattern": "question", "note": "her = ji"},
+        {"id": "0069c6de-6c60-4979-9e72-2c4857d4f051}", "cz": "Koho slyšíš?", "en": "Who do you hear?", "pattern": "wh_question", "note": "who = koho/kdo"},
+        {"id": "4a4f61dc-3cd9-405d-9b6e-65b0768636cc}", "cz": "On slyší svého psa.", "en": "He hears his dog.", "pattern": "third_person", "note": "his = svůj/jeho"},
+        {"id": "a4624d8f-d147-4851-b881-960dc51321a7}", "cz": "My slyšíme vás.", "en": "We hear you.", "pattern": "plural", "note": "you = vás"}
+        ]
+      },
+    {
+      "grammar": "Číslovky",
+      "level": "A0",
+      "blok": "v kanceláři",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "35380803-3473-4ebf-84e0-ce3a3c46e425}", "cz": "Mám dvě pera.", "en": "I have two pens.", "pattern": "affirmative", "note": "two = dvě"},
+        {"id": "364266cc-8b60-4039-9374-0c67c1cae7db}", "cz": "Nemám deset knih.", "en": "I do not have ten books.", "pattern": "negative", "note": "ten = deset"},
+        {"id": "df7e89d7-1ca6-431d-a7f7-8172f695ca15}", "cz": "Máš tři klíče?", "en": "Do you have three keys?", "pattern": "question", "note": "three = tři"},
+        {"id": "ac31df1e-9a4e-4939-ac25-579db29f7a8b}", "cz": "Kolik máš židlí?", "en": "How many chairs do you have?", "pattern": "wh_question", "note": "how many = kolik"},
+        {"id": "c700f5ae-b0a0-4afd-8726-b96f5345a9e4}", "cz": "On má jeden počítač.", "en": "He has one computer.", "pattern": "third_person", "note": "one = jeden"},
+        {"id": "4b73220d-e1c9-48b8-82c1-8c050c4f9368}", "cz": "My máme čtyři stoly.", "en": "We have four tables.", "pattern": "plural", "note": "four = čtyři"}
+        ]
+      },
+    {
+      "grammar": "Číslovky",
+      "level": "A0",
+      "blok": "v obchodě",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "94a59fdb-19fb-4fd0-9c4f-64ec498a0df1}", "cz": "Vidím pět aut.", "en": "I see five cars.", "pattern": "affirmative", "note": "five = pět"},
+        {"id": "8b1cdb8e-1982-4919-8b79-db0f2248662f}", "cz": "Nevidím sedm lidí.", "en": "I do not see seven people.", "pattern": "negative", "note": "seven = sedm"},
+        {"id": "3a8c331e-c4c4-451d-8d05-47bd16cfb6ae}", "cz": "Vidíš osm tašek?", "en": "Do you see eight bags?", "pattern": "question", "note": "eight = osm"},
+        {"id": "bff8bfc7-97f0-49e0-b05f-4f7b77b9441a}", "cz": "Kolik je tam jablek?", "en": "How many apples are there?", "pattern": "wh_question", "note": "there are + množné číslo"},
+        {"id": "fe3fc1b9-01ea-4824-bc13-9b573f85b238}", "cz": "Ona vidí šest krabic.", "en": "She sees six boxes.", "pattern": "third_person", "note": "six = šest"},
+        {"id": "88207e08-15b9-4423-9c60-cc28ead43856}", "cz": "Oni vidí devět kol.", "en": "They see nine bikes.", "pattern": "plural", "note": "nine = devět"}
+        ]
+      },
+    {
+      "grammar": "Číslovky",
+      "level": "A0",
+      "blok": "doma",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "e6f8e50b-2b59-48b2-9a7e-c695e4f1d248}", "cz": "Kupuji první knihu.", "en": "I am buying the first book.", "pattern": "affirmative", "note": "first = první"},
+        {"id": "a5003c42-8095-4067-b7ee-601f687edaf6}", "cz": "Nekupuji druhý telefon.", "en": "I am not buying the second phone.", "pattern": "negative", "note": "second = druhý"},
+        {"id": "78af6fb1-28a7-40f9-b4bb-af9de1d1c4a0}", "cz": "Kupuješ třetí lístek?", "en": "Are you buying the third ticket?", "pattern": "question", "note": "third = třetí"},
+        {"id": "1d20e79a-8156-4b76-aed7-7f4f733a3e72}", "cz": "Který pokoj kupuješ?", "en": "Which room are you buying?", "pattern": "wh_question", "note": "which = který"},
+        {"id": "9208f688-bfb0-44b1-80ce-422babe781d5}", "cz": "On kupuje čtvrté jablko.", "en": "He is buying the fourth apple.", "pattern": "third_person", "note": "fourth = čtvrtý"},
+        {"id": "f3c413bd-7e9b-4a74-a5f4-b19f49889654}", "cz": "My kupujeme pátý stůl.", "en": "We are buying the fifth table.", "pattern": "plural", "note": "fifth = pátý"}
+        ]
+      },
+    {
+      "grammar": "Číslovky",
+      "level": "A0",
+      "blok": "v hotelu",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "345f1f2e-5bb6-4b39-adb7-c311c4bff08e}", "cz": "Potřebuji jeden ručník.", "en": "I need one towel.", "pattern": "affirmative", "note": "one = jeden"},
+        {"id": "7020fb9c-91ce-410f-822e-6b3ecc986393}", "cz": "Nepotřebuji dvacet sklenic.", "en": "I do not need twenty glasses.", "pattern": "negative", "note": "twenty = dvacet"},
+        {"id": "edbff04d-5f2e-4c11-ad92-baf73bce73ef}", "cz": "Potřebuješ třináct map?", "en": "Do you need thirteen maps?", "pattern": "question", "note": "thirteen = třináct"},
+        {"id": "9f5e009e-c42f-47b6-ba79-e512d8fd0fa5}", "cz": "Kolik kufrů potřebuješ?", "en": "How many suitcases do you need?", "pattern": "wh_question", "note": "how many + množné číslo"},
+        {"id": "b1cef1ec-d4ac-4b21-a93a-5e55d9f4eeb3}", "cz": "Ona potřebuje čtrnáct minut.", "en": "She needs fourteen minutes.", "pattern": "third_person", "note": "fourteen = čtrnáct"},
+        {"id": "e1690d45-98d7-40d3-b6fe-b81eb85e9887}", "cz": "Oni potřebují třicet židlí.", "en": "They need thirty chairs.", "pattern": "plural", "note": "pozor: thirteen × thirty"}
+        ]
+      },
+    {
+      "grammar": "Číslovky",
+      "level": "A0",
+      "blok": "na ulici",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "a989cfff-14db-42da-910f-ac056ce3afae}", "cz": "Slyším jeden hlas.", "en": "I hear one voice.", "pattern": "affirmative", "note": "one = jeden"},
+        {"id": "33d8fe36-1800-48a1-a11d-99001bf2d881}", "cz": "Neslyším patnáct lidí.", "en": "I do not hear fifteen people.", "pattern": "negative", "note": "fifteen = patnáct"},
+        {"id": "d638f914-5fd4-48bf-9077-81b5de7a28ea}", "cz": "Slyšíš šestnáct aut?", "en": "Do you hear sixteen cars?", "pattern": "question", "note": "sixteen = šestnáct"},
+        {"id": "1b5dc31e-c635-4668-8005-12858e4879d1}", "cz": "Kolik autobusů slyšíš?", "en": "How many buses do you hear?", "pattern": "wh_question", "note": "how many = kolik"},
+        {"id": "40a5f913-bd64-46b0-a9cf-b69577c45f1f}", "cz": "On slyší sedmnáct dětí.", "en": "He hears seventeen children.", "pattern": "third_person", "note": "seventeen = sedmnáct"},
+        {"id": "76a7e587-e9e2-41a1-993f-40975722a2c2}", "cz": "My slyšíme čtyřicet vlaků.", "en": "We hear forty trains.", "pattern": "plural", "note": "pozor: fourteen × forty"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "vstávat brzy",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "84487122-2a70-4e7a-a20a-603d4999b4be}", "cz": "Vstávám v šest hodin.", "en": "I get up at six o'clock.", "pattern": "affirmative", "note": "rutina = přítomný čas prostý"},
+        {"id": "57ab779e-a16e-41a5-afe4-322d3eefabc2}", "cz": "Nevstávám pozdě.", "en": "I do not get up late.", "pattern": "negative", "note": "don't + sloveso"},
+        {"id": "c1e62e0f-3567-4f69-9693-44ba3a8578f4}", "cz": "Vstáváš brzy?", "en": "Do you get up early?", "pattern": "question", "note": "otázka: do + podmět"},
+        {"id": "1bfd7ec2-5826-424d-a737-3d51c0c88a32}", "cz": "Kdy vstáváš?", "en": "When do you get up?", "pattern": "wh_question", "note": "WH + do + podmět"},
+        {"id": "ba9fa4db-ab5b-4003-bb1f-3e120c95040e}", "cz": "On vstává v sedm.", "en": "He gets up at seven.", "pattern": "third_person", "note": "3. os.: get → gets"},
+        {"id": "a581171c-d4d3-43b8-b41f-0a80a2137424}", "cz": "My vstáváme brzy.", "en": "We get up early.", "pattern": "plural", "note": "we/they bez -s"},
+        {"id": "88b39809-957a-4c7c-b0d5-c47443d4e1d8}", "cz": "Vstávej dřív!", "en": "Get up earlier!", "pattern": "imperative", "note": "rozkaz: základní tvar"},
+        {"id": "f5281867-eaf9-4435-9fae-516e0f078c10}", "cz": "Snídaně se připravuje každé ráno.", "en": "Breakfast is prepared every morning.", "pattern": "passive", "note": "trpný rod: be + 3. tvar"},
+        {"id": "8d3169d4-9d74-4258-a5bf-65dec317743d}", "cz": "Říká, že vstává brzy.", "en": "He says that he gets up early.", "pattern": "indirect", "note": "says that + přítomný čas"},
+        {"id": "432872f2-2f4b-4814-ae98-e0956eed0d5f}", "cz": "Vstávám dříve než ty.", "en": "I get up earlier than you do.", "pattern": "comparison", "note": "earlier than = dříve než"},
+        {"id": "135f3773-86ad-4671-bf91-78dc60fbce49}", "cz": "Vstáváš brzy, že?", "en": "You get up early, don't you?", "pattern": "tag_question", "note": "kladná věta → záporný dovětek"},
+        {"id": "f9078bf5-efad-4980-861b-50eae939cea3}", "cz": "Když vstáváš brzy, nejsi unavený.", "en": "If you get up early, you are not tired.", "pattern": "conditional", "note": "If + přítomný čas"},
+        {"id": "2fb6edbf-0db3-47d3-8cce-0f97ac12ddd1}", "cz": "Dám si kávu, když vstanu.", "en": "I have coffee when I get up.", "pattern": "time_clause", "note": "when + přítomný čas"},
+        {"id": "51b06c73-01f2-4b92-97c6-fec71c511755}", "cz": "Vstávám každý den včas.", "en": "I get up on time every day.", "pattern": "first_person", "note": "every day = rutina"},
+        {"id": "97291939-160f-445c-853c-6651384f1c12}", "cz": "Vstáváš o víkendu pozdě.", "en": "You get up late on weekends.", "pattern": "second_person", "note": "přítomný čas pro zvyky"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "pít kávu",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "318e8e97-6851-4956-b61c-508fa125299e}", "cz": "Piju ráno kávu.", "en": "I drink coffee in the morning.", "pattern": "affirmative", "note": "fakta a rutina"},
+        {"id": "ff1f7e7a-48d4-42f7-a4f9-1e2e046d128e}", "cz": "Nepiju večer kávu.", "en": "I do not drink coffee in the evening.", "pattern": "negative", "note": "don't + infinitiv"},
+        {"id": "4ec08ad2-3833-48fa-9bf5-3c06d365702e}", "cz": "Piješ čaj?", "en": "Do you drink tea?", "pattern": "question", "note": "do v otázce"},
+        {"id": "b47f6bc1-a54f-4a00-b8cf-5eb6c79778d0}", "cz": "Co piješ ráno?", "en": "What do you drink in the morning?", "pattern": "wh_question", "note": "what + do"},
+        {"id": "cdf19764-c30f-4d26-94fd-de8e09b0b6ee}", "cz": "Ona pije zelený čaj.", "en": "She drinks green tea.", "pattern": "third_person", "note": "drink → drinks"},
+        {"id": "72317040-6c6f-48de-8eda-e2d9fa411f0e}", "cz": "Oni pijí vodu.", "en": "They drink water.", "pattern": "plural", "note": "they bez -s"},
+        {"id": "104ed07c-840d-4bab-9a94-dcb88ec7c962}", "cz": "Vypij vodu!", "en": "Drink some water!", "pattern": "imperative", "note": "rozkaz bez podmětu"},
+        {"id": "e9925282-1e73-4a67-8476-40d98ed3dc20}", "cz": "Káva se podává ráno.", "en": "Coffee is served in the morning.", "pattern": "passive", "note": "is served = trpný rod"},
+        {"id": "cab5ee64-f63e-4bb0-a09c-2a7537608aa5}", "cz": "Říká, že pije hodně vody.", "en": "She says that she drinks a lot of water.", "pattern": "indirect", "note": "3. os. + -s"},
+        {"id": "18014f6e-5a0d-4793-82d1-1656f194dd83}", "cz": "Piju víc kávy než ty.", "en": "I drink more coffee than you do.", "pattern": "comparison", "note": "more than = více než"},
+        {"id": "9cfa7e7e-9387-4b2d-8dc2-b82e12d3a7b6}", "cz": "Pije čaj, že?", "en": "She drinks tea, doesn't she?", "pattern": "tag_question", "note": "doesn't u 3. osoby"},
+        {"id": "b630593e-fcb1-491a-bc4e-7c5f978c0022}", "cz": "Když piješ hodně kávy, špatně spíš.", "en": "If you drink a lot of coffee, you sleep badly.", "pattern": "conditional", "note": "If + přítomný čas"},
+        {"id": "d0869ba9-e338-46b4-a3f8-bcac442bdc32}", "cz": "Piju čaj, když pracuji doma.", "en": "I drink tea when I work at home.", "pattern": "time_clause", "note": "when + přítomný čas"},
+        {"id": "464e3222-cded-45ee-ab75-e3d7783b0ec3}", "cz": "Pijeme kávu po obědě.", "en": "We drink coffee after lunch.", "pattern": "first_person", "note": "we + základní tvar"},
+        {"id": "56a19f5c-e02f-43cd-8697-8005b44b6c70}", "cz": "Piješ hodně vody každý den.", "en": "You drink a lot of water every day.", "pattern": "second_person", "note": "every day = zvyk"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "jezdit autobusem",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "e873f131-2453-466c-b6a8-b31fc281a56b}", "cz": "Jezdím do práce autobusem.", "en": "I go to work by bus.", "pattern": "affirmative", "note": "přítomný čas = rutina"},
+        {"id": "06f8f0bf-026d-4765-a628-e3edae62f6a6}", "cz": "Nejezdím vlakem.", "en": "I do not go by train.", "pattern": "negative", "note": "don't + sloveso"},
+        {"id": "b049ce13-e972-488e-afea-cd5207aa40d2}", "cz": "Jezdíš do centra autobusem?", "en": "Do you go to the city centre by bus?", "pattern": "question", "note": "do v otázce"},
+        {"id": "6d7a4781-4f28-4924-a515-8f757ee92f8f}", "cz": "Jak jezdíš do práce?", "en": "How do you go to work?", "pattern": "wh_question", "note": "how = jak"},
+        {"id": "84eb1abb-8309-4fd8-967f-b5640cceac27}", "cz": "On jezdí autem.", "en": "He goes by car.", "pattern": "third_person", "note": "he/she/it + -s"},
+        {"id": "39d8d347-1c72-40dd-a5e9-86072a3e9c5a}", "cz": "My jezdíme tramvají.", "en": "We go by tram.", "pattern": "plural", "note": "we bez -s"},
+        {"id": "53f03d4d-59d6-448a-986e-de6ca3ea732d}", "cz": "Jezdi opatrně!", "en": "Go carefully!", "pattern": "imperative", "note": "rozkazovací způsob"},
+        {"id": "6c07feae-736a-4cc3-b167-2bccf6988af7}", "cz": "Autobusy se kontrolují každý den.", "en": "Buses are checked every day.", "pattern": "passive", "note": "are + 3. tvar"},
+        {"id": "021aa0fc-a251-4804-97af-a467777bed56}", "cz": "Říká, že jezdí pozdě.", "en": "He says that he goes late.", "pattern": "indirect", "note": "nepřímá řeč v přítomném čase"},
+        {"id": "2d0913ba-7b14-4b7a-acff-9eeb2545cbd9}", "cz": "Jezdím rychleji než ty.", "en": "I go faster than you do.", "pattern": "comparison", "note": "faster than = rychleji než"},
+        {"id": "0b0da387-536e-4381-9407-6d9ce89e9686}", "cz": "Jezdíš autobusem, že?", "en": "You go by bus, don't you?", "pattern": "tag_question", "note": "dovětek s don't"},
+        {"id": "1fc86dbb-bfe9-498a-ad21-284e13ae4584}", "cz": "Když jedeš pozdě, nestihneš vlak.", "en": "If you go late, you miss the train.", "pattern": "conditional", "note": "If + přítomný čas"},
+        {"id": "aab943c8-a383-4572-a06f-314570855ab8}", "cz": "Jedu domů, když skončím práci.", "en": "I go home when I finish work.", "pattern": "time_clause", "note": "when + přítomný čas"},
+        {"id": "25722367-cd25-45aa-8e10-3f5f898fb5f3}", "cz": "Jezdíme do města každý pátek.", "en": "We go to the city every Friday.", "pattern": "first_person", "note": "every Friday = rutina"},
+        {"id": "b7b29c6a-1aac-485d-ba64-2ae7c037b7dc}", "cz": "Jezdíš často na kole.", "en": "You go by bike often.", "pattern": "second_person", "note": "often = často"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "vařit večeři",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "fdf0971b-4c10-4127-b399-15ea9e42dd19}", "cz": "Vařím večeři každý večer.", "en": "I cook dinner every evening.", "pattern": "affirmative", "note": "every evening = rutina"},
+        {"id": "5d845ebe-1b6b-4611-a125-335af37ac895}", "cz": "Nevařím o víkendu.", "en": "I do not cook on weekends.", "pattern": "negative", "note": "don't + základní tvar"},
+        {"id": "9074e550-82dc-4d69-b521-71b3b58b535d}", "cz": "Vaříš často doma?", "en": "Do you cook at home often?", "pattern": "question", "note": "do + podmět"},
+        {"id": "c9986247-de40-472e-be1b-c966106f9a57}", "cz": "Co vaříš k večeři?", "en": "What do you cook for dinner?", "pattern": "wh_question", "note": "what + do"},
+        {"id": "cb7b4c22-207f-4ebc-bc78-df9160d2d75e}", "cz": "Ona vaří polévku.", "en": "She cooks soup.", "pattern": "third_person", "note": "cook → cooks"},
+        {"id": "048e52f5-25f3-4539-b593-6908131133f3}", "cz": "Oni vaří společně.", "en": "They cook together.", "pattern": "plural", "note": "they bez -s"},
+        {"id": "839ba3fe-ad9c-4eed-81ee-299b2680f6e0}", "cz": "Uvař těstoviny!", "en": "Cook some pasta!", "pattern": "imperative", "note": "rozkaz: infinitiv bez to"},
+        {"id": "073f1bb2-0b94-4cbe-aaff-aac7ead070f0}", "cz": "Večeře se připravuje doma.", "en": "Dinner is prepared at home.", "pattern": "passive", "note": "is prepared = pasivum"},
+        {"id": "79dc6304-6c5d-434e-a8cc-21dd7caa155b}", "cz": "Říká, že vaří každý den.", "en": "She says that she cooks every day.", "pattern": "indirect", "note": "she cooks = 3. osoba"},
+        {"id": "8ed901eb-6460-417d-a419-83aa07364606}", "cz": "Vařím lépe než můj bratr.", "en": "I cook better than my brother does.", "pattern": "comparison", "note": "better than = lépe než"},
+        {"id": "36e53c63-3839-4ffa-b456-4202b55317c1}", "cz": "Vaří dobře, že?", "en": "She cooks well, doesn't she?", "pattern": "tag_question", "note": "doesn't she?"},
+        {"id": "d138301c-2a65-4f15-9dd7-c951d946669e}", "cz": "Když vaříš doma, ušetříš peníze.", "en": "If you cook at home, you save money.", "pattern": "conditional", "note": "If + přítomný čas"},
+        {"id": "5f541721-feb6-450b-a404-399b7bbbd76d}", "cz": "Vařím, když mám čas.", "en": "I cook when I have time.", "pattern": "time_clause", "note": "when + přítomný čas"},
+        {"id": "b355dc0a-8658-4433-946c-1c6f585541d4}", "cz": "Vaříme spolu každý pátek.", "en": "We cook together every Friday.", "pattern": "first_person", "note": "we + základní tvar"},
+        {"id": "edc689b0-c2e3-40b6-8719-5b5799f04d0d}", "cz": "Vaříš velmi dobře.", "en": "You cook very well.", "pattern": "second_person", "note": "přítomný čas = schopnost/zvyk"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "číst knihy",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "e28ec004-4f28-41fb-8e04-593b2fa4f651}", "cz": "Čtu před spaním.", "en": "I read before bed.", "pattern": "affirmative", "note": "read = pravidelný zvyk"},
+        {"id": "93271f6a-ff7b-4fb2-bbcb-59ea282690ca}", "cz": "Nečtu noviny každý den.", "en": "I do not read newspapers every day.", "pattern": "negative", "note": "don't read"},
+        {"id": "2162bb1c-edcb-4903-9e36-83aca472899d}", "cz": "Čteš anglické knihy?", "en": "Do you read English books?", "pattern": "question", "note": "do v otázce"},
+        {"id": "ee6f7bd1-c6d9-4d38-90d7-0372ffc2c158}", "cz": "Kdy čteš knihy?", "en": "When do you read books?", "pattern": "wh_question", "note": "when + do"},
+        {"id": "a748eb24-899f-4edf-8bc9-c95188dd24b2}", "cz": "On čte detektivky.", "en": "He reads detective stories.", "pattern": "third_person", "note": "read → reads"},
+        {"id": "e9aa23e7-c4b1-4e9b-a0a7-654e35df6aaf}", "cz": "My čteme večer.", "en": "We read in the evening.", "pattern": "plural", "note": "we bez -s"},
+        {"id": "d6764b55-3e63-4ddf-a724-4dff464a19f2}", "cz": "Přečti si tuto knihu!", "en": "Read this book!", "pattern": "imperative", "note": "rozkazovací způsob"},
+        {"id": "07fda239-81fe-4687-8e07-d8ba1e477a2c}", "cz": "Knihy se prodávají online.", "en": "Books are sold online.", "pattern": "passive", "note": "are sold = trpný rod"},
+        {"id": "914d00c2-0481-4dee-9b63-4a38f70600a1}", "cz": "Říká, že čte každý večer.", "en": "He says that he reads every evening.", "pattern": "indirect", "note": "3. os. + -s"},
+        {"id": "47d3e4f9-6b24-45d6-b754-14e6966afe01}", "cz": "Čtu pomaleji než ty.", "en": "I read more slowly than you do.", "pattern": "comparison", "note": "more slowly than"},
+        {"id": "bbc3f025-345b-4750-b54e-0c0aec537283}", "cz": "Čteš hodně knih, že?", "en": "You read a lot of books, don't you?", "pattern": "tag_question", "note": "dovětek s don't"},
+        {"id": "d41b7832-5525-4a41-96bb-80b2b969f2da}", "cz": "Když čteš každý den, zlepšíš se.", "en": "If you read every day, you improve.", "pattern": "conditional", "note": "If + přítomný čas"},
+        {"id": "418351d7-e6af-42d9-ac90-e2ddb2d5aed3}", "cz": "Čtu, když čekám na autobus.", "en": "I read when I wait for the bus.", "pattern": "time_clause", "note": "when + přítomný čas"},
+        {"id": "045660fa-6075-488a-b514-7cbd5651dd3b}", "cz": "Čteme spolu stejnou knihu.", "en": "We read the same book together.", "pattern": "first_person", "note": "the same = stejný"},
+        {"id": "8675b87a-7337-403e-b7ae-983e598b3548}", "cz": "Čteš velmi rychle.", "en": "You read very fast.", "pattern": "second_person", "note": "přítomný čas = obecný fakt"}
+        ]
+      },
+    {
+      "grammar": "Minulý čas prostý",
+      "level": "A1",
+      "blok": "jít do práce",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "7fd7ccdc-9403-48b5-bdea-57c4cf1c89f1}", "cz": "Šel jsem do práce autobusem.", "en": "I went to work by bus.", "pattern": "affirmative", "note": "go → went"},
+        {"id": "e8806795-daaf-4855-8395-8d6248eaf8ce}", "cz": "Nešel jsem pěšky.", "en": "I didn't go on foot.", "pattern": "negative", "note": "didn't + infinitiv"},
+        {"id": "a266a091-b17e-4fb6-8848-f2d609ea9cf6}", "cz": "Šel jsi do práce brzy?", "en": "Did you go to work early?", "pattern": "question", "note": "Did + základní tvar"},
+        {"id": "ceaff1bf-d45a-47b8-8986-f84c2fd09dfc}", "cz": "Kdy jsi šel do práce?", "en": "When did you go to work?", "pattern": "wh_question", "note": "WH + did + infinitiv"},
+        {"id": "fd8214e8-9b67-4647-9dd5-e620887325df}", "cz": "On šel do kanceláře pozdě.", "en": "He went to the office late.", "pattern": "third_person", "note": "nepravidelné sloveso"},
+        {"id": "562086c0-c191-4b6a-9a2d-5c256e5d1521}", "cz": "My jsme šli spolu.", "en": "We went together.", "pattern": "plural", "note": "we bez pomocného slovesa"},
+        {"id": "4e3aeb95-af98-4664-8c3f-94b0d9e99a53}", "cz": "Jdi domů!", "en": "Go home!", "pattern": "imperative", "note": "rozkaz: základní tvar"},
+        {"id": "22e6ca94-2a4f-480f-9a04-3108bdbe81ef}", "cz": "Dopis byl včera odnesen.", "en": "The letter was taken yesterday.", "pattern": "passive", "note": "was + 3. tvar"},
+        {"id": "b84f5cd1-ed28-49d8-8c3a-439971564230}", "cz": "Řekl, že šel pozdě.", "en": "He said that he went late.", "pattern": "indirect", "note": "said that + minulý čas"},
+        {"id": "8430e621-6961-46c0-9675-63b8b936cb5f}", "cz": "Šel jsem rychleji než ty.", "en": "I went faster than you did.", "pattern": "comparison", "note": "than + did"},
+        {"id": "73595701-63e0-4614-b4b2-61534e7854da}", "cz": "Šel jsi tam, že?", "en": "You went there, didn't you?", "pattern": "tag_question", "note": "dovětek s didn't"},
+        {"id": "e52b28bb-3098-45d0-862f-3ac083fc1828}", "cz": "Když jsi šel dřív, stihl jsi autobus.", "en": "If you went earlier, you caught the bus.", "pattern": "conditional", "note": "If + minulý čas"},
+        {"id": "2781054e-e815-4707-9e1c-8b78657b4764}", "cz": "Šel jsem domů, když pršelo.", "en": "I went home when it rained.", "pattern": "time_clause", "note": "when + minulý čas"},
+        {"id": "a4572cd9-de97-4f1b-8fae-4a9080fd0602}", "cz": "Šli jsme do centra večer.", "en": "We went to the city centre in the evening.", "pattern": "first_person", "note": "minulý čas = hotová akce"},
+        {"id": "bc654047-76e6-4c1d-aa8f-65aac1f030e4}", "cz": "Šel jsi pozdě spát.", "en": "You went to bed late.", "pattern": "second_person", "note": "went to bed = šel spát"}
+        ]
+      },
+    {
+      "grammar": "Minulý čas prostý",
+      "level": "A1",
+      "blok": "vařit večeři",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "a192632d-b393-4e73-9cbe-fbe6a1f3eb57}", "cz": "Vařil jsem těstoviny.", "en": "I cooked pasta.", "pattern": "affirmative", "note": "pravidelné sloveso + -ed"},
+        {"id": "ba882321-ce79-4672-8cdf-67b8702b0373}", "cz": "Nevařil jsem včera.", "en": "I didn't cook yesterday.", "pattern": "negative", "note": "didn't + infinitiv"},
+        {"id": "67a2e439-ef3c-43ed-9d2b-015a974390b4}", "cz": "Vařil jsi polévku?", "en": "Did you cook soup?", "pattern": "question", "note": "Did + základní tvar"},
+        {"id": "c972b6ff-ccc6-4246-8d70-4c0bf81cfb49}", "cz": "Co jsi vařil?", "en": "What did you cook?", "pattern": "wh_question", "note": "what + did"},
+        {"id": "b608777a-575e-4de2-9159-887108413e3a}", "cz": "Ona vařila rýži.", "en": "She cooked rice.", "pattern": "third_person", "note": "cook → cooked"},
+        {"id": "6ecf9cf2-a807-4b39-9a58-8dc55457c56f}", "cz": "Oni vařili společně.", "en": "They cooked together.", "pattern": "plural", "note": "they + minulý tvar"},
+        {"id": "0ae07f15-c715-49c6-987e-ee5c9bb7dce4}", "cz": "Uvař večeři!", "en": "Cook dinner!", "pattern": "imperative", "note": "rozkaz bez to"},
+        {"id": "3c370104-4292-4313-9525-5b3a7b028ee7}", "cz": "Večeře byla připravena včas.", "en": "Dinner was prepared on time.", "pattern": "passive", "note": "was prepared = pasivum"},
+        {"id": "82e96f4d-5e5b-442f-bea6-1e82e3d2a09a}", "cz": "Řekla, že vařila doma.", "en": "She said that she cooked at home.", "pattern": "indirect", "note": "said that + minulý čas"},
+        {"id": "8b810e90-fdad-41dc-a869-cd5af0042607}", "cz": "Vařil jsem lépe než on.", "en": "I cooked better than he did.", "pattern": "comparison", "note": "better than = lépe než"},
+        {"id": "727a40db-84fa-40ad-b495-15200ff4c8e4}", "cz": "Vařila dobře, že?", "en": "She cooked well, didn't she?", "pattern": "tag_question", "note": "kladná věta → didn't"},
+        {"id": "58ff38b1-75fd-435a-aab1-d2674fd2feef}", "cz": "Když jsi vařil doma, ušetřil jsi peníze.", "en": "If you cooked at home, you saved money.", "pattern": "conditional", "note": "If + minulý čas"},
+        {"id": "51e5bff8-3ad2-4732-801b-405723821fde}", "cz": "Vařil jsem, když přišli hosté.", "en": "I cooked when the guests arrived.", "pattern": "time_clause", "note": "when + minulý čas"},
+        {"id": "d86366f9-934f-4f88-bce1-a4fc8754483f}", "cz": "Vařili jsme v malé kuchyni.", "en": "We cooked in a small kitchen.", "pattern": "first_person", "note": "we + minulý tvar"},
+        {"id": "22da243c-7b81-4710-b088-cf6c7b8d0264}", "cz": "Vařil jsi velmi dobře.", "en": "You cooked very well.", "pattern": "second_person", "note": "minulý čas hotové akce"}
+        ]
+      },
+    {
+      "grammar": "Minulý čas prostý",
+      "level": "A1",
+      "blok": "koupit dárek",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "97243cb6-d3b3-475b-a3dd-956ba4838b50}", "cz": "Koupil jsem dárek pro mamku.", "en": "I bought a gift for my mum.", "pattern": "affirmative", "note": "buy → bought"},
+        {"id": "aeb6b05b-730a-4dd4-9107-38ab9ce90519}", "cz": "Nekoupil jsem květiny.", "en": "I didn't buy flowers.", "pattern": "negative", "note": "didn't + infinitiv"},
+        {"id": "17b92358-bb4e-444d-a378-04c6086da40d}", "cz": "Koupil jsi nový telefon?", "en": "Did you buy a new phone?", "pattern": "question", "note": "Did + buy"},
+        {"id": "04b3ba81-669a-401e-9767-a270a9f932b5}", "cz": "Kde jsi koupil tu knihu?", "en": "Where did you buy the book?", "pattern": "wh_question", "note": "where + did"},
+        {"id": "da2e9f69-f665-4c2c-b0e7-29541e55ddd9}", "cz": "On koupil láhev vína.", "en": "He bought a bottle of wine.", "pattern": "third_person", "note": "buy → bought"},
+        {"id": "0c119b24-7807-46ed-b046-c697ed8317ad}", "cz": "My jsme koupili lístky online.", "en": "We bought the tickets online.", "pattern": "plural", "note": "we + minulý tvar"},
+        {"id": "b3d7912d-3f32-4c41-b38a-257c8003dd78}", "cz": "Kup něco levného!", "en": "Buy something cheap!", "pattern": "imperative", "note": "rozkazovací způsob"},
+        {"id": "8ec9e300-f8aa-4ea2-a533-4e7f40a54ce6}", "cz": "Dárky byly koupeny ráno.", "en": "The gifts were bought in the morning.", "pattern": "passive", "note": "were + 3. tvar"},
+        {"id": "af4512c5-16fc-4c1d-ac13-0ed772e16a1e}", "cz": "Řekl, že koupil mléko.", "en": "He said that he bought milk.", "pattern": "indirect", "note": "nepřímá řeč"},
+        {"id": "c012acf5-99e9-4070-80c7-3be9aeb1b468}", "cz": "Koupil jsem víc než ty.", "en": "I bought more than you did.", "pattern": "comparison", "note": "more than = více než"},
+        {"id": "953dd80c-402c-4af4-8942-e156981b0303}", "cz": "Koupil jsi to, že?", "en": "You bought it, didn't you?", "pattern": "tag_question", "note": "dovětek s didn't"},
+        {"id": "cd93bbd2-5d3d-4f5e-a2a8-4836db925100}", "cz": "Když jsi koupil levnější věc, ušetřil jsi.", "en": "If you bought a cheaper thing, you saved money.", "pattern": "conditional", "note": "If + minulý čas"},
+        {"id": "964f0426-4d5a-4bb1-964c-826ffd41c9e5}", "cz": "Koupil jsem to, když byl obchod otevřený.", "en": "I bought it when the shop was open.", "pattern": "time_clause", "note": "when + minulý čas"},
+        {"id": "824a5986-85cc-4b16-824b-8f5ad98b0e9a}", "cz": "Koupili jsme nový stůl.", "en": "We bought a new table.", "pattern": "first_person", "note": "minulý čas = dokončená akce"},
+        {"id": "fcc528cd-f14a-4d02-aae1-4afddb3624c7}", "cz": "Koupil jsi drahý dárek.", "en": "You bought an expensive gift.", "pattern": "second_person", "note": "bought = koupil"}
+        ]
+      },
+    {
+      "grammar": "Minulý čas prostý",
+      "level": "A1",
+      "blok": "číst knihu",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "a6613b1b-5614-47ed-b270-2c3b2e928961}", "cz": "Četl jsem zajímavou knihu.", "en": "I read an interesting book.", "pattern": "affirmative", "note": "read v minulém čase"},
+        {"id": "49aa3107-423c-46bf-b210-9c8c2304f3f8}", "cz": "Nečetl jsem noviny.", "en": "I didn't read the newspaper.", "pattern": "negative", "note": "didn't + read"},
+        {"id": "72db815f-389e-4fa5-893c-fb96f9d724cb}", "cz": "Četl jsi ten email?", "en": "Did you read the email?", "pattern": "question", "note": "Did + infinitiv"},
+        {"id": "e1b9620c-2028-4218-9487-946e4481610b}", "cz": "Co jsi četl večer?", "en": "What did you read in the evening?", "pattern": "wh_question", "note": "what + did"},
+        {"id": "97e8c1e2-f3f5-4b78-a529-331e655e908a}", "cz": "Ona četla časopis v autobuse.", "en": "She read a magazine on the bus.", "pattern": "third_person", "note": "read = stejný zápis"},
+        {"id": "2483b27f-d4c0-4051-a417-e3209f967fac}", "cz": "Oni četli spolu.", "en": "They read together.", "pattern": "plural", "note": "they + minulý čas"},
+        {"id": "58587e59-dd92-4e17-820f-b1665644c9a7}", "cz": "Přečti si to znovu!", "en": "Read it again!", "pattern": "imperative", "note": "rozkaz: základní tvar"},
+        {"id": "60fbad04-4f7c-4e33-8c31-17f47e7f8bc1}", "cz": "Kniha byla přečtena za dva dny.", "en": "The book was read in two days.", "pattern": "passive", "note": "was read = pasivum"},
+        {"id": "e3644ef5-e7be-4ef5-b584-52f36c92e732}", "cz": "Řekl, že četl tu zprávu.", "en": "He said that he read the message.", "pattern": "indirect", "note": "said that + minulý čas"},
+        {"id": "927a4986-bf3f-4282-b307-06878ed1f3f6}", "cz": "Četl jsem rychleji než ona.", "en": "I read faster than she did.", "pattern": "comparison", "note": "faster than = rychleji než"},
+        {"id": "c60312d8-099d-47a7-8f47-fe991c7740fb}", "cz": "Četl jsi to, že?", "en": "You read it, didn't you?", "pattern": "tag_question", "note": "dovětek s didn't"},
+        {"id": "23080b28-6235-4211-a72f-40bc7cbcf1c9}", "cz": "Když jsi četl pozorně, rozuměl jsi tomu.", "en": "If you read carefully, you understood it.", "pattern": "conditional", "note": "If + minulý čas"},
+        {"id": "514b44ef-01c6-4180-8c17-34c4b2cbd41c}", "cz": "Četl jsem, když čekal autobus.", "en": "I read when the bus waited.", "pattern": "time_clause", "note": "when + minulý čas"},
+        {"id": "bb736c04-c3a3-4493-81e7-c56f29381622}", "cz": "Četli jsme dlouho do noci.", "en": "We read until late at night.", "pattern": "first_person", "note": "until = až do"},
+        {"id": "1742b830-c4fd-40aa-8bcc-964d92d811aa}", "cz": "Četl jsi velmi pomalu.", "en": "You read very slowly.", "pattern": "second_person", "note": "minulý čas hotové akce"}
+        ]
+      },
+    {
+      "grammar": "Minulý čas prostý",
+      "level": "A1",
+      "blok": "hrát fotbal",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "119405f8-27c9-4321-a634-ad5ab9b922c4}", "cz": "Hrál jsem fotbal po práci.", "en": "I played football after work.", "pattern": "affirmative", "note": "play → played"},
+        {"id": "d03554bf-e845-4a88-a45c-b16747dca388}", "cz": "Nehrál jsem včera tenis.", "en": "I didn't play tennis yesterday.", "pattern": "negative", "note": "didn't + infinitiv"},
+        {"id": "4abe3ce1-d5c8-427f-8abd-21140190cf33}", "cz": "Hrál jsi o víkendu fotbal?", "en": "Did you play football at the weekend?", "pattern": "question", "note": "Did + základní tvar"},
+        {"id": "997586c1-b831-422b-ae05-0da4cf7f1865}", "cz": "Kde jsi hrál fotbal?", "en": "Where did you play football?", "pattern": "wh_question", "note": "where + did"},
+        {"id": "d22c61f5-f9a9-4060-841e-7186612c2b0a}", "cz": "On hrál s kamarády.", "en": "He played with friends.", "pattern": "third_person", "note": "play → played"},
+        {"id": "f4144213-ae1c-4b6e-a4e1-6dc90f5a4002}", "cz": "My jsme hráli venku.", "en": "We played outside.", "pattern": "plural", "note": "we + minulý tvar"},
+        {"id": "0275c3f5-c71a-438a-81a8-c7be37ccc34d}", "cz": "Hraj opatrně!", "en": "Play carefully!", "pattern": "imperative", "note": "rozkazovací způsob"},
+        {"id": "ad0dd629-445e-4238-985b-68faf1ef77db}", "cz": "Zápas byl odehrán v sobotu.", "en": "The match was played on Saturday.", "pattern": "passive", "note": "was played = trpný rod"},
+        {"id": "669d021b-63ea-4490-bd6f-1a4ff9f9abbc}", "cz": "Řekl, že hrál dobře.", "en": "He said that he played well.", "pattern": "indirect", "note": "said that + minulý čas"},
+        {"id": "e77601a1-ae21-4ff6-b863-fcd9932407b7}", "cz": "Hrál jsem lépe než ty.", "en": "I played better than you did.", "pattern": "comparison", "note": "better than = lépe než"},
+        {"id": "459e92ca-3d50-4343-9144-5bd683621b89}", "cz": "Hrál jsi včera, že?", "en": "You played yesterday, didn't you?", "pattern": "tag_question", "note": "dovětek s didn't"},
+        {"id": "1571641e-5fc5-4d79-87e2-bd6f44b7eeef}", "cz": "Když jsi hrál pravidelně, byl jsi lepší.", "en": "If you played regularly, you were better.", "pattern": "conditional", "note": "If + minulý čas"},
+        {"id": "58de88b3-ba47-4ace-96a9-110b47f00506}", "cz": "Hrál jsem, když přestalo pršet.", "en": "I played when it stopped raining.", "pattern": "time_clause", "note": "when + minulý čas"},
+        {"id": "457e81b9-0aa2-4f81-bd97-0f2168fdf1ac}", "cz": "Hráli jsme dvě hodiny.", "en": "We played for two hours.", "pattern": "first_person", "note": "for + časový úsek"},
+        {"id": "c01b3be7-982d-45e4-823a-a7d645db82ca}", "cz": "Hrál jsi opravdu dobře.", "en": "You played really well.", "pattern": "second_person", "note": "really = opravdu"}
+        ]
+      },
+    {
+      "grammar": "Budoucí čas (will)",
+      "level": "A1",
+      "blok": "zavolat kamarádovi",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "3c2a1f37-07e7-4537-b49b-7f22c9ecaaae}", "cz": "Zavolám kamarádovi večer.", "en": "I will call my friend in the evening.", "pattern": "affirmative", "note": "will + infinitiv"},
+        {"id": "2e18252c-c1ee-48df-9870-112d695beeb6}", "cz": "Nezavolám mu dnes.", "en": "I won't call him today.", "pattern": "negative", "note": "won't = will not"},
+        {"id": "978a13f7-baac-482d-bea9-2deda6f94023}", "cz": "Zavoláš jí zítra?", "en": "Will you call her tomorrow?", "pattern": "question", "note": "will před podmětem"},
+        {"id": "810e327f-0452-443e-9c1f-17ee730b8c3b}", "cz": "Kdy mu zavoláš?", "en": "When will you call him?", "pattern": "wh_question", "note": "WH + will + podmět"},
+        {"id": "37af69b3-e117-40a6-99ea-5ff627b49367}", "cz": "On jí zavolá po práci.", "en": "He will call her after work.", "pattern": "third_person", "note": "will pro všechny osoby stejné"},
+        {"id": "dddc289e-9e78-4c40-b2c5-9bda5e2a7008}", "cz": "My vám zavoláme večer.", "en": "We will call you in the evening.", "pattern": "plural", "note": "we + will"},
+        {"id": "84ac40ac-0e39-4089-b274-0e6396639bcb}", "cz": "Zavolej mu později!", "en": "Call him later!", "pattern": "imperative", "note": "rozkaz: základní tvar"},
+        {"id": "9b9298b3-d570-4134-87a0-d7a1c6347402}", "cz": "Telefonát bude uskutečněn zítra.", "en": "The call will be made tomorrow.", "pattern": "passive", "note": "will be + 3. tvar"},
+        {"id": "fb6f1ace-74e1-4fe2-b4f0-04849200fcfc}", "cz": "Řekl, že mi zavolá.", "en": "He said that he would call me.", "pattern": "indirect", "note": "would v nepřímé řeči"},
+        {"id": "a2e28b06-9469-4a4c-8bf9-fdb97ecb5787}", "cz": "Zavolám dříve než ty.", "en": "I will call earlier than you will.", "pattern": "comparison", "note": "earlier than = dříve než"},
+        {"id": "5df0f2ba-4189-4fff-9b0a-fa6515c7fe9a}", "cz": "Zavoláš mu, že?", "en": "You will call him, won't you?", "pattern": "tag_question", "note": "kladná věta → won't you"},
+        {"id": "f62f2136-248b-4590-819a-92ec6fb33a26}", "cz": "Když mu zavoláš, bude rád.", "en": "If you call him, he will be happy.", "pattern": "conditional", "note": "If + přítomný čas"},
+        {"id": "796805a7-6e99-4288-a4a8-3fe5d271b9a6}", "cz": "Zavolám ti, až přijdu domů.", "en": "I will call you when I get home.", "pattern": "time_clause", "note": "when + přítomný čas"},
+        {"id": "405af49f-1eb3-4682-ba8a-02206f28074b}", "cz": "Zavolám ti ráno.", "en": "I will call you in the morning.", "pattern": "first_person", "note": "I will = budoucnost"},
+        {"id": "ad45e841-5840-47a2-bf6f-63e334583e00}", "cz": "Zavoláš mi později.", "en": "You will call me later.", "pattern": "second_person", "note": "will pro budoucí plán"}
+        ]
+      },
+    {
+      "grammar": "Budoucí čas (will)",
+      "level": "A1",
+      "blok": "koupit jídlo",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "27108389-3fc7-4ff4-80e4-ee7ef174cdf1}", "cz": "Koupím něco k večeři.", "en": "I will buy something for dinner.", "pattern": "affirmative", "note": "will + infinitiv"},
+        {"id": "52cda215-7cd1-43fe-a71d-c047eabe818c}", "cz": "Nekoupím drahé víno.", "en": "I won't buy expensive wine.", "pattern": "negative", "note": "won't = záporný tvar"},
+        {"id": "f480e158-c620-45f8-a74d-8c4e4647527d}", "cz": "Koupíš chleba?", "en": "Will you buy bread?", "pattern": "question", "note": "otázka s will"},
+        {"id": "b3448277-a8c6-4168-af38-6bdaa461cf59}", "cz": "Co koupíš v obchodě?", "en": "What will you buy in the shop?", "pattern": "wh_question", "note": "WH + will"},
+        {"id": "ea666f47-e581-4ae9-8f0f-7839974eda8b}", "cz": "Ona koupí ovoce.", "en": "She will buy fruit.", "pattern": "third_person", "note": "will bez změny osoby"},
+        {"id": "28c74702-baed-4319-a1ef-ae469b5546c1}", "cz": "Oni koupí pizzu večer.", "en": "They will buy pizza in the evening.", "pattern": "plural", "note": "they + will"},
+        {"id": "e4cc4e63-4f78-4bd7-831d-65690174a07a}", "cz": "Kup mléko!", "en": "Buy some milk!", "pattern": "imperative", "note": "rozkazovací způsob"},
+        {"id": "2e5cedcf-499f-45dd-9640-904f223e1566}", "cz": "Jídlo bude koupeno ráno.", "en": "The food will be bought in the morning.", "pattern": "passive", "note": "will be bought"},
+        {"id": "18acb082-e177-474e-b2a7-d2e151a66274}", "cz": "Řekla, že koupí vodu.", "en": "She said that she would buy water.", "pattern": "indirect", "note": "would = budoucnost v minulosti"},
+        {"id": "71ccc6ca-1888-4b4b-8cdc-9251a8d01056}", "cz": "Koupím víc než ty.", "en": "I will buy more than you will.", "pattern": "comparison", "note": "more than = více než"},
+        {"id": "c5d29009-d912-4a62-b01f-950db804c5b3}", "cz": "Koupíš to, že?", "en": "You will buy it, won't you?", "pattern": "tag_question", "note": "dovětek s won't"},
+        {"id": "60a41440-81bd-4dde-a039-4a2bc3b4bfd0}", "cz": "Když půjdeš do obchodu, koupíš mléko.", "en": "If you go to the shop, you will buy milk.", "pattern": "conditional", "note": "If + přítomný čas"},
+        {"id": "319e9f8d-0554-41c7-8e03-9d9076f6c28a}", "cz": "Koupím to, až budu mít čas.", "en": "I will buy it when I have time.", "pattern": "time_clause", "note": "when bez will"},
+        {"id": "dc0fddda-f7ff-4e18-936f-bdc1a457c0a4}", "cz": "Koupíme nový stůl.", "en": "We will buy a new table.", "pattern": "first_person", "note": "we will + infinitiv"},
+        {"id": "728f1b07-9043-470a-a84e-51becef1b5b0}", "cz": "Koupíš něco sladkého.", "en": "You will buy something sweet.", "pattern": "second_person", "note": "budoucí rozhodnutí"}
+        ]
+      },
+    {
+      "grammar": "Budoucí čas (will)",
+      "level": "A1",
+      "blok": "vařit večeři",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "1ba2173d-6b62-4433-8088-53240aa20a32}", "cz": "Uvařím těstoviny večer.", "en": "I will cook pasta tonight.", "pattern": "affirmative", "note": "will + sloveso"},
+        {"id": "3c23bc57-427a-416c-850b-a8fe5d37e232}", "cz": "Neuvařím polévku dnes.", "en": "I won't cook soup today.", "pattern": "negative", "note": "won't + infinitiv"},
+        {"id": "5b9a2f19-9220-440a-8c67-f54b6173265e}", "cz": "Budeš vařit zítra?", "en": "Will you cook tomorrow?", "pattern": "question", "note": "will v otázce"},
+        {"id": "b5c757e5-295c-4eaa-be22-0b624ff24abb}", "cz": "Co budeš vařit?", "en": "What will you cook?", "pattern": "wh_question", "note": "what + will"},
+        {"id": "9b4a6bee-5e27-4379-8aa4-57772521f2fb}", "cz": "On uvaří rýži.", "en": "He will cook rice.", "pattern": "third_person", "note": "stejný tvar pro he/she"},
+        {"id": "99d4edab-643b-4ca1-8a40-b57aa90d5bf1}", "cz": "My budeme vařit spolu.", "en": "We will cook together.", "pattern": "plural", "note": "we + will"},
+        {"id": "cfdf9fcd-7371-4293-a582-40aae0a1b368}", "cz": "Uvař večeři teď!", "en": "Cook dinner now!", "pattern": "imperative", "note": "rozkaz: základní tvar"},
+        {"id": "58748964-b4c9-4db3-941a-fd170cd3f84c}", "cz": "Večeře bude připravena brzy.", "en": "Dinner will be prepared soon.", "pattern": "passive", "note": "will be + past participle"},
+        {"id": "45818a82-c01e-4d13-b501-b95c3e8f27c1}", "cz": "Řekl, že bude vařit doma.", "en": "He said that he would cook at home.", "pattern": "indirect", "note": "would po said"},
+        {"id": "375f1de3-66e6-42ca-8dc8-800828a31775}", "cz": "Budu vařit lépe než ty.", "en": "I will cook better than you will.", "pattern": "comparison", "note": "better than = lépe než"},
+        {"id": "1b4b370e-483e-44f1-8d4f-554ee22113d6}", "cz": "Budeš vařit, že?", "en": "You will cook, won't you?", "pattern": "tag_question", "note": "won't you?"},
+        {"id": "dcf97e44-b4bc-444f-9a24-150d84d7c4a3}", "cz": "Když budeš vařit, pomůžu ti.", "en": "If you cook, I will help you.", "pattern": "conditional", "note": "If + přítomný čas"},
+        {"id": "2ae36670-202e-4734-b711-0975624aa11e}", "cz": "Budu vařit, až přijedou hosté.", "en": "I will cook when the guests arrive.", "pattern": "time_clause", "note": "when bez will"},
+        {"id": "6195d875-611a-402d-bebc-b1aa60032771}", "cz": "Budeme vařit v nové kuchyni.", "en": "We will cook in the new kitchen.", "pattern": "first_person", "note": "future simple = budoucnost"},
+        {"id": "0db30af7-1310-4eaf-b157-ce507a5cb3b0}", "cz": "Budeš vařit dnes večer.", "en": "You will cook tonight.", "pattern": "second_person", "note": "will pro plán/předpověď"}
+        ]
+      },
+    {
+      "grammar": "Budoucí čas (will)",
+      "level": "A1",
+      "blok": "cestovat vlakem",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "6acca004-4b82-435d-bfa9-51cad5f71781}", "cz": "Pojedu vlakem do Prahy.", "en": "I will travel to Prague by train.", "pattern": "affirmative", "note": "will + infinitiv"},
+        {"id": "7b67c399-cbc5-4690-bb0d-ac8bd816c92b}", "cz": "Nepojedu autobusem.", "en": "I won't travel by bus.", "pattern": "negative", "note": "won't = will not"},
+        {"id": "caca43af-c301-4421-ba1b-a35afc35eb0e}", "cz": "Pojedeš zítra vlakem?", "en": "Will you travel by train tomorrow?", "pattern": "question", "note": "will + podmět"},
+        {"id": "2339ed9c-a5f2-417e-907a-68735a28ea5d}", "cz": "Kam pojedeš o víkendu?", "en": "Where will you travel at the weekend?", "pattern": "wh_question", "note": "where + will"},
+        {"id": "07eab76d-62a1-4ceb-a7c9-f74994e59ebc}", "cz": "Ona pojede do Brna.", "en": "She will travel to Brno.", "pattern": "third_person", "note": "will pro všechny osoby"},
+        {"id": "5e737697-ab29-413c-ba21-2a2a62bda67e}", "cz": "Oni pojedou spolu.", "en": "They will travel together.", "pattern": "plural", "note": "they + will"},
+        {"id": "4dbf9b24-547d-4c86-9d9a-11ebd6b51643}", "cz": "Cestuj opatrně!", "en": "Travel carefully!", "pattern": "imperative", "note": "rozkazovací způsob"},
+        {"id": "782cf687-25ed-4bd4-9d10-cd0035cee6a2}", "cz": "Zavazadla budou zkontrolována.", "en": "The luggage will be checked.", "pattern": "passive", "note": "will be checked"},
+        {"id": "39a1f661-6075-4a18-8225-bc74914dc304}", "cz": "Řekla, že pojede vlakem.", "en": "She said that she would travel by train.", "pattern": "indirect", "note": "would = budoucnost v minulosti"},
+        {"id": "e22aeae3-9718-4b6a-8343-ce4dc1d29a53}", "cz": "Pojedu rychleji než ty.", "en": "I will travel faster than you will.", "pattern": "comparison", "note": "faster than = rychleji než"},
+        {"id": "afd8269f-8c07-4d28-95b2-4cf209226264}", "cz": "Pojedeš se mnou, že?", "en": "You will travel with me, won't you?", "pattern": "tag_question", "note": "dovětek s won't"},
+        {"id": "fca230ad-8682-4d8c-a8da-52bea4cd16bb}", "cz": "Když pojedeš vlakem, bude to levnější.", "en": "If you travel by train, it will be cheaper.", "pattern": "conditional", "note": "If + přítomný čas"},
+        {"id": "c11b3f97-b28f-4317-a8d6-81791ae0703c}", "cz": "Pojedu, až skončím práci.", "en": "I will travel when I finish work.", "pattern": "time_clause", "note": "when + přítomný čas"},
+        {"id": "895bf0f9-10d1-4daa-af38-e8bb7b95fe39}", "cz": "Pojedeme do Vídně příští měsíc.", "en": "We will travel to Vienna next month.", "pattern": "first_person", "note": "next month = budoucnost"},
+        {"id": "9c1dede1-4d3f-4f06-ba32-3d7e00cc38b3}", "cz": "Pojedeš velmi brzy.", "en": "You will travel very soon.", "pattern": "second_person", "note": "very soon = brzy"}
+        ]
+      },
+    {
+      "grammar": "Budoucí čas (will)",
+      "level": "A1",
+      "blok": "psát email",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "4e178a1e-4645-45b3-aab9-eed252f4b985}", "cz": "Napíšu ti večer email.", "en": "I will write you an email tonight.", "pattern": "affirmative", "note": "write → will write"},
+        {"id": "cd488f1b-b75a-4719-b229-c9bc053898d8}", "cz": "Nenapíšu mu dnes.", "en": "I won't write to him today.", "pattern": "negative", "note": "won't + infinitiv"},
+        {"id": "fab138fc-003a-4a07-b22b-fd92eda63e57}", "cz": "Napíšeš jí zítra?", "en": "Will you write to her tomorrow?", "pattern": "question", "note": "otázka s will"},
+        {"id": "78c01187-2e37-457e-8923-00d86a98d909}", "cz": "Komu napíšeš?", "en": "Who will you write to?", "pattern": "wh_question", "note": "WH otázka"},
+        {"id": "f34d00b0-4787-40d9-be93-8bdd4bba1ade}", "cz": "On napíše odpověď večer.", "en": "He will write the reply in the evening.", "pattern": "third_person", "note": "will bez -s"},
+        {"id": "ffe2535c-38ef-417a-bc70-c6d4307699e7}", "cz": "My napíšeme zprávu spolu.", "en": "We will write the message together.", "pattern": "plural", "note": "we + will"},
+        {"id": "c03221c9-9998-45d9-9716-0e31be59d394}", "cz": "Napiš mu hned!", "en": "Write to him now!", "pattern": "imperative", "note": "rozkazovací způsob"},
+        {"id": "d5b6b8be-5030-4a69-8926-5e35fb547064}", "cz": "Email bude odeslán ráno.", "en": "The email will be sent in the morning.", "pattern": "passive", "note": "will be sent"},
+        {"id": "c6cd3f48-bbf7-4ef5-bac1-6524e0e814bc}", "cz": "Řekl, že mi napíše.", "en": "He said that he would write to me.", "pattern": "indirect", "note": "would po said"},
+        {"id": "0a6b6c52-72a9-485c-8752-c1c9665a9011}", "cz": "Napíšu rychleji než ty.", "en": "I will write faster than you will.", "pattern": "comparison", "note": "faster than = rychleji"},
+        {"id": "54697496-6e25-4cfb-9992-ac7e8a847384}", "cz": "Napíšeš mu, že?", "en": "You will write to him, won't you?", "pattern": "tag_question", "note": "kladná věta → won't you"},
+        {"id": "f2306e4b-6473-406f-9f28-c758023525d0}", "cz": "Když mu napíšeš, odpoví ti.", "en": "If you write to him, he will reply.", "pattern": "conditional", "note": "If + přítomný čas"},
+        {"id": "1f77030f-6776-43f8-81e5-1d79d70d551b}", "cz": "Napíšu ti, až budu doma.", "en": "I will write to you when I am home.", "pattern": "time_clause", "note": "when bez will"},
+        {"id": "78d22fac-7760-4228-946a-5afedbe6f1d1}", "cz": "Napíšeme nový seznam.", "en": "We will write a new list.", "pattern": "first_person", "note": "future simple"},
+        {"id": "45cd99f4-e8b4-41c3-a537-9000162eef1c}", "cz": "Napíšeš to velmi dobře.", "en": "You will write it very well.", "pattern": "second_person", "note": "předpověď s will"}
+        ]
+      }
   ]
 }
