@@ -1,3 +1,9 @@
+<!--
+  AJ Dril — aplikace pro procvičování anglické gramatiky metodou drilu
+  © 2025 Roman Ilčík
+  Licence: CC BY-NC 4.0 (https://creativecommons.org/licenses/by-nc/4.0/)
+  Zdrojový kód: https://github.com/romesilcik/Anglictina-dril
+-->
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -184,6 +190,7 @@
       <button class="dark-toggle" id="darkToggle" onclick="toggleDark()" title="Tmavý režim">🌙</button>
       <button class="btn btn-sm btn-ghost" id="dbOverviewToggle" onclick="toggleDbOverview()" style="display:none" title="Přehled databáze">📊</button>
       <button class="btn btn-sm btn-ghost" id="statsToggle" onclick="toggleStats()" style="display:none" title="Statistiky">📈</button>
+      <button class="btn btn-sm btn-ghost" onclick="toggleHelp()" title="Nápověda">❓</button>
     </div>
   </div>
 
@@ -370,6 +377,61 @@
     <div style="font-size:.75rem;font-weight:700;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem">Nejslabší gramatika</div>
     <div class="weak-list" id="weakList"></div>
     <button class="btn btn-sm btn-ghost" style="margin-top:.75rem;color:var(--color-danger)" onclick="clearStats()">🗑 Smazat statistiky</button>
+  </div>
+
+  <!-- Nápověda panel -->
+  <div class="stats-panel" id="helpPanel">
+    <div class="stats-title">
+      ❓ Nápověda
+      <button class="btn btn-sm btn-ghost" onclick="toggleHelp()">✕</button>
+    </div>
+    <div style="font-size:.83rem;color:var(--color-text);line-height:1.55">
+
+      <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">📂 Načtení databáze</div>
+      <p style="margin:0 0 .75rem">Aplikace automaticky stáhne databázi ze serveru při každém spuštění. Pokud není internet, použije naposledy uloženou verzi z prohlížeče. Vlastní JSON soubor lze načíst přes <strong>⚙ Nastavení → Přidat JSON soubor</strong>.</p>
+
+      <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">🔍 Filtry</div>
+      <p style="margin:0 0 .75rem">Čtyři filtry omezují výběr vět: <strong>Úroveň</strong> (A0–B1), <strong>Gramatický jev</strong>, <strong>Téma</strong> a <strong>Typy vět</strong>. Filtry jsou závislé — po změně Úrovně se Gramatika aktualizuje automaticky. Tlačítko <strong>⭐ Oblíbené</strong> zobrazí jen věty označené hvězdičkou. Ikonou <strong>📊</strong> otevřeš přehled databáze — kliknutím na řádek nastavíš filtr a rovnou začneš drilovat.</p>
+
+      <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">▶ Průběh drilování</div>
+      <p style="margin:0 0 .75rem">Aplikace nejprve přečte českou větu, po pauze přečte anglický překlad. Tlačítko <strong>Další →</strong> přejde na další větu. Tlačítko <strong>↻ CZ</strong> nebo <strong>↻ EN</strong> větu přehraje znovu. <strong>Přeskočit</strong> větu přeskočí bez hodnocení.</p>
+
+      <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">✓ Hodnocení</div>
+      <p style="margin:0 0 .75rem"><strong>✓ Uměl jsem</strong> — větu znáš dobře. <strong>~ Skoro</strong> — větu znáš částečně nebo jsi zaváhal. <strong>✗ Neuměl jsem</strong> — větu neznáš. Hodnocení se ukládá do statistik, které zobrazíš ikonou <strong>📈</strong>.</p>
+
+      <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">🔊 Hlasy a výslovnost</div>
+      <p style="margin:0 0 .3rem">Aplikace používá <strong>Web Speech API</strong> — hlasy jsou zabudované přímo v systému nebo prohlížeči, žádný internet ani poplatek. Jak nastavit:</p>
+      <ul style="margin:.3rem 0 .6rem 1.2rem;padding:0">
+        <li>Otevři <strong>⚙ Nastavení hlasů a přehrávání</strong></li>
+        <li><strong>Hlas CZ</strong> — vyber hlas s &ldquo;cs&rdquo; nebo &ldquo;Czech&rdquo; v názvu</li>
+        <li><strong>Hlas EN</strong> — vyber hlas s &ldquo;en-GB&rdquo; nebo &ldquo;en-US&rdquo;</li>
+        <li><strong>Rychlost</strong> — hodnota 0,85–1,00 je přirozená; pro trénink zkus 0,75</li>
+        <li><strong>Pauza před EN</strong> — čas, za jak dlouho po CZ větě zazní anglická odpověď</li>
+      </ul>
+      <p style="margin:0 0 .75rem;font-size:.78rem;color:var(--color-text-muted)">⚠ Pokud neslyšíš nic: prohlížeč možná blokuje zvuk bez interakce — klikni nejprve na libovolné tlačítko. Na iOS Safari je Web Speech dostupné od verze 14.5. Na starším Androidu nemusejí být hlasy nainstalovány.</p>
+
+      <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">⌨ Klávesové zkratky</div>
+      <table style="width:100%;border-collapse:collapse;font-size:.8rem;margin-bottom:.75rem">
+        <tbody>
+          <tr><td style="padding:3px 8px 3px 0;color:var(--color-primary);font-weight:700;white-space:nowrap">Mezerník / →</td><td style="padding:3px 0">Další věta</td></tr>
+          <tr><td style="padding:3px 8px 3px 0;color:var(--color-primary);font-weight:700">R</td><td style="padding:3px 0">Přehrát anglickou větu</td></tr>
+          <tr><td style="padding:3px 8px 3px 0;color:var(--color-primary);font-weight:700">C</td><td style="padding:3px 0">Přehrát českou větu</td></tr>
+          <tr><td style="padding:3px 8px 3px 0;color:var(--color-primary);font-weight:700">S</td><td style="padding:3px 0">Přeskočit větu</td></tr>
+          <tr><td style="padding:3px 8px 3px 0;color:var(--color-primary);font-weight:700">A</td><td style="padding:3px 0">Zapnout / vypnout automatický režim</td></tr>
+          <tr><td style="padding:3px 8px 3px 0;color:var(--color-primary);font-weight:700">P</td><td style="padding:3px 0">Pozastavit automatický režim</td></tr>
+        </tbody>
+      </table>
+
+      <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">⭐ Oblíbené věty</div>
+      <p style="margin:0 0 .75rem">Hvězdička ☆ na kartě věty přidá/odebere větu z oblíbených. Oblíbené se ukládají v prohlížeči. Filtr <strong>⭐ Oblíbené</strong> zobrazí jen označené věty — vhodné pro opakování problematických vět.</p>
+
+      <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">📈 Statistiky a denní cíl</div>
+      <p style="margin:0">Ikona <strong>📈</strong> zobrazí celkový počet procvičených vět, úspěšnost a nejslabší gramatické jevy. Denní cíl (počet vět) nastav v <strong>⚙ Nastavení</strong> — progress bar ho zobrazuje v horní části aplikace.</p>
+
+    </div>
+    <div style="text-align:right;margin-top:.75rem;padding-top:.75rem;border-top:0.5px solid var(--color-border);">
+      <button class="btn btn-sm btn-ghost" onclick="toggleHelp()">✕ Zavřít</button>
+    </div>
   </div>
 
   <!-- Denní cíl -->
@@ -873,6 +935,10 @@ function toggleStats() {
   const panel = document.getElementById('statsPanel');
   panel.classList.toggle('show');
   if(panel.classList.contains('show')) renderStats();
+}
+
+function toggleHelp() {
+  document.getElementById('helpPanel').classList.toggle('show');
 }
 
 function updateDailyBar() {

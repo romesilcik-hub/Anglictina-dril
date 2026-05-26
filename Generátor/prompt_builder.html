@@ -1,3 +1,9 @@
+<!--
+  AJ Dril — Generátor promptů pro tvorbu drilových vět
+  © 2025 Roman Ilčík
+  Licence: CC BY-NC 4.0 (https://creativecommons.org/licenses/by-nc/4.0/)
+  Zdrojový kód: https://github.com/romesilcik/Anglictina-dril
+-->
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -476,26 +482,39 @@ function buildGrammarSelect() {
   });
   if (!sel.value && sel.options.length) sel.selectedIndex = 0;
   refreshTopicCounts();
+  applyLevelPatternRestriction();
   applyGrammarPatternExclusion();
 }
 
+// Patterny dostupné podle úrovně (kumulativní — každá úroveň zahrnuje i předchozí)
+const PATTERN_BY_LEVEL = {
+  A0: ['affirmative','negative','question','wh_question','first_person','second_person','third_person','plural'],
+  A1: ['affirmative','negative','question','wh_question','first_person','second_person','third_person','plural','imperative'],
+  A2: ['affirmative','negative','question','wh_question','first_person','second_person','third_person','plural','imperative','comparison','tag_question','time_clause'],
+  B1: ['affirmative','negative','question','wh_question','first_person','second_person','third_person','plural','imperative','comparison','tag_question','time_clause','passive','indirect','conditional'],
+};
+
 // ── Patterny ──────────────────────────────────────────────────────────────────
 const PATTERNS = [
+  // A0
   { key:'affirmative',   label:'Oznamovací věta',          def:true  },
   { key:'negative',      label:'Záporná věta',              def:true  },
   { key:'question',      label:'Otázka (ano/ne)',            def:true  },
   { key:'wh_question',   label:'WH otázka (co/kde/kdy...)', def:true  },
   { key:'third_person',  label:'3. osoba (he/she/it)',       def:true  },
   { key:'plural',        label:'Množné číslo (they/we)',     def:true  },
-  { key:'imperative',    label:'Rozkaz',                     def:false },
-  { key:'passive',       label:'Trpný rod',                  def:false },
-  { key:'indirect',      label:'Nepřímá řeč',                def:false },
-  { key:'comparison',    label:'Srovnání',                   def:false },
-  { key:'tag_question',  label:'Dovětek (že?)',               def:false },
-  { key:'conditional',   label:'Podmínková věta',            def:false },
-  { key:'time_clause',   label:'Časová vedlejší věta',       def:false },
   { key:'first_person',  label:'1. osoba (I/we)',            def:false },
   { key:'second_person', label:'2. osoba (you)',             def:false },
+  // A1
+  { key:'imperative',    label:'Rozkaz',                     def:false },
+  // A2
+  { key:'comparison',    label:'Srovnání',                   def:false },
+  { key:'tag_question',  label:'Dovětek (že?)',               def:false },
+  { key:'time_clause',   label:'Časová vedlejší věta',       def:false },
+  // B1
+  { key:'passive',       label:'Trpný rod',                  def:false },
+  { key:'indirect',      label:'Nepřímá řeč',                def:false },
+  { key:'conditional',   label:'Podmínková věta',            def:false },
 ];
 
 // Frekvence gramatik v reálné angličtině (1=vzácné … 5=velmi časté)
@@ -685,8 +704,70 @@ const GRAMMAR_SENTENCE_RULES = {
     'Prioritizuj věty kde MUSÍ být gerundium: po předložkách (without/after/before) a po typických slovesech (enjoy/avoid/finish/mind/suggest). ' +
     'Vyhni se větám kde je záměna s infinitivem možná — ty nejsou pro nácvik gerundia typické.',
 
-  'Podmínka 1. typ':
-    'Každá věta MUSÍ mít IF část + výsledkovou část. Struktura: IF + přítomný → WILL + inf.',
+  'Přítomný čas prostý':
+    'Věty MUSÍ vyjadřovat zvyk, rutinu nebo obecný fakt — NE děj probíhající právě teď. ' +
+    'NIKDY nepoužívej průběhový tvar (-ing) pro vyjádření rutiny. ' +
+    'NIKDY nepoužívej předpřítomný čas (have + 3. tvar) — patří na vyšší úroveň. ' +
+    'Příklad zvyku: "Každý den jdu pěšky do práce." → "I walk to work every day." ' +
+    'Příklad faktu: "Voda se vaří při 100°C." → "Water boils at 100°C."',
+
+  'Přítomný čas průběhový':
+    'Věty MUSÍ vyjadřovat děj právě probíhající (teď, v tento moment) nebo dočasný stav. ' +
+    'NIKDY nepoužívej průběhový tvar pro rutiny nebo obecné pravdy — to patří přítomný prostý. ' +
+    'Stavová slovesa (know/like/want/need/believe/understand) NESMÍ být v průběhovém čase. ' +
+    'Příklad: "Teď čtu knihu." → "I am reading a book now." ' +
+    'Příklad dočasnosti: "Tento týden pracuju z domu." → "I am working from home this week."',
+
+  'Minulý čas prostý':
+    'Věty MUSÍ vyjadřovat dokončený děj v konkrétním čase v minulosti. ' +
+    'VŽDY přidej nebo implikuj časový odkaz: yesterday, last week, in 2020, when I was young. ' +
+    'NIKDY nepoužívej předpřítomný čas (have + 3. tvar) — studenti na A1 ho neznají. ' +
+    'Pravidelná slovesa: +ed. Nepravidelná: použij 2. tvar (go→went, see→saw). ' +
+    'Záporně: didn\'t + infinitiv (NIKDY didn\'t went — jen didn\'t go). ' +
+    'Příklad: "Včera jsem šel do kina." → "I went to the cinema yesterday."',
+
+  'Minulý čas průběhový':
+    'Věty MUSÍ vyjadřovat děj PROBÍHAJÍCÍ v určitý moment v minulosti. ' +
+    'Nejsilnější kontexty: (1) přerušený děj — was doing when sth happened; (2) paralelní děje — while + was doing. ' +
+    'NIKDY nepoužívej minulý průběhový pro dokončený děj — to je minulý prostý. ' +
+    'Příklad přerušení: "Četl jsem, když zazvonilo." → "I was reading when the doorbell rang." ' +
+    'Příklad paralelních dějů: "Zatímco jsem vařil, ona telefonovala." → "While I was cooking, she was calling."',
+
+  'Budoucí čas (will)':
+    'WILL používej POUZE pro: (1) spontánní rozhodnutí v moment mluvení; (2) předpověď bez důkazu; (3) nabídky a sliby. ' +
+    'NIKDY nepoužívej will pro předem naplánované záměry — to je going to. ' +
+    'Příklad spontánního rozhodnutí: "Já to vezmu." (teď jsem se rozhodl) → "I\'ll take it." ' +
+    'Příklad předpovědi: "Myslím, že bude pršet." → "I think it will rain." ' +
+    'Záporně: won\'t.',
+
+  'Budoucí čas (going to)':
+    'GOING TO používej POUZE pro: (1) předem naplánovaný záměr; (2) předpověď na základě viditelného důkazu. ' +
+    'NIKDY nepoužívej going to pro spontánní rozhodnutí — to je will. ' +
+    'Příklad záměru: "Příští týden jedeme na dovolenou." (naplánováno) → "We are going to go on holiday next week." ' +
+    'Příklad předpovědi z důkazu: "Podívej na ty mraky — bude pršet." → "Look at those clouds — it\'s going to rain." ' +
+    'Časuj BE správně: I am, he/she/it is, they/we/you are.',
+
+  'Způsobová — must/have to':
+    'MUST = subjektivní povinnost — mluvčí sám cítí nutnost (vychází zevnitř). ' +
+    'HAVE TO = objektivní povinnost — vnější pravidlo, zákon, okolnost (přichází zvenčí). ' +
+    'NIKDY je nezaměňuj — každý blok musí jasně ukazovat jeden typ. ' +
+    'Záporně: must not = zákaz (nesmíš); don\'t have to = není nutné (nemusíš) — to jsou RŮZNÉ věci. ' +
+    'Příklad must: "Musím zavolat mamince." (chci) → "I must call my mum." ' +
+    'Příklad have to: "Musím mít pas." (zákon) → "I have to have a passport."',
+
+  'Způsobová — should/ought to':
+    'SHOULD = rada, doporučení, očekávání ("měl bys"). ' +
+    'OUGHT TO = totéž, ale formálnější a silnější morální závazek. ' +
+    'NIKDY nepoužívej should/ought to pro zákaz nebo nutnost — to je must/have to. ' +
+    'Záporně: shouldn\'t = nedoporučuje se. ' +
+    'Příklad: "Měl bys víc spát." → "You should sleep more."',
+
+  'Způsobová — might/may':
+    'MIGHT/MAY = možná, asi — vyjadřuje nejistotu nebo možnost (ne jistotu). ' +
+    'Jistota: will (100%) > should (90%) > may (50%) > might (30%). ' +
+    'NIKDY nepoužívej might/may jako silnou povinnost — to je must. ' +
+    'Příklad: "Možná přijde zítra." → "He might come tomorrow." nebo "He may come tomorrow." ' +
+    'May je o trochu formálnější a o trochu jistější než might.',
 };
 
 // Gramatika-specifické tipy pro generování poznámek — vychází ze studijních materiálů NJS
@@ -1035,6 +1116,39 @@ function selectAllPat(val) {
   updateStats();
 }
 
+function applyLevelPatternRestriction() {
+  const level   = document.getElementById('selLevel').value;
+  const allowed = new Set(PATTERN_BY_LEVEL[level] || []);
+
+  document.querySelectorAll('#patternsGrid .pattern-item').forEach(item => {
+    const cb  = item.querySelector('input[type=checkbox]');
+    const key = cb ? cb.value : null;
+    const oldHint = item.querySelector('.pat-level-hint');
+    if (oldHint) oldHint.remove();
+
+    if (key && !allowed.has(key)) {
+      cb.checked  = false;
+      cb.disabled = true;
+      cb.dataset.levelBlocked = 'true';
+      item.style.opacity = '0.35';
+      item.title = 'Tento typ věty není vhodný pro úroveň ' + level;
+      const hint = document.createElement('span');
+      hint.className = 'pat-level-hint';
+      hint.style.cssText = 'font-size:.72rem;color:var(--color-text-light);margin-left:4px';
+      hint.textContent = '(nad úroveň)';
+      item.appendChild(hint);
+    } else {
+      if (cb.dataset.levelBlocked === 'true') {
+        cb.dataset.levelBlocked = '';
+        cb.disabled = false;
+        item.style.opacity = '';
+        item.title = '';
+      }
+    }
+  });
+  updateStats();
+}
+
 function applyGrammarPatternExclusion() {
   const grammar     = document.getElementById('selGrammar').value;
   const excludeKeys = GRAMMAR_PATTERN_EXCLUDE[grammar] || [];
@@ -1044,6 +1158,9 @@ function applyGrammarPatternExclusion() {
     const key = cb ? cb.value : null;
     const oldHint = item.querySelector('.pat-excluded-hint');
     if (oldHint) oldHint.remove();
+
+    // přeskočit pokud je zablokováno úrovní — nemaže level blok
+    if (cb && cb.dataset.levelBlocked === 'true') return;
 
     if (key && excludeKeys.includes(key)) {
       cb.checked  = false;
@@ -1104,6 +1221,18 @@ function generatePrompt() {
   const gramHint    = GRAMMAR_NOTE_HINT[grammar] || null;
   const gramRules   = GRAMMAR_SENTENCE_RULES[grammar] || null;
 
+  // Sestavit seznam zakázaných gramatik (vše nad aktuální úroveň)
+  const LEVEL_ORDER = ['A0','A1','A2','B1'];
+  const curLevelIdx = LEVEL_ORDER.indexOf(level);
+  const forbidden = LEVEL_ORDER
+    .filter((_,i) => i > curLevelIdx)
+    .flatMap(l => GRAMMAR_BY_LEVEL[l] || []);
+  const levelGuard = forbidden.length > 0
+    ? `\nOMEZENÍ ÚROVNĚ (striktně dodržuj):
+Věty musí odpovídat úrovni ${level} — nepoužívej žádné gramatické jevy nad tuto úroveň.
+Zakázané konstrukce pro tuto úroveň: ${forbidden.join(', ')}.\n`
+    : '';
+
   const zahlaviRadek = zahlavi
     ? ['grammar','level','blok','topic','pattern','CZ','EN','poznamka'].join(sep)
     : null;
@@ -1146,7 +1275,7 @@ PARAMETRY GENEROVÁNÍ:
 - Počet bloků: ${pocet}
 - Počet vět v každém bloku: ${pats.length}
 - Celkem vět: ${celkem}${seed ? '\n- Klíčové sloveso / zaměření: ' + seed : ''}${extra ? '\n- Extra instrukce: ' + extra : ''}
-${existBloksSection}${gramHint ? `KLÍČOVÁ CHARAKTERISTIKA GRAMATIKY (použij jako základ pro poznámky):
+${existBloksSection}${levelGuard}${gramHint ? `KLÍČOVÁ CHARAKTERISTIKA GRAMATIKY (použij jako základ pro poznámky):
 ${gramHint}
 
 ` : ''}${gramRules ? `SPECIFICKÁ PRAVIDLA PRO TUTO GRAMATIKU (striktně dodržuj):
@@ -1205,7 +1334,8 @@ function resetForm() {
   document.getElementById('inpExtra').value = '';
   document.getElementById('outputPanel').style.display = 'none';
   buildPatternsGrid();
-  applyGrammarPatternExclusion(); // po resetu gridu znovu aplikuj vyloučení
+  applyLevelPatternRestriction();   // nejdřív level
+  applyGrammarPatternExclusion();   // pak gramatika
   updateStats();
 }
 
