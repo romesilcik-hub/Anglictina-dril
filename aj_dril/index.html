@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJ Dril</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2e75b6">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="AJ Dril">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <style>
+    @keyframes autoPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.3)} }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
+    .hidden { display:none !important; }
+
+    /* Tmavý režim */
+    body.dark {
+      --color-bg: #0f1117;
+      --color-surface: #1a1d26;
+      --color-surface-alt: #222534;
+      --color-border: #2e3347;
+      --color-border-light: #252838;
+      --color-text: #e2e6f0;
+      --color-text-muted: #7a84a0;
+      --color-text-light: #4a5270;
+      --color-primary-bg: #1a2540;
+      --color-primary-text: #7eb8f7;
+      --color-success-bg: #0d2a1a;
+      --color-danger-bg: #2a0d0d;
+    }
+
+    /* Header s tmavým režimem */
+    .app-header {
+      display:flex; align-items:center; justify-content:space-between;
+      margin-bottom:1.25rem;
+    }
+    .app-title { margin-bottom:0 !important; }
+    .dark-toggle {
+      width:36px; height:36px; border-radius:50%;
+      border:1px solid var(--color-border);
+      background:var(--color-surface); color:var(--color-text);
+      font-size:1.1rem; cursor:pointer; display:flex;
+      align-items:center; justify-content:center;
+      transition:all .2s;
+    }
+    .dark-toggle:hover { background:var(--color-surface-alt); }
+
+    /* Filtry */
+    .filter-wrap { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:1rem; }
+    .filter-group { display:flex; flex-direction:column; gap:.3rem; }
+    .filter-lbl { font-size:.75rem; color:var(--color-text-muted); font-weight:700; text-transform:uppercase; letter-spacing:.04em; white-space:nowrap; }
+    .filter-sel { width:100%; padding:5px 10px; border-radius:var(--radius-sm); border:1px solid var(--color-border); background:var(--color-surface); color:var(--color-text); font-size:.82rem; font-family:var(--font); cursor:pointer; outline:none; box-sizing:border-box; }
+    .filter-sel:focus { border-color:var(--color-primary); }
+    .filter-fav-row { grid-column:1/-1; }
+
+    /* Info badgy */
+    .card-meta { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:.5rem; }
+    .meta-badge { font-size:.7rem; font-weight:600; padding:2px 9px; border-radius:10px; font-family:var(--font); }
+    .mb-grammar { background:var(--color-primary-bg); color:var(--color-primary-text); }
+    .mb-level   { background:#f0f8e8; color:#2d6a2d; }
+    .mb-topic   { background:#fff8e7; color:#7a5c00; }
+    .mb-pattern { background:#f5f0ff; color:#5b3fa0; }
+    body.dark .mb-level   { background:#0d2a0d; color:#6dbf6d; }
+    body.dark .mb-topic   { background:#2a2000; color:#c4a030; }
+    body.dark .mb-pattern { background:#1a0d2a; color:#b090e0; }
+
+    /* Hvězdička */
+    .fav-btn {
+      background:transparent; border:none; font-size:1.3rem;
+      cursor:pointer; padding:0 4px; line-height:1;
+      color:var(--color-text-light); transition:all .15s;
+      margin-left:auto;
+    }
+    .fav-btn.active { color:#f59e0b; }
+    .fav-btn:hover { transform:scale(1.2); }
+
+    /* Hodnocení */
+    .rating-wrap {
+      display:flex; gap:8px; margin-top:.75rem;
+      animation:fadeIn .25s ease;
+    }
+    .rating-wrap.rating-hidden {
+      visibility:hidden; pointer-events:none;
+    }
+    .rating-btn {
+      flex:1; padding:8px 6px; border-radius:var(--radius-md);
+      border:1px solid var(--color-border); background:var(--color-surface);
+      font-size:.82rem; font-family:var(--font); font-weight:600;
+      cursor:pointer; transition:all .15s; text-align:center;
+    }
+    .rating-btn:hover { transform:translateY(-1px); box-shadow:0 2px 8px rgba(0,0,0,.1); }
+    .rb-good  { color:var(--color-success); border-color:var(--color-success); }
+    .rb-good:hover  { background:var(--color-success-bg); }
+    .rb-ok    { color:#d97706; border-color:#d97706; }
+    .rb-ok:hover    { background:#fef3c7; }
+    .rb-bad   { color:var(--color-danger); border-color:var(--color-danger); }
+    .rb-bad:hover   { background:var(--color-danger-bg); }
+    body.dark .rb-ok:hover { background:#2a1d00; }
+
+    /* Denní cíl */
+    .daily-bar {
+      background:var(--color-surface); border:1px solid var(--color-border);
+      border-radius:var(--radius-md); padding:.6rem 1rem;
+      margin-bottom:.9rem; display:flex; align-items:center; gap:.75rem;
+    }
+    .daily-label { font-size:.78rem; color:var(--color-text-muted); white-space:nowrap; }
+    .daily-progress { flex:1; height:8px; background:var(--color-border); border-radius:4px; overflow:hidden; }
+    .daily-fill { height:100%; background:linear-gradient(90deg,var(--color-primary),#22d3ee); border-radius:4px; transition:width .4s ease; }
+    .daily-count { font-size:.78rem; font-weight:700; color:var(--color-primary); white-space:nowrap; }
+    .daily-done { color:var(--color-success) !important; }
+
+    /* Statistiky panel */
+    .stats-panel {
+      background:var(--color-surface); border:1px solid var(--color-border);
+      border-radius:var(--radius-lg); padding:1rem 1.25rem;
+      margin-bottom:1rem; box-shadow:var(--shadow-sm);
+      display:none;
+    }
+    .stats-panel.show { display:block; animation:fadeIn .2s ease; }
+    .stats-title { font-size:.78rem; font-weight:700; color:var(--color-text-muted); text-transform:uppercase; letter-spacing:.05em; margin-bottom:.85rem; display:flex; align-items:center; justify-content:space-between; }
+    .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:.6rem; margin-bottom:.85rem; }
+    .stat-card { background:var(--color-surface-alt); border-radius:var(--radius-md); padding:.6rem .75rem; text-align:center; }
+    .stat-num { font-size:1.3rem; font-weight:700; color:var(--color-text); }
+    .stat-lbl { font-size:.68rem; color:var(--color-text-light); text-transform:uppercase; letter-spacing:.05em; }
+    .stat-good { color:var(--color-success); }
+    .stat-ok   { color:#d97706; }
+    .stat-bad  { color:var(--color-danger); }
+    .weak-list { margin-top:.5rem; }
+    .weak-item { display:flex; align-items:center; gap:.5rem; padding:.3rem 0; border-bottom:1px solid var(--color-border-light); font-size:.8rem; }
+    .weak-item:last-child { border-bottom:none; }
+    .weak-name { flex:1; color:var(--color-text); }
+    .weak-bar-wrap { width:80px; height:6px; background:var(--color-border); border-radius:3px; overflow:hidden; }
+    .weak-bar { height:100%; border-radius:3px; background:var(--color-danger); }
+    .weak-pct { font-size:.72rem; color:var(--color-text-muted); min-width:32px; text-align:right; }
+
+    /* Více databází */
+    .db-list { display:flex; flex-direction:column; gap:6px; margin-top:.6rem; }
+    .db-item { display:flex; align-items:center; gap:8px; padding:7px 10px; background:var(--color-surface-alt); border-radius:var(--radius-sm); font-size:.82rem; cursor:pointer; border:1px solid transparent; transition:all .15s; }
+    .db-item.active { border-color:var(--color-primary); background:var(--color-primary-bg); }
+    .db-item:hover:not(.active) { border-color:var(--color-border); }
+    .db-item-name { flex:1; font-weight:500; color:var(--color-text); }
+    .db-item-count { font-size:.72rem; color:var(--color-text-muted); }
+    .db-item-del { font-size:.8rem; color:var(--color-text-light); cursor:pointer; padding:2px 4px; }
+    .db-item-del:hover { color:var(--color-danger); }
+
+    /* Auto indikátor */
+    .auto-bar {
+      display:none; margin-top:.75rem; padding:8px 14px;
+      background:var(--color-primary-bg); border-radius:var(--border-radius-md);
+      font-size:.82rem; color:var(--color-primary-text);
+      align-items:center; gap:8px;
+    }
+    .auto-pulse { width:8px; height:8px; border-radius:50%; background:var(--color-primary); animation:autoPulse 1s infinite; display:inline-block; }
+
+    /* Pozastavit btn */
+    .auto-pause-btn {
+      padding:3px 10px; border-radius:12px;
+      border:1px solid var(--color-primary);
+      background:transparent; color:var(--color-primary-text);
+      font-size:.78rem; cursor:pointer; margin-left:auto;
+    }
+
+    /* Filtr oblíbených */
+    .fav-filter-btn {
+      padding:5px 12px; border-radius:var(--radius-xl);
+      border:1px solid var(--color-border); background:var(--color-surface);
+      color:var(--color-text-muted); font-size:.82rem;
+      cursor:pointer; transition:all .15s; white-space:nowrap;
+    }
+    .fav-filter-btn.active { background:#fef3c7; color:#92400e; border-color:#d97706; }
+  </style>
+</head>
+<body>
+<div class="app">
+
+  <!-- Header -->
+  <div class="app-header">
+    <div class="app-title">🇬🇧 AJ Dril</div>
+    <div style="display:flex;gap:6px;align-items:center">
+      <button class="dark-toggle" id="darkToggle" onclick="toggleDark()" title="Tmavý režim">🌙</button>
+      <button class="btn btn-sm btn-ghost" id="dbOverviewToggle" onclick="toggleDbOverview()" style="display:none" title="Přehled databáze">📊</button>
+      <button class="btn btn-sm btn-ghost" id="statsToggle" onclick="toggleStats()" style="display:none" title="Statistiky">📈</button>
+    </div>
+  </div>
+
+  <!-- Načtení databáze -->
+  <div class="load-panel" id="loadPanel">
+    <p>Nahraj databázi vět (<strong>aj_dril_databaze.json</strong> exportovaný z Excelu)</p>
+    <label class="btn btn-primary" style="cursor:pointer">
+      📂 Načíst JSON soubor
+      <input type="file" id="fileInput" accept=".json" style="display:none">
+    </label>
+    <p class="hint">Soubor se uloží v prohlížeči — příště se načte automaticky.</p>
+  </div>
+  <div class="db-status" id="dbStatus"></div>
+
+  <!-- Nastavení -->
+  <details class="settings-panel" id="settingsPanel" style="display:none">
+    <summary>⚙ Nastavení hlasů a přehrávání</summary>
+    <div class="settings-inner">
+
+      <!-- Databáze -->
+      <div style="padding-top:.9rem;padding-bottom:.75rem;border-bottom:1px solid var(--color-border-light)">
+        <div style="font-size:.75rem;font-weight:700;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem">Databáze</div>
+        <div class="db-list" id="dbList"></div>
+        <label class="btn btn-sm" style="cursor:pointer;margin-top:.5rem;display:inline-flex">
+          📂 Přidat JSON soubor
+          <input type="file" id="fileInput2" accept=".json" style="display:none">
+        </label>
+      </div>
+
+      <!-- Hlasy -->
+      <div class="settings-grid" style="margin-top:.75rem">
+        <div class="setting-group">
+          <span>🇨🇿 Hlas — česká věta</span>
+          <select id="czVoice" onchange="saveSetting('czVoice',this.value)"></select>
+        </div>
+        <div class="setting-group">
+          <span>Rychlost CZ</span>
+          <div class="slider-row">
+            <input type="range" id="czRate" min="0.5" max="1.5" step="0.05" value="0.9"
+                   oninput="saveSetting('czRate',this.value);document.getElementById('czRateVal').textContent=parseFloat(this.value).toFixed(2)">
+            <span class="slider-val" id="czRateVal">0.90</span>
+          </div>
+        </div>
+        <div class="setting-group">
+          <span>🇬🇧 Hlas — anglická věta</span>
+          <select id="enVoice" onchange="saveSetting('enVoice',this.value)"></select>
+        </div>
+        <div class="setting-group">
+          <span>Rychlost EN</span>
+          <div class="slider-row">
+            <input type="range" id="enRate" min="0.5" max="1.5" step="0.05" value="0.85"
+                   oninput="saveSetting('enRate',this.value);document.getElementById('enRateVal').textContent=parseFloat(this.value).toFixed(2)">
+            <span class="slider-val" id="enRateVal">0.85</span>
+          </div>
+        </div>
+        <div class="settings-divider"></div>
+        <div class="setting-group">
+          <span>Pauza před EN odpovědí</span>
+          <div class="slider-row">
+            <input type="range" id="pauseSec" min="0" max="8" step="1" value="3"
+                   oninput="saveSetting('pauseSec',this.value);document.getElementById('pauseVal').textContent=this.value+'s'">
+            <span class="slider-val" id="pauseVal">3s</span>
+          </div>
+        </div>
+        <div class="setting-group">
+          <span>Opakování EN věty</span>
+          <div class="slider-row">
+            <input type="range" id="enRepeat" min="1" max="5" step="1" value="1"
+                   oninput="saveSetting('enRepeat',this.value);document.getElementById('enRepeatVal').textContent=this.value+'×'">
+            <span class="slider-val" id="enRepeatVal">1×</span>
+          </div>
+        </div>
+        <div class="settings-divider"></div>
+        <div class="setting-group" style="gap:.5rem">
+          <label class="checkbox-row">
+            <input type="checkbox" id="playCZ" checked onchange="saveSetting('playCZ',this.checked)">
+            Přehrávat českou větu
+          </label>
+          <label class="checkbox-row">
+            <input type="checkbox" id="playEN" checked onchange="saveSetting('playEN',this.checked)">
+            Přehrávat anglickou větu
+          </label>
+          <label class="checkbox-row">
+            <input type="checkbox" id="showRating" checked onchange="saveSetting('showRating',this.checked);document.getElementById('ratingWrap').style.display=this.checked?'':'none'">
+            Zobrazovat hodnocení (✓/~/✗)
+          </label>
+        </div>
+        <div class="setting-group" style="gap:.5rem">
+          <label class="checkbox-row">
+            <input type="checkbox" id="shuffleBlocks" onchange="saveSetting('shuffleBlocks',this.checked);reloadActive()">
+            Náhodné pořadí bloků
+          </label>
+          <label class="checkbox-row">
+            <input type="checkbox" id="shuffleSents" onchange="saveSetting('shuffleSents',this.checked);reloadActive()">
+            Náhodné pořadí vět v bloku
+          </label>
+        </div>
+        <div class="settings-divider"></div>
+        <div class="setting-group" style="gap:.5rem">
+          <label class="checkbox-row">
+            <input type="checkbox" id="autoMode" onchange="saveSetting('autoMode',this.checked);toggleAutoMode()">
+            Automatické pokračování
+          </label>
+        </div>
+        <div class="setting-group hidden" id="autoDelayGroup">
+          <span>Pauza mezi větami</span>
+          <div class="slider-row">
+            <input type="range" id="autoDelay" min="1" max="10" step="1" value="3"
+                   oninput="saveSetting('autoDelay',this.value);document.getElementById('autoDelayVal').textContent=this.value+'s'">
+            <span class="slider-val" id="autoDelayVal">3s</span>
+          </div>
+        </div>
+        <div class="settings-divider"></div>
+        <div class="setting-group">
+          <span>Denní cíl (počet vět)</span>
+          <div class="slider-row">
+            <input type="range" id="dailyGoal" min="5" max="100" step="5" value="20"
+                   oninput="saveSetting('dailyGoal',this.value);document.getElementById('dailyGoalVal').textContent=this.value;updateDailyBar()">
+            <span class="slider-val" id="dailyGoalVal">20</span>
+          </div>
+        </div>
+        <div class="settings-divider"></div>
+        <div class="setting-group">
+          <span>Velikost písma vět</span>
+          <div class="slider-row">
+            <input type="range" id="sentScale" min="0.7" max="1.6" step="0.05" value="1"
+                   oninput="applySentScale(this.value);saveSetting('sentScale',this.value)">
+            <span class="slider-val" id="sentScaleVal">100%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div onclick="document.getElementById('settingsPanel').removeAttribute('open')"
+         style="cursor:pointer;padding:.7rem 1.25rem;background:var(--color-primary-bg);border-top:1px solid var(--color-border);font-size:.82rem;font-weight:700;color:var(--color-primary-text);display:flex;align-items:center;justify-content:space-between;user-select:none;">
+      <span>⚙ Nastavení hlasů a přehrávání</span>
+      <span style="font-size:.72rem;color:var(--color-primary)">▲ Zavřít</span>
+    </div>
+  </details>
+
+  <!-- Přehled databáze panel -->
+  <div class="stats-panel" id="dbOverviewPanel">
+    <div class="stats-title">
+      📊 Přehled databáze
+      <button class="btn btn-sm btn-ghost" onclick="toggleDbOverview()">✕</button>
+    </div>
+    <div id="dbOverviewTable"></div>
+    <div style="text-align:right;margin-top:.75rem;padding-top:.75rem;border-top:0.5px solid var(--color-border);">
+      <button class="btn btn-sm btn-ghost" onclick="toggleDbOverview()">✕ Zavřít</button>
+    </div>
+  </div>
+
+  <!-- Statistiky panel -->
+  <div class="stats-panel" id="statsPanel">
+    <div class="stats-title">
+      📈 Statistiky
+      <button class="btn btn-sm btn-ghost" onclick="toggleStats()">✕</button>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num" id="statTotal">0</div>
+        <div class="stat-lbl">celkem</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num stat-good" id="statGood">0</div>
+        <div class="stat-lbl">✓ správně</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num stat-bad" id="statBad">0</div>
+        <div class="stat-lbl">✗ chyba</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="statToday">0</div>
+        <div class="stat-lbl">dnes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="statStreak">0</div>
+        <div class="stat-lbl">🔥 dní</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="statPct">—</div>
+        <div class="stat-lbl">úspěšnost</div>
+      </div>
+    </div>
+    <div style="font-size:.75rem;font-weight:700;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem">Nejslabší gramatika</div>
+    <div class="weak-list" id="weakList"></div>
+    <button class="btn btn-sm btn-ghost" style="margin-top:.75rem;color:var(--color-danger)" onclick="clearStats()">🗑 Smazat statistiky</button>
+  </div>
+
+  <!-- Denní cíl -->
+  <div class="daily-bar" id="dailyBar" style="display:none">
+    <span class="daily-label">Denní cíl:</span>
+    <div class="daily-progress"><div class="daily-fill" id="dailyFill" style="width:0%"></div></div>
+    <span class="daily-count" id="dailyCount">0/20</span>
+  </div>
+
+  <!-- Filtry -->
+  <div class="filter-wrap" id="filterWrap" style="display:none">
+    <div class="filter-group">
+      <label class="filter-lbl" for="fLevel">Úroveň</label>
+      <select class="filter-sel" id="fLevel" onchange="onFilterChange('level')">
+        <option value="">Vše</option>
+        <option value="A0">A0 — Začátečník</option>
+        <option value="A1">A1 — Základní</option>
+        <option value="A2">A2 — Mírně pokročilý</option>
+        <option value="B1">B1 — Středně pokročilý</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label class="filter-lbl" for="fGrammar">Gramatický jev</label>
+      <select class="filter-sel" id="fGrammar" onchange="onFilterChange('grammar')">
+        <option value="">Veškerá gramatika</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label class="filter-lbl" for="fTopic">Téma</label>
+      <select class="filter-sel" id="fTopic" onchange="onFilterChange('topic')">
+        <option value="">Všechna témata</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label class="filter-lbl" for="fPattern">Typy vět</label>
+      <select class="filter-sel" id="fPattern" onchange="onFilterChange('pattern')">
+        <option value="">Všechny typy vět</option>
+      </select>
+    </div>
+    <div class="filter-fav-row">
+      <button class="fav-filter-btn" id="favFilterBtn" onclick="toggleFavFilter()">⭐ Oblíbené</button>
+    </div>
+  </div>
+
+  <!-- Skóre -->
+  <div class="scores" id="scoresWrap" style="display:none">
+    <div class="score-card"><div class="score-num" id="sDone">0</div><div class="score-lbl">dokončeno</div></div>
+    <div class="score-card"><div class="score-num" id="sPos">1/1</div><div class="score-lbl">věta</div></div>
+    <div class="score-card"><div class="score-num" id="sTotal">0</div><div class="score-lbl">celkem vět</div></div>
+    <div class="score-card"><div class="score-num" id="sBlocks">0</div><div class="score-lbl">bloků</div></div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="progress-bar" id="progressBar" style="display:none">
+    <div class="progress-fill" id="progressFill" style="width:0%"></div>
+  </div>
+
+  <!-- Karta -->
+  <div class="drill-card" id="drillCard" style="display:none">
+    <div style="display:flex;align-items:flex-start;gap:4px">
+      <div class="card-meta" style="flex:1">
+        <span class="meta-badge mb-level"   id="mLevel"></span>
+        <span class="meta-badge mb-grammar" id="mGrammar"></span>
+        <span class="meta-badge mb-topic"   id="mTopic"></span>
+        <span class="meta-badge mb-pattern" id="mPattern"></span>
+      </div>
+      <button class="fav-btn" id="favBtn" onclick="toggleFav()" title="Oblíbená věta">☆</button>
+    </div>
+    <div class="card-badge" id="cardBadge">Blok 1 · Věta 1/6</div>
+    <div class="sentence-cz" id="sentCZ">—</div>
+    <div class="sentence-divider"></div>
+    <div class="sentence-en" id="sentEN">—</div>
+    <div class="sentence-note" id="sentNote"></div>
+    <!-- Hodnocení -->
+    <div class="rating-wrap rating-hidden" id="ratingWrap">
+      <button class="rating-btn rb-good" onclick="rateSent('good')">✓ Uměl jsem</button>
+      <button class="rating-btn rb-ok"   onclick="rateSent('ok')">~ Skoro</button>
+      <button class="rating-btn rb-bad"  onclick="rateSent('bad')">✗ Neuměl jsem</button>
+    </div>
+  </div>
+
+  <!-- Ovládání -->
+  <div class="controls" id="controlsWrap" style="display:none">
+    <button class="btn btn-sm" onclick="replayCZ()">↻ CZ</button>
+    <button class="btn btn-sm" onclick="replayEN()">↻ EN</button>
+    <button class="btn btn-primary" onclick="nextSent()">Další →</button>
+    <button class="btn btn-ghost btn-sm" onclick="skipSent()">přeskočit</button>
+  </div>
+
+  <!-- Auto indikátor -->
+  <div class="auto-bar" id="autoIndicator">
+    <span class="auto-pulse"></span>
+    <span id="autoStatusText">Automatický režim</span>
+    <button class="auto-pause-btn" id="autoPauseBtn" onclick="toggleAutoPause()">⏸ Pozastavit</button>
+    <button class="auto-pause-btn" onclick="toggleAutoMode(true)" style="border-color:var(--color-danger);color:var(--color-danger)">✕</button>
+  </div>
+
+  <div id="shortcutHint" style="display:none;margin-top:.75rem;font-size:.72rem;color:var(--color-text-light);text-align:center;">
+    Mezerník / → = další &nbsp;·&nbsp; R = přehrát EN &nbsp;·&nbsp; C = přehrát CZ &nbsp;·&nbsp; S = přeskočit &nbsp;·&nbsp; A = auto &nbsp;·&nbsp; P = pauza
+  </div>
+
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════════════════════════
+// STAV
+// ══════════════════════════════════════════════════════════════════════════════
+let databases    = {};   // { name: {blocks:[...], loaded:timestamp} }
+let activeDbName = null;
+let db           = null;
+let activeBlocks = [];
+let blockOrder   = [], sentOrders = [];
+let bPos = 0, sPos = 0, done = 0, total = 0;
+let pauseTimer = null, autoTimer = null;
+let autoPaused = false;
+let favFilter  = false;
+let currentSentKey = null; // klíč aktuální věty pro oblíbené
+
+const STORAGE_DBS  = 'aj_dril_databases_v3';
+const STORAGE_CFG  = 'aj_dril_cfg_v3';
+const STORAGE_POS  = 'aj_dril_pos_v3';
+const STORAGE_FAV  = 'aj_dril_favs_v3';
+const STORAGE_STAT = 'aj_dril_stats_v3';
+
+// ══════════════════════════════════════════════════════════════════════════════
+// KONFIGURACE
+// ══════════════════════════════════════════════════════════════════════════════
+let cfg = {
+  czVoice:'', enVoice:'', czRate:0.9, enRate:0.85,
+  pauseSec:3, enRepeat:1, playCZ:true, playEN:true,
+  shuffleBlocks:false, shuffleSents:false,
+  autoMode:false, autoDelay:3,
+  showRating:true, dailyGoal:20,
+  sentScale:1,
+  darkMode:false
+};
+
+function applySentScale(val) {
+  val = parseFloat(val);
+  document.documentElement.style.setProperty('--sent-scale', val);
+  document.getElementById('sentScaleVal').textContent = Math.round(val*100)+'%';
+  document.getElementById('sentScale').value = val;
+}
+
+function loadCfg() {
+  try { const s=localStorage.getItem(STORAGE_CFG); if(s) cfg={...cfg,...JSON.parse(s)}; } catch(e){}
+  document.getElementById('czRate').value    = cfg.czRate;
+  document.getElementById('enRate').value    = cfg.enRate;
+  document.getElementById('pauseSec').value  = cfg.pauseSec;
+  document.getElementById('enRepeat').value  = cfg.enRepeat;
+  document.getElementById('autoDelay').value = cfg.autoDelay||3;
+  document.getElementById('dailyGoal').value = cfg.dailyGoal||20;
+  document.getElementById('czRateVal').textContent    = parseFloat(cfg.czRate).toFixed(2);
+  document.getElementById('enRateVal').textContent    = parseFloat(cfg.enRate).toFixed(2);
+  document.getElementById('pauseVal').textContent     = cfg.pauseSec+'s';
+  document.getElementById('enRepeatVal').textContent  = cfg.enRepeat+'×';
+  document.getElementById('autoDelayVal').textContent = (cfg.autoDelay||3)+'s';
+  document.getElementById('dailyGoalVal').textContent = cfg.dailyGoal||20;
+  document.getElementById('playCZ').checked       = cfg.playCZ!==false;
+  document.getElementById('playEN').checked       = cfg.playEN!==false;
+  document.getElementById('showRating').checked   = cfg.showRating!==false;
+  document.getElementById('ratingWrap').style.display = cfg.showRating!==false ? '' : 'none';
+  document.getElementById('shuffleBlocks').checked = !!cfg.shuffleBlocks;
+  document.getElementById('shuffleSents').checked  = !!cfg.shuffleSents;
+  document.getElementById('autoMode').checked      = !!cfg.autoMode;
+  if(cfg.autoMode) document.getElementById('autoDelayGroup').classList.remove('hidden');
+  if(cfg.darkMode) document.body.classList.add('dark');
+  applySentScale(cfg.sentScale||1);
+}
+
+function saveSetting(key,val) {
+  if(val==='true')val=true; else if(val==='false')val=false;
+  else if(!isNaN(val)&&val!=='')val=parseFloat(val);
+  cfg[key]=val;
+  try{localStorage.setItem(STORAGE_CFG,JSON.stringify(cfg));}catch(e){}
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// TMAVÝ REŽIM
+// ══════════════════════════════════════════════════════════════════════════════
+function toggleDark() {
+  document.body.classList.toggle('dark');
+  const isDark = document.body.classList.contains('dark');
+  document.getElementById('darkToggle').textContent = isDark ? '☀️' : '🌙';
+  saveSetting('darkMode', isDark);
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// VÍCE DATABÁZÍ
+// ══════════════════════════════════════════════════════════════════════════════
+function loadDatabases() {
+  try { const s=localStorage.getItem(STORAGE_DBS); if(s) databases=JSON.parse(s); } catch(e){}
+}
+
+function saveDatabases() {
+  try { localStorage.setItem(STORAGE_DBS, JSON.stringify(databases)); } catch(e){}
+}
+
+function renderDbList() {
+  const list = document.getElementById('dbList');
+  list.innerHTML = '';
+  const names = Object.keys(databases);
+  if(!names.length) {
+    list.innerHTML = '<div style="font-size:.78rem;color:var(--color-text-light);padding:.25rem 0">Žádná databáze</div>';
+    return;
+  }
+  names.forEach(name => {
+    const d = databases[name];
+    const cnt = d.blocks ? d.blocks.reduce((a,b)=>a+b.sentences.length,0) : 0;
+    const item = document.createElement('div');
+    item.className = 'db-item' + (name===activeDbName?' active':'');
+    item.innerHTML = `
+      <span class="db-item-name">${name}</span>
+      <span class="db-item-count">${d.blocks?d.blocks.length:0} bloků · ${cnt} vět</span>
+      <span class="db-item-del" onclick="removeDb('${name}',event)" title="Odebrat">✕</span>`;
+    item.onclick = (e) => { if(!e.target.classList.contains('db-item-del')) switchDb(name); };
+    list.appendChild(item);
+  });
+}
+
+function switchDb(name) {
+  if(!databases[name]) return;
+  activeDbName = name;
+  db = databases[name];
+  localStorage.setItem(STORAGE_POS, ''); // reset pozice při přepnutí
+  showStatus('✓ '+db.blocks.length+' bloků · '+countSents()+' vět', true);
+  renderDbList();
+  populateFilters();
+  // Obnov filtry pro tuto databázi
+  const savedPos = loadPosSafe();
+  if(savedPos && savedPos.dbName === name) {
+    restorePos(savedPos);
+  } else {
+    activeBlocks=[...db.blocks];
+    buildOrders();
+    updateScores();
+    showCurrent();
+  }
+  saveDatabases();
+}
+
+function removeDb(name, e) {
+  e.stopPropagation();
+  if(!confirm('Odebrat databázi "'+name+'"?')) return;
+  delete databases[name];
+  saveDatabases();
+  if(activeDbName === name) {
+    const remaining = Object.keys(databases);
+    if(remaining.length) { switchDb(remaining[0]); }
+    else {
+      activeDbName=null; db=null;
+      document.getElementById('loadPanel').style.display='';
+      ['settingsPanel','filterWrap','scoresWrap','progressBar','drillCard','controlsWrap','shortcutHint','autoIndicator','dailyBar']
+        .forEach(id=>document.getElementById(id).style.display='none');
+      document.getElementById('statsToggle').style.display='none';
+      document.getElementById('dbOverviewToggle').style.display='none';
+      document.getElementById('dbOverviewPanel').classList.remove('show');
+    }
+  }
+  renderDbList();
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// PAMĚŤ POZICE
+// ══════════════════════════════════════════════════════════════════════════════
+function savePos() {
+  try {
+    localStorage.setItem(STORAGE_POS, JSON.stringify({
+      dbName:activeDbName, bPos,sPos,done,total,blockOrder,sentOrders,
+      fLevel:document.getElementById('fLevel').value,
+      fTopic:document.getElementById('fTopic').value,
+      fGrammar:document.getElementById('fGrammar').value,
+      fPattern:document.getElementById('fPattern').value,
+
+      favFilter
+    }));
+  } catch(e){}
+}
+
+function loadPosSafe() {
+  try {
+    const s=localStorage.getItem(STORAGE_POS); if(!s) return null;
+    return JSON.parse(s);
+  } catch(e){ return null; }
+}
+
+function loadPos() {
+  const p = loadPosSafe();
+  if(!p||!db||!db.blocks) return false;
+  if(p.dbName && p.dbName !== activeDbName) return false;
+  // Obnov filtry
+  if(p.fLevel)        document.getElementById('fLevel').value        = p.fLevel;
+  if(p.fTopic)        document.getElementById('fTopic').value        = p.fTopic;
+  if(p.fGrammar)      document.getElementById('fGrammar').value      = p.fGrammar;
+  if(p.fPattern)      document.getElementById('fPattern').value      = p.fPattern;
+
+  if(p.favFilter) { favFilter=true; document.getElementById('favFilterBtn').classList.add('active'); }
+  applyFilters(false);
+  return restorePos(p);
+}
+
+function restorePos(p) {
+  bPos=p.bPos||0; sPos=p.sPos||0; done=p.done||0; total=p.total||0;
+  blockOrder=p.blockOrder||[]; sentOrders=p.sentOrders||[];
+  // Validace indexů
+  if(!blockOrder.length||bPos>=blockOrder.length) return false;
+  const bi=blockOrder[bPos%blockOrder.length];
+  if(bi>=activeBlocks.length) return false;
+  if(!sentOrders[bi]||sPos>=sentOrders[bi].length) return false;
+  return true;
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// OBLÍBENÉ
+// ══════════════════════════════════════════════════════════════════════════════
+let favs = new Set();
+
+function loadFavs() {
+  try { const s=localStorage.getItem(STORAGE_FAV); if(s) favs=new Set(JSON.parse(s)); } catch(e){}
+}
+
+function saveFavs() {
+  try { localStorage.setItem(STORAGE_FAV, JSON.stringify([...favs])); } catch(e){}
+}
+
+function getSentKey() {
+  if(!activeBlocks.length||!blockOrder.length) return null;
+  const bi=blockOrder[bPos%blockOrder.length];
+  const block=activeBlocks[bi];
+  const so=sentOrders[bi];
+  const si=so[sPos%so.length];
+  const sent=block.sentences[si];
+  // Preferuj id, fallback na cz text pro starší data
+  return sent.id ? String(sent.id) : (block.grammar||'')+'|'+(sent.cz||'');
+}
+
+function toggleFav() {
+  const key=getSentKey(); if(!key) return;
+  const btn=document.getElementById('favBtn');
+  if(favs.has(key)) { favs.delete(key); btn.textContent='☆'; btn.classList.remove('active'); }
+  else { favs.add(key); btn.textContent='★'; btn.classList.add('active'); }
+  saveFavs();
+  updateFavFilterBtn();
+}
+
+function toggleFavFilter() {
+  favFilter=!favFilter;
+  document.getElementById('favFilterBtn').classList.toggle('active',favFilter);
+  applyFilters(true);
+}
+
+function updateFavFilterBtn() {
+  const btn=document.getElementById('favFilterBtn');
+  const count=favs.size;
+  if(count===0){
+    btn.style.display='none';
+    if(favFilter){ favFilter=false; applyFilters(false); }
+  } else {
+    btn.style.display='';
+    btn.textContent='⭐ Oblíbené ('+count+')';
+  }
+}
+
+function updateFavBtn() {
+  const key=getSentKey();
+  const btn=document.getElementById('favBtn');
+  if(!key){btn.textContent='☆';btn.classList.remove('active');return;}
+  if(favs.has(key)){btn.textContent='★';btn.classList.add('active');}
+  else{btn.textContent='☆';btn.classList.remove('active');}
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// STATISTIKY
+// ══════════════════════════════════════════════════════════════════════════════
+let stats = { total:0, good:0, ok:0, bad:0, today:0, todayDate:'', streak:0, lastDate:'', byGrammar:{} };
+
+function loadStats() {
+  try { const s=localStorage.getItem(STORAGE_STAT); if(s) stats={...stats,...JSON.parse(s)}; } catch(e){}
+  // Resetuj dnešní počet pokud je jiný den
+  const today=new Date().toDateString();
+  if(stats.todayDate !== today) { stats.today=0; stats.todayDate=today; saveStats(); }
+}
+
+function saveStats() {
+  try { localStorage.setItem(STORAGE_STAT,JSON.stringify(stats)); } catch(e){}
+}
+
+function recordRating(rating, grammarName, sentId) {
+  stats.total++;
+  stats[rating]++;
+  stats.today++;
+  // Streak
+  const today=new Date().toDateString();
+  const yesterday=new Date(Date.now()-86400000).toDateString();
+  if(stats.lastDate===yesterday) stats.streak++;
+  else if(stats.lastDate!==today) stats.streak=1;
+  stats.lastDate=today;
+  // Per gramatika
+  if(!stats.byGrammar[grammarName]) stats.byGrammar[grammarName]={good:0,bad:0};
+  if(rating==='good') stats.byGrammar[grammarName].good++;
+  else if(rating==='bad') stats.byGrammar[grammarName].bad++;
+  // Per věta (pro budoucí SRS) — ulož výsledek s ID
+  if(sentId){
+    if(!stats.bySent) stats.bySent={};
+    if(!stats.bySent[sentId]) stats.bySent[sentId]={good:0,ok:0,bad:0,last:null};
+    stats.bySent[sentId][rating]++;
+    stats.bySent[sentId].last=new Date().toISOString().split('T')[0];
+  }
+  saveStats();
+  updateDailyBar();
+}
+
+function clearStats() {
+  if(!confirm('Smazat všechny statistiky?')) return;
+  stats={total:0,good:0,ok:0,bad:0,today:0,todayDate:new Date().toDateString(),streak:0,lastDate:'',byGrammar:{}};
+  saveStats(); renderStats(); updateDailyBar();
+}
+
+function renderStats() {
+  document.getElementById('statTotal').textContent = stats.total;
+  document.getElementById('statGood').textContent  = stats.good;
+  document.getElementById('statBad').textContent   = stats.bad;
+  document.getElementById('statToday').textContent = stats.today;
+  document.getElementById('statStreak').textContent= stats.streak;
+  const pct = stats.total>0 ? Math.round(stats.good/stats.total*100)+'%' : '—';
+  document.getElementById('statPct').textContent   = pct;
+  // Nejslabší gramatika
+  const weakList = document.getElementById('weakList');
+  const entries = Object.entries(stats.byGrammar)
+    .filter(([,v])=>v.good+v.bad>=3)
+    .map(([name,v])=>({name, pct:Math.round(v.bad/(v.good+v.bad)*100), total:v.good+v.bad}))
+    .sort((a,b)=>b.pct-a.pct)
+    .slice(0,5);
+  if(!entries.length) { weakList.innerHTML='<div style="font-size:.78rem;color:var(--color-text-light);padding:.25rem 0">Zatím žádná data — hodnoť věty tlačítky ✓/~/✗</div>'; return; }
+  weakList.innerHTML = entries.map(e=>`
+    <div class="weak-item">
+      <span class="weak-name">${e.name}</span>
+      <div class="weak-bar-wrap"><div class="weak-bar" style="width:${e.pct}%"></div></div>
+      <span class="weak-pct">${e.pct}% chyb</span>
+    </div>`).join('');
+}
+
+function toggleDbOverview() {
+  const panel = document.getElementById('dbOverviewPanel');
+  panel.classList.toggle('show');
+  if (panel.classList.contains('show')) renderDbOverview();
+}
+
+function renderDbOverview() {
+  if (!db) return;
+  const wrap = document.getElementById('dbOverviewTable');
+  const gramStats = {};
+  db.blocks.forEach(b => {
+    if (!b.grammar) return;
+    gramStats[b.grammar] = (gramStats[b.grammar]||0) + b.sentences.length;
+  });
+  const total = Object.values(gramStats).reduce((a,b)=>a+b,0);
+  let html = '<table style="width:100%;border-collapse:collapse;font-size:.82rem">';
+  html += '<thead><tr style="border-bottom:1px solid var(--color-border)"><th style="text-align:left;padding:5px 8px;color:var(--color-text-muted);font-weight:600">Gramatický jev</th><th style="text-align:right;padding:5px 8px;color:var(--color-text-muted);font-weight:600">Vět</th></tr></thead><tbody>';
+  const listed = new Set();
+  GRAMMAR_GROUPS.forEach(group => {
+    const items = group.items.filter(n => gramStats[n] !== undefined);
+    if (!items.length) return;
+    html += `<tr><td colspan="2" style="padding:5px 8px 2px;font-size:.72rem;font-weight:700;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.04em;background:var(--color-surface-alt)">${group.label.replace(/─/g,'').trim()}</td></tr>`;
+    items.forEach(name => {
+      listed.add(name);
+      const esc = name.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+      html += `<tr class="db-ov-row" data-g="${esc}" style="border-bottom:0.5px solid var(--color-border);cursor:pointer" title="Klikni → nastavit filtr a drilovat">`;
+      html += `<td style="padding:4px 8px 4px 16px">${name}</td>`;
+      html += `<td style="text-align:right;padding:4px 8px;font-weight:600;color:var(--color-primary)">${gramStats[name]}</td></tr>`;
+    });
+  });
+  const extra = Object.keys(gramStats).filter(n=>!listed.has(n));
+  if (extra.length) {
+    html += `<tr><td colspan="2" style="padding:5px 8px 2px;font-size:.72rem;font-weight:700;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.04em;background:var(--color-surface-alt)">Ostatní</td></tr>`;
+    extra.forEach(name => {
+      const esc = name.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+      html += `<tr class="db-ov-row" data-g="${esc}" style="border-bottom:0.5px solid var(--color-border);cursor:pointer">`;
+      html += `<td style="padding:4px 8px 4px 16px">${name}</td>`;
+      html += `<td style="text-align:right;padding:4px 8px;font-weight:600;color:var(--color-primary)">${gramStats[name]}</td></tr>`;
+    });
+  }
+  html += `</tbody><tfoot><tr style="border-top:1px solid var(--color-border)"><td style="padding:6px 8px;font-weight:600">Celkem</td><td style="text-align:right;padding:6px 8px;font-weight:700;color:var(--color-primary)">${total}</td></tr></tfoot></table>`;
+  html += '<p style="font-size:.72rem;color:var(--color-text-light);margin-top:.4rem">Kliknutím na řádek nastavíš filtr a přejdeš na drilování.</p>';
+  wrap.innerHTML = html;
+  wrap.querySelectorAll('.db-ov-row').forEach(row => {
+    row.addEventListener('mouseenter', ()=>row.style.background='var(--color-surface-alt)');
+    row.addEventListener('mouseleave', ()=>row.style.background='');
+    row.addEventListener('click', ()=>{
+      const grammar = row.dataset.g;
+      document.getElementById('fLevel').value = '';
+      updateCascade();
+      document.getElementById('fGrammar').value = grammar;
+      onFilterChange('grammar');
+      document.getElementById('dbOverviewPanel').classList.remove('show');
+    });
+  });
+}
+
+function toggleStats() {
+  const panel = document.getElementById('statsPanel');
+  panel.classList.toggle('show');
+  if(panel.classList.contains('show')) renderStats();
+}
+
+function updateDailyBar() {
+  const goal = parseInt(document.getElementById('dailyGoal').value)||20;
+  const done2 = stats.today||0;
+  const pct = Math.min(100, Math.round(done2/goal*100));
+  document.getElementById('dailyFill').style.width = pct+'%';
+  const countEl = document.getElementById('dailyCount');
+  countEl.textContent = done2+'/'+goal;
+  countEl.className = 'daily-count' + (done2>=goal?' daily-done':'');
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// SHUFFLE
+// ══════════════════════════════════════════════════════════════════════════════
+function shuffle(arr) {
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+
+function buildOrders() {
+  const n=activeBlocks.length;
+  blockOrder = cfg.shuffleBlocks ? shuffle([...Array(n).keys()]) : [...Array(n).keys()];
+  sentOrders = activeBlocks.map((b,i)=>{
+    const m=b.sentences.length;
+    return cfg.shuffleSents ? shuffle([...Array(m).keys()]) : [...Array(m).keys()];
+  });
+  total = activeBlocks.reduce((a,b)=>a+b.sentences.length,0);
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// HLASY
+// ══════════════════════════════════════════════════════════════════════════════
+function loadVoices() {
+  const all=speechSynthesis.getVoices();
+  const czV=all.filter(v=>v.lang.startsWith('cs')||v.lang.startsWith('sk'));
+  const enV=all.filter(v=>v.lang.startsWith('en'));
+  fillVoiceSelect('czVoice',czV,cfg.czVoice,['cs-CZ','cs','sk']);
+  fillVoiceSelect('enVoice',enV.length?enV:all,cfg.enVoice,['en-GB','en-US','en']);
+}
+
+function fillVoiceSelect(id,voices,savedName,prefLangs) {
+  const sel=document.getElementById(id);
+  sel.innerHTML='';
+  if(!voices.length){sel.innerHTML='<option value="">— žádný hlas —</option>';return;}
+  voices.forEach(v=>{
+    const o=document.createElement('option');
+    o.value=v.name; o.textContent=v.name+' ['+v.lang+']'+(v.localService?'':' ☁');
+    sel.appendChild(o);
+  });
+  if(savedName&&voices.find(v=>v.name===savedName)){sel.value=savedName;}
+  else {
+    let pref=-1;
+    for(const lang of prefLangs){pref=voices.findIndex(v=>v.lang===lang||v.lang.startsWith(lang));if(pref>=0)break;}
+    sel.selectedIndex=pref>=0?pref:0;
+    saveSetting(id,sel.value);
+  }
+}
+
+speechSynthesis.onvoiceschanged=loadVoices;
+loadVoices();
+
+// ══════════════════════════════════════════════════════════════════════════════
+// TTS
+// ══════════════════════════════════════════════════════════════════════════════
+function speak(text,voiceName,rate,cb,forceLang) {
+  if(!window.speechSynthesis){if(cb)cb();return;}
+  const u=new SpeechSynthesisUtterance(text);
+  const v=speechSynthesis.getVoices().find(v=>v.name===voiceName);
+  if(v){u.voice=v;u.lang=v.lang;}
+  else if(forceLang){u.lang=forceLang;}
+  u.rate=parseFloat(rate)||1;
+  if(cb) u.onend=cb;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(u);
+}
+
+function replayCZ(){speak(document.getElementById('sentCZ').textContent,document.getElementById('czVoice').value,cfg.czRate,null,'cs-CZ');}
+function replayEN(){document.getElementById('sentEN').classList.add('visible');playENRepeated(document.getElementById('sentEN').textContent,null,'en-GB');}
+
+function playENRepeated(text,onDone,forceLang) {
+  const repeats=parseInt(document.getElementById('enRepeat').value)||1;
+  let count=0;
+  function one(){count++;speak(text,document.getElementById('enVoice').value,cfg.enRate,count<repeats?one:onDone,forceLang||'en-GB');}
+  one();
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// NAČTENÍ SOUBORU
+// ══════════════════════════════════════════════════════════════════════════════
+document.getElementById('fileInput').addEventListener('change',e=>handleFileLoad(e,true));
+document.getElementById('fileInput2').addEventListener('change',e=>handleFileLoad(e,false));
+
+function handleFileLoad(e,isFirst) {
+  const file=e.target.files[0]; if(!file) return;
+  const name=file.name.replace('.json','');
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    try {
+      const data=JSON.parse(ev.target.result);
+      const normalized=normalizeDB(data);
+      databases[name]=normalized;
+      saveDatabases();
+      activeDbName=name;
+      db=normalized;
+      localStorage.removeItem(STORAGE_POS);
+      // Reset filtrů aby nový JSON začínal čistě
+      ['fLevel','fGrammar','fTopic','fPattern'].forEach(id=>document.getElementById(id).value='');
+      showStatus('✓ '+db.blocks.length+' bloků, '+countSents()+' vět',true);
+      initApp(false);
+    } catch(err){showStatus('✗ Chyba: '+err.message,false);}
+  };
+  reader.readAsText(file);
+  e.target.value='';
+}
+
+function normalizeDB(data) {
+  if(data.blocks&&Array.isArray(data.blocks)&&data.blocks[0]&&data.blocks[0].grammar!==undefined) return data;
+  if(data.blocks&&Array.isArray(data.blocks)) {
+    return {blocks:data.blocks.map(b=>({
+      grammar:b.grammar||b.grammar_id||'—',level:b.level||'A1',
+      blok:b.blok||b.block_id||'—',topic:b.topic||b.topic_id||'Obecné',
+      sentences:(b.sentences||[]).map((s,si)=>({id:s.id||('b'+si),cz:s.cz||'',en:s.en||'',pattern:s.pattern||'',note:s.note||''}))
+    }))};
+  }
+  if(typeof data==='object'&&!Array.isArray(data)) {
+    const blocks=[];
+    Object.keys(data).forEach(tema=>{
+      (data[tema]||[]).forEach(g=>{
+        if(!g.vars) return;
+        blocks.push({grammar:tema,level:'A1',blok:tema,topic:'Obecné',
+          sentences:g.vars.map((v,vi)=>({id:'old_'+tema+'_'+vi,cz:v.cz||'',en:v.en||'',pattern:'affirmative',note:v.note||''}))});
+      });
+    });
+    return {blocks};
+  }
+  throw new Error('Neznámý formát databáze');
+}
+
+function countSents(){return db.blocks.reduce((a,b)=>a+b.sentences.length,0);}
+function showStatus(msg,ok){const el=document.getElementById('dbStatus');if(ok){el.className='db-status';return;}el.textContent=msg;el.className='db-status err';}
+
+function tryLoadFromStorage(){
+  loadDatabases();
+  const names=Object.keys(databases);
+  if(!names.length) return false;
+  // Aktivuj poslední nebo první
+  const p=loadPosSafe();
+  activeDbName = (p&&p.dbName&&databases[p.dbName]) ? p.dbName : names[0];
+  db=databases[activeDbName];
+  return true;
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// FILTRY
+// ══════════════════════════════════════════════════════════════════════════════
+function populateFilters() { updateCascade(); }
+
+function onFilterChange(changed) {
+  if(changed==='level'){
+    document.getElementById('fGrammar').value='';
+    document.getElementById('fTopic').value='';
+    document.getElementById('fPattern').value='';
+  } else if(changed==='grammar'){
+    document.getElementById('fTopic').value='';
+    document.getElementById('fPattern').value='';
+  } else if(changed==='topic'){
+    document.getElementById('fPattern').value='';
+  }
+  updateCascade();
+  applyFilters(true);
+}
+
+const PAT_LABELS = {
+  affirmative:'Oznamovací', negative:'Záporné', question:'Otázka', wh_question:'WH otázka',
+  third_person:'3. osoba', plural:'Množné číslo', imperative:'Rozkaz', passive:'Trpný rod',
+  indirect:'Nepřímá řeč', comparison:'Srovnání', tag_question:'Dovětek',
+  conditional:'Podmínka', time_clause:'Časová věta', first_person:'1. osoba', second_person:'2. osoba'
+};
+
+// Frekvence gramatik v reálné angličtině (1=vzácné … 5=velmi časté)
+const GRAMMAR_FREQ = {
+  'Sloveso být (to be)':5,'Členy (a/an/the)':4,'Množné číslo':4,'Zájmena':4,'Číslovky':3,
+  'Přítomný čas prostý':5,'Přítomný čas průběhový':4,'Předpřítomný čas':3,'Předpřítomný průběhový':2,
+  'Minulý čas prostý':5,'Minulý čas průběhový':3,'Předminulý čas':2,
+  'Budoucí čas (will)':4,'Budoucí čas (going to)':4,'Budoucí průběhový':2,
+  'Způsobová — can/could':4,'Způsobová — must/have to':3,'Způsobová — should/ought to':3,
+  'Způsobová — might/may':3,'Způsobová minulá (could have...)':1,
+  'Infinitiv':3,'Gerundium':2,
+  'Trpný rod':3,'Podmínka 1. typ':3,'Podmínka 2. typ':2,'Podmínka 3. typ':1,
+  'Přímá a nepřímá řeč':2,'Vedlejší věty':2,'Used to':2,
+  'Wish':1,'Would rather':1,"It's time":1,'Have something done':2,
+  'Frázová slovesa':3,'Stupňování přídavných jmen':3,'Kvantifikátory (all/both/each)':2,
+  'Dovětky (question tags)':1,'Tvoření slov':2,'Předložky místa a času':4,
+  'There is / There are':3,'Some / any / much / many':3,'Sponová slovesa':4,
+  'Příslovce frekvence':3,'Slovesa se dvěma předměty':2,'Rozkazy a návrhy':2,
+  'Nepravidelná slovesa':4,'Souhlasné reakce':2,
+};
+
+// Frekvence typů vět v reálné angličtině (1=vzácné … 5=velmi časté)
+const PAT_FREQ = {
+  affirmative:5, negative:4, question:3, wh_question:3,
+  third_person:3, plural:3, passive:3,
+  conditional:2, time_clause:2, imperative:2, comparison:2,
+  first_person:2, second_person:2,
+  indirect:1, tag_question:1,
+};
+
+const FREQ_LABELS = ['','velmi vzácné','méně časté','středně časté','časté','velmi časté'];
+function freqColor(n) {
+  if(n>=5) return '#16a34a';
+  if(n>=4) return '#ea580c';
+  if(n>=3) return '#d97706';
+  if(n>=2) return '#3b82f6';
+  return '#9ca3af';
+}
+function applyFreq(o, n) {
+  if(!n) return;
+  o.style.color = freqColor(n);
+  o.title = '★'.repeat(n)+'☆'.repeat(5-n);
+}
+
+// Gramatiky, které samy definují formu věty — příslušné patterny se z filtru skryjí
+const GRAMMAR_PATTERN_EXCLUDE = {
+  'Trpný rod':               ['passive'],
+  'Dovětky (question tags)': ['tag_question', 'question', 'wh_question'],
+  'Podmínka 1. typ':         ['conditional'],
+  'Podmínka 2. typ':         ['conditional', 'imperative'],
+  'Podmínka 3. typ':         ['conditional', 'imperative'],
+  'Přímá a nepřímá řeč':     ['indirect'],
+  'Rozkazy a návrhy':        ['imperative'],
+  'Wish':                    ['imperative', 'passive', 'conditional'],
+  'Would rather':            ['imperative'],
+  "It's time":               ['imperative', 'conditional'],
+  'Have something done':     ['passive'],
+  'Předpřítomný průběhový':  ['passive'],
+};
+
+// Struktura optgroup pro filtr gramatiky
+const GRAMMAR_GROUPS = [
+  { label: '── Základy ──────────────', items: [
+    'Sloveso být (to be)','Členy (a/an/the)','Množné číslo','Zájmena','Číslovky'
+  ]},
+  { label: '── Časy ─────────────────', items: [
+    'Přítomný čas prostý','Přítomný čas průběhový','Předpřítomný čas','Předpřítomný průběhový',
+    'Minulý čas prostý','Minulý čas průběhový','Předminulý čas',
+    'Budoucí čas (will)','Budoucí čas (going to)','Budoucí průběhový'
+  ]},
+  { label: '── Způsobová slovesa ────', items: [
+    'Způsobová — can/could','Způsobová — must/have to','Způsobová — should/ought to',
+    'Způsobová — might/may','Způsobová minulá (could have...)'
+  ]},
+  { label: '── Infinitiv a gerundium ', items: [
+    'Infinitiv','Gerundium'
+  ]},
+  { label: '── Konstrukce ───────────', items: [
+    'Trpný rod','Podmínka 1. typ','Podmínka 2. typ','Podmínka 3. typ',
+    'Přímá a nepřímá řeč','Vedlejší věty','Used to','Wish','Would rather','It\'s time','Have something done'
+  ]},
+  { label: '── Slovní zásoba ────────', items: [
+    'Frázová slovesa','Stupňování přídavných jmen','Kvantifikátory (all/both/each)',
+    'Dovětky (question tags)','Tvoření slov','Předložky místa a času',
+    'There is / There are','Some / any / much / many','Sponová slovesa',
+    'Příslovce frekvence','Slovesa se dvěma předměty','Rozkazy a návrhy','Nepravidelná slovesa',
+    'Souhlasné reakce'
+  ]}
+];
+
+function updateCascade() {
+  const lvl  =document.getElementById('fLevel').value;
+  const gram =document.getElementById('fGrammar').value;
+  const topic=document.getElementById('fTopic').value;
+
+  // Gramatika — filtruje jen podle úrovně
+  const availGrams=new Set(db.blocks.filter(b=>!lvl||b.level===lvl).map(b=>b.grammar).filter(Boolean));
+  const fGrammar=document.getElementById('fGrammar');
+  const curG=gram;
+  fGrammar.innerHTML='<option value="">Veškerá gramatika</option>';
+  GRAMMAR_GROUPS.forEach(group=>{
+    const matchItems=group.items.filter(g=>availGrams.has(g));
+    if(!matchItems.length) return;
+    const og=document.createElement('optgroup');
+    og.label=group.label;
+    matchItems.forEach(g=>{const o=document.createElement('option');o.value=g;const cnt=db.blocks.filter(b=>(!lvl||b.level===lvl)&&b.grammar===g).reduce((s,b)=>s+b.sentences.length,0);o.textContent=g+' ('+cnt+')';applyFreq(o,GRAMMAR_FREQ[g]||0);if(g===curG)o.selected=true;og.appendChild(o);});
+    fGrammar.appendChild(og);
+  });
+  if(curG && !availGrams.has(curG)) fGrammar.value='';
+  const gram2=fGrammar.value;
+  fGrammar.disabled = availGrams.size<=1;
+
+  // Téma — filtruje podle úrovně + gramatiky
+  const topicsF=db.blocks.filter(b=>(!lvl||b.level===lvl)&&(!gram2||b.grammar===gram2));
+  const topics=[...new Set(topicsF.map(b=>b.topic).filter(Boolean))].sort();
+  const fTopic=document.getElementById('fTopic');
+  const curT=topic;
+  fTopic.innerHTML='<option value="">Všechna témata</option>';
+  topics.forEach(t=>{const o=document.createElement('option');o.value=t;const cnt=topicsF.filter(b=>b.topic===t).reduce((s,b)=>s+b.sentences.length,0);o.textContent=t+' ('+cnt+')';if(t===curT)o.selected=true;fTopic.appendChild(o);});
+  if(curT && !topics.includes(curT)) fTopic.value='';
+  const topic2=fTopic.value;
+  fTopic.disabled = topics.length<=1;
+
+  // Typ věty — filtruje podle úrovně + gramatiky + tématu
+  const filtered=db.blocks.filter(b=>(!lvl||b.level===lvl)&&(!gram2||b.grammar===gram2)&&(!topic2||b.topic===topic2));
+  const allSents=filtered.flatMap(b=>b.sentences);
+  let patterns=[...new Set(allSents.map(s=>s.pattern).filter(Boolean))].sort();
+  // Skryj patterny redundantní pro vybranou gramatiku (gramatika sama definuje formu věty)
+  const excludePats=GRAMMAR_PATTERN_EXCLUDE[gram2]||[];
+  if(excludePats.length) patterns=patterns.filter(p=>!excludePats.includes(p));
+  const fPattern=document.getElementById('fPattern');
+  const curP=fPattern.value;
+  fPattern.innerHTML='<option value="">Všechny typy vět</option>';
+  patterns.forEach(p=>{const o=document.createElement('option');o.value=p;const lbl=PAT_LABELS[p]||p;const cnt=allSents.filter(s=>s.pattern===p).length;o.textContent=lbl+' ('+cnt+')';applyFreq(o,PAT_FREQ[p]||0);if(p===curP)o.selected=true;fPattern.appendChild(o);});
+  if(curP && excludePats.includes(curP)) fPattern.value=''; // reset pokud byl vybrán vyloučený pattern
+  fPattern.disabled = patterns.length<=1;
+}
+
+function applyFilters(resetPos=true) {
+  const lvl  =document.getElementById('fLevel').value;
+  const topic=document.getElementById('fTopic').value;
+  const gram =document.getElementById('fGrammar').value;
+  const pat  =document.getElementById('fPattern').value;
+
+  let filtered=db.blocks.filter(b=>{
+    if(lvl   &&b.level!==lvl)   return false;
+    if(topic &&b.topic!==topic)  return false;
+    if(gram  &&b.grammar!==gram) return false;
+    if(pat&&!b.sentences.some(s=>s.pattern===pat)) return false;
+    return true;
+  });
+  if(pat) filtered=filtered.map(b=>({...b,sentences:b.sentences.filter(s=>s.pattern===pat)})).filter(b=>b.sentences.length>0);
+
+  // Filtr oblíbených — preferuj UUID, fallback na grammar|cz
+  if(favFilter) {
+    filtered=filtered.map(b=>({
+      ...b,
+      sentences:b.sentences.filter(s=>{
+        const key=s.id ? String(s.id) : (b.grammar||'')+'|'+(s.cz||'');
+        return favs.has(key);
+      })
+    })).filter(b=>b.sentences.length>0);
+  }
+
+  activeBlocks=filtered;
+  if(resetPos){bPos=0;sPos=0;done=0;buildOrders();updateScores();if(activeBlocks.length)showCurrent();}
+  document.getElementById('sTotal').textContent=activeBlocks.reduce((a,b)=>a+b.sentences.length,0);
+  document.getElementById('sBlocks').textContent=activeBlocks.length;
+}
+
+function reloadActive(){if(db)applyFilters(true);}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// INICIALIZACE
+// ══════════════════════════════════════════════════════════════════════════════
+function initApp(tryRestorePos) {
+  document.getElementById('loadPanel').style.display='none';
+  ['settingsPanel','filterWrap','scoresWrap','progressBar','drillCard','controlsWrap','shortcutHint','dailyBar']
+    .forEach(id=>document.getElementById(id).style.display='');
+  document.getElementById('statsToggle').style.display='';
+  document.getElementById('dbOverviewToggle').style.display='';
+  if(cfg.autoMode){document.getElementById('autoIndicator').style.display='flex';document.getElementById('autoDelayGroup').classList.remove('hidden');}
+  showStatus('✓ '+db.blocks.length+' bloků · '+countSents()+' vět',true);
+  renderDbList();
+  populateFilters();
+  updateDailyBar();
+  if(tryRestorePos&&loadPos()){updateScores();showCurrent();}
+  else{applyFilters(true);}
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// ZOBRAZENÍ VĚTY
+// ══════════════════════════════════════════════════════════════════════════════
+function showCurrent() {
+  if(pauseTimer){clearTimeout(pauseTimer);pauseTimer=null;}
+  if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
+  speechSynthesis.cancel();
+  document.getElementById('ratingWrap').classList.add('rating-hidden');
+
+  if(!activeBlocks.length){
+    document.getElementById('sentCZ').textContent='Žádné věty pro zvolený filtr.';
+    document.getElementById('sentEN').textContent='';
+    document.getElementById('sentEN').classList.remove('visible');
+    return;
+  }
+
+  // Validace indexů po filtrování
+  if(bPos>=blockOrder.length) bPos=0;
+  const bi=blockOrder[bPos%blockOrder.length];
+  if(bi>=activeBlocks.length){bPos=0;buildOrders();showCurrent();return;}
+  if(!sentOrders[bi]){buildOrders();showCurrent();return;}
+  if(sPos>=sentOrders[bi].length) sPos=0;
+
+  const block=activeBlocks[bi];
+  const so=sentOrders[bi];
+  const si=so[sPos%so.length];
+  const sent=block.sentences[si];
+
+  document.getElementById('mGrammar').textContent=block.grammar||'';
+  document.getElementById('mLevel').textContent  =block.level||'';
+  document.getElementById('mTopic').textContent  =block.topic||'';
+  document.getElementById('mPattern').textContent=PAT_LABELS[sent.pattern]||sent.pattern||'';
+  document.getElementById('cardBadge').textContent='Blok '+(bPos%blockOrder.length+1)+'/'+blockOrder.length+' · Věta '+(sPos%so.length+1)+'/'+so.length;
+  document.getElementById('sPos').textContent=(sPos%so.length+1)+'/'+so.length;
+  document.getElementById('sentCZ').textContent=sent.cz||'';
+  const enEl=document.getElementById('sentEN');
+  enEl.classList.remove('visible'); enEl.textContent='';
+  document.getElementById('sentNote').textContent=sent.note||'';
+  const prog=total>0?(done/total)*100:0;
+  document.getElementById('progressFill').style.width=Math.round(prog)+'%';
+  updateFavBtn();
+  savePos();
+
+  setTimeout(()=>{
+    speechSynthesis.cancel();
+    setTimeout(()=>{
+      const playCZ=document.getElementById('playCZ').checked;
+      const playEN2=document.getElementById('playEN').checked;
+      if(playCZ){speak(sent.cz,document.getElementById('czVoice').value,cfg.czRate,()=>scheduleEN(sent.en,playEN2),'cs-CZ');}
+      else{scheduleEN(sent.en,playEN2);}
+    },80);
+  },250);
+}
+
+function scheduleEN(text,playEN2) {
+  const delay=parseInt(document.getElementById('pauseSec').value)*1000;
+  pauseTimer=setTimeout(()=>{
+    const el=document.getElementById('sentEN');
+    el.textContent=text; el.classList.add('visible');
+    // Zobraz hodnocení
+    if(document.getElementById('showRating').checked) {
+      document.getElementById('ratingWrap').classList.remove('rating-hidden');
+    }
+    if(playEN2){playENRepeated(text,()=>scheduleAutoNext(),'en-GB');}
+    else{scheduleAutoNext();}
+  },delay);
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// HODNOCENÍ
+// ══════════════════════════════════════════════════════════════════════════════
+function rateSent(rating) {
+  const bi=blockOrder[bPos%blockOrder.length];
+  const block=activeBlocks[bi];
+  const so=sentOrders[bi];
+  const si=so[sPos%so.length];
+  const sent=block.sentences[si];
+  const sentId=sent.id?String(sent.id):null;
+  recordRating(rating, block.grammar||'—', sentId);
+  document.getElementById('ratingWrap').classList.add('rating-hidden');
+  // Po hodnocení automaticky přejdi na další
+  if(!document.getElementById('autoMode').checked) {
+    nextSent();
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// AUTO REŽIM
+// ══════════════════════════════════════════════════════════════════════════════
+function scheduleAutoNext() {
+  if(!document.getElementById('autoMode').checked||autoPaused)return;
+  if(autoTimer)clearTimeout(autoTimer);
+  const delay=(parseInt(document.getElementById('autoDelay').value)||3)*1000;
+  let rem=Math.round(delay/1000);
+  document.getElementById('autoStatusText').textContent='Další věta za '+rem+'s...';
+  const cd=setInterval(()=>{
+    if(autoPaused){clearInterval(cd);return;}
+    rem--;
+    if(rem>0)document.getElementById('autoStatusText').textContent='Další věta za '+rem+'s...';
+    else clearInterval(cd);
+  },1000);
+  autoTimer=setTimeout(()=>{
+    clearInterval(cd);
+    if(document.getElementById('autoMode').checked&&!autoPaused)nextSent();
+  },delay);
+}
+
+function toggleAutoMode(forceOff) {
+  const cb=document.getElementById('autoMode');
+  if(forceOff===true)cb.checked=false;
+  const isAuto=cb.checked;
+  saveSetting('autoMode',isAuto);
+  const adg=document.getElementById('autoDelayGroup');
+  if(isAuto)adg.classList.remove('hidden');else adg.classList.add('hidden');
+  document.getElementById('autoIndicator').style.display=isAuto?'flex':'none';
+  if(!isAuto){if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}autoPaused=false;}
+  if(isAuto)document.getElementById('autoStatusText').textContent='Automatický režim zapnut...';
+}
+
+function toggleAutoPause() {
+  autoPaused=!autoPaused;
+  const btn=document.getElementById('autoPauseBtn');
+  if(autoPaused){
+    btn.textContent='▶ Pokračovat';
+    speechSynthesis.pause();
+    if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
+    document.getElementById('autoStatusText').textContent='Pozastaveno';
+  } else {
+    btn.textContent='⏸ Pozastavit';
+    speechSynthesis.resume();
+    // Pokud byla EN věta viditelná, naplánuj auto next
+    if(document.getElementById('sentEN').classList.contains('visible')) {
+      scheduleAutoNext();
+    }
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// NAVIGACE
+// ══════════════════════════════════════════════════════════════════════════════
+function nextSent() {
+  if(pauseTimer){clearTimeout(pauseTimer);pauseTimer=null;}
+  if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
+  speechSynthesis.cancel();
+  autoPaused=false;
+  document.getElementById('autoPauseBtn').textContent='⏸ Pozastavit';
+  done++;
+  const bi=blockOrder[bPos%blockOrder.length];
+  const so=sentOrders[bi];
+  sPos++;
+  if(sPos>=so.length){sPos=0;bPos=(bPos+1)%blockOrder.length;}
+  updateScores();showCurrent();
+}
+
+function skipSent() {
+  if(pauseTimer){clearTimeout(pauseTimer);pauseTimer=null;}
+  if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
+  speechSynthesis.cancel();
+  autoPaused=false;
+  const bi=blockOrder[bPos%blockOrder.length];
+  const so=sentOrders[bi];
+  sPos++;
+  if(sPos>=so.length){sPos=0;bPos=(bPos+1)%blockOrder.length;}
+  showCurrent();
+}
+
+function updateScores() {
+  document.getElementById('sDone').textContent=done;
+  document.getElementById('sTotal').textContent=activeBlocks.reduce((a,b)=>a+b.sentences.length,0);
+  document.getElementById('sBlocks').textContent=activeBlocks.length;
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// KLÁVESNICE
+// ══════════════════════════════════════════════════════════════════════════════
+document.addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT'||e.target.tagName==='SELECT')return;
+  if(e.code==='Space'||e.code==='ArrowRight'){e.preventDefault();nextSent();}
+  else if(e.key==='r'||e.key==='R')replayEN();
+  else if(e.key==='c'||e.key==='C')replayCZ();
+  else if(e.key==='s'||e.key==='S')skipSent();
+  else if(e.key==='a'||e.key==='A')toggleAutoMode();
+  else if(e.key==='p'||e.key==='P')toggleAutoPause();
+  else if(e.key==='1')rateSent('good');
+  else if(e.key==='2')rateSent('ok');
+  else if(e.key==='3')rateSent('bad');
+});
+
+// ══════════════════════════════════════════════════════════════════════════════
+// START
+// ══════════════════════════════════════════════════════════════════════════════
+loadCfg();
+if(cfg.darkMode){document.getElementById('darkToggle').textContent='☀️';}
+loadFavs();
+updateFavFilterBtn();
+loadStats();
+updateDailyBar();
+
+async function autoFetchDb() {
+  try {
+    const resp = await fetch('./aj_dril_databaze.json');
+    if (!resp.ok) throw new Error('not found');
+    const data = await resp.json();
+    const normalized = normalizeDB(data);
+    const name = 'aj_dril_databaze';
+    databases[name] = normalized;
+    saveDatabases();
+    activeDbName = name;
+    db = normalized;
+    localStorage.removeItem(STORAGE_POS);
+    ['fLevel','fGrammar','fTopic','fPattern'].forEach(id=>document.getElementById(id).value='');
+    initApp(false);
+  } catch(e) {
+    // Fallback: načti z localStorage (lokální provoz)
+    if(tryLoadFromStorage()) initApp(true);
+  }
+}
+autoFetchDb();
+</script>
+<script>
+  if('serviceWorker' in navigator) {
+    window.addEventListener('load',()=>{
+      navigator.serviceWorker.register('./sw.js')
+        .then(r=>console.log('SW:',r.scope))
+        .catch(e=>console.log('SW chyba:',e));
+    });
+  }
+</script>
+</body>
+</html>

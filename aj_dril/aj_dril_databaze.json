@@ -1,0 +1,2244 @@
+﻿{
+  "blocks": [
+    {
+      "grammar": "Množné číslo",
+      "level": "A0",
+      "blok": "A0 množné číslo — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "b36bb5d6-d4f5-4557-891e-1ad69de7249f", "cz": "Mám jedno auto.", "en": "I have one car.", "pattern": "affirmative", "note": "jednotné číslo"},
+        {"id": "292b36af-36bf-4f47-9191-ad86cc9a8425", "cz": "Mám dvě auta.", "en": "I have two cars.", "pattern": "plural", "note": "pravidelné množné číslo"},
+        {"id": "ee478398-e1e7-43ee-a3b5-e47518d4ea6e", "cz": "Kolik aut máš?", "en": "How many cars do you have?", "pattern": "wh_question", "note": "HOW MANY"},
+        {"id": "4306cece-764b-4090-9c77-0b4ffea95c43", "cz": "Nemám žádné auto.", "en": "I don't have any car.", "pattern": "negative", "note": "any - zápor"},
+        {"id": "59224109-106c-4d93-b1c2-f2fb57209b20", "cz": "Mám spoustu aut.", "en": "I have a lot of cars.", "pattern": "affirmative", "note": "a lot of"},
+        {"id": "f9a88c00-dca2-4a36-9576-54b6c8624b5e", "cz": "Kolik lidí je tam?", "en": "How many people are there?", "pattern": "plural", "note": "nepravidelné mn.č."}
+        ]
+      },
+    {
+      "grammar": "Množné číslo",
+      "level": "A0",
+      "blok": "A0 množné číslo — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "c13d51d4-ed89-4687-a92b-1f025bed7a08", "cz": "To dítě je hodné.", "en": "The child is good.", "pattern": "affirmative", "note": "child - jednotné"},
+        {"id": "564e361d-5e7f-439d-bdea-05a7170faa3f", "cz": "Ty děti jsou hodné.", "en": "The children are good.", "pattern": "negative", "note": "children - nepravidelné"},
+        {"id": "3da2c652-fda1-4574-924c-cf40b7782d30", "cz": "Kolik dětí máš?", "en": "How many children do you have?", "pattern": "wh_question", "note": "HOW MANY"},
+        {"id": "b5a4e7bb-9081-40e1-8031-f97e42570e9d", "cz": "Nemám žádné děti.", "en": "I don't have any children.", "pattern": "negative", "note": "any - zápor"},
+        {"id": "42c62118-2c23-457b-bbf9-4d2ca133bef1", "cz": "Ten muž je vysoký.", "en": "The man is tall.", "pattern": "affirmative", "note": "man - jednotné"},
+        {"id": "9873a663-c04f-4797-8ee8-2165fd74710c", "cz": "Ti muži jsou vysocí.", "en": "The men are tall.", "pattern": "affirmative", "note": "men - nepravidelné"}
+        ]
+      },
+    {
+      "grammar": "Zájmena",
+      "level": "A0",
+      "blok": "A0 osobní zájmena — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "25e94f08-dd6d-4b8a-953e-c1a3e14bab5d", "cz": "Já mluvím anglicky.", "en": "I speak English.", "pattern": "affirmative", "note": "I"},
+        {"id": "85392ea8-33b1-44aa-8527-cc97c3ce43e5", "cz": "Ty mluvíš anglicky.", "en": "You speak English.", "pattern": "negative", "note": "you"},
+        {"id": "65a854ee-74d3-4077-b467-3a44ad1cbfea", "cz": "On mluví anglicky.", "en": "He speaks English.", "pattern": "question", "note": "he"},
+        {"id": "d6908e10-ca8e-43c4-b38d-c16498a6a097", "cz": "Ona mluví anglicky.", "en": "She speaks English.", "pattern": "wh_question", "note": "she"},
+        {"id": "c6573681-f878-4ba9-b29f-ddf67a831ff1", "cz": "My mluvíme anglicky.", "en": "We speak English.", "pattern": "affirmative", "note": "we"},
+        {"id": "303da928-3411-4052-9f30-1300b2b33de6", "cz": "Oni mluví anglicky.", "en": "They speak English.", "pattern": "affirmative", "note": "they"}
+        ]
+      },
+    {
+      "grammar": "Zájmena",
+      "level": "A0",
+      "blok": "A0 osobní zájmena — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "a264cae1-7626-453e-96bb-8cde574b4b09", "cz": "Vidím ho.", "en": "I see him.", "pattern": "affirmative", "note": "předmětný tvar - him"},
+        {"id": "08af4e39-2b44-424e-b699-498618292397", "cz": "Vidím ji.", "en": "I see her.", "pattern": "negative", "note": "předmětný tvar - her"},
+        {"id": "c578653a-b5a0-45c8-875c-374940ae5aa9", "cz": "Vidím je.", "en": "I see them.", "pattern": "question", "note": "předmětný tvar - them"},
+        {"id": "5961d8fe-a29c-47a2-ad15-c8660dafd6ab", "cz": "Vidí mě.", "en": "She sees me.", "pattern": "wh_question", "note": "předmětný tvar - me"},
+        {"id": "6cc5b527-b5a4-42b4-86ed-741eccfa144c", "cz": "Vidí nás.", "en": "She sees us.", "pattern": "affirmative", "note": "předmětný tvar - us"},
+        {"id": "4a7942b8-5f6b-4595-9679-a87a689ede95", "cz": "Vidí tě.", "en": "She sees you.", "pattern": "affirmative", "note": "předmětný tvar - you"}
+        ]
+      },
+    {
+      "grammar": "Zájmena",
+      "level": "A0",
+      "blok": "A0 přivlastňovací pád — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "a05ad156-568b-457d-8acb-735ebe2eb054", "cz": "To je Petrovo auto.", "en": "It is Peter's car.", "pattern": "affirmative", "note": "přivlastňovací pád"},
+        {"id": "8adbcd76-6788-4cc6-9f14-20bae38073d8", "cz": "To je Markino kolo.", "en": "It is Markéta's bike.", "pattern": "negative", "note": "ženské jméno"},
+        {"id": "bac9e638-bc6b-488e-8661-149a8c6c903f", "cz": "Čí je to auto?", "en": "Whose car is it?", "pattern": "wh_question", "note": "WHOSE otázka"},
+        {"id": "c1cbc5d0-50bd-489c-a9cf-9d5ee2a756e2", "cz": "To je auto mého bratra.", "en": "It is my brother's car.", "pattern": "wh_question", "note": "příbuzný"},
+        {"id": "84d0fa7f-1834-4b8a-b6db-8aec6d4013c3", "cz": "Kde je šéfova kancelář?", "en": "Where is the boss's office?", "pattern": "wh_question", "note": "WHERE otázka"},
+        {"id": "c562eb84-1054-479d-93d6-a31743967cb8", "cz": "To je konec týdne.", "en": "It is the end of the week.", "pattern": "affirmative", "note": "of - neživotné"}
+        ]
+      },
+    {
+      "grammar": "Zájmena",
+      "level": "A0",
+      "blok": "A0 přivlastňovací zájmena — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "e30d0588-d2f4-4918-bef4-ec65509bd35f", "cz": "To je moje kniha.", "en": "It is my book.", "pattern": "affirmative", "note": "my"},
+        {"id": "3478e787-17ea-4b43-baa7-10a86871bc2a", "cz": "To je tvoje kniha.", "en": "It is your book.", "pattern": "negative", "note": "your"},
+        {"id": "8b911184-2f25-4212-88f7-b93d92d49b98", "cz": "To je jeho kniha.", "en": "It is his book.", "pattern": "question", "note": "his"},
+        {"id": "98baeb31-0998-4d41-8db8-2f4c6f2ea951", "cz": "To je její kniha.", "en": "It is her book.", "pattern": "wh_question", "note": "her"},
+        {"id": "8565fb91-a70e-4d9e-bd69-557245edd49a", "cz": "To je naše kniha.", "en": "It is our book.", "pattern": "affirmative", "note": "our"},
+        {"id": "5cf5615d-de44-431b-8a72-88ecc642be95", "cz": "To je jejich kniha.", "en": "It is their book.", "pattern": "affirmative", "note": "their"}
+        ]
+      },
+    {
+      "grammar": "Zájmena",
+      "level": "A0",
+      "blok": "A0 přivlastňovací zájmena — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "53396e95-3b1c-43f8-a609-6f71659d905a", "cz": "Ta kniha je moje.", "en": "The book is mine.", "pattern": "affirmative", "note": "samostatné - mine"},
+        {"id": "acb76b69-b7ac-4e0b-a94a-6f8dceaba9ee", "cz": "Ta kniha je tvoje.", "en": "The book is yours.", "pattern": "negative", "note": "samostatné - yours"},
+        {"id": "7f87c32f-a632-48fe-977d-beb5fdc1f628", "cz": "Ta kniha je jeho.", "en": "The book is his.", "pattern": "question", "note": "samostatné - his"},
+        {"id": "d82d3dbf-89a6-452b-b87e-5e99640bd4f0", "cz": "Ta kniha je její.", "en": "The book is hers.", "pattern": "wh_question", "note": "samostatné - hers"},
+        {"id": "44281f30-e452-40f0-bc0e-153b3334b329", "cz": "Ta kniha je naše.", "en": "The book is ours.", "pattern": "affirmative", "note": "samostatné - ours"},
+        {"id": "11453166-8b18-4f93-9987-a53380e59d68", "cz": "Čí je ta kniha?", "en": "Whose book is it?", "pattern": "wh_question", "note": "WHOSE otázka"}
+        ]
+      },
+    {
+      "grammar": "Členy (a/an/the)",
+      "level": "A0",
+      "blok": "A0 členy — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "c714968c-7198-4de9-a56e-abe33baa3ae9", "cz": "To je auto.", "en": "It is a car.", "pattern": "affirmative", "note": "neurčitý člen - poprvé"},
+        {"id": "5acbafeb-8b33-4d3a-a9ad-1cf8f05e046d", "cz": "To auto je červené.", "en": "The car is red.", "pattern": "negative", "note": "určitý člen - znovu"},
+        {"id": "879023c3-43f0-4998-b6ab-42e784c4ab67", "cz": "To je učitel.", "en": "He is a teacher.", "pattern": "question", "note": "neurčitý člen - povolání"},
+        {"id": "93842ea8-64d6-4edb-a29f-89d7f1d3272d", "cz": "To je nejlepší učitel.", "en": "He is the best teacher.", "pattern": "wh_question", "note": "určitý člen - superlativ"},
+        {"id": "3eaeaa5d-46ae-431c-884e-accb980ddf28", "cz": "Nemám auto.", "en": "I don't have a car.", "pattern": "negative", "note": "neurčitý člen - zápor"},
+        {"id": "2af38764-7196-4a35-a7ed-468c7e46c4e1", "cz": "Jdu do školy.", "en": "I go to school.", "pattern": "affirmative", "note": "bez členu - instituce"}
+        ]
+      },
+    {
+      "grammar": "Členy (a/an/the)",
+      "level": "A0",
+      "blok": "A0 členy — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "0a1695dd-532a-4eb7-a977-28d8508ab5f4", "cz": "Miluju hudbu.", "en": "I love music.", "pattern": "affirmative", "note": "bez členu - nepočitatelné"},
+        {"id": "c21348ed-4cd3-4c4d-a6b3-eb159f49b4bb", "cz": "Hudba je krásná.", "en": "The music is beautiful.", "pattern": "negative", "note": "určitý člen - konkrétní"},
+        {"id": "b52db2aa-83d9-4dd3-b051-2a72122b447e", "cz": "Miluje on hudbu?", "en": "Does he love music?", "pattern": "question", "note": "otázka"},
+        {"id": "e8ac0c77-3415-4a5b-ad8a-84b76899582e", "cz": "Nemiluje hudbu.", "en": "She doesn't love music.", "pattern": "negative", "note": "zápor"},
+        {"id": "4de1ccf9-b5a3-4a03-9e31-79f04fc40a42", "cz": "Hraji na piano.", "en": "I play the piano.", "pattern": "affirmative", "note": "určitý člen - nástroj"},
+        {"id": "7bdab984-b017-46ab-b7a5-b5345b4bf6a1", "cz": "Hraje na piano?", "en": "Does she play the piano?", "pattern": "question", "note": "otázka - nástroj"}
+        ]
+      },
+    {
+      "grammar": "Číslovky",
+      "level": "A0",
+      "blok": "A0 číslovky — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "6c859fb0-d6a4-4148-9102-4781c70fbdcc", "cz": "Mám dvacet pět let.", "en": "I am twenty-five years old.", "pattern": "affirmative", "note": "základní číslovky"},
+        {"id": "a5ad4db4-9ef7-4976-95b4-a18755b07515", "cz": "Bydlím na čísle třicet šest.", "en": "I live at number thirty-six.", "pattern": "negative", "note": "adresy"},
+        {"id": "6a892cd7-b456-4d82-8e65-e6f3f0e609bd", "cz": "Narodil jsem se v roce 1985.", "en": "I was born in nineteen eighty-five.", "pattern": "question", "note": "roky"},
+        {"id": "14aa4ba5-d980-4cda-8081-2b0b3c0a5ea7", "cz": "Je to první.", "en": "It is the first.", "pattern": "wh_question", "note": "řadová číslovka"},
+        {"id": "f62bb05b-942c-4f2b-8f5c-491a0367dafa", "cz": "Je to druhý.", "en": "It is the second.", "pattern": "affirmative", "note": "řadová číslovka"},
+        {"id": "1f7742a3-d3bf-4536-ac30-f7519f60a743", "cz": "Je to třetí.", "en": "It is the third.", "pattern": "affirmative", "note": "řadová číslovka"}
+        ]
+      },
+    {
+      "grammar": "Číslovky",
+      "level": "A0",
+      "blok": "A0 číslovky — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "a5c82ee0-2068-4c80-91dc-7af5fcad5c1d", "cz": "Polovina je hotova.", "en": "Half of it is done.", "pattern": "affirmative", "note": "half"},
+        {"id": "9104f532-2555-4350-8e97-e687e95932dc", "cz": "Třetina je hotova.", "en": "A third of it is done.", "pattern": "negative", "note": "třetina"},
+        {"id": "95fb7a48-f787-465b-a4d4-6b612c7cbb9d", "cz": "Dvě třetiny jsou hotovy.", "en": "Two thirds are done.", "pattern": "question", "note": "dvě třetiny"},
+        {"id": "eba7ffd9-1b6c-436c-810c-132275073b4b", "cz": "Deset procent.", "en": "Ten percent.", "pattern": "wh_question", "note": "procenta"},
+        {"id": "7ae3a990-7191-47cd-a284-34dbd3de7b2d", "cz": "Zdvojnásobilo se to.", "en": "It doubled.", "pattern": "affirmative", "note": "dvojnásobek"},
+        {"id": "bfe99ab0-eb59-4047-b37f-12ed7552e0f6", "cz": "Je to čtyřikrát víc.", "en": "It is four times more.", "pattern": "affirmative", "note": "čtyřikrát"}
+        ]
+      },
+    {
+      "grammar": "Budoucí čas (will)",
+      "level": "A1",
+      "blok": "A1 budoucí čas — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "c9fd2330-1a37-45bb-9872-257b7bfc49c9", "cz": "Zítra budu pracovat.", "en": "I will work tomorrow.", "pattern": "affirmative", "note": "will - oznamovací"},
+        {"id": "8799eb65-b7ee-46cb-bffa-bcef635b1462", "cz": "Zítra bude pracovat.", "en": "She will work tomorrow.", "pattern": "third_person", "note": "will - 3. osoba"},
+        {"id": "48c24e01-0b58-4b52-824b-8c7f0bb3b8d2", "cz": "Budeš zítra pracovat?", "en": "Will you work tomorrow?", "pattern": "question", "note": "will - otázka"},
+        {"id": "965e5928-760f-4c80-9032-329da481214d", "cz": "Zítra nebudu pracovat.", "en": "I won't work tomorrow.", "pattern": "negative", "note": "will - zápor"},
+        {"id": "b70e1c27-b1a0-42ad-a042-9ebc93443597", "cz": "Bude on zítra pracovat?", "en": "Will he work tomorrow?", "pattern": "question", "note": "will - otázka 3. os."},
+        {"id": "4cf861fd-2140-41e4-af15-e2f724694511", "cz": "Kdy budeš pracovat?", "en": "When will you work?", "pattern": "wh_question", "note": "WHEN otázka"}
+        ]
+      },
+    {
+      "grammar": "Budoucí čas (will)",
+      "level": "A1",
+      "blok": "A1 budoucí čas — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "9ff6cda8-8948-4445-a7ae-9be8e1d5db27", "cz": "Zavolám ti.", "en": "I will call you.", "pattern": "affirmative", "note": "will - oznamovací"},
+        {"id": "b37afbcc-c803-4c75-9b9a-c9cbdffc5a32", "cz": "Zavolá ti.", "en": "She will call you.", "pattern": "third_person", "note": "will - 3. osoba"},
+        {"id": "2cc84bfe-cd5f-4a15-bdec-639240d95ad4", "cz": "Zavoláš mi?", "en": "Will you call me?", "pattern": "question", "note": "will - otázka"},
+        {"id": "ae3be671-4adf-4837-9e75-32030846152b", "cz": "Nezavolám ti.", "en": "I won't call you.", "pattern": "negative", "note": "will - zápor"},
+        {"id": "0cb65a65-fd55-42b5-861a-6a325afceb7b", "cz": "Kdy mi zavoláš?", "en": "When will you call me?", "pattern": "wh_question", "note": "WHEN otázka"},
+        {"id": "2b8d50a4-1f42-48d8-8315-4af08ca42825", "cz": "Zavolá on mi zítra?", "en": "Will he call me tomorrow?", "pattern": "question", "note": "otázka 3. os. + čas"}
+        ]
+      },
+    {
+      "grammar": "Budoucí čas (will)",
+      "level": "A1",
+      "blok": "A1 budoucí čas — věta 3",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "149b5005-4143-40f1-a2a0-95359848a04e", "cz": "Chystám se jet do Prahy.", "en": "I am going to go to Prague.", "pattern": "affirmative", "note": "be going to"},
+        {"id": "a6849ac3-75e4-4cf4-a9b0-10ba766a8226", "cz": "Chystá se jet do Prahy.", "en": "She is going to go to Prague.", "pattern": "third_person", "note": "be going to 3. os."},
+        {"id": "7ae33536-4888-47fb-a547-16080024c6c3", "cz": "Chystáš se jet do Prahy?", "en": "Are you going to go to Prague?", "pattern": "question", "note": "be going to otázka"},
+        {"id": "ecd9aaea-6d4e-41cc-beda-cd3fe82c4d5c", "cz": "Nechystám se jet do Prahy.", "en": "I am not going to go to Prague.", "pattern": "negative", "note": "be going to zápor"},
+        {"id": "ca9c0c85-e584-476e-bccd-67d653dc13cd", "cz": "Kam se chystáš jet?", "en": "Where are you going to go?", "pattern": "wh_question", "note": "WHERE otázka"},
+        {"id": "228b0f00-bdbe-410d-977f-38f75e1d107b", "cz": "Chystá se on jet do Prahy?", "en": "Is he going to go to Prague?", "pattern": "question", "note": "be going to otázka 3. os."}
+        ]
+      },
+    {
+      "grammar": "Budoucí čas (will)",
+      "level": "A1",
+      "blok": "A1 budoucí čas — věta 4",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "cf8ff890-378d-4498-a2fc-f18c76c93715", "cz": "Koupím nové auto.", "en": "I will buy a new car.", "pattern": "affirmative", "note": "will - plán"},
+        {"id": "fe555365-6d2d-4cfa-8255-849261b07539", "cz": "Koupí nové auto.", "en": "She will buy a new car.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "3a4e34bf-2b88-47ce-b62f-dbca8a8ba8e9", "cz": "Koupíš nové auto?", "en": "Will you buy a new car?", "pattern": "question", "note": "otázka"},
+        {"id": "90a7d177-48a6-4af5-b957-80544dd713df", "cz": "Nekoupím nové auto.", "en": "I won't buy a new car.", "pattern": "negative", "note": "zápor"},
+        {"id": "7cfc784a-644b-4047-b0a8-350402df61ef", "cz": "Co koupíš?", "en": "What will you buy?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "03836208-9c41-49c8-920f-b0fed8a39428", "cz": "Kdy koupíš nové auto?", "en": "When will you buy a new car?", "pattern": "wh_question", "note": "WHEN otázka"}
+        ]
+      },
+    {
+      "grammar": "Budoucí čas (will)",
+      "level": "A1",
+      "blok": "A1 budoucí čas — věta 5",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "ff672570-45c5-4bb4-82e1-e551446c4167", "cz": "Přijedu v pátek.", "en": "I will arrive on Friday.", "pattern": "affirmative", "note": "will + čas"},
+        {"id": "185ec5b2-580d-413f-850e-eaeaeb574d83", "cz": "Přijede v pátek.", "en": "He will arrive on Friday.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "725f9200-9c99-46a6-b174-ea7081260fc0", "cz": "Přijedeš v pátek?", "en": "Will you arrive on Friday?", "pattern": "question", "note": "otázka"},
+        {"id": "3e397fc3-96b8-44cd-bd31-6cd9a6099c1e", "cz": "Nepřijedu v pátek.", "en": "I won't arrive on Friday.", "pattern": "negative", "note": "zápor"},
+        {"id": "4c12b630-89d2-4843-ab47-b7db492274b7", "cz": "Kdy přijedeš?", "en": "When will you arrive?", "pattern": "wh_question", "note": "WHEN otázka"},
+        {"id": "e73312c2-c5f7-4fe3-9992-442461be192b", "cz": "Přijede ona v pátek?", "en": "Will she arrive on Friday?", "pattern": "question", "note": "otázka 3. os."}
+        ]
+      },
+    {
+      "grammar": "Minulý čas prostý",
+      "level": "A1",
+      "blok": "A1 minulý čas — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "329d4a73-b1c8-416b-832f-af3133e26a98", "cz": "Včera jsem pracoval.", "en": "I worked yesterday.", "pattern": "affirmative", "note": "oznamovací"},
+        {"id": "7426f8d8-bad0-493e-be61-7239013031e0", "cz": "Včera pracovala.", "en": "She worked yesterday.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "55033dd1-b212-4d8c-9e58-78dd5486cd06", "cz": "Pracoval jsi včera?", "en": "Did you work yesterday?", "pattern": "question", "note": "otázka"},
+        {"id": "44c0024f-85a9-42c0-a879-30e5ac44f570", "cz": "Včera jsem nepracoval.", "en": "I didn't work yesterday.", "pattern": "negative", "note": "zápor"},
+        {"id": "5c32f34b-3282-44e4-994e-62ec9b32d6b3", "cz": "Pracoval on včera?", "en": "Did he work yesterday?", "pattern": "question", "note": "otázka 3. os."},
+        {"id": "7e340bf0-71e7-41d2-84fd-0d8f432f6de1", "cz": "Proč jsi včera nepracoval?", "en": "Why didn't you work yesterday?", "pattern": "wh_question", "note": "WH otázka"}
+        ]
+      },
+    {
+      "grammar": "Minulý čas prostý",
+      "level": "A1",
+      "blok": "A1 minulý čas — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "b443492c-6f6a-4eb1-a279-e1f612c5ccfb", "cz": "Zavolal jsem mu.", "en": "I called him.", "pattern": "affirmative", "note": "oznamovací"},
+        {"id": "2a7fcf9c-c311-4a5b-a749-6999395d3438", "cz": "Zavolala mu.", "en": "She called him.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "cd5b4a41-b220-4ea2-9d3e-cdc529c1e86b", "cz": "Zavolal jsi mu?", "en": "Did you call him?", "pattern": "question", "note": "otázka"},
+        {"id": "31a25f15-633e-480a-9e18-0ee0cdea3458", "cz": "Nezavolal jsem mu.", "en": "I didn't call him.", "pattern": "negative", "note": "zápor"},
+        {"id": "92db76f7-a99a-42db-8e15-32e3229e2819", "cz": "Komu jsi zavolal?", "en": "Who did you call?", "pattern": "wh_question", "note": "WH otázka"},
+        {"id": "357d2eca-9d91-4e0c-b3ff-fb1e758cdb6d", "cz": "Kdy jsi mu zavolal?", "en": "When did you call him?", "pattern": "wh_question", "note": "WHEN otázka"}
+        ]
+      },
+    {
+      "grammar": "Minulý čas prostý",
+      "level": "A1",
+      "blok": "A1 minulý čas — věta 3",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "c0ce9249-5203-4a34-b4e1-062291550dd0", "cz": "Koupil jsem auto.", "en": "I bought a car.", "pattern": "affirmative", "note": "nepravidelné sloveso"},
+        {"id": "f1ab3b71-4555-4297-aea5-4c29895cd0aa", "cz": "Koupila auto.", "en": "She bought a car.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "244d3a25-5b21-410b-b87a-474c3d1afca3", "cz": "Koupil jsi auto?", "en": "Did you buy a car?", "pattern": "question", "note": "otázka"},
+        {"id": "a0b77f3d-0e0b-457e-8d72-53c4848daba1", "cz": "Nekoupil jsem auto.", "en": "I didn't buy a car.", "pattern": "negative", "note": "zápor"},
+        {"id": "0e7e8c0e-d717-4781-a32b-021cf0bf7a2c", "cz": "Co jsi koupil?", "en": "What did you buy?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "7aef66db-9205-4385-9e24-6c3783d930ca", "cz": "Kde jsi koupil auto?", "en": "Where did you buy the car?", "pattern": "wh_question", "note": "WHERE otázka"}
+        ]
+      },
+    {
+      "grammar": "Minulý čas prostý",
+      "level": "A1",
+      "blok": "A1 minulý čas — věta 4",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "e05db7a4-fceb-4493-8dfd-8921b2859160", "cz": "Šel jsem domů.", "en": "I went home.", "pattern": "affirmative", "note": "nepravidelné sloveso"},
+        {"id": "d25c1367-d03d-4d94-bada-8209a8f50628", "cz": "Šla domů.", "en": "She went home.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "42759e55-154c-4209-8aca-a131d2b1c4ac", "cz": "Šel jsi domů?", "en": "Did you go home?", "pattern": "question", "note": "otázka"},
+        {"id": "ac663c2f-3383-4435-8475-e37e7d4601fc", "cz": "Nešel jsem domů.", "en": "I didn't go home.", "pattern": "negative", "note": "zápor"},
+        {"id": "69cb25aa-284f-4990-bb86-ab95ab5f8033", "cz": "Kam jsi šel?", "en": "Where did you go?", "pattern": "wh_question", "note": "WHERE otázka"},
+        {"id": "9688470a-9094-4834-aaa5-5e58d6acbfbe", "cz": "Proč jsi nešel domů?", "en": "Why didn't you go home?", "pattern": "negative", "note": "WHY zápor"}
+        ]
+      },
+    {
+      "grammar": "Minulý čas prostý",
+      "level": "A1",
+      "blok": "A1 minulý čas — věta 5",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "db51ef8e-969d-49b8-85f9-8dc7affef788", "cz": "Viděl jsem ten film.", "en": "I saw the film.", "pattern": "affirmative", "note": "nepravidelné sloveso"},
+        {"id": "a0037889-ad6c-437d-b045-024f8f0e0f09", "cz": "Viděla ten film.", "en": "She saw the film.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "3049373d-f96d-4d7b-8cf8-0c51f2fcac4d", "cz": "Viděl jsi ten film?", "en": "Did you see the film?", "pattern": "question", "note": "otázka"},
+        {"id": "ea9c2f52-dbd6-4f4a-8e90-111cdc482ef8", "cz": "Neviděl jsem ten film.", "en": "I didn't see the film.", "pattern": "negative", "note": "zápor"},
+        {"id": "29a5df93-1688-4b82-8e1d-4db2dc29baf3", "cz": "Kdy jsi viděl ten film?", "en": "When did you see the film?", "pattern": "wh_question", "note": "WHEN otázka"},
+        {"id": "d9c379ff-7e25-42ee-89cd-0c46167d804d", "cz": "Co jsi viděl?", "en": "What did you see?", "pattern": "wh_question", "note": "WHAT otázka"}
+        ]
+      },
+    {
+      "grammar": "Minulý čas prostý",
+      "level": "A1",
+      "blok": "A1 minulý čas — věta 6",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "109c915e-abc1-4fa3-a537-3a995cd7be35", "cz": "Snědl jsem celý oběd.", "en": "I ate the whole lunch.", "pattern": "affirmative", "note": "nepravidelné"},
+        {"id": "0c32e927-6e6f-4594-8c38-70a36b1a37f5", "cz": "Snědla celý oběd.", "en": "She ate the whole lunch.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "a1743f66-1af2-466b-a3f5-730594aab7fb", "cz": "Snědl jsi celý oběd?", "en": "Did you eat the whole lunch?", "pattern": "question", "note": "otázka"},
+        {"id": "4401ab24-4a11-42c3-9e0d-580c47c0b980", "cz": "Nesnědl jsem celý oběd.", "en": "I didn't eat the whole lunch.", "pattern": "negative", "note": "zápor"},
+        {"id": "1323aeff-f76d-447d-8326-f8cb6252c1d6", "cz": "Co jsi snědl?", "en": "What did you eat?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "aff2bc69-ca3f-4733-9c55-74fbfeb7c751", "cz": "Snědl on celý oběd?", "en": "Did he eat the whole lunch?", "pattern": "question", "note": "otázka 3. os."}
+        ]
+      },
+    {
+      "grammar": "Minulý čas prostý",
+      "level": "A1",
+      "blok": "A1 minulý čas — věta 7",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "fc2d60fc-2a66-493a-8592-24338dbda652", "cz": "Psal jsem zprávu.", "en": "I wrote a report.", "pattern": "affirmative", "note": "nepravidelné"},
+        {"id": "a84d88f3-fc3d-43f9-a2fe-92bd23e043d2", "cz": "Psala zprávu.", "en": "She wrote a report.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "a1ad5128-1f22-4b61-af4e-6072919bd2ef", "cz": "Psal jsi zprávu?", "en": "Did you write a report?", "pattern": "question", "note": "otázka"},
+        {"id": "2a551751-52b7-4264-b1c2-8da079fa737b", "cz": "Nepsal jsem zprávu.", "en": "I didn't write a report.", "pattern": "negative", "note": "zápor"},
+        {"id": "2a509154-40a4-460c-a0cc-ef7baecfad11", "cz": "Co jsi psal?", "en": "What did you write?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "9aaa9cb6-3b76-4def-a2da-49e4dac5235e", "cz": "Kdy jsi psal zprávu?", "en": "When did you write the report?", "pattern": "wh_question", "note": "WHEN otázka"}
+        ]
+      },
+    {
+      "grammar": "Minulý čas prostý",
+      "level": "A1",
+      "blok": "A1 minulý čas — věta 8",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "6b54fc94-5cfe-4edf-aed8-f658040c518f", "cz": "Přišel jsem pozdě.", "en": "I came late.", "pattern": "affirmative", "note": "nepravidelné"},
+        {"id": "3ada1f6b-9940-47fa-949a-fe5871a28040", "cz": "Přišla pozdě.", "en": "She came late.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "b57aabdb-e151-4d92-a2c5-f778499ec55b", "cz": "Přišel jsi pozdě?", "en": "Did you come late?", "pattern": "question", "note": "otázka"},
+        {"id": "0e42096e-685e-40f2-8912-2796259e9b5a", "cz": "Nepřišel jsem pozdě.", "en": "I didn't come late.", "pattern": "negative", "note": "zápor"},
+        {"id": "80cb46c5-daa4-4855-945d-3547036eec17", "cz": "Proč jsi přišel pozdě?", "en": "Why did you come late?", "pattern": "wh_question", "note": "WHY otázka"},
+        {"id": "40804b02-7496-4877-9741-abaa88e6e431", "cz": "Kdy jsi přišel?", "en": "When did you come?", "pattern": "wh_question", "note": "WHEN otázka"}
+        ]
+      },
+    {
+      "grammar": "Minulý čas prostý",
+      "level": "A1",
+      "blok": "A1 minulý čas — věta 9",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "51e84943-12cd-4c4c-9164-7924eca6f432", "cz": "Dal jsem mu peníze.", "en": "I gave him money.", "pattern": "affirmative", "note": "nepravidelné"},
+        {"id": "e2cd5802-3cc6-40a4-b0d0-2b2376093c6e", "cz": "Dala mu peníze.", "en": "She gave him money.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "4b1cb1a6-2414-4c61-a3d5-829d00cd1b39", "cz": "Dal jsi mu peníze?", "en": "Did you give him money?", "pattern": "question", "note": "otázka"},
+        {"id": "a392c04e-4ea9-4e28-b5bf-5234c21380e5", "cz": "Nedal jsem mu peníze.", "en": "I didn't give him money.", "pattern": "negative", "note": "zápor"},
+        {"id": "c7ef1f3b-84e1-4253-8440-1823ded45d81", "cz": "Komu jsi dal peníze?", "en": "Who did you give the money to?", "pattern": "wh_question", "note": "WHO otázka"},
+        {"id": "271da5bd-ae72-4f6c-8e5e-232c5dcb8f31", "cz": "Kolik jsi mu dal?", "en": "How much did you give him?", "pattern": "wh_question", "note": "HOW MUCH otázka"}
+        ]
+      },
+    {
+      "grammar": "Způsobová — can/could",
+      "level": "A1",
+      "blok": "A1 modální slovesa — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "4a00bf72-9626-4dc1-815c-7053883e6558", "cz": "Umím řídit.", "en": "I can drive.", "pattern": "affirmative", "note": "can - oznamovací"},
+        {"id": "f3069388-b838-4d8d-b9bf-28cdea4743d0", "cz": "Umí řídit.", "en": "She can drive.", "pattern": "third_person", "note": "can - 3. osoba"},
+        {"id": "f0d4d9c0-4f3e-4f86-8651-049f553f12b2", "cz": "Umíš řídit?", "en": "Can you drive?", "pattern": "question", "note": "can - otázka"},
+        {"id": "60324c61-950d-4411-90dc-8d5b307d9ab7", "cz": "Neumím řídit.", "en": "I can't drive.", "pattern": "negative", "note": "can - zápor"},
+        {"id": "6a29e2af-5438-40fc-a07d-7d3d8fadfb00", "cz": "Umí on řídit?", "en": "Can he drive?", "pattern": "question", "note": "can - otázka 3. os."},
+        {"id": "07d484a0-77c3-4703-b25c-49b43ca249d7", "cz": "Co umíš dělat?", "en": "What can you do?", "pattern": "wh_question", "note": "WHAT otázka"}
+        ]
+      },
+    {
+      "grammar": "Způsobová — can/could",
+      "level": "A1",
+      "blok": "A1 modální slovesa — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "6bc59f2b-2525-4678-abd3-1cf51f0c6f9f", "cz": "Musím jít domů.", "en": "I must go home.", "pattern": "affirmative", "note": "must - oznamovací"},
+        {"id": "b85268ff-fc3d-472c-a6d7-8d286ad00771", "cz": "Musí jít domů.", "en": "She must go home.", "pattern": "third_person", "note": "must - 3. osoba"},
+        {"id": "5075de11-4dfb-4bd7-ae1e-b16866c33ec2", "cz": "Musíš jít domů?", "en": "Must you go home?", "pattern": "question", "note": "must - otázka"},
+        {"id": "861b422a-863f-4ac6-b062-8ec5c7a8df43", "cz": "Nemusím jít domů.", "en": "I don't have to go home.", "pattern": "wh_question", "note": "don't have to"},
+        {"id": "8ccee709-dd40-458e-a23c-4833eea79403", "cz": "Musím to udělat dnes.", "en": "I must do it today.", "pattern": "affirmative", "note": "must + čas"},
+        {"id": "2fbf3e71-245f-48ca-97fb-7ab8e04a4533", "cz": "Proč musíš jít domů?", "en": "Why must you go home?", "pattern": "wh_question", "note": "WHY otázka"}
+        ]
+      },
+    {
+      "grammar": "Způsobová — can/could",
+      "level": "A1",
+      "blok": "A1 modální slovesa — věta 3",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "ef5e56bb-16ac-49d1-bb6b-831ef30acf11", "cz": "Měl bys to zkusit.", "en": "You should try it.", "pattern": "affirmative", "note": "should - oznamovací"},
+        {"id": "00f873ce-d2d4-4800-bdb0-866f206ec437", "cz": "Měl by to zkusit.", "en": "He should try it.", "pattern": "third_person", "note": "should - 3. osoba"},
+        {"id": "90f70d04-790a-48ea-ab46-490c7ed77548", "cz": "Měl bys to zkusit?", "en": "Should you try it?", "pattern": "question", "note": "should - otázka"},
+        {"id": "4fdf50c3-b578-409f-a071-9f0aecf0b424", "cz": "Neměl bys to dělat.", "en": "You shouldn't do it.", "pattern": "wh_question", "note": "shouldn't"},
+        {"id": "5d2199f3-e0d0-4bb1-b569-151edb6b91ce", "cz": "Co bych měl dělat?", "en": "What should I do?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "5b8bf202-8f2c-42ea-a300-0a0394cb5607", "cz": "Měl by on to zkusit?", "en": "Should he try it?", "pattern": "question", "note": "otázka 3. os."}
+        ]
+      },
+    {
+      "grammar": "Způsobová — can/could",
+      "level": "A1",
+      "blok": "A1 modální slovesa — věta 4",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "429253e1-89ec-49ac-8c86-b99ac36a3203", "cz": "Umím plavat.", "en": "I can swim.", "pattern": "affirmative", "note": "can - dovednost"},
+        {"id": "a98464fc-d53c-4556-895f-a78bee38988f", "cz": "Neumím plavat.", "en": "I can't swim.", "pattern": "negative", "note": "can - zápor"},
+        {"id": "1f3312a9-f09e-4d97-81df-1767929658da", "cz": "Umíš plavat?", "en": "Can you swim?", "pattern": "question", "note": "otázka"},
+        {"id": "3dde61e0-7d98-4601-8aa4-9d0955f5d6f6", "cz": "Umí ona plavat?", "en": "Can she swim?", "pattern": "question", "note": "otázka 3. os."},
+        {"id": "94567ecb-e9d3-4ce3-8607-a3811abdfbe7", "cz": "Mohl bych plavat zde?", "en": "Could I swim here?", "pattern": "affirmative", "note": "could - žádost"},
+        {"id": "583c615d-5de6-42e4-81f4-e33336091319", "cz": "Nemůžeš tady plavat.", "en": "You can't swim here.", "pattern": "affirmative", "note": "zákaz"}
+        ]
+      },
+    {
+      "grammar": "Způsobová — can/could",
+      "level": "A1",
+      "blok": "A1 modální slovesa — věta 5",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "64010257-0390-4a9f-84be-9c97565ba273", "cz": "Smím tady parkovat?", "en": "May I park here?", "pattern": "affirmative", "note": "may - povolení"},
+        {"id": "ad3f3b80-997e-47f0-b670-656407e25ed1", "cz": "Smíte tady parkovat.", "en": "You may park here.", "pattern": "negative", "note": "povolení"},
+        {"id": "a243e6e8-d227-4c06-b774-6983bcfaf73f", "cz": "Nesmíte tady parkovat.", "en": "You may not park here.", "pattern": "question", "note": "zákaz"},
+        {"id": "9468e573-c3eb-48ca-8dd1-d48c96132026", "cz": "Mohl byste mi pomoci?", "en": "Could you help me?", "pattern": "wh_question", "note": "could - zdvořilá žádost"},
+        {"id": "7a849970-8a26-4f26-a4f4-c377de7b2471", "cz": "Mohli byste to zopakovat?", "en": "Could you repeat that?", "pattern": "affirmative", "note": "could - žádost"},
+        {"id": "8911c35f-ccf0-4779-b732-1dd1d2082245", "cz": "Bylo by možné to změnit?", "en": "Would it be possible to change it?", "pattern": "affirmative", "note": "would - zdvořilá"}
+        ]
+      },
+    {
+      "grammar": "Some / any / much / many",
+      "level": "A1",
+      "blok": "A1 nepočitatelná jména — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "ae9291da-250c-44ae-92b0-602feeae8f25", "cz": "Potřebuji trochu vody.", "en": "I need some water.", "pattern": "affirmative", "note": "some + nepočitatelné"},
+        {"id": "5a8be260-ca4e-4fa4-9413-d6f7db27be7c", "cz": "Nemám žádnou vodu.", "en": "I don't have any water.", "pattern": "negative", "note": "any - zápor"},
+        {"id": "fb7599f6-3345-49ad-b91b-111efd3542e3", "cz": "Máš trochu vody?", "en": "Do you have any water?", "pattern": "question", "note": "any - otázka"},
+        {"id": "65463ad3-58e1-47d2-b54d-e326546942cc", "cz": "Kolik vody chceš?", "en": "How much water do you want?", "pattern": "wh_question", "note": "how much"},
+        {"id": "eb49ebc2-11af-444e-a6b6-788dfa969663", "cz": "Sklenice vody, prosím.", "en": "A glass of water, please.", "pattern": "affirmative", "note": "glass of"},
+        {"id": "8e6f177f-bef3-4950-8712-05ab3deb740c", "cz": "Láhev vody, prosím.", "en": "A bottle of water, please.", "pattern": "affirmative", "note": "bottle of"}
+        ]
+      },
+    {
+      "grammar": "Some / any / much / many",
+      "level": "A1",
+      "blok": "A1 nepočitatelná jména — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "a24bcb46-5c88-42b1-87d9-f547e97a3d36", "cz": "Potřebuji trochu peněz.", "en": "I need some money.", "pattern": "affirmative", "note": "money"},
+        {"id": "b9bf3ac0-c565-45e1-9dbc-a6407e142306", "cz": "Nemám žádné peníze.", "en": "I don't have any money.", "pattern": "negative", "note": "any money"},
+        {"id": "1474a47b-58a0-43af-9302-0a70bd00be75", "cz": "Kolik peněz máš?", "en": "How much money do you have?", "pattern": "wh_question", "note": "how much money"},
+        {"id": "eab61cf2-a658-4640-80de-0a284bb99284", "cz": "Mám málo peněz.", "en": "I have little money.", "pattern": "wh_question", "note": "little"},
+        {"id": "0caf3fd3-9d31-40d9-b114-aee36ff5b8c2", "cz": "Mám dost peněz.", "en": "I have enough money.", "pattern": "affirmative", "note": "enough"},
+        {"id": "d812df5b-4e76-4768-9544-8be580ee7d07", "cz": "Utratil mnoho peněz.", "en": "He spent a lot of money.", "pattern": "affirmative", "note": "a lot of"}
+        ]
+      },
+    {
+      "grammar": "Some / any / much / many",
+      "level": "A1",
+      "blok": "A1 nepočitatelná jména — věta 3",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "34af055f-c9bb-4b96-abb5-1dd310113a63", "cz": "Chci trochu chleba.", "en": "I want some bread.", "pattern": "affirmative", "note": "bread"},
+        {"id": "efad01a5-e051-47e3-b804-2807f23d2136", "cz": "Krajíc chleba, prosím.", "en": "A slice of bread, please.", "pattern": "negative", "note": "slice of"},
+        {"id": "ef22382f-1c47-4714-aba8-8e8a1a0d9283", "cz": "Nemáme žádný chléb.", "en": "We don't have any bread.", "pattern": "negative", "note": "zápor"},
+        {"id": "c8f468ed-49c3-4247-a60c-1d453719bfba", "cz": "Kolik chleba chceš?", "en": "How much bread do you want?", "pattern": "wh_question", "note": "how much"},
+        {"id": "d6f875fc-0b3c-4789-993f-e02f62138ac7", "cz": "Kus dortu, prosím.", "en": "A piece of cake, please.", "pattern": "affirmative", "note": "piece of"},
+        {"id": "49000628-6988-4fce-8e57-8670e0c38ae2", "cz": "Šálek čaje, prosím.", "en": "A cup of tea, please.", "pattern": "affirmative", "note": "cup of"}
+        ]
+      },
+    {
+      "grammar": "Nepravidelná slovesa",
+      "level": "A1",
+      "blok": "A1 nepravidelná slovesa I — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "1e4c765a-2633-4476-935a-228311850855", "cz": "Přišel jsem pozdě.", "en": "I came late.", "pattern": "affirmative", "note": "come-came-come"},
+        {"id": "ce10b13f-cf2a-4956-b240-a54f19399e2e", "cz": "Přijde pozdě.", "en": "She will come late.", "pattern": "negative", "note": "budoucí"},
+        {"id": "1354d72c-0754-4956-a2e2-c675c3c75279", "cz": "Přišel jsi pozdě?", "en": "Did you come late?", "pattern": "question", "note": "otázka"},
+        {"id": "4e12d2b4-24cf-4f3f-956e-83ddb7adb337", "cz": "Nepřišel jsem pozdě.", "en": "I didn't come late.", "pattern": "negative", "note": "zápor"},
+        {"id": "081376b1-1127-43cf-9ab3-ffc3d8ed1f88", "cz": "Kdy přišel?", "en": "When did he come?", "pattern": "wh_question", "note": "WHEN otázka"},
+        {"id": "976ec545-6f90-4899-b464-793c1f4527f9", "cz": "Ještě nepřišel.", "en": "He hasn't come yet.", "pattern": "affirmative", "note": "present perfect"}
+        ]
+      },
+    {
+      "grammar": "Nepravidelná slovesa",
+      "level": "A1",
+      "blok": "A1 nepravidelná slovesa I — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "b67981d0-4060-48ce-a444-74f2ff3983ee", "cz": "Řekl jsem mu pravdu.", "en": "I told him the truth.", "pattern": "affirmative", "note": "tell-told-told"},
+        {"id": "3bb0742f-09e8-4496-abe1-fcd7e08dc659", "cz": "Řekla mu pravdu.", "en": "She told him the truth.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "dc31b186-f154-4a12-af76-186f346f70a7", "cz": "Řekl jsi mu pravdu?", "en": "Did you tell him the truth?", "pattern": "question", "note": "otázka"},
+        {"id": "c70cc542-5ed3-4ee3-b06f-e0a773e10f11", "cz": "Neřekl jsem mu pravdu.", "en": "I didn't tell him the truth.", "pattern": "negative", "note": "zápor"},
+        {"id": "a42e712b-cbc0-48f8-bf59-172ef7937899", "cz": "Co jsi mu řekl?", "en": "What did you tell him?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "2b39110a-e435-41a1-8175-96482273516f", "cz": "Ještě mi to neřekl.", "en": "He hasn't told me yet.", "pattern": "affirmative", "note": "present perfect"}
+        ]
+      },
+    {
+      "grammar": "Nepravidelná slovesa",
+      "level": "A1",
+      "blok": "A1 nepravidelná slovesa I — věta 3",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "a8b9bb70-29cb-41df-a42a-473c4b0bbe01", "cz": "Dostal jsem dopis.", "en": "I got a letter.", "pattern": "affirmative", "note": "get-got-got"},
+        {"id": "a90f94cd-ae04-4d56-bd05-8ae5bad31df6", "cz": "Dostala dopis.", "en": "She got a letter.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "169cc492-9a64-4e1c-8499-675ee65a799c", "cz": "Dostal jsi dopis?", "en": "Did you get a letter?", "pattern": "question", "note": "otázka"},
+        {"id": "9905341c-d412-4b98-86cf-a3f85cd86c6b", "cz": "Nedostal jsem dopis.", "en": "I didn't get a letter.", "pattern": "negative", "note": "zápor"},
+        {"id": "e652a289-a99f-4a22-afbc-b4d3aed3dff5", "cz": "Co jsi dostal?", "en": "What did you get?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "eeec6d04-879f-4d56-a0bb-e5f22d2fcc50", "cz": "Ještě jsem nic nedostal.", "en": "I haven't got anything yet.", "pattern": "affirmative", "note": "present perfect"}
+        ]
+      },
+    {
+      "grammar": "Nepravidelná slovesa",
+      "level": "A1",
+      "blok": "A1 nepravidelná slovesa I — věta 4",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "716fee43-e1da-4e74-b9b7-7dcbf58c3476", "cz": "Ztratil jsem klíče.", "en": "I lost my keys.", "pattern": "affirmative", "note": "lose-lost-lost"},
+        {"id": "a8f6d97e-471c-481e-8e9a-2b6f2ff563cc", "cz": "Ztratila klíče.", "en": "She lost her keys.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "78b2304b-eabc-46a9-b0fb-a874271f909e", "cz": "Ztratil jsi klíče?", "en": "Did you lose your keys?", "pattern": "question", "note": "otázka"},
+        {"id": "ddb48f23-1999-4006-9653-916487cf8d38", "cz": "Neztratil jsem klíče.", "en": "I didn't lose my keys.", "pattern": "negative", "note": "zápor"},
+        {"id": "85f3c8f9-5431-42f4-9d78-e4a724c10d39", "cz": "Co jsi ztratil?", "en": "What did you lose?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "f410ea62-bba5-4199-b148-017a10e2f853", "cz": "Ztratil jsem klíče.", "en": "I have lost my keys.", "pattern": "affirmative", "note": "present perfect - důsledek"}
+        ]
+      },
+    {
+      "grammar": "Nepravidelná slovesa",
+      "level": "A1",
+      "blok": "A1 nepravidelná slovesa II — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "a51dfb68-4246-4b93-a3a9-70bca1f0f392", "cz": "Pil jsem kávu.", "en": "I drank coffee.", "pattern": "affirmative", "note": "drink-drank-drunk"},
+        {"id": "0fe45d04-54e5-424c-9e00-aa619ae6fae9", "cz": "Pila kávu.", "en": "She drank coffee.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "64882515-81c4-425a-a84f-377f8ec653af", "cz": "Pil jsi kávu?", "en": "Did you drink coffee?", "pattern": "question", "note": "otázka"},
+        {"id": "725e817a-e581-4f2a-9ec0-368b8166ea3c", "cz": "Nepil jsem kávu.", "en": "I didn't drink coffee.", "pattern": "negative", "note": "zápor"},
+        {"id": "82cbeff1-0403-4594-a591-e8a1e15d31b8", "cz": "Co jsi pil?", "en": "What did you drink?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "83146c66-b28c-4b3e-93c1-74cb8c88b22f", "cz": "Nikdy jsem nekávě nepil.", "en": "I have never drunk coffee.", "pattern": "affirmative", "note": "present perfect + never"}
+        ]
+      },
+    {
+      "grammar": "Nepravidelná slovesa",
+      "level": "A1",
+      "blok": "A1 nepravidelná slovesa II — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "fc9a23af-b4fc-48be-b841-13c80287317b", "cz": "Začal jsem pracovat.", "en": "I began to work.", "pattern": "affirmative", "note": "begin-began-begun"},
+        {"id": "a2a4e519-abe4-4cf7-a0fd-79572c690f64", "cz": "Začala pracovat.", "en": "She began to work.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "61b87446-94f5-4ed6-8c77-b9b2e23c3d93", "cz": "Kdy jsi začal pracovat?", "en": "When did you begin to work?", "pattern": "wh_question", "note": "WHEN otázka"},
+        {"id": "0badff8c-2bfe-4aba-acbc-325e8661df99", "cz": "Ještě nezačal.", "en": "He hasn't begun yet.", "pattern": "wh_question", "note": "present perfect"},
+        {"id": "29b69479-a590-4728-b76b-6a9953bd1282", "cz": "Začal pršet.", "en": "It began to rain.", "pattern": "affirmative", "note": "neosobní"},
+        {"id": "7bf47221-e97e-402b-ad0c-3a5ed60af270", "cz": "Kdy to začalo?", "en": "When did it begin?", "pattern": "wh_question", "note": "WHEN otázka neosobní"}
+        ]
+      },
+    {
+      "grammar": "Nepravidelná slovesa",
+      "level": "A1",
+      "blok": "A1 nepravidelná slovesa II — věta 3",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "cd5bc48a-e1c6-4fbf-b2a4-9f70047370fd", "cz": "Spal jsem dobře.", "en": "I slept well.", "pattern": "affirmative", "note": "sleep-slept-slept"},
+        {"id": "2091c0fc-c095-4a8a-aee3-796fd89b1d70", "cz": "Spala dobře.", "en": "She slept well.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "f633f9cd-6e1f-47de-b76f-5abf0f74a953", "cz": "Spal jsi dobře?", "en": "Did you sleep well?", "pattern": "question", "note": "otázka"},
+        {"id": "3fae74d9-74e2-4a51-938d-eea591291c09", "cz": "Nespal jsem dobře.", "en": "I didn't sleep well.", "pattern": "negative", "note": "zápor"},
+        {"id": "4d890245-60e5-4b94-956c-b3c40baf028d", "cz": "Proč jsi nespal?", "en": "Why didn't you sleep?", "pattern": "negative", "note": "WHY zápor"},
+        {"id": "a7480da2-9c2f-4ecb-a736-a850bd443cda", "cz": "Nespal jsem celou noc.", "en": "I haven't slept all night.", "pattern": "affirmative", "note": "present perfect"}
+        ]
+      },
+    {
+      "grammar": "Nepravidelná slovesa",
+      "level": "A1",
+      "blok": "A1 nepravidelná slovesa II — věta 4",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "0ae577b2-9c42-4987-98dc-ac83c7fe2571", "cz": "Myslel jsem na tebe.", "en": "I thought about you.", "pattern": "affirmative", "note": "think-thought-thought"},
+        {"id": "6c7e4f68-d867-4100-a4d5-79e32aff5d61", "cz": "Myslela na tebe.", "en": "She thought about you.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "b547fe00-64ef-454b-a235-e50c5c4298e1", "cz": "Myslel jsi na mě?", "en": "Did you think about me?", "pattern": "question", "note": "otázka"},
+        {"id": "00b96c38-2aeb-42d9-a0c0-efa9e48a39b4", "cz": "Nemyslel jsem na tebe.", "en": "I didn't think about you.", "pattern": "negative", "note": "zápor"},
+        {"id": "4ca07877-9e16-412a-9d06-08238488ffb6", "cz": "Na co jsi myslel?", "en": "What were you thinking about?", "pattern": "affirmative", "note": "průběhový"},
+        {"id": "3f881d4a-6aae-43b4-9a3e-ccb5d1b5eac9", "cz": "Co si myslíš o tom?", "en": "What do you think about it?", "pattern": "affirmative", "note": "přítomný čas"}
+        ]
+      },
+    {
+      "grammar": "Nepravidelná slovesa",
+      "level": "A1",
+      "blok": "A1 nepravidelná slovesa III — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "6c5649e5-7fe0-48da-9567-41bda5a7b944", "cz": "Nesl jsem tašku.", "en": "I carried the bag.", "pattern": "affirmative", "note": "carry - pravidelné"},
+        {"id": "71cd5f78-32c3-44f1-ade7-e3d804b1dc8f", "cz": "Vzal jsem tašku.", "en": "I took the bag.", "pattern": "negative", "note": "take-took-taken"},
+        {"id": "7e8db967-ac25-43be-ae1c-70d30e6ca05f", "cz": "Vzal jsi tašku?", "en": "Did you take the bag?", "pattern": "question", "note": "otázka"},
+        {"id": "af706511-fee9-4caf-b944-acfad12419ee", "cz": "Nevzal jsem tašku.", "en": "I didn't take the bag.", "pattern": "negative", "note": "zápor"},
+        {"id": "970c6f19-6647-43d2-bd07-078c101d9f5e", "cz": "Kdo vzal tašku?", "en": "Who took the bag?", "pattern": "question", "note": "podmětná otázka"},
+        {"id": "9c170015-9073-46f0-962c-6f12f6b121ed", "cz": "Vzal jsem tašku.", "en": "I have taken the bag.", "pattern": "affirmative", "note": "present perfect"}
+        ]
+      },
+    {
+      "grammar": "Nepravidelná slovesa",
+      "level": "A1",
+      "blok": "A1 nepravidelná slovesa III — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "f1079278-0e81-48fd-9dcd-aec1760a88fc", "cz": "Dal jsem mu knihu.", "en": "I gave him the book.", "pattern": "affirmative", "note": "give-gave-given"},
+        {"id": "bec4a42c-9648-4a80-8d05-dafb4f3c3e5f", "cz": "Dala mu knihu.", "en": "She gave him the book.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "0f0e6686-07b1-4d5e-b81f-d2029b88d4d4", "cz": "Dal jsi mu knihu?", "en": "Did you give him the book?", "pattern": "question", "note": "otázka"},
+        {"id": "9e1b811a-6e51-4045-ba3b-1a8a8e97249e", "cz": "Nedal jsem mu knihu.", "en": "I didn't give him the book.", "pattern": "negative", "note": "zápor"},
+        {"id": "4ffa9752-4536-4324-8fc0-272d44dcd02f", "cz": "Co jsi mu dal?", "en": "What did you give him?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "fab7f761-006d-4744-8627-433244c59a68", "cz": "Dal jsem mu ji.", "en": "I have given it to him.", "pattern": "affirmative", "note": "present perfect"}
+        ]
+      },
+    {
+      "grammar": "Nepravidelná slovesa",
+      "level": "A1",
+      "blok": "A1 nepravidelná slovesa III — věta 3",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "e6dcbe9d-a335-42ce-9801-9c9dccda72dc", "cz": "Napsal jsem dopis.", "en": "I wrote a letter.", "pattern": "affirmative", "note": "write-wrote-written"},
+        {"id": "01d20e86-6c6d-47d7-b264-9698593ea6e2", "cz": "Napsala dopis.", "en": "She wrote a letter.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "ffd06082-f3d7-4efb-b836-21a618a643a1", "cz": "Napsal jsi dopis?", "en": "Did you write a letter?", "pattern": "question", "note": "otázka"},
+        {"id": "011ba179-9073-4c45-b70e-dc8862d750ab", "cz": "Nenapsal jsem dopis.", "en": "I didn't write a letter.", "pattern": "negative", "note": "zápor"},
+        {"id": "d16401ce-f9af-436d-9347-79b9c0a00256", "cz": "Komu jsi napsal?", "en": "Who did you write to?", "pattern": "wh_question", "note": "WHO otázka"},
+        {"id": "336d7059-2401-470a-9aba-99b94ffa64c1", "cz": "Ještě jsem mu nenapsal.", "en": "I haven't written to him yet.", "pattern": "affirmative", "note": "present perfect"}
+        ]
+      },
+    {
+      "grammar": "Nepravidelná slovesa",
+      "level": "A1",
+      "blok": "A1 nepravidelná slovesa III — věta 4",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "b5f3854b-7b00-49e7-bfb4-74df6cb02f88", "cz": "Znám ho.", "en": "I know him.", "pattern": "affirmative", "note": "know - přítomný"},
+        {"id": "0bf5e210-95c1-431b-8c82-22a89347c9dd", "cz": "Věděl jsem to.", "en": "I knew it.", "pattern": "negative", "note": "know-knew-known - minulý"},
+        {"id": "4b851121-9f2d-4198-8b3d-c8a8d32c960c", "cz": "Věděl jsi to?", "en": "Did you know it?", "pattern": "question", "note": "otázka"},
+        {"id": "433bacda-2ebd-4a16-9fb7-762c4e46038e", "cz": "Nevěděl jsem to.", "en": "I didn't know it.", "pattern": "negative", "note": "zápor"},
+        {"id": "715ab6db-ef13-46c7-b85f-4e095570c9d3", "cz": "Jak jsi to věděl?", "en": "How did you know it?", "pattern": "wh_question", "note": "HOW otázka"},
+        {"id": "c8dbdf4b-1e03-4984-8497-ce7d6fc85e90", "cz": "Nevěděl jsem o tom.", "en": "I didn't know about it.", "pattern": "affirmative", "note": "about"}
+        ]
+      },
+    {
+      "grammar": "Předložky místa a času",
+      "level": "A1",
+      "blok": "A1 předložky — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "588a0eca-d21c-4186-8d9c-ccae11f191be", "cz": "Kniha je na stole.", "en": "The book is on the table.", "pattern": "affirmative", "note": "on - na"},
+        {"id": "6692e382-6767-4be3-8cb7-9992833d8e8c", "cz": "Kniha je pod stolem.", "en": "The book is under the table.", "pattern": "negative", "note": "under - pod"},
+        {"id": "3363674c-beff-4e88-8dc1-1348aff83768", "cz": "Kde je kniha?", "en": "Where is the book?", "pattern": "wh_question", "note": "WHERE otázka"},
+        {"id": "6d6047a0-c280-49f0-95a3-d7d32cfb0b2b", "cz": "Kniha je vedle stolu.", "en": "The book is next to the table.", "pattern": "wh_question", "note": "next to"},
+        {"id": "c603afda-d2cf-4631-a6b8-28837294564c", "cz": "Kniha je před stolem.", "en": "The book is in front of the table.", "pattern": "affirmative", "note": "in front of"},
+        {"id": "deb4fc89-bbc8-4314-8f26-0d9f7498799f", "cz": "Kniha je za stolem.", "en": "The book is behind the table.", "pattern": "affirmative", "note": "behind"}
+        ]
+      },
+    {
+      "grammar": "Předložky místa a času",
+      "level": "A1",
+      "blok": "A1 předložky — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "169ebbf4-5ce6-41cd-8718-baa043e8358b", "cz": "Pracuji v Brně.", "en": "I work in Brno.", "pattern": "affirmative", "note": "in - město"},
+        {"id": "6b6a93c4-8412-418e-a6e1-52f8f1ebe17b", "cz": "Pracuji na poště.", "en": "I work at the post office.", "pattern": "negative", "note": "at - místo"},
+        {"id": "cefcd281-d510-424c-aaec-008873e05a8a", "cz": "Jdu do obchodu.", "en": "I am going to the shop.", "pattern": "question", "note": "to - směr"},
+        {"id": "e5ee7f93-9a1c-4169-b131-de79d095ecba", "cz": "Přijíždím z Prahy.", "en": "I am coming from Prague.", "pattern": "wh_question", "note": "from - odkud"},
+        {"id": "3361ca1d-c5db-40c3-b466-5fd7fcaa069d", "cz": "Bydlím na Moravě.", "en": "I live in Moravia.", "pattern": "affirmative", "note": "in - oblast"},
+        {"id": "7f16f9ae-7a2f-466a-a7d5-19bdc077d7e3", "cz": "Jedu přes Brno.", "en": "I am going through Brno.", "pattern": "affirmative", "note": "through - přes"}
+        ]
+      },
+    {
+      "grammar": "Předložky místa a času",
+      "level": "A1",
+      "blok": "A1 předložky — věta 3",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "ac6584ba-3349-4915-a3fc-7e5b36cd8a53", "cz": "Schůzka je v pondělí.", "en": "The meeting is on Monday.", "pattern": "affirmative", "note": "on - den"},
+        {"id": "6d3c70a3-94bc-4c0b-ae98-478c90634131", "cz": "Schůzka je v lednu.", "en": "The meeting is in January.", "pattern": "negative", "note": "in - měsíc"},
+        {"id": "8e22eef8-19aa-4a01-8012-9e6cc3c8a558", "cz": "Schůzka je ve tři hodiny.", "en": "The meeting is at three o'clock.", "pattern": "question", "note": "at - čas"},
+        {"id": "ed1f0afd-46e3-4507-86f3-b185b25dfac2", "cz": "Přijdu za hodinu.", "en": "I will come in an hour.", "pattern": "wh_question", "note": "in - za"},
+        {"id": "6a76493a-8755-40b9-9cbf-377b1e9675f8", "cz": "Pracuji od osmi do čtyř.", "en": "I work from eight to four.", "pattern": "affirmative", "note": "from - to"},
+        {"id": "106ee14b-3f2d-432f-a434-098e02a9a38f", "cz": "Čekám tady od rána.", "en": "I have been waiting here since morning.", "pattern": "affirmative", "note": "since - od"}
+        ]
+      },
+    {
+      "grammar": "Příslovce frekvence",
+      "level": "A1",
+      "blok": "A1 příslovce frekvence — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "3f524e56-3d41-4d40-8ea8-7133036ff3e3", "cz": "Vždy chodím do práce pěšky.", "en": "I always walk to work.", "pattern": "affirmative", "note": "always"},
+        {"id": "02fafbff-1500-4c8e-b8c2-5927909faed1", "cz": "Často chodím do práce pěšky.", "en": "I often walk to work.", "pattern": "negative", "note": "often"},
+        {"id": "64226875-d49d-4303-80f0-2de286646c18", "cz": "Někdy chodím do práce pěšky.", "en": "I sometimes walk to work.", "pattern": "question", "note": "sometimes"},
+        {"id": "098cfadc-57db-4f11-9c7c-c64fd9c26d98", "cz": "Zřídka chodím do práce pěšky.", "en": "I rarely walk to work.", "pattern": "wh_question", "note": "rarely"},
+        {"id": "5d8f4020-af7a-423e-a5fb-1d98f74b75e2", "cz": "Nikdy nechodím do práce pěšky.", "en": "I never walk to work.", "pattern": "affirmative", "note": "never"},
+        {"id": "104d2f79-f374-4c5f-8df8-4168622ac046", "cz": "Jak často chodíš do práce pěšky?", "en": "How often do you walk to work?", "pattern": "wh_question", "note": "HOW OFTEN"}
+        ]
+      },
+    {
+      "grammar": "Příslovce frekvence",
+      "level": "A1",
+      "blok": "A1 příslovce frekvence — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "399931db-fca4-43dc-8df1-5a6a01256164", "cz": "Vždy snídám.", "en": "I always have breakfast.", "pattern": "affirmative", "note": "always"},
+        {"id": "e5f4198c-00e6-4add-a561-853700867b0c", "cz": "Obvykle snídám.", "en": "I usually have breakfast.", "pattern": "negative", "note": "usually"},
+        {"id": "fc81e6cd-cf26-495d-b6ee-63a8f99e2ecd", "cz": "Nikdy nesnídám.", "en": "I never have breakfast.", "pattern": "question", "note": "never"},
+        {"id": "4a28d6f6-375e-4071-88bf-13643504a983", "cz": "Vždy chodí do práce pěšky.", "en": "She always walks to work.", "pattern": "third_person", "note": "always - 3. os."},
+        {"id": "bc4b6a2f-187a-4b7e-beb2-792386ae186a", "cz": "Nikdy nechodí do práce pěšky.", "en": "She never walks to work.", "pattern": "third_person", "note": "never - 3. os."},
+        {"id": "7231a376-8217-4ac7-ad71-687c78c609d2", "cz": "Jak často snídáš?", "en": "How often do you have breakfast?", "pattern": "wh_question", "note": "HOW OFTEN"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "A1 přítomný čas — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "9d444fc9-6c59-4106-a5fa-cd9aab221e55", "cz": "Pracuji tady.", "en": "I work here.", "pattern": "affirmative", "note": "oznamovací"},
+        {"id": "f6a49932-669f-4fe5-83d9-1926ea5e0f6e", "cz": "Pracuje tady.", "en": "She works here.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "a86f37bf-efa4-4bfd-95e5-a00fa49b1512", "cz": "Pracuješ tady?", "en": "Do you work here?", "pattern": "question", "note": "otázka"},
+        {"id": "27e1c6be-6325-4965-835a-038d4cd9db4e", "cz": "Nepracuji tady.", "en": "I don't work here.", "pattern": "negative", "note": "zápor"},
+        {"id": "8c077959-5352-4b14-be4d-471fb8f5d862", "cz": "Pracuje on tady?", "en": "Does he work here?", "pattern": "question", "note": "otázka 3. os."},
+        {"id": "ab57fc3c-0fe4-4b72-9f80-11633f245491", "cz": "Nepracuje tady.", "en": "She doesn't work here.", "pattern": "negative", "note": "zápor 3. os."}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "A1 přítomný čas — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "333869fe-5f41-44f9-a975-46bb4cbe48f8", "cz": "Řídím auto.", "en": "I drive a car.", "pattern": "affirmative", "note": "oznamovací"},
+        {"id": "9529aa7d-5983-4ca7-8e7c-1c67908690ae", "cz": "Řídí auto.", "en": "He drives a car.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "4e86ec33-07c2-426a-bdef-0f1f84d32c1d", "cz": "Řídíš auto?", "en": "Do you drive a car?", "pattern": "question", "note": "otázka"},
+        {"id": "a2f467c6-d11a-4b13-aedb-02f5d617edc2", "cz": "Neřídím auto.", "en": "I don't drive a car.", "pattern": "negative", "note": "zápor"},
+        {"id": "e708d94a-7417-4e05-8373-306f3f69941f", "cz": "Řídí ona auto?", "en": "Does she drive a car?", "pattern": "question", "note": "otázka 3. os."},
+        {"id": "b1656b8b-34b0-46c7-8058-f8d855637b35", "cz": "Neřídí auto.", "en": "He doesn't drive a car.", "pattern": "negative", "note": "zápor 3. os."}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "A1 přítomný čas — věta 3",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "d6829056-1418-4eaf-a2e7-ba18c24c29a4", "cz": "Bydlím v Brně.", "en": "I live in Brno.", "pattern": "affirmative", "note": "oznamovací"},
+        {"id": "af7c7d01-c085-4617-8763-96db690a40fe", "cz": "Bydlí v Brně.", "en": "She lives in Brno.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "fbfe10e6-e774-4b9b-90fe-ea38f1063df3", "cz": "Bydlíš v Brně?", "en": "Do you live in Brno?", "pattern": "question", "note": "otázka"},
+        {"id": "4ac8a690-5cdb-4102-a9ae-7a3dbb0db7d3", "cz": "Nebydlím v Brně.", "en": "I don't live in Brno.", "pattern": "negative", "note": "zápor"},
+        {"id": "4b7874b9-1385-4d3d-9d29-53ccf4173641", "cz": "Kde bydlíš?", "en": "Where do you live?", "pattern": "wh_question", "note": "WH otázka"},
+        {"id": "8e1c2a98-afda-4288-8fcb-07a7c304e5c1", "cz": "Kde bydlí?", "en": "Where does she live?", "pattern": "wh_question", "note": "WH otázka 3. os."}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "A1 přítomný čas — věta 4",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "ee929f63-8880-4e37-908a-fd3a2a7b9d4d", "cz": "Vaří večeři.", "en": "She cooks dinner.", "pattern": "affirmative", "note": "oznamovací"},
+        {"id": "747d5400-54cc-40fb-b9c3-b56d6c63d51d", "cz": "Vaří večeři každý den.", "en": "She cooks dinner every day.", "pattern": "negative", "note": "příslovce frekvence"},
+        {"id": "3c223124-2383-4516-a24f-2c639e41f742", "cz": "Vaříš večeři každý den?", "en": "Do you cook dinner every day?", "pattern": "question", "note": "otázka + frekvence"},
+        {"id": "18b98586-bf1b-41fa-8e92-905a685d22e6", "cz": "Nevařím večeři každý den.", "en": "I don't cook dinner every day.", "pattern": "negative", "note": "zápor + frekvence"},
+        {"id": "7e19984e-24fa-4c37-9d3b-c6e988b8fb3e", "cz": "Vaří on večeři každý den?", "en": "Does he cook dinner every day?", "pattern": "question", "note": "otázka 3. os."},
+        {"id": "80804f1c-2555-4e62-bb37-a05b7e7c2c5a", "cz": "Co vaří každý den?", "en": "What does she cook every day?", "pattern": "wh_question", "note": "WH otázka"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "A1 přítomný čas — věta 5",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "fcf0df80-49cb-43d8-9c0c-37616f7bca78", "cz": "Mluví anglicky.", "en": "He speaks English.", "pattern": "affirmative", "note": "oznamovací"},
+        {"id": "52db92cc-b1d5-4dfa-a9ef-1647eb497ffc", "cz": "Mluvíš anglicky?", "en": "Do you speak English?", "pattern": "question", "note": "otázka"},
+        {"id": "2e0c46eb-1b57-407f-80d9-bc7a90f54de0", "cz": "Nemluví anglicky.", "en": "She doesn't speak English.", "pattern": "negative", "note": "zápor 3. os."},
+        {"id": "1a322016-4f3a-466d-994e-52ebe07ca5cf", "cz": "Mluví anglicky dobře.", "en": "He speaks English well.", "pattern": "wh_question", "note": "příslovce"},
+        {"id": "4f49466d-b26a-4b66-b10a-5c57a04ad5df", "cz": "Mluví ona anglicky dobře?", "en": "Does she speak English well?", "pattern": "question", "note": "otázka + příslovce"},
+        {"id": "44fb1efd-a637-4cc6-82e7-f175f64a56b1", "cz": "Jak dobře mluvíš anglicky?", "en": "How well do you speak English?", "pattern": "wh_question", "note": "HOW otázka"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "A1 přítomný čas — věta 6",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "d8d84d90-153a-42a3-a895-c450a9f1baef", "cz": "Čtu noviny každé ráno.", "en": "I read the newspaper every morning.", "pattern": "affirmative", "note": "oznamovací"},
+        {"id": "b4948d3b-9f91-4fb6-9808-446405925ad5", "cz": "Čte noviny každé ráno.", "en": "She reads the newspaper every morning.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "721aee71-26e3-445f-91c4-9bc25494cba6", "cz": "Čteš noviny každé ráno?", "en": "Do you read the newspaper every morning?", "pattern": "question", "note": "otázka"},
+        {"id": "c6fa08d5-ee71-4eff-85fc-bc355212907c", "cz": "Nečtu noviny každé ráno.", "en": "I don't read the newspaper every morning.", "pattern": "negative", "note": "zápor"},
+        {"id": "21fd9ecf-8bd8-4dcd-9913-e1ac3966ff83", "cz": "Čte on noviny každé ráno?", "en": "Does he read the newspaper every morning?", "pattern": "question", "note": "otázka 3. os."},
+        {"id": "664d0b88-9292-43b5-9477-e4cf86f9b857", "cz": "Kdy čteš noviny?", "en": "When do you read the newspaper?", "pattern": "wh_question", "note": "WHEN otázka"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "A1 přítomný čas — věta 7",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "33d3554a-31f6-4a46-9632-030b6d8db740", "cz": "Chodím do práce pěšky.", "en": "I walk to work.", "pattern": "affirmative", "note": "oznamovací"},
+        {"id": "0bd51a0d-bea1-469e-bf32-f8acad0200e4", "cz": "Chodí do práce pěšky.", "en": "He walks to work.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "4837ad7e-c1a2-4721-8395-5db079c56664", "cz": "Chodíš do práce pěšky?", "en": "Do you walk to work?", "pattern": "question", "note": "otázka"},
+        {"id": "ec14cb37-c75c-4027-837c-5b38905fb96d", "cz": "Nechodím do práce pěšky.", "en": "I don't walk to work.", "pattern": "negative", "note": "zápor"},
+        {"id": "991906d9-f2cc-400a-a300-e6a9591e851b", "cz": "Jak chodíš do práce?", "en": "How do you get to work?", "pattern": "wh_question", "note": "HOW otázka"},
+        {"id": "79fbbf22-58ad-48ec-ae3e-71136d90c438", "cz": "Chodí ona do práce pěšky?", "en": "Does she walk to work?", "pattern": "question", "note": "otázka 3. os."}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "A1 přítomný čas — věta 8",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "10107ce3-9368-49ef-97a4-dddd477bf1f0", "cz": "Snídám v sedm hodin.", "en": "I have breakfast at seven.", "pattern": "affirmative", "note": "oznamovací"},
+        {"id": "f549effa-7d44-4f81-93c5-c3ebd518b802", "cz": "Snídá v sedm hodin.", "en": "She has breakfast at seven.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "69157521-5408-4213-b555-81614a001cc2", "cz": "Snídáš v sedm hodin?", "en": "Do you have breakfast at seven?", "pattern": "question", "note": "otázka"},
+        {"id": "3f7ee26b-d4e8-45bf-9956-ef36aa4330e1", "cz": "Nesnídám v sedm hodin.", "en": "I don't have breakfast at seven.", "pattern": "negative", "note": "zápor"},
+        {"id": "d072cb41-2a55-4b62-a8a1-4c8bdc069b44", "cz": "V kolik snídáš?", "en": "What time do you have breakfast?", "pattern": "wh_question", "note": "WHAT TIME otázka"},
+        {"id": "e00c8403-56ec-419d-9f70-6bba092d1d63", "cz": "Snídá on v sedm hodin?", "en": "Does he have breakfast at seven?", "pattern": "question", "note": "otázka 3. os."}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "A1 přítomný čas — věta 9",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "f005a497-7560-43ba-a02d-df03734b6052", "cz": "Hraji fotbal každý víkend.", "en": "I play football every weekend.", "pattern": "affirmative", "note": "oznamovací"},
+        {"id": "9677db6e-9de8-4faa-8f4e-1b225f25fb33", "cz": "Hraje fotbal každý víkend.", "en": "He plays football every weekend.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "92bfd649-40bd-41ec-b495-556771849230", "cz": "Hraješ fotbal každý víkend?", "en": "Do you play football every weekend?", "pattern": "question", "note": "otázka"},
+        {"id": "91f21e4f-ae18-4361-87fb-634cacc8aed7", "cz": "Nehraji fotbal každý víkend.", "en": "I don't play football every weekend.", "pattern": "negative", "note": "zápor"},
+        {"id": "f833cee8-7c06-4f1b-a599-bd43ee8b8f8b", "cz": "Co hraješ každý víkend?", "en": "What do you play every weekend?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "c8d4bac1-d694-484d-af20-1b1bf89cc281", "cz": "Hraje ona fotbal každý víkend?", "en": "Does she play football every weekend?", "pattern": "question", "note": "otázka 3. os."}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "A1 přítomný čas — věta 10",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "c9208091-c049-4786-9cab-963b6ee4a5cc", "cz": "Učím se anglicky.", "en": "I study English.", "pattern": "affirmative", "note": "oznamovací"},
+        {"id": "8e5aeede-e953-4e53-8f4e-78a5cd2be36b", "cz": "Učí se anglicky.", "en": "She studies English.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "c296c3c2-0a18-43f5-9417-9fbd62ff76c7", "cz": "Učíš se anglicky?", "en": "Do you study English?", "pattern": "question", "note": "otázka"},
+        {"id": "42bedb4f-7331-4794-8818-cc912b85dbee", "cz": "Neučím se anglicky.", "en": "I don't study English.", "pattern": "negative", "note": "zápor"},
+        {"id": "71977cd7-d4be-444e-9f96-3d225e6a85a3", "cz": "Co se učíš?", "en": "What do you study?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "3cccb062-03c9-4cbe-8f20-59b84b845932", "cz": "Kde se učíš anglicky?", "en": "Where do you study English?", "pattern": "wh_question", "note": "WHERE otázka"}
+        ]
+      },
+    {
+      "grammar": "Rozkazy a návrhy",
+      "level": "A1",
+      "blok": "A1 rozkazy a návrhy — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "7f0307d2-6951-43b2-94d8-15587a6cfe03", "cz": "Pojď sem.", "en": "Come here.", "pattern": "imperative", "note": "rozkaz - kladný"},
+        {"id": "3d8e62a9-d001-4d7b-af32-b8a434161b0a", "cz": "Nechoď tam.", "en": "Don't go there.", "pattern": "negative", "note": "rozkaz - záporný"},
+        {"id": "e98db610-7fbb-42b6-ab60-7ca0a43d6f11", "cz": "Buď ticho.", "en": "Be quiet.", "pattern": "imperative", "note": "rozkaz - be"},
+        {"id": "34ab054d-815e-4078-8817-4d3157f3906e", "cz": "Nebuď tak hlučný.", "en": "Don't be so noisy.", "pattern": "imperative", "note": "rozkaz - don't be"},
+        {"id": "530d93bd-d503-405f-94d7-0e8fb3fee4de", "cz": "Prosím, zavři dveře.", "en": "Please close the door.", "pattern": "imperative", "note": "zdvořilý rozkaz"},
+        {"id": "e4af489c-120a-4188-ab81-9480356a40d9", "cz": "Zavolej mi zítra.", "en": "Call me tomorrow.", "pattern": "imperative", "note": "rozkaz + čas"}
+        ]
+      },
+    {
+      "grammar": "Rozkazy a návrhy",
+      "level": "A1",
+      "blok": "A1 rozkazy a návrhy — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "d084c32f-a943-4d27-865d-485c87383201", "cz": "Pojďme do kina.", "en": "Let's go to the cinema.", "pattern": "affirmative", "note": "let's - návrh"},
+        {"id": "b311ef76-2fc0-4890-9df3-1b2a65847277", "cz": "Nepojďme tam.", "en": "Let's not go there.", "pattern": "negative", "note": "let's not - zápor"},
+        {"id": "649018bd-c33f-4396-9a0c-9e523ba4ffef", "cz": "Co kdybychom šli ven?", "en": "Why don't we go out?", "pattern": "wh_question", "note": "why don't we"},
+        {"id": "6e10a509-a8de-4178-8b0a-8af0c3506c37", "cz": "Nezůstaneme tady?", "en": "Shall we stay here?", "pattern": "wh_question", "note": "shall we - návrh"},
+        {"id": "b99af8a0-95c5-44a0-be5b-572076167412", "cz": "Co kdybych ti pomohl?", "en": "Why don't I help you?", "pattern": "wh_question", "note": "why don't I"},
+        {"id": "7782030d-a77d-4529-8792-1455746a7e53", "cz": "Mohli bychom jít pěšky.", "en": "We could walk.", "pattern": "affirmative", "note": "could - návrh"}
+        ]
+      },
+    {
+      "grammar": "Sloveso být (to be)",
+      "level": "A1",
+      "blok": "A1 sloveso být — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "957f34ef-012e-4e93-9453-adbc5849f7e5", "cz": "Jsem unavený.", "en": "I am tired.", "pattern": "affirmative", "note": "oznamovací"},
+        {"id": "f97b57d1-05e5-435d-a7d7-a1b6b1163525", "cz": "Je unavená.", "en": "She is tired.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "c94b03a5-5e08-4aa6-a1f5-7d89e79cc338", "cz": "Jsi unavený?", "en": "Are you tired?", "pattern": "question", "note": "otázka"},
+        {"id": "8b54d669-31ad-4e33-be72-f97677b0c3f0", "cz": "Nejsem unavený.", "en": "I am not tired.", "pattern": "negative", "note": "zápor"},
+        {"id": "5f84908c-e6cc-4d43-a64c-ffef07b4bc51", "cz": "Je on unavený?", "en": "Is he tired?", "pattern": "question", "note": "otázka 3. os."},
+        {"id": "e0a2b49c-5e60-4a6e-b0eb-6ba09c24e113", "cz": "Není unavená.", "en": "She is not tired.", "pattern": "negative", "note": "zápor 3. os."}
+        ]
+      },
+    {
+      "grammar": "Sloveso být (to be)",
+      "level": "A1",
+      "blok": "A1 sloveso být — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "55f4d791-6f91-438b-a219-24539b708a16", "cz": "Jsem doma.", "en": "I am at home.", "pattern": "affirmative", "note": "oznamovací"},
+        {"id": "6939b15d-b7cd-4099-8dc3-576688686379", "cz": "Je doma.", "en": "He is at home.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "9499cf5c-4331-462d-b29f-5fb866a64e9b", "cz": "Jsi doma?", "en": "Are you at home?", "pattern": "question", "note": "otázka"},
+        {"id": "008fa2dc-24b4-4a0c-8397-b27d5a5e8f39", "cz": "Nejsem doma.", "en": "I am not at home.", "pattern": "negative", "note": "zápor"},
+        {"id": "3e17c83b-7e97-4d84-bacb-17f5a724c0ca", "cz": "Je on doma?", "en": "Is he at home?", "pattern": "question", "note": "otázka 3. os."},
+        {"id": "d7c165ab-e886-490d-a56c-27a2b853f303", "cz": "Kde jsi?", "en": "Where are you?", "pattern": "wh_question", "note": "WH otázka"}
+        ]
+      },
+    {
+      "grammar": "Sloveso být (to be)",
+      "level": "A1",
+      "blok": "A1 sloveso být — věta 3",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "ebbe9212-71c0-4723-a343-9b893ecd5332", "cz": "Je to dobrý nápad.", "en": "It is a good idea.", "pattern": "affirmative", "note": "oznamovací"},
+        {"id": "14715933-e6f4-4507-a313-f707de92a8a1", "cz": "Je to špatný nápad.", "en": "It is a bad idea.", "pattern": "negative", "note": "obměna adjektiva"},
+        {"id": "13f71716-c94b-4c61-bdac-44c0ef87526e", "cz": "Je to dobrý nápad?", "en": "Is it a good idea?", "pattern": "question", "note": "otázka"},
+        {"id": "aef996d8-6ef4-4be9-b710-d497164a9661", "cz": "Není to dobrý nápad.", "en": "It is not a good idea.", "pattern": "negative", "note": "zápor"},
+        {"id": "9503687b-e82e-4f2a-b2a6-205859f70c1c", "cz": "To je zajímavé.", "en": "That is interesting.", "pattern": "affirmative", "note": "adjektivum"},
+        {"id": "579a97bb-2e74-44a5-9091-fd4fd0b90e46", "cz": "To není zajímavé.", "en": "That is not interesting.", "pattern": "negative", "note": "zápor adjektiva"}
+        ]
+      },
+    {
+      "grammar": "Sloveso být (to be)",
+      "level": "A1",
+      "blok": "A1 sloveso být — věta 4",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "fad0b55c-2e1f-47d6-ae91-0d2c152e428a", "cz": "Jsem z České republiky.", "en": "I am from the Czech Republic.", "pattern": "affirmative", "note": "původ"},
+        {"id": "5aa139e6-ce32-41b4-818e-13fd8d434e7b", "cz": "Je z České republiky.", "en": "She is from the Czech Republic.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "414e6bf7-7bcd-43c7-b872-204d57f73ce4", "cz": "Jsi z České republiky?", "en": "Are you from the Czech Republic?", "pattern": "question", "note": "otázka"},
+        {"id": "492d27ce-81ab-468a-a9c9-7e295b289ea8", "cz": "Nejsem z České republiky.", "en": "I am not from the Czech Republic.", "pattern": "negative", "note": "zápor"},
+        {"id": "9255227b-e0ab-4c22-8276-e3f10e521ab9", "cz": "Odkud jsi?", "en": "Where are you from?", "pattern": "wh_question", "note": "WHERE otázka"},
+        {"id": "ff10231d-d7bd-4e68-9866-8a7b94d6e37f", "cz": "Odkud je on?", "en": "Where is he from?", "pattern": "wh_question", "note": "WHERE otázka 3. os."}
+        ]
+      },
+    {
+      "grammar": "Sloveso být (to be)",
+      "level": "A1",
+      "blok": "A1 sloveso být — věta 5",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "6369f644-9849-412c-9670-f48183a6a588", "cz": "Je to daleko.", "en": "It is far.", "pattern": "affirmative", "note": "vzdálenost"},
+        {"id": "c1d1522a-25fd-4c62-8032-75ed76d789aa", "cz": "Je to blízko.", "en": "It is near.", "pattern": "negative", "note": "opak"},
+        {"id": "3fac1855-5f74-408c-b982-871ab745190b", "cz": "Je to daleko?", "en": "Is it far?", "pattern": "question", "note": "otázka"},
+        {"id": "90dd5f35-b005-4d1c-aef0-8912be1e6d98", "cz": "Není to daleko.", "en": "It is not far.", "pattern": "negative", "note": "zápor"},
+        {"id": "d2faabff-fd44-451a-a859-3e1692b70c47", "cz": "Jak daleko je to?", "en": "How far is it?", "pattern": "wh_question", "note": "HOW FAR otázka"},
+        {"id": "84fc6696-0b44-48c8-9800-66ac62213d64", "cz": "Je to příliš daleko.", "en": "It is too far.", "pattern": "affirmative", "note": "příliš"}
+        ]
+      },
+    {
+      "grammar": "Sloveso být (to be)",
+      "level": "A1",
+      "blok": "A1 sloveso být — věta 6",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "a126836f-b315-4d47-8276-1b810b17dc1c", "cz": "Je mi třicet let.", "en": "I am thirty years old.", "pattern": "affirmative", "note": "věk"},
+        {"id": "6ac913fd-a8cf-47a7-b65b-0026b74887cc", "cz": "Je mu třicet let.", "en": "He is thirty years old.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "c20d0079-f782-47e6-9b16-3182739eb8d5", "cz": "Kolik ti je let?", "en": "How old are you?", "pattern": "wh_question", "note": "HOW OLD otázka"},
+        {"id": "33d89da0-047b-4b49-96b5-75f502128cbc", "cz": "Kolik je mu let?", "en": "How old is he?", "pattern": "wh_question", "note": "HOW OLD 3. os."},
+        {"id": "d43376dc-de69-419a-a9ef-334fcba386e7", "cz": "Je jí čtyřicet let.", "en": "She is forty years old.", "pattern": "third_person", "note": "3. osoba ž."},
+        {"id": "c212d656-bc10-4253-8eed-9c7992d281d5", "cz": "Je mi skoro čtyřicet.", "en": "I am almost forty.", "pattern": "affirmative", "note": "almost"}
+        ]
+      },
+    {
+      "grammar": "Sponová slovesa",
+      "level": "A1",
+      "blok": "A1 sponová slovesa — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "b4183f25-3cbf-4c1e-adf1-12e33396d490", "cz": "Vypadá unaveně.", "en": "She looks tired.", "pattern": "affirmative", "note": "look + adj."},
+        {"id": "92c30ed9-e8cc-4f0e-a137-37a4fb0596df", "cz": "Vypadáš dobře.", "en": "You look well.", "pattern": "negative", "note": "look well"},
+        {"id": "390d9167-bf8a-49d5-8a16-8242decd43b0", "cz": "Zní to zajímavě.", "en": "It sounds interesting.", "pattern": "question", "note": "sound + adj."},
+        {"id": "f4fab7b8-453d-426a-b140-9eee0203b84a", "cz": "To zní skvěle.", "en": "That sounds great.", "pattern": "wh_question", "note": "sounds great"},
+        {"id": "f47890d7-edf5-4924-af19-ca0ebada9c1a", "cz": "Cítím se dobře.", "en": "I feel fine.", "pattern": "affirmative", "note": "feel + adj."},
+        {"id": "2ccc6333-4f2c-46eb-8130-259be07d841f", "cz": "Necítím se dobře.", "en": "I don't feel well.", "pattern": "negative", "note": "feel - zápor"}
+        ]
+      },
+    {
+      "grammar": "Sponová slovesa",
+      "level": "A1",
+      "blok": "A1 sponová slovesa — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "fc1cfc58-b322-4630-b85d-c091a4ee003d", "cz": "Chutná to výborně.", "en": "It tastes delicious.", "pattern": "affirmative", "note": "taste + adj."},
+        {"id": "603480e8-bef5-4f95-972f-b9b1472b7c3a", "cz": "Jak to chutná?", "en": "How does it taste?", "pattern": "wh_question", "note": "HOW otázka"},
+        {"id": "1d06ed58-c021-4017-8d70-0b813ca0205f", "cz": "Vonní to krásně.", "en": "It smells wonderful.", "pattern": "question", "note": "smell + adj."},
+        {"id": "5dd71bf0-af00-41bc-b1e7-1a901058217a", "cz": "Stává se slavným.", "en": "He is becoming famous.", "pattern": "wh_question", "note": "become + adj."},
+        {"id": "c7214cdd-b217-42bb-8d74-4f7735a8ef63", "cz": "Zůstal klidný.", "en": "He stayed calm.", "pattern": "affirmative", "note": "stay + adj."},
+        {"id": "5fc07f5a-9c70-49d9-9e7a-bb0cb27f34ae", "cz": "Zdá se spokojený.", "en": "He seems happy.", "pattern": "affirmative", "note": "seem + adj."}
+        ]
+      },
+    {
+      "grammar": "There is / There are",
+      "level": "A1",
+      "blok": "A1 there is/are — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "3c76c7b0-eca2-4091-93fa-14876989012c", "cz": "V místnosti je stůl.", "en": "There is a table in the room.", "pattern": "affirmative", "note": "there is"},
+        {"id": "ad07863f-8f6a-4331-addc-fce1edc8947e", "cz": "V místnosti je stůl?", "en": "Is there a table in the room?", "pattern": "question", "note": "otázka"},
+        {"id": "0268c777-63ff-4c0b-b549-48dd4a50fc84", "cz": "V místnosti není stůl.", "en": "There isn't a table in the room.", "pattern": "negative", "note": "zápor"},
+        {"id": "6f28ae4d-502f-470f-b4c1-293f208560da", "cz": "V místnosti jsou dvě okna.", "en": "There are two windows in the room.", "pattern": "wh_question", "note": "there are"},
+        {"id": "1b973e03-5faf-4724-ac30-8911860ddea3", "cz": "Jsou v místnosti dvě okna?", "en": "Are there two windows in the room?", "pattern": "question", "note": "otázka mn.č."},
+        {"id": "b000212b-3379-4e52-80ea-f6c795a75261", "cz": "V místnosti nejsou žádná okna.", "en": "There are no windows in the room.", "pattern": "negative", "note": "zápor mn.č."}
+        ]
+      },
+    {
+      "grammar": "There is / There are",
+      "level": "A1",
+      "blok": "A1 there is/are — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "06fd76e5-018f-4300-a2ee-c36bcf6814e8", "cz": "Ve městě je nemocnice.", "en": "There is a hospital in the town.", "pattern": "affirmative", "note": "there is"},
+        {"id": "beb6f5dd-7258-4712-9391-2458bac66d66", "cz": "Ve městě je nemocnice?", "en": "Is there a hospital in the town?", "pattern": "question", "note": "otázka"},
+        {"id": "43c952dc-e477-495c-816a-33f0091572e1", "cz": "Ve městě není nemocnice.", "en": "There isn't a hospital in the town.", "pattern": "negative", "note": "zápor"},
+        {"id": "0e5eb4e2-06ca-4d0d-977c-3c3abc6ea500", "cz": "Ve městě je mnoho restaurací.", "en": "There are many restaurants in the town.", "pattern": "wh_question", "note": "there are + many"},
+        {"id": "9c6a9783-f5e0-43e7-8862-77f69f22ca71", "cz": "Kolik restaurací je ve městě?", "en": "How many restaurants are there in the town?", "pattern": "wh_question", "note": "HOW MANY otázka"},
+        {"id": "32e61807-3387-4f2f-b183-de5a62c1ae80", "cz": "Ve městě není žádný park.", "en": "There isn't any park in the town.", "pattern": "negative", "note": "any - zápor"}
+        ]
+      },
+    {
+      "grammar": "Zájmena",
+      "level": "A1",
+      "blok": "A1 tázací výrazy — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "f141e560-3932-4d0b-b771-6974e9c90c65", "cz": "Co děláš?", "en": "What do you do?", "pattern": "wh_question", "note": "WHAT - povolání"},
+        {"id": "68948513-1e89-4169-9587-2e19a9f801bd", "cz": "Co teď děláš?", "en": "What are you doing now?", "pattern": "wh_question", "note": "WHAT - průběh"},
+        {"id": "eed89f87-a510-4c28-93a6-b9558401e0e7", "cz": "Kdo to udělal?", "en": "Who did it?", "pattern": "wh_question", "note": "WHO - podmět"},
+        {"id": "227ee9fd-e113-48fe-9ca9-b2f5aff87102", "cz": "Koho znáš?", "en": "Who do you know?", "pattern": "wh_question", "note": "WHO - předmět"},
+        {"id": "ae907ae5-4fa7-4ae3-9044-98d563351906", "cz": "Kde bydlíš?", "en": "Where do you live?", "pattern": "wh_question", "note": "WHERE"},
+        {"id": "ddf2a09b-3991-45ed-a8c0-04645053ab43", "cz": "Odkud jsi?", "en": "Where are you from?", "pattern": "wh_question", "note": "WHERE FROM"}
+        ]
+      },
+    {
+      "grammar": "Zájmena",
+      "level": "A1",
+      "blok": "A1 tázací výrazy — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "f4648786-4bc9-4022-95a2-059aaaba8c1c", "cz": "Kdy přijdeš?", "en": "When will you come?", "pattern": "wh_question", "note": "WHEN"},
+        {"id": "a0020ac5-6e64-45f9-aff1-96890d52f40c", "cz": "Proč to děláš?", "en": "Why do you do it?", "pattern": "wh_question", "note": "WHY"},
+        {"id": "ddda245e-80b3-49e3-a422-66beba6dbbb5", "cz": "Jak se jmenuješ?", "en": "What is your name?", "pattern": "wh_question", "note": "WHAT - jméno"},
+        {"id": "3da8ff08-c085-4e92-8e17-6de43cbc62f0", "cz": "Jak se máš?", "en": "How are you?", "pattern": "wh_question", "note": "HOW"},
+        {"id": "748a3647-313a-44b9-93cf-bf01fde3c89f", "cz": "Jak starý jsi?", "en": "How old are you?", "pattern": "wh_question", "note": "HOW OLD"},
+        {"id": "3c845f2c-a9b2-4835-8037-b2e02f9d62d4", "cz": "Kolik to stojí?", "en": "How much does it cost?", "pattern": "wh_question", "note": "HOW MUCH"}
+        ]
+      },
+    {
+      "grammar": "Zájmena",
+      "level": "A1",
+      "blok": "A1 tázací výrazy — věta 3",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "5c40c95e-e0a0-48bb-8b10-74a85eceb9c9", "cz": "Které auto je tvoje?", "en": "Which car is yours?", "pattern": "affirmative", "note": "WHICH - výběr"},
+        {"id": "1998049e-9b52-42f8-bb7f-ee3c4bd53423", "cz": "Který den preferuješ?", "en": "Which day do you prefer?", "pattern": "negative", "note": "WHICH - den"},
+        {"id": "9cdd2712-1976-45c6-8c75-8d3bc929b465", "cz": "Čí je to kolo?", "en": "Whose bike is it?", "pattern": "wh_question", "note": "WHOSE"},
+        {"id": "24bbe4a9-329d-46f5-ab3b-2643d594398b", "cz": "Jak dlouho tam jsi?", "en": "How long have you been there?", "pattern": "wh_question", "note": "HOW LONG"},
+        {"id": "f15dfc1e-b42b-4a64-8810-cf9f5bccdf31", "cz": "Jak daleko je to?", "en": "How far is it?", "pattern": "wh_question", "note": "HOW FAR"},
+        {"id": "79e89aa3-c4c9-4587-862e-ebd7ef553549", "cz": "Jak často cvičíš?", "en": "How often do you exercise?", "pattern": "wh_question", "note": "HOW OFTEN"}
+        ]
+      },
+    {
+      "grammar": "Dovětky (question tags)",
+      "level": "A2",
+      "blok": "A2 dovětky — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "109c8a5b-3f8e-4374-80c6-239145da6eac", "cz": "Pracuješ tady, že?", "en": "You work here, don't you?", "pattern": "negative", "note": "kladná věta - záporný dovětek"},
+        {"id": "f6885914-8701-49b3-bd6a-2f9a8e1d9313", "cz": "Nepracuješ tady, že?", "en": "You don't work here, do you?", "pattern": "negative", "note": "záporná věta - kladný dovětek"},
+        {"id": "aee7852b-9f3a-4603-84c6-2b3dfe20f6f3", "cz": "Je to hezké, že?", "en": "It is nice, isn't it?", "pattern": "question", "note": "is it - isn't it"},
+        {"id": "0d552cb8-7306-4331-b0b7-57ef35fcd3bc", "cz": "Není to hezké, že?", "en": "It isn't nice, is it?", "pattern": "wh_question", "note": "isn't it - is it"},
+        {"id": "4c75af8c-4c49-4ae1-8e3a-2c976ca4e347", "cz": "Byl jsi tam, že?", "en": "You were there, weren't you?", "pattern": "affirmative", "note": "were - weren't"},
+        {"id": "42235bfe-4600-4e49-9482-a80eaad9eadd", "cz": "Nebyl jsi tam, že?", "en": "You weren't there, were you?", "pattern": "affirmative", "note": "weren't - were"}
+        ]
+      },
+    {
+      "grammar": "Dovětky (question tags)",
+      "level": "A2",
+      "blok": "A2 dovětky — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "646d45f0-d67f-44f5-ad5e-1713d9903cea", "cz": "Přijdeš, že?", "en": "You will come, won't you?", "pattern": "affirmative", "note": "will - won't"},
+        {"id": "85e41db0-3376-47db-bc5a-ec208145b276", "cz": "Nepřijdeš, že?", "en": "You won't come, will you?", "pattern": "negative", "note": "won't - will"},
+        {"id": "f3cd4d81-609c-4739-9b77-4e3b4c3a22ce", "cz": "Umíš řídit, že?", "en": "You can drive, can't you?", "pattern": "question", "note": "can - can't"},
+        {"id": "4008d377-8104-457e-b621-04064513c794", "cz": "Neumíš řídit, že?", "en": "You can't drive, can you?", "pattern": "wh_question", "note": "can't - can"},
+        {"id": "14d85564-f690-4614-a504-d16eb34dbc9e", "cz": "Udělal to, že?", "en": "He did it, didn't he?", "pattern": "affirmative", "note": "did - didn't"},
+        {"id": "1a832eb0-5a03-47d2-ba47-c96b7addcfcc", "cz": "Neudělal to, že?", "en": "He didn't do it, did he?", "pattern": "affirmative", "note": "didn't - did"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A2",
+      "blok": "A2 dva předměty — věta 1",
+      "topic": "Práce a kancelář",
+      "sentences": [
+        {"id": "db1ef63c-415f-4ed2-a3ae-9bb68bd3bc4b", "cz": "Pošlu šéfovi zprávu.", "en": "I will send my boss the report.", "pattern": "affirmative", "note": "komu + co"},
+        {"id": "1496e33f-d9d6-49cf-9e16-3b9149b438e6", "cz": "Pošlu zprávu šéfovi.", "en": "I will send the report to my boss.", "pattern": "negative", "note": "co + komu"},
+        {"id": "6bc41680-f074-46ff-98a9-08a44ed4c26d", "cz": "Co pošleš šéfovi?", "en": "What will you send your boss?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "fcd7331d-c6ab-452f-ac61-6d6d1dc6e1d5", "cz": "Komu pošleš zprávu?", "en": "Who will you send the report to?", "pattern": "wh_question", "note": "WHO otázka"},
+        {"id": "87ed907a-6848-4062-9292-821168915517", "cz": "Nepošlu šéfovi zprávu.", "en": "I won't send my boss the report.", "pattern": "negative", "note": "zápor"},
+        {"id": "3cbb0648-d8d4-43c9-9d8b-c3c05d70f072", "cz": "Pošle on šéfovi zprávu?", "en": "Will he send his boss the report?", "pattern": "question", "note": "otázka 3. os."}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A2",
+      "blok": "A2 dva předměty — věta 2",
+      "topic": "Práce a kancelář",
+      "sentences": [
+        {"id": "0f683bc9-9db5-4d2a-81c8-2a6e174e3fd7", "cz": "Ukázal jsem rodičům výsledky.", "en": "I showed my parents the results.", "pattern": "wh_question", "note": "show"},
+        {"id": "80783ceb-c9c0-482c-9777-8840c8d3dddb", "cz": "Ukázal jsem výsledky rodičům.", "en": "I showed the results to my parents.", "pattern": "negative", "note": "obrácený slovosled"},
+        {"id": "1d882498-813d-42c6-a5d8-741e88ac201e", "cz": "Co jsi ukázal rodičům?", "en": "What did you show your parents?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "60b0b721-4e20-4a61-bd89-3b9924c7c79b", "cz": "Komu jsi ukázal výsledky?", "en": "Who did you show the results to?", "pattern": "wh_question", "note": "WHO otázka"},
+        {"id": "8806554f-aac6-4c36-874e-bca834513aad", "cz": "Neukázal jsem rodičům výsledky.", "en": "I didn't show my parents the results.", "pattern": "negative", "note": "zápor"},
+        {"id": "9eaea6f3-6c21-4556-9265-054bb9309e64", "cz": "Ukázala ona rodičům výsledky?", "en": "Did she show her parents the results?", "pattern": "question", "note": "otázka 3. os."}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A2",
+      "blok": "A2 dva předměty — věta 3",
+      "topic": "Práce a kancelář",
+      "sentences": [
+        {"id": "9b494682-65ca-47a6-b227-6ff294eec0f7", "cz": "Půjčil jsem kolegovi peníze.", "en": "I lent my colleague some money.", "pattern": "affirmative", "note": "lend"},
+        {"id": "c16127ec-0405-4627-a596-26afb5dae169", "cz": "Půjčil jsem peníze kolegovi.", "en": "I lent some money to my colleague.", "pattern": "negative", "note": "obrácený slovosled"},
+        {"id": "148bc922-6da9-483a-9738-e9f641158885", "cz": "Půjčil jsi kolegovi peníze?", "en": "Did you lend your colleague some money?", "pattern": "question", "note": "otázka"},
+        {"id": "31069cde-cfd3-492b-824d-e42b45f51114", "cz": "Nepůjčil jsem kolegovi peníze.", "en": "I didn't lend my colleague any money.", "pattern": "negative", "note": "zápor"},
+        {"id": "ab088d89-783f-41c2-aaba-b766f61cfd6b", "cz": "Komu jsi půjčil peníze?", "en": "Who did you lend the money to?", "pattern": "wh_question", "note": "WHO otázka"},
+        {"id": "5056ad68-8ab8-4d87-95a4-870ca89864a6", "cz": "Půjčil on kolegovi peníze?", "en": "Did he lend his colleague some money?", "pattern": "question", "note": "otázka 3. os."}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A2",
+      "blok": "A2 dva předměty — věta 4",
+      "topic": "Práce a kancelář",
+      "sentences": [
+        {"id": "29f3bea4-1f6e-428e-842b-f784960a9a8d", "cz": "Koupil jsem dceři dárek.", "en": "I bought my daughter a present.", "pattern": "affirmative", "note": "buy"},
+        {"id": "c30221aa-755f-4b22-827b-71d20fd2656e", "cz": "Koupil jsem dárek dceři.", "en": "I bought a present for my daughter.", "pattern": "negative", "note": "for"},
+        {"id": "79d277e0-769e-4925-8d31-19b6d4294ee4", "cz": "Koupil jsi dceři dárek?", "en": "Did you buy your daughter a present?", "pattern": "question", "note": "otázka"},
+        {"id": "cfd88258-2c1d-4107-98d9-3dae97057072", "cz": "Nekoupil jsem dceři dárek.", "en": "I didn't buy my daughter a present.", "pattern": "negative", "note": "zápor"},
+        {"id": "069aa352-7157-41af-b918-aa740cd12a23", "cz": "Co jsi koupil dceři?", "en": "What did you buy your daughter?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "bd400593-3833-418c-b28a-b8f538cb5d2f", "cz": "Komu jsi koupil dárek?", "en": "Who did you buy the present for?", "pattern": "wh_question", "note": "WHO otázka"}
+        ]
+      },
+    {
+      "grammar": "There is / There are",
+      "level": "A2",
+      "blok": "A2 existenční vazba - minulost — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "32beaa97-8206-4f6a-90bc-191ebaa340e6", "cz": "Byl tam stůl.", "en": "There was a table there.", "pattern": "affirmative", "note": "there was"},
+        {"id": "74a3e585-b419-47ad-9dc6-681e8f397aa4", "cz": "Byl tam stůl?", "en": "Was there a table there?", "pattern": "question", "note": "otázka"},
+        {"id": "60beb64f-c0a3-4a12-8272-06c21039c856", "cz": "Nebyl tam stůl.", "en": "There wasn't a table there.", "pattern": "negative", "note": "zápor"},
+        {"id": "2982eb36-7f8f-43d9-a420-0e165c23da23", "cz": "Bylo tam mnoho lidí.", "en": "There were a lot of people there.", "pattern": "wh_question", "note": "there were"},
+        {"id": "5a6ab4b8-24b0-47b4-95d8-805b80c7fad3", "cz": "Bylo tam mnoho lidí?", "en": "Were there a lot of people there?", "pattern": "question", "note": "otázka mn.č."},
+        {"id": "8f35dc83-f25b-4977-8ae5-6a6a12020acd", "cz": "Nebylo tam mnoho lidí.", "en": "There weren't many people there.", "pattern": "negative", "note": "zápor mn.č."}
+        ]
+      },
+    {
+      "grammar": "Frázová slovesa",
+      "level": "A2",
+      "blok": "A2 frázová slovesa — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "ed485a87-3b66-4fa5-b555-2c125cf2c602", "cz": "Vzal jsem to zpět.", "en": "I took it back.", "pattern": "affirmative", "note": "take back"},
+        {"id": "0328052d-166e-421e-aea7-d79f53d1f71b", "cz": "Vzdal jsem to.", "en": "I gave up.", "pattern": "negative", "note": "give up"},
+        {"id": "6a32ae66-e40a-4bc3-bc54-3ee97ac7e361", "cz": "Vyzkoušel jsem to.", "en": "I tried it out.", "pattern": "question", "note": "try out"},
+        {"id": "d31ebfea-b8f5-4a0b-8251-aa645010991b", "cz": "Zjistil jsem to.", "en": "I found it out.", "pattern": "wh_question", "note": "find out"},
+        {"id": "102cd097-fe51-4ff6-9263-d677fd254e73", "cz": "Vyplnil jsem formulář.", "en": "I filled in the form.", "pattern": "affirmative", "note": "fill in"},
+        {"id": "bbe6dd38-92f4-4d70-ac87-ca5bd02ea508", "cz": "Odložil jsem to.", "en": "I put it off.", "pattern": "affirmative", "note": "put off"}
+        ]
+      },
+    {
+      "grammar": "Frázová slovesa",
+      "level": "A2",
+      "blok": "A2 frázová slovesa — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "0e4d5109-9180-4023-8474-e7deb67ef60b", "cz": "Přišel jsem na to.", "en": "I came up with it.", "pattern": "affirmative", "note": "come up with"},
+        {"id": "614606ae-0412-4fb3-b7a0-2d7b3c497ca1", "cz": "Těším se na to.", "en": "I look forward to it.", "pattern": "negative", "note": "look forward to"},
+        {"id": "7cb9fcca-13c8-4219-8cbc-a8895ea5705a", "cz": "Postaral jsem se o to.", "en": "I looked after it.", "pattern": "question", "note": "look after"},
+        {"id": "4d834fb6-9e90-4756-9bd4-cb7e2203504b", "cz": "Vzdal se toho.", "en": "He gave it up.", "pattern": "wh_question", "note": "give up - předmět"},
+        {"id": "8e34696b-e4cd-4de9-a27d-b43defeef97f", "cz": "Vypnul televizi.", "en": "He turned off the TV.", "pattern": "affirmative", "note": "turn off"},
+        {"id": "5d532800-e7ff-4fb8-9592-9b7c22385b25", "cz": "Zapnul světlo.", "en": "He turned on the light.", "pattern": "affirmative", "note": "turn on"}
+        ]
+      },
+    {
+      "grammar": "Gerundium",
+      "level": "A2",
+      "blok": "A2 gerundium — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "bd2705cc-138e-43c8-b403-d3046c2b665d", "cz": "Bavím se hraním fotbalu.", "en": "I enjoy playing football.", "pattern": "affirmative", "note": "enjoy + -ing"},
+        {"id": "b9d6b927-39d1-4d14-b7f6-33aa883ec8a5", "cz": "Baví ho hraní fotbalu.", "en": "He enjoys playing football.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "ec79bb34-e83d-40c8-a607-eb87d3407b7e", "cz": "Baví tě hraní fotbalu?", "en": "Do you enjoy playing football?", "pattern": "question", "note": "otázka"},
+        {"id": "106bf698-c6e4-4879-8600-49c386714907", "cz": "Moc mě to nebaví.", "en": "I don't enjoy it much.", "pattern": "negative", "note": "zápor"},
+        {"id": "b92a80f5-2bb0-4a03-8336-762a588e4661", "cz": "Přestal kouřit.", "en": "He stopped smoking.", "pattern": "affirmative", "note": "stop + -ing"},
+        {"id": "e60b74f0-bc43-4561-a301-74286ad561a7", "cz": "Začal běhat.", "en": "He started running.", "pattern": "affirmative", "note": "start + -ing"}
+        ]
+      },
+    {
+      "grammar": "Gerundium",
+      "level": "A2",
+      "blok": "A2 gerundium — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "04072631-5381-41c0-8b93-1bf5ae14e761", "cz": "Myslím na odjezd.", "en": "I am thinking about leaving.", "pattern": "affirmative", "note": "think about + -ing"},
+        {"id": "da5a4efa-4ab4-432b-9ff9-44621efbd9b5", "cz": "Přemýšlím o změně práce.", "en": "I am thinking about changing jobs.", "pattern": "negative", "note": "think about + -ing"},
+        {"id": "d2ada77e-b893-4ced-86b9-831a747bb5d3", "cz": "Díky za pomoc.", "en": "Thank you for helping.", "pattern": "question", "note": "thank for + -ing"},
+        {"id": "54b391f7-1ce7-4654-9b30-a3bc172bc4e2", "cz": "Omlouvám se za zpoždění.", "en": "I am sorry for being late.", "pattern": "wh_question", "note": "sorry for + -ing"},
+        {"id": "0a19f171-516b-462b-8de9-f9d3a1f8882b", "cz": "Je dobrý ve vaření.", "en": "He is good at cooking.", "pattern": "affirmative", "note": "good at + -ing"},
+        {"id": "ec5f4fff-cfde-41dc-a294-1132b8d16a7e", "cz": "Špatně snáším čekání.", "en": "I am bad at waiting.", "pattern": "affirmative", "note": "bad at + -ing"}
+        ]
+      },
+    {
+      "grammar": "Gerundium",
+      "level": "A2",
+      "blok": "A2 gerundium — věta 3",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "ba27a73b-5e51-4cba-8b15-f83625e0d4c5", "cz": "Kouření je škodlivé.", "en": "Smoking is harmful.", "pattern": "affirmative", "note": "gerundium jako podmět"},
+        {"id": "32a33f3e-b283-40c6-b247-f166d3f6413c", "cz": "Učení anglicky je zábavné.", "en": "Learning English is fun.", "pattern": "negative", "note": "gerundium jako podmět"},
+        {"id": "a1b00eb9-c021-485a-a693-dae6d583ff8d", "cz": "Moje hobby je čtení.", "en": "My hobby is reading.", "pattern": "question", "note": "gerundium jako přísudek"},
+        {"id": "0e80527d-c919-47e3-bf83-ab933f3f2b64", "cz": "Zvykl si na vstávání brzy.", "en": "He got used to getting up early.", "pattern": "wh_question", "note": "get used to + -ing"},
+        {"id": "62b8c268-6f2c-4318-9d8d-c67a126f8227", "cz": "Vyhýbám se řízení v noci.", "en": "I avoid driving at night.", "pattern": "affirmative", "note": "avoid + -ing"},
+        {"id": "8c9ccf4e-3fcd-48af-b068-7b5f3c2f6644", "cz": "Nedokáže přestat mluvit.", "en": "She can't stop talking.", "pattern": "affirmative", "note": "can't stop + -ing"}
+        ]
+      },
+    {
+      "grammar": "Infinitiv",
+      "level": "A2",
+      "blok": "A2 infinitiv — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "7a5f4308-d8f6-4ef8-b748-59a53868e01e", "cz": "Chci jít domů.", "en": "I want to go home.", "pattern": "affirmative", "note": "want to"},
+        {"id": "2c3f1643-2b54-4534-84b4-67fe2c512738", "cz": "Chce jít domů.", "en": "She wants to go home.", "pattern": "third_person", "note": "want to - 3. os."},
+        {"id": "03cfb5ac-2eb7-4016-847b-5aeb628d09a0", "cz": "Chceš jít domů?", "en": "Do you want to go home?", "pattern": "question", "note": "otázka"},
+        {"id": "7cc93b94-779f-4bfe-b63b-e051b241e7a2", "cz": "Nechci jít domů.", "en": "I don't want to go home.", "pattern": "negative", "note": "zápor"},
+        {"id": "2731317f-6cf3-4611-8194-e824abdbcee4", "cz": "Potřebuji koupit mléko.", "en": "I need to buy milk.", "pattern": "affirmative", "note": "need to"},
+        {"id": "7380741b-f9bd-4b39-8837-26baa1507b63", "cz": "Rozhodl se zůstat.", "en": "He decided to stay.", "pattern": "affirmative", "note": "decide to"}
+        ]
+      },
+    {
+      "grammar": "Infinitiv",
+      "level": "A2",
+      "blok": "A2 infinitiv — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "abced39e-a187-45dc-99dc-c0afbb293a57", "cz": "Pomohl mi to udělat.", "en": "He helped me do it.", "pattern": "affirmative", "note": "help + holý infinitiv"},
+        {"id": "f03b2bb3-f5a3-4ad8-b45f-53eea8ab4fe0", "cz": "Nechal mě odejít.", "en": "He let me go.", "pattern": "negative", "note": "let + holý infinitiv"},
+        {"id": "1f280e9e-68b7-4142-8d66-f84c522e2c14", "cz": "Přiměl mě zůstat.", "en": "He made me stay.", "pattern": "question", "note": "make + holý infinitiv"},
+        {"id": "bc516df1-bae5-4f43-be04-4706145738ba", "cz": "Viděl jsem ho přijít.", "en": "I saw him come.", "pattern": "wh_question", "note": "smyslové sloveso + holý inf."},
+        {"id": "426d9210-5c92-47f7-9523-063688abdee0", "cz": "Slyšel jsem ji zpívat.", "en": "I heard her sing.", "pattern": "affirmative", "note": "hear + holý infinitiv"},
+        {"id": "93b2a665-273d-4cda-9f9e-94d1f230c1aa", "cz": "Sledoval jsem je pracovat.", "en": "I watched them work.", "pattern": "affirmative", "note": "watch + holý infinitiv"}
+        ]
+      },
+    {
+      "grammar": "Infinitiv",
+      "level": "A2",
+      "blok": "A2 infinitiv — věta 3",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "8166614a-3342-46bd-9c18-8f581a8daccc", "cz": "Jsem rád, že tě vidím.", "en": "I am glad to see you.", "pattern": "affirmative", "note": "adjektivum + to"},
+        {"id": "851b9c0d-6c4f-4d06-babb-f6faf2956817", "cz": "Je těžké se to naučit.", "en": "It is difficult to learn.", "pattern": "negative", "note": "it is + adj + to"},
+        {"id": "35fb7bca-015b-4800-bc54-eaca35112d69", "cz": "Je snadné to říct.", "en": "It is easy to say.", "pattern": "question", "note": "it is easy to"},
+        {"id": "2c7c4e84-3136-4c92-aa02-23fba621f3c3", "cz": "Byl první, kdo přišel.", "en": "He was the first to come.", "pattern": "wh_question", "note": "the first to"},
+        {"id": "c886712c-157b-46b2-a69b-1da4ca0ba2d8", "cz": "Nemám co dělat.", "en": "I have nothing to do.", "pattern": "affirmative", "note": "nothing to do"},
+        {"id": "2f011e0a-cb3e-4ac0-b3b5-a0a326ada443", "cz": "Mám spoustu práce.", "en": "I have a lot of work to do.", "pattern": "affirmative", "note": "a lot to do"}
+        ]
+      },
+    {
+      "grammar": "Kvantifikátory (all/both/each)",
+      "level": "A2",
+      "blok": "A2 kvantifikátory — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "07aab5c4-424a-46ef-9d9d-4f8c5a8a2471", "cz": "Všichni studenti přišli.", "en": "All the students came.", "pattern": "plural", "note": "all + mn.č."},
+        {"id": "ec317363-ceb0-4470-a305-e5844f2fa996", "cz": "Každý student přišel.", "en": "Every student came.", "pattern": "negative", "note": "every + j.č."},
+        {"id": "a0c0e613-45f7-4d8e-a4e0-bab83b9c9924", "cz": "Každý z nich přišel.", "en": "Each of them came.", "pattern": "question", "note": "each of"},
+        {"id": "b669a888-47b4-4309-8da8-661d84934704", "cz": "Oba přišli.", "en": "Both of them came.", "pattern": "wh_question", "note": "both"},
+        {"id": "34d73a2c-ed1c-4db0-9090-cbe33ad276ad", "cz": "Ani jeden nepřišel.", "en": "Neither of them came.", "pattern": "affirmative", "note": "neither"},
+        {"id": "0ba5b176-c5a2-46af-afc4-3890f0cbf20e", "cz": "Jeden nebo druhý přijde.", "en": "Either of them will come.", "pattern": "affirmative", "note": "either"}
+        ]
+      },
+    {
+      "grammar": "Kvantifikátory (all/both/each)",
+      "level": "A2",
+      "blok": "A2 kvantifikátory — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "68b3fa68-278a-455d-8faa-68410ecce140", "cz": "Mám obě knihy.", "en": "I have both books.", "pattern": "plural", "note": "both + mn.č."},
+        {"id": "0879bc29-a84c-4af3-999f-073c84273b84", "cz": "Každá kniha je jiná.", "en": "Each book is different.", "pattern": "negative", "note": "each + j.č."},
+        {"id": "479281c1-e346-4881-968d-082a0dd79ef5", "cz": "Všechny knihy jsou zde.", "en": "All the books are here.", "pattern": "plural", "note": "all + mn.č."},
+        {"id": "df10ff15-bfe1-41fa-b2cc-b58bcf7c750a", "cz": "Žádná kniha tam není.", "en": "Neither book is there.", "pattern": "wh_question", "note": "neither + j.č."},
+        {"id": "11e0cf71-756e-4642-9c30-9adeb1e3cb81", "cz": "Buď tato nebo tamta.", "en": "Either this one or that one.", "pattern": "affirmative", "note": "either...or"},
+        {"id": "eca708c4-2d3b-4fd1-80a7-d4786fd31069", "cz": "Ani jedna není tady.", "en": "Neither one is here.", "pattern": "affirmative", "note": "neither...nor"}
+        ]
+      },
+    {
+      "grammar": "Kvantifikátory (all/both/each)",
+      "level": "A2",
+      "blok": "A2 kvantifikátory — věta 3",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "767391d2-16cf-42a9-84be-ed477afb4bc3", "cz": "Celý den pracoval.", "en": "He worked all day.", "pattern": "affirmative", "note": "all day"},
+        {"id": "07345af0-6b05-4517-8742-3e54c62791ff", "cz": "Každý den pracuje.", "en": "He works every day.", "pattern": "negative", "note": "every day"},
+        {"id": "99ee2d74-8127-4148-b717-2003b1d8d0b5", "cz": "Pracuje každý den?", "en": "Does he work every day?", "pattern": "question", "note": "otázka"},
+        {"id": "0622ba31-7f14-4d3a-925c-25e93202e73d", "cz": "Nepracuje každý den.", "en": "He doesn't work every day.", "pattern": "negative", "note": "zápor"},
+        {"id": "6b4afddc-7e86-4d18-9967-be119c9bbddc", "cz": "Pracuje každý druhý den.", "en": "He works every other day.", "pattern": "affirmative", "note": "every other day"},
+        {"id": "2e15d11a-8f78-4b6e-acb0-6a74132bb9b8", "cz": "Pracuje každý víkend.", "en": "He works every weekend.", "pattern": "affirmative", "note": "every weekend"}
+        ]
+      },
+    {
+      "grammar": "Minulý čas průběhový",
+      "level": "A2",
+      "blok": "A2 minulý průběhový — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "d7140c01-c66b-40b9-bddf-68722435834f", "cz": "Pracoval jsem, když zavolala.", "en": "I was working when she called.", "pattern": "wh_question", "note": "when + past simple"},
+        {"id": "84923af0-b5f1-44a7-b2d9-c321a87718ae", "cz": "Pracovala, když jsem zavolal.", "en": "She was working when I called.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "5111f049-5a8b-4150-b66b-4d3bb3c425d3", "cz": "Pracoval jsi, když zavolala?", "en": "Were you working when she called?", "pattern": "question", "note": "otázka"},
+        {"id": "ee443438-1b40-4d5a-94bc-f3ec9666260a", "cz": "Nepracoval jsem, když zavolala.", "en": "I wasn't working when she called.", "pattern": "negative", "note": "zápor"},
+        {"id": "4024e84d-dbd5-4c96-b29a-569bc08003a1", "cz": "Co jsi dělal, když zavolala?", "en": "What were you doing when she called?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "6d14db39-0d0a-4fdd-a59c-0969e124f653", "cz": "Pracoval on, když zavolala?", "en": "Was he working when she called?", "pattern": "question", "note": "otázka 3. os."}
+        ]
+      },
+    {
+      "grammar": "Minulý čas průběhový",
+      "level": "A2",
+      "blok": "A2 minulý průběhový — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "514066c6-19de-4723-b245-abb5a3336e58", "cz": "Celé ráno jsem četl.", "en": "I was reading all morning.", "pattern": "affirmative", "note": "celé ráno"},
+        {"id": "8853457d-48c7-48d4-be06-b12178d1d978", "cz": "Celé ráno četla.", "en": "She was reading all morning.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "348e1401-5b1f-4492-b5fd-dd1c8c46c430", "cz": "Četl jsi celé ráno?", "en": "Were you reading all morning?", "pattern": "question", "note": "otázka"},
+        {"id": "a986af72-a411-487d-a35d-ad279d10b7f3", "cz": "Celé ráno jsem nečetl.", "en": "I wasn't reading all morning.", "pattern": "negative", "note": "zápor"},
+        {"id": "b4590a40-71d8-4117-be49-0b02c4794157", "cz": "Co jsi dělal celé ráno?", "en": "What were you doing all morning?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "711d6efb-7196-4795-b00f-cfaeb9d46fb8", "cz": "Četli celé ráno.", "en": "They were reading all morning.", "pattern": "plural", "note": "množné číslo"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A2",
+      "blok": "A2 otázky s předložkou — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "8075d7db-e733-4ab4-a5d3-addd85c80355", "cz": "Čekám na autobus.", "en": "I am waiting for the bus.", "pattern": "affirmative", "note": "wait for"},
+        {"id": "2d9e329f-9008-4a09-a305-8a2190093ad6", "cz": "Na co čekáš?", "en": "What are you waiting for?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "12266b94-c236-4144-9337-e1079959983f", "cz": "Čekal jsem na autobus.", "en": "I was waiting for the bus.", "pattern": "question", "note": "minulý čas"},
+        {"id": "22144b50-aa58-460d-8f11-3a062640996a", "cz": "Na co jsi čekal?", "en": "What were you waiting for?", "pattern": "wh_question", "note": "WHAT minulý"},
+        {"id": "b644c6b9-6403-4020-a251-ad38d2ff4259", "cz": "Budu čekat na autobus.", "en": "I will wait for the bus.", "pattern": "affirmative", "note": "budoucí čas"},
+        {"id": "97c0500c-20a9-41ee-9cf2-bde37ea96137", "cz": "Čeká on na autobus?", "en": "Is he waiting for the bus?", "pattern": "question", "note": "otázka 3. os."}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A2",
+      "blok": "A2 otázky s předložkou — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "5ae33c54-1431-4725-953e-465a69286097", "cz": "Mluvím o práci.", "en": "I am talking about work.", "pattern": "affirmative", "note": "talk about"},
+        {"id": "09f2fdda-150a-4229-a593-99b4d6e8ed81", "cz": "O čem mluvíš?", "en": "What are you talking about?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "88e64a1d-17d0-4e22-a5d1-06495cb8bc79", "cz": "Mluvil jsem o práci.", "en": "I was talking about work.", "pattern": "question", "note": "minulý čas"},
+        {"id": "2935ed3f-e942-40d9-a59b-1b9b6d3828ff", "cz": "O čem jsi mluvil?", "en": "What were you talking about?", "pattern": "wh_question", "note": "WHAT minulý"},
+        {"id": "5430d7f3-a7d5-4220-ae2a-d639f57ac5a0", "cz": "S kým mluvíš?", "en": "Who are you talking to?", "pattern": "wh_question", "note": "WHO otázka"},
+        {"id": "d4b36e50-1bdc-4eca-b5fb-51fe14281f73", "cz": "Mluví ona o práci?", "en": "Is she talking about work?", "pattern": "question", "note": "otázka 3. os."}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A2",
+      "blok": "A2 otázky s předložkou — věta 3",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "a82867d0-70cf-4238-8f56-5fda57580a93", "cz": "Dívám se na televizi.", "en": "I am looking at the television.", "pattern": "affirmative", "note": "look at"},
+        {"id": "0fa0d148-8ab0-425a-9fc3-59dfed91c002", "cz": "Na co se díváš?", "en": "What are you looking at?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "5d0d0246-584e-4ea2-b24e-f4640e7c62c7", "cz": "Díval jsem se na televizi.", "en": "I was looking at the television.", "pattern": "question", "note": "minulý čas"},
+        {"id": "c5acdf6a-36ac-4d48-aeb7-369521375050", "cz": "Na co ses díval?", "en": "What were you looking at?", "pattern": "wh_question", "note": "WHAT minulý"},
+        {"id": "be4bbcc6-6225-4e4f-b78e-b125d74fafe0", "cz": "Nedívám se na televizi.", "en": "I am not looking at the television.", "pattern": "negative", "note": "zápor"},
+        {"id": "0588ba23-383c-4bcf-91dd-085af4b83628", "cz": "Dívá se on na televizi?", "en": "Is he looking at the television?", "pattern": "question", "note": "otázka 3. os."}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas průběhový",
+      "level": "A2",
+      "blok": "A2 průběhový čas — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "d6c95167-17b2-4978-825d-fd658ff77ed9", "cz": "Teď pracuji.", "en": "I am working now.", "pattern": "affirmative", "note": "oznamovací"},
+        {"id": "a63c4ca5-c98a-401b-b134-62cba0fe02a9", "cz": "Teď pracuje.", "en": "She is working now.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "0a9a2482-6694-4012-855b-b5343feefecc", "cz": "Teď pracuješ?", "en": "Are you working now?", "pattern": "question", "note": "otázka"},
+        {"id": "37d8bac9-ef1c-449c-a3f3-4336db512ecb", "cz": "Teď nepracuji.", "en": "I am not working now.", "pattern": "negative", "note": "zápor"},
+        {"id": "e490a3e9-638a-45d3-969d-a78c908529d9", "cz": "Pracuje on teď?", "en": "Is he working now?", "pattern": "question", "note": "otázka 3. os."},
+        {"id": "d4ad289f-e5f3-472c-aabc-c45f585d3de8", "cz": "Co teď děláš?", "en": "What are you doing now?", "pattern": "wh_question", "note": "WHAT otázka"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas průběhový",
+      "level": "A2",
+      "blok": "A2 průběhový čas — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "d8e3edc2-7cd8-4ffb-8633-180fb9e0a030", "cz": "Čtou knihu.", "en": "They are reading a book.", "pattern": "plural", "note": "množné číslo"},
+        {"id": "cc9978f0-507b-4eaa-aa54-e539c37ab285", "cz": "Čte knihu.", "en": "She is reading a book.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "ca77bdff-459d-431e-90e2-dce485f14866", "cz": "Čtou knihu?", "en": "Are they reading a book?", "pattern": "question", "note": "otázka mn.č."},
+        {"id": "9e3202c3-187f-4970-a88b-b8b7c09ebf7b", "cz": "Nečtou knihu.", "en": "They are not reading a book.", "pattern": "negative", "note": "zápor mn.č."},
+        {"id": "b929b72f-cf6d-449e-bf8c-25690a1aba98", "cz": "Co čtou?", "en": "What are they reading?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "469f73b0-f4e7-434a-9962-2beba7b501be", "cz": "Čte on knihu?", "en": "Is he reading a book?", "pattern": "question", "note": "otázka 3. os."}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas průběhový",
+      "level": "A2",
+      "blok": "A2 průběhový čas — věta 3",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "0701ccfa-feda-4a00-9f3c-d7b537c31da9", "cz": "Přijíždím do Brna.", "en": "I am coming to Brno.", "pattern": "affirmative", "note": "pohyb"},
+        {"id": "03151638-cdfb-4ed2-aa88-ea5920561fad", "cz": "Přijíždí do Brna.", "en": "He is coming to Brno.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "9ff76142-1c1f-4323-9384-3c5c8c30fbb4", "cz": "Přijíždíš do Brna?", "en": "Are you coming to Brno?", "pattern": "question", "note": "otázka"},
+        {"id": "dd34db3c-2473-4961-9bd2-e91b7c1e6b25", "cz": "Nepřijíždím do Brna.", "en": "I am not coming to Brno.", "pattern": "negative", "note": "zápor"},
+        {"id": "71fcc431-f33b-4891-b512-9a737e6598a2", "cz": "Kam přijíždíš?", "en": "Where are you coming to?", "pattern": "wh_question", "note": "WHERE otázka"},
+        {"id": "29bf4230-4bf1-4f9b-b757-57385083806d", "cz": "Přijíždí ona do Brna?", "en": "Is she coming to Brno?", "pattern": "question", "note": "otázka 3. os."}
+        ]
+      },
+    {
+      "grammar": "Předpřítomný čas",
+      "level": "A2",
+      "blok": "A2 předpřítomný čas — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "5dd26972-ba16-4c65-86c6-0c83ade888f8", "cz": "Už jsem to udělal.", "en": "I have already done it.", "pattern": "affirmative", "note": "already"},
+        {"id": "fff2293f-6c1a-4b80-a128-ccf112ddee12", "cz": "Už to udělala.", "en": "She has already done it.", "pattern": "third_person", "note": "already - 3. os."},
+        {"id": "958ccc54-3d35-4c83-869d-e393ee7bad5b", "cz": "Udělal jsi to už?", "en": "Have you done it yet?", "pattern": "question", "note": "yet - otázka"},
+        {"id": "3de86cd8-4507-43f5-9ffa-42e09bdbdd9a", "cz": "Ještě jsem to neudělal.", "en": "I haven't done it yet.", "pattern": "negative", "note": "yet - zápor"},
+        {"id": "772cab06-fbc6-409d-93cf-c27727ca82e7", "cz": "Udělala to už?", "en": "Has she done it yet?", "pattern": "question", "note": "yet - otázka 3. os."},
+        {"id": "ccf19519-b1ad-4c3c-bbbb-7186df6222c4", "cz": "Kolikrát jsi to udělal?", "en": "How many times have you done it?", "pattern": "wh_question", "note": "how many times"}
+        ]
+      },
+    {
+      "grammar": "Předpřítomný čas",
+      "level": "A2",
+      "blok": "A2 předpřítomný čas — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "a6b5abb0-5ecd-4dbf-aa6c-b44f273f2d06", "cz": "Byl jsem tam třikrát.", "en": "I have been there three times.", "pattern": "affirmative", "note": "zkušenost"},
+        {"id": "715361cc-b6ef-444c-ab77-d020b418a1d3", "cz": "Nikdy jsem tam nebyl.", "en": "I have never been there.", "pattern": "negative", "note": "never"},
+        {"id": "cd16f478-6c31-4e38-85ed-856509df1658", "cz": "Byl jsi tam někdy?", "en": "Have you ever been there?", "pattern": "question", "note": "ever"},
+        {"id": "ed51c27e-638a-4b1f-b21f-73fc8662815b", "cz": "Nikdy tam nebyla.", "en": "She has never been there.", "pattern": "third_person", "note": "never - 3. os."},
+        {"id": "48fa021f-1363-460f-9c83-1b2dd73c812c", "cz": "Byl on tam někdy?", "en": "Has he ever been there?", "pattern": "third_person", "note": "ever - 3. os."},
+        {"id": "66a78f37-7f48-4910-b266-dd9a07788fdc", "cz": "Kolikrát jsi tam byl?", "en": "How many times have you been there?", "pattern": "wh_question", "note": "how many times"}
+        ]
+      },
+    {
+      "grammar": "Předpřítomný čas",
+      "level": "A2",
+      "blok": "A2 předpřítomný čas — věta 3",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "2dd3f0b8-9e3a-4808-8b79-00699765ceda", "cz": "Právě jsem přišel.", "en": "I have just arrived.", "pattern": "affirmative", "note": "just"},
+        {"id": "f6598376-f754-4702-9a82-7cf67f5e0f9e", "cz": "Právě přišla.", "en": "She has just arrived.", "pattern": "third_person", "note": "just - 3. os."},
+        {"id": "ad7957a8-934c-4e24-a4ff-0f60c6a5e53c", "cz": "Právě jsi přišel?", "en": "Have you just arrived?", "pattern": "question", "note": "just - otázka"},
+        {"id": "8965075c-9a11-4ce9-a292-0f9e38b3d24d", "cz": "Ještě jsem nedorazil.", "en": "I haven't arrived yet.", "pattern": "negative", "note": "yet - zápor"},
+        {"id": "0d0c1f78-53c7-4e36-816c-57b7647a0245", "cz": "Právě přišel?", "en": "Has he just arrived?", "pattern": "question", "note": "just - otázka 3. os."},
+        {"id": "fb593fc6-dda3-446b-b670-3de0d3413a81", "cz": "Kdy jsi přišel?", "en": "When did you arrive?", "pattern": "affirmative", "note": "minulý čas vs. PP"}
+        ]
+      },
+    {
+      "grammar": "Some / any / much / many",
+      "level": "A2",
+      "blok": "A2 some/any/much/many — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "6933a4d4-5851-467c-b14f-dc390397fd29", "cz": "Mám nějaké peníze.", "en": "I have some money.", "pattern": "affirmative", "note": "some - kladné"},
+        {"id": "c3d363c7-7ebc-4318-bb7f-212727000529", "cz": "Nemám žádné peníze.", "en": "I don't have any money.", "pattern": "negative", "note": "any - zápor"},
+        {"id": "93dcf8a1-79a4-4961-a8a8-d75df9636d9b", "cz": "Máš nějaké peníze?", "en": "Do you have any money?", "pattern": "question", "note": "any - otázka"},
+        {"id": "f99557db-5d34-48a7-8e9e-a86f68fd3421", "cz": "Kolik peněz máš?", "en": "How much money do you have?", "pattern": "wh_question", "note": "how much"},
+        {"id": "c5c58cfd-48ac-4d82-8e8f-cd2bd314c153", "cz": "Mám málo peněz.", "en": "I have little money.", "pattern": "affirmative", "note": "little"},
+        {"id": "89cdba86-1b06-4b1c-9e59-d9d787c9aa94", "cz": "Mám dost peněz.", "en": "I have enough money.", "pattern": "affirmative", "note": "enough"}
+        ]
+      },
+    {
+      "grammar": "Some / any / much / many",
+      "level": "A2",
+      "blok": "A2 some/any/much/many — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "febf645d-e610-49ab-ad55-cf64e30d3749", "cz": "Mám nějaké přátele.", "en": "I have some friends.", "pattern": "affirmative", "note": "some - přátelé"},
+        {"id": "72af2738-2609-4bfe-b0a5-1ff5dc9cf025", "cz": "Nemám žádné přátele.", "en": "I don't have any friends.", "pattern": "negative", "note": "any - zápor"},
+        {"id": "bfedaaf6-88fe-44ad-8e88-a51f99bc0e5b", "cz": "Máš nějaké přátele?", "en": "Do you have any friends?", "pattern": "question", "note": "any - otázka"},
+        {"id": "ed23e5e9-f2bd-4ecf-b384-3ab58b856448", "cz": "Kolik přátel máš?", "en": "How many friends do you have?", "pattern": "wh_question", "note": "how many"},
+        {"id": "689431db-22de-4d48-9190-25eb886a9381", "cz": "Mám málo přátel.", "en": "I have few friends.", "pattern": "affirmative", "note": "few"},
+        {"id": "039bec75-9431-4ace-8901-640ce7a2a574", "cz": "Mám spoustu přátel.", "en": "I have a lot of friends.", "pattern": "affirmative", "note": "a lot of"}
+        ]
+      },
+    {
+      "grammar": "Souhlasné reakce",
+      "level": "A2",
+      "blok": "A2 souhlasné reakce — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "62644ae9-3c64-4519-a76c-fc4cc309384f", "cz": "Mám hlad. Já taky.", "en": "I am hungry. So am I.", "pattern": "affirmative", "note": "so am I"},
+        {"id": "d39b0d93-4e29-432b-b99c-f4e331f8b0cb", "cz": "Pracuji tady. Já taky.", "en": "I work here. So do I.", "pattern": "negative", "note": "so do I"},
+        {"id": "4c70fc38-293f-4a58-af88-5ad74fdda613", "cz": "Byl jsem tam. Já taky.", "en": "I was there. So was I.", "pattern": "question", "note": "so was I"},
+        {"id": "0ad35612-1969-48ee-b647-cf6401b3ccb7", "cz": "Nemám hlad. Já taky ne.", "en": "I am not hungry. Neither am I.", "pattern": "wh_question", "note": "neither am I"},
+        {"id": "dd095f41-bb1a-44b2-b470-9cc85f27a3ee", "cz": "Nepracuji tady. Já taky ne.", "en": "I don't work here. Neither do I.", "pattern": "affirmative", "note": "neither do I"},
+        {"id": "324cd98e-76f5-4036-a752-7ba06b91b6e9", "cz": "Nebyl jsem tam. Já taky ne.", "en": "I wasn't there. Neither was I.", "pattern": "affirmative", "note": "neither was I"}
+        ]
+      },
+    {
+      "grammar": "Stupňování přídavných jmen",
+      "level": "A2",
+      "blok": "A2 srovnávací vazby — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "188ce97e-7a62-4ecb-9428-5f526ad18f83", "cz": "Je tak vysoký jako já.", "en": "He is as tall as me.", "pattern": "affirmative", "note": "as...as"},
+        {"id": "65990535-aa07-4d37-a98f-41769c45b513", "cz": "Není tak vysoký jako já.", "en": "He is not as tall as me.", "pattern": "negative", "note": "not as...as"},
+        {"id": "8846bda7-13f9-4189-94f5-fc32f1a658c4", "cz": "Je stejně starý jako ty.", "en": "He is the same age as you.", "pattern": "question", "note": "the same...as"},
+        {"id": "33fd1994-3da1-4288-935f-c8105cf28dad", "cz": "Mluví anglicky tak dobře jako on.", "en": "She speaks English as well as him.", "pattern": "wh_question", "note": "as well as"},
+        {"id": "8caa2588-3747-4b66-b29b-8dccb8806a30", "cz": "Pracuje dvakrát tak tvrdě jako já.", "en": "She works twice as hard as me.", "pattern": "affirmative", "note": "twice as...as"},
+        {"id": "99d2b927-3162-4b99-8ef8-74fcdaeba192", "cz": "Čím víc pracuješ, tím lepší výsledky.", "en": "The more you work, the better results.", "pattern": "affirmative", "note": "the more...the more"}
+        ]
+      },
+    {
+      "grammar": "Stupňování přídavných jmen",
+      "level": "A2",
+      "blok": "A2 srovnávací vazby — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "bc8ea1c2-39a9-469a-89f1-7a2dc0f86880", "cz": "Je stále lepší.", "en": "He is getting better and better.", "pattern": "affirmative", "note": "better and better"},
+        {"id": "68b5b7a0-6c62-44dd-a0e3-11ad0fa41dbc", "cz": "Je stále horší.", "en": "It is getting worse and worse.", "pattern": "negative", "note": "worse and worse"},
+        {"id": "b4e4d2c6-3779-4949-b1f4-30dd579ab6a3", "cz": "Je stále dražší.", "en": "It is getting more and more expensive.", "pattern": "question", "note": "more and more"},
+        {"id": "650d3972-dfe6-4851-ac61-c45a83838507", "cz": "Čím dříve, tím lépe.", "en": "The sooner, the better.", "pattern": "wh_question", "note": "the sooner the better"},
+        {"id": "5e0d02a5-8639-403f-a4fc-034c9b77803c", "cz": "Je o rok starší než já.", "en": "She is a year older than me.", "pattern": "affirmative", "note": "o + číslovka + starší"},
+        {"id": "957c2485-887e-4314-a5e0-0ef739a882a4", "cz": "Je daleko lepší než já.", "en": "She is far better than me.", "pattern": "affirmative", "note": "far + komparativ"}
+        ]
+      },
+    {
+      "grammar": "Stupňování přídavných jmen",
+      "level": "A2",
+      "blok": "A2 stupňování — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "5beaedd0-d0cf-4f6d-a144-6191e0dea3fe", "cz": "Toto auto je rychlé.", "en": "This car is fast.", "pattern": "affirmative", "note": "základní stupeň"},
+        {"id": "cf465bc9-6fb1-447b-a6bf-2f3fc9b02359", "cz": "Toto auto je rychlejší.", "en": "This car is faster.", "pattern": "negative", "note": "2. stupeň"},
+        {"id": "58733c78-86ce-4b2a-be65-d9f81721c088", "cz": "Toto auto je nejrychlejší.", "en": "This car is the fastest.", "pattern": "question", "note": "3. stupeň"},
+        {"id": "09f62b70-f2fd-440f-9ef1-133035bb518e", "cz": "Toto auto je rychlejší než to.", "en": "This car is faster than that one.", "pattern": "wh_question", "note": "than - srovnání"},
+        {"id": "00db3622-d601-42e3-a395-375b4f0885de", "cz": "Které auto je rychlejší?", "en": "Which car is faster?", "pattern": "question", "note": "WHICH otázka"},
+        {"id": "0af6dd9a-5f9f-4b65-a8df-caeb9a0a5036", "cz": "Toto je nejrychlejší auto ze všech.", "en": "This is the fastest car of all.", "pattern": "affirmative", "note": "of all"}
+        ]
+      },
+    {
+      "grammar": "Stupňování přídavných jmen",
+      "level": "A2",
+      "blok": "A2 stupňování — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "ee81e9df-4a64-496e-970e-1dca581b4ae5", "cz": "Tato kniha je zajímavá.", "en": "This book is interesting.", "pattern": "affirmative", "note": "základní stupeň"},
+        {"id": "07b6c31f-8795-4928-9daa-b582c0200846", "cz": "Tato kniha je zajímavější.", "en": "This book is more interesting.", "pattern": "negative", "note": "more"},
+        {"id": "2935f75a-05ff-46cf-aa29-6fe7d4550721", "cz": "Tato kniha je nejzajímavější.", "en": "This book is the most interesting.", "pattern": "question", "note": "most"},
+        {"id": "b8fcacdd-b4e6-4146-87ef-97eb68c10b0e", "cz": "Tato kniha je zajímavější než ta.", "en": "This book is more interesting than that one.", "pattern": "wh_question", "note": "than"},
+        {"id": "f8067d0f-902c-4345-8237-c768b6b99ef8", "cz": "Která kniha je zajímavější?", "en": "Which book is more interesting?", "pattern": "question", "note": "WHICH otázka"},
+        {"id": "d4a187da-082b-4109-83da-a1622d5e45c5", "cz": "To je nejzajímavější kniha, jakou jsem četl.", "en": "It is the most interesting book I have ever read.", "pattern": "affirmative", "note": "ever + PP"}
+        ]
+      },
+    {
+      "grammar": "Stupňování přídavných jmen",
+      "level": "A2",
+      "blok": "A2 stupňování — věta 3",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "e6aaac66-f23f-41bf-bfcc-72564026fa00", "cz": "Je to dobré.", "en": "It is good.", "pattern": "affirmative", "note": "good"},
+        {"id": "5491c26a-e0db-428b-a4d3-4e60d3635758", "cz": "Je to lepší.", "en": "It is better.", "pattern": "negative", "note": "better - nepravidelné"},
+        {"id": "98904e9a-3c3c-4eba-a28a-432cd2aa82fb", "cz": "Je to nejlepší.", "en": "It is the best.", "pattern": "question", "note": "best - nepravidelné"},
+        {"id": "4b8f1111-85f8-4553-8ed9-cc83c4231bec", "cz": "Je to horší.", "en": "It is worse.", "pattern": "wh_question", "note": "worse - nepravidelné"},
+        {"id": "86c8eb33-5130-4083-bb22-c9f4b71e863f", "cz": "Je to nejhorší.", "en": "It is the worst.", "pattern": "affirmative", "note": "worst - nepravidelné"},
+        {"id": "646b9047-995f-4082-be2e-84a7ed0767cb", "cz": "Je to lepší než jsem čekal.", "en": "It is better than I expected.", "pattern": "affirmative", "note": "than + věta"}
+        ]
+      },
+    {
+      "grammar": "Tvoření slov",
+      "level": "A2",
+      "blok": "A2 tvoření slov — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "3917d4e5-06fc-4ac5-a92d-72dcf669dbb0", "cz": "Je velmi pečlivý.", "en": "He is very careful.", "pattern": "affirmative", "note": "-ful = plný vlastnosti"},
+        {"id": "dcc3467f-3641-4848-b24c-e20ac56acb41", "cz": "Je velmi neopatrný.", "en": "He is very careless.", "pattern": "negative", "note": "-less = bez vlastnosti"},
+        {"id": "6b161254-02f6-44e9-ae48-7c7e029c50b6", "cz": "To je velmi užitečné.", "en": "That is very useful.", "pattern": "question", "note": "-ful"},
+        {"id": "62b6c794-257b-4ce7-8984-76156cd6a96b", "cz": "To je k ničemu.", "en": "That is useless.", "pattern": "wh_question", "note": "-less"},
+        {"id": "a77c4d82-1eb1-4424-a832-aa7f97718b83", "cz": "Je velmi laskavý.", "en": "He is very kind.", "pattern": "affirmative", "note": "adjektivum"},
+        {"id": "c3708a38-88a1-4388-aa4e-27858b9cba93", "cz": "Udělal to laskavě.", "en": "He did it kindly.", "pattern": "affirmative", "note": "-ly = příslovce"}
+        ]
+      },
+    {
+      "grammar": "Tvoření slov",
+      "level": "A2",
+      "blok": "A2 tvoření slov — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "8d3196cb-0a2c-4531-b370-341744348678", "cz": "Pracuje jako manažer.", "en": "He works as a manager.", "pattern": "affirmative", "note": "-er = osoba"},
+        {"id": "187ae38c-4867-4365-a3d8-3d36f7aa52a0", "cz": "Je učitelem.", "en": "He is a teacher.", "pattern": "negative", "note": "-er = osoba"},
+        {"id": "7fee82f5-467e-4e4d-84ba-e6bf8f1f9989", "cz": "Plavání je zdravé.", "en": "Swimming is healthy.", "pattern": "question", "note": "-ing = podstatné jméno"},
+        {"id": "41b357cf-96bc-4e3b-94e6-3fd8ac5410ec", "cz": "Čtení je zábavné.", "en": "Reading is fun.", "pattern": "wh_question", "note": "-ing = podstatné jméno"},
+        {"id": "766d78d5-2928-474a-be6f-6ce8ecbc6e5f", "cz": "Je to velmi šťastné.", "en": "It is very happy.", "pattern": "affirmative", "note": "adjektivum"},
+        {"id": "06d89314-0c62-4fbd-9760-1edd966aa184", "cz": "Žije šťastně.", "en": "She lives happily.", "pattern": "affirmative", "note": "-y → -ily příslovce"}
+        ]
+      },
+    {
+      "grammar": "Tvoření slov",
+      "level": "A2",
+      "blok": "A2 tvoření slov — věta 3",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "34a2d463-36da-44ba-8fec-c011c643de06", "cz": "Je to možné.", "en": "It is possible.", "pattern": "affirmative", "note": "adjektivum"},
+        {"id": "8ac9b94a-6663-4d76-89d9-1d2632ff633a", "cz": "Je to nemožné.", "en": "It is impossible.", "pattern": "negative", "note": "im- = záporná předpona"},
+        {"id": "acd692e9-9e2f-4255-83e4-4c71c864e3c4", "cz": "Je to správné.", "en": "It is correct.", "pattern": "question", "note": "adjektivum"},
+        {"id": "adca7a1b-60de-4afc-a4b9-238cf1d7c14f", "cz": "Je to nesprávné.", "en": "It is incorrect.", "pattern": "negative", "note": "in- = záporná předpona"},
+        {"id": "628172d3-2b82-45fa-a780-b903393f6903", "cz": "Je šťastný.", "en": "He is happy.", "pattern": "affirmative", "note": "happy"},
+        {"id": "454fc53a-fbaa-4439-9c62-1a3fc1431e53", "cz": "Je nešťastný.", "en": "He is unhappy.", "pattern": "negative", "note": "un- = záporná předpona"}
+        ]
+      },
+    {
+      "grammar": "Způsobová — might/may",
+      "level": "A2",
+      "blok": "A2 způsobová slovesa II — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "d68f9448-5b42-4f0c-b03f-d3b3f546e904", "cz": "Mohl bys mi pomoci?", "en": "Could you help me?", "pattern": "affirmative", "note": "could - zdvořilá žádost"},
+        {"id": "5e4b26e5-90eb-4078-8a2e-5287db91c7cd", "cz": "Mohl bych si sednout?", "en": "Could I sit down?", "pattern": "negative", "note": "could - povolení"},
+        {"id": "66f79751-6af0-48a6-861e-ef15a1c9dfc3", "cz": "Možná přijde.", "en": "He might come.", "pattern": "question", "note": "might - možnost"},
+        {"id": "b4330a77-dbeb-45ca-9178-fcaa1fe0280f", "cz": "Možná nepřijde.", "en": "He might not come.", "pattern": "wh_question", "note": "might not"},
+        {"id": "a4716942-71ed-432b-81e4-6904a6dbf520", "cz": "Přijde možná pozdě.", "en": "She might be late.", "pattern": "affirmative", "note": "might + be"},
+        {"id": "c7ddb261-581b-42b0-8017-29d5fdfcd5af", "cz": "Měl bys to zkusit.", "en": "You ought to try it.", "pattern": "affirmative", "note": "ought to"}
+        ]
+      },
+    {
+      "grammar": "Způsobová — might/may",
+      "level": "A2",
+      "blok": "A2 způsobová slovesa II — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "3d4df93a-25c4-4f80-9d0a-a99fcf6e42cd", "cz": "Otevřeme okno?", "en": "Shall I open the window?", "pattern": "affirmative", "note": "shall I - nabídka"},
+        {"id": "e2125d02-f6af-40e5-9fad-e1e6bccebc75", "cz": "Zavolám taxi?", "en": "Shall I call a taxi?", "pattern": "negative", "note": "shall I - nabídka"},
+        {"id": "bdc765fc-7a10-4e39-bef0-42740203c2ac", "cz": "Musíš mít hlad.", "en": "You must be hungry.", "pattern": "question", "note": "must - deduktivní"},
+        {"id": "0f1cdab3-3735-4631-ba32-0cd279492079", "cz": "Nemůže být doma.", "en": "He can't be at home.", "pattern": "wh_question", "note": "can't - deduktivní"},
+        {"id": "37e14345-2c79-4b89-abf1-015b98d70fe9", "cz": "Musí být nemocný.", "en": "He must be ill.", "pattern": "affirmative", "note": "must - logická dedukce"},
+        {"id": "a5af601a-3dd5-444b-b1ed-ec90465ed7ab", "cz": "Nemůže mít pravdu.", "en": "She can't be right.", "pattern": "affirmative", "note": "can't - logická dedukce"}
+        ]
+      },
+    {
+      "grammar": "Předpřítomný čas",
+      "level": "B1",
+      "blok": "B1 PP prostý vs průběhový — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "5fe7b8ce-223f-478f-95d0-b70b302f28fc", "cz": "Napsal jsem dopis.", "en": "I have written a letter.", "pattern": "affirmative", "note": "PP prostý - hotová akce"},
+        {"id": "422db5b5-49d5-4bd7-b652-23828b0aca4d", "cz": "Píšu dopis.", "en": "I have been writing a letter.", "pattern": "negative", "note": "PP průběhový - probíhá"},
+        {"id": "a44888d8-3a7a-4321-9842-d373284d5b7f", "cz": "Přečetl jsem dvě knihy.", "en": "I have read two books.", "pattern": "question", "note": "PP prostý - výsledek"},
+        {"id": "dc3c4af1-0947-4ded-851d-2fcb0be7340a", "cz": "Čtu celý den.", "en": "I have been reading all day.", "pattern": "wh_question", "note": "PP průběhový - trvání"},
+        {"id": "21261f12-2e12-449c-bbd0-7fcf87f4356f", "cz": "Kolik knih jsi přečetl?", "en": "How many books have you read?", "pattern": "wh_question", "note": "HOW MANY - PP prostý"},
+        {"id": "8ad17337-41ce-4711-9cf2-5222ab9a78e3", "cz": "Jak dlouho čteš?", "en": "How long have you been reading?", "pattern": "wh_question", "note": "HOW LONG - PP průběhový"}
+        ]
+      },
+    {
+      "grammar": "Předpřítomný průběhový",
+      "level": "B1",
+      "blok": "B1 PP průběhový — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "dc717ed9-8080-4d29-8a2f-7cbdd847b74c", "cz": "Pracuji tady tři roky.", "en": "I have been working here for three years.", "pattern": "affirmative", "note": "for"},
+        {"id": "9e863a5d-b6c7-4984-be49-1fb8b75b609d", "cz": "Pracuje tady tři roky.", "en": "She has been working here for three years.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "6e72d160-7784-4ddb-aa97-47764ad7ac39", "cz": "Jak dlouho tady pracuješ?", "en": "How long have you been working here?", "pattern": "wh_question", "note": "how long"},
+        {"id": "8ba007b9-0194-47bb-8b18-4ddd84837f06", "cz": "Nepracuji tady dlouho.", "en": "I haven't been working here long.", "pattern": "negative", "note": "zápor"},
+        {"id": "8188f9c0-9800-4224-9f60-4d4958d2454f", "cz": "Pracuje on tady tři roky?", "en": "Has he been working here for three years?", "pattern": "question", "note": "otázka 3. os."},
+        {"id": "e6d001c5-a071-4724-8121-a81943a8d913", "cz": "Jak dlouho tady pracuje?", "en": "How long has she been working here?", "pattern": "wh_question", "note": "how long 3. os."}
+        ]
+      },
+    {
+      "grammar": "Předpřítomný průběhový",
+      "level": "B1",
+      "blok": "B1 PP průběhový — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "449eb99c-b137-46cc-ae73-9878407d4498", "cz": "Čekám tady od dvou hodin.", "en": "I have been waiting here since two o'clock.", "pattern": "affirmative", "note": "since"},
+        {"id": "183e7c52-a183-4219-a3df-03c0d93a4a1f", "cz": "Čeká tady od dvou hodin.", "en": "He has been waiting here since two o'clock.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "0dd0a74d-68af-4632-9439-9c2174b3e9b4", "cz": "Jak dlouho čekáš?", "en": "How long have you been waiting?", "pattern": "wh_question", "note": "how long"},
+        {"id": "ae8e9249-fd28-40e3-aaa8-d94b08b7e772", "cz": "Nečekám dlouho.", "en": "I haven't been waiting long.", "pattern": "negative", "note": "zápor"},
+        {"id": "d1d6ca8e-ae75-4f82-b7af-2d45e2efdae7", "cz": "Čeká on dlouho?", "en": "Has he been waiting long?", "pattern": "question", "note": "otázka 3. os."},
+        {"id": "16729c24-1d82-4496-949d-a09ae32fbcd2", "cz": "Čekám tady celé odpoledne.", "en": "I have been waiting here all afternoon.", "pattern": "affirmative", "note": "all afternoon"}
+        ]
+      },
+    {
+      "grammar": "Budoucí průběhový",
+      "level": "B1",
+      "blok": "B1 budoucí průběhový — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "cdf077cd-e3b5-4827-a701-029e94a793ad", "cz": "Zítra v tuto dobu budu pracovat.", "en": "This time tomorrow I will be working.", "pattern": "affirmative", "note": "will be + -ing"},
+        {"id": "7dbf8acb-f0fc-4812-afc4-d5711d805acf", "cz": "Zítra v tuto dobu bude pracovat.", "en": "This time tomorrow she will be working.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "2a665f2b-965c-4e82-84fb-c27af90c7fd8", "cz": "Budeš zítra v tuto dobu pracovat?", "en": "Will you be working this time tomorrow?", "pattern": "question", "note": "otázka"},
+        {"id": "b98506a7-4b13-45ea-b275-c7ad442a3ef3", "cz": "Zítra v tuto dobu nebudu pracovat.", "en": "This time tomorrow I won't be working.", "pattern": "negative", "note": "zápor"},
+        {"id": "0bda68b1-1ba0-4177-a5eb-f2ed88789d3f", "cz": "Co budeš dělat v pátek v 8?", "en": "What will you be doing on Friday at 8?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "054a54ad-97e4-4c11-b3ea-4b1b10ba4cee", "cz": "Budu čekat, až přijdeš.", "en": "I will be waiting when you come.", "pattern": "wh_question", "note": "when - přítomný"}
+        ]
+      },
+    {
+      "grammar": "Have something done",
+      "level": "B1",
+      "blok": "B1 have something done — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "f67c7076-66b5-4c73-bd2e-2362e75494c5", "cz": "Nechal jsem si opravit auto.", "en": "I had my car repaired.", "pattern": "affirmative", "note": "have + předmět + PP"},
+        {"id": "d5bcaa2c-2b22-4053-8571-7a3fccb9ca07", "cz": "Nechala si ostříhat vlasy.", "en": "She had her hair cut.", "pattern": "negative", "note": "have + hair + cut"},
+        {"id": "acc905af-35d0-411b-8cd2-96c713b762ba", "cz": "Nechal sis opravit auto?", "en": "Did you have your car repaired?", "pattern": "question", "note": "otázka"},
+        {"id": "b4869984-da53-4b33-b65c-0049ec9f9ec0", "cz": "Nenechal jsem si opravit auto.", "en": "I didn't have my car repaired.", "pattern": "negative", "note": "zápor"},
+        {"id": "ccfccc4a-2b80-498f-bddf-4cb6c7d07c98", "cz": "Musím si nechat opravit auto.", "en": "I need to have my car repaired.", "pattern": "affirmative", "note": "need to have"},
+        {"id": "d8392add-445c-4e4c-b01d-fc6a2149bb8c", "cz": "Kdy sis nechal opravit auto?", "en": "When did you have your car repaired?", "pattern": "wh_question", "note": "WHEN otázka"}
+        ]
+      },
+    {
+      "grammar": "Have something done",
+      "level": "B1",
+      "blok": "B1 have something done — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "93a549f8-765f-4618-8d41-59c68d3a5dc9", "cz": "Nechám si vymalovat byt.", "en": "I will have my flat painted.", "pattern": "affirmative", "note": "budoucí"},
+        {"id": "a2f41503-0ce4-49ca-8d28-03f05d82a0ae", "cz": "Nechala si vymalovat byt.", "en": "She had her flat painted.", "pattern": "negative", "note": "minulý"},
+        {"id": "c094bfd8-ef04-4de5-9e19-84ee5bf962ae", "cz": "Necháš si vymalovat byt?", "en": "Will you have your flat painted?", "pattern": "question", "note": "otázka"},
+        {"id": "d398fef9-6fae-4f9c-8455-159612a2f227", "cz": "Nenechám si vymalovat byt.", "en": "I won't have my flat painted.", "pattern": "negative", "note": "zápor"},
+        {"id": "5f543333-4b5a-46ec-9007-ee6399bb79a1", "cz": "Kdo ti to udělal?", "en": "Who did it for you?", "pattern": "wh_question", "note": "WHO otázka"},
+        {"id": "2f59a87c-e25b-4026-87e4-08edc3f26601", "cz": "Nechala si to udělat profesionálně.", "en": "She had it done professionally.", "pattern": "affirmative", "note": "příslovce"}
+        ]
+      },
+    {
+      "grammar": "It's time",
+      "level": "B1",
+      "blok": "B1 it's time — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "456108d0-c195-466e-b9fd-212b81362b20", "cz": "Je čas jít.", "en": "It's time to go.", "pattern": "affirmative", "note": "it's time + to"},
+        {"id": "9a911f69-30d7-4d5b-a3e9-af088d9db39a", "cz": "Je čas odejít.", "en": "It's time to leave.", "pattern": "negative", "note": "it's time + to"},
+        {"id": "6c882300-a994-4b48-9bcc-15e8fb08b74e", "cz": "Je nejvyšší čas.", "en": "It's high time.", "pattern": "question", "note": "high time"},
+        {"id": "6277c5c4-8ebd-4c7a-bdac-a6cee1dae8de", "cz": "Je nejvyšší čas, abys to udělal.", "en": "It's high time you did it.", "pattern": "wh_question", "note": "high time + past subj."},
+        {"id": "bd45c5e3-df46-4ea2-93dc-775618ba8edd", "cz": "Je čas, abys šel spát.", "en": "It's time you went to bed.", "pattern": "affirmative", "note": "it's time + past subj."},
+        {"id": "ce96c36c-736c-4771-a016-7f38386612d1", "cz": "Je čas změnit práci.", "en": "It's time to change jobs.", "pattern": "affirmative", "note": "it's time + to inf."}
+        ]
+      },
+    {
+      "grammar": "Předminulý čas",
+      "level": "B1",
+      "blok": "B1 minulý předpřítomný — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "41cc6de6-87c9-4204-82db-f433c2bb2915", "cz": "Když jsem přišel, už odešel.", "en": "When I arrived, he had already left.", "pattern": "affirmative", "note": "had + PP"},
+        {"id": "a146756e-62da-4daf-9c19-48a15004d91c", "cz": "Věděl jsem, že to udělal.", "en": "I knew that he had done it.", "pattern": "negative", "note": "knew + had done"},
+        {"id": "ef3fd554-a07c-48f5-846d-e9dab5aa51ae", "cz": "Nespal jsem, protože jsem mnoho vypil.", "en": "I couldn't sleep because I had drunk too much.", "pattern": "question", "note": "příčina"},
+        {"id": "01790be5-d73a-449f-b57c-c32a57555579", "cz": "Byl rád, že skončil.", "en": "He was glad that he had finished.", "pattern": "wh_question", "note": "be glad + had"},
+        {"id": "1891847a-ec69-44f1-8195-019d8f6cedec", "cz": "Ještě jsem ho neviděl.", "en": "I hadn't seen him yet.", "pattern": "affirmative", "note": "hadn't + yet"},
+        {"id": "0dc68b8b-0194-47d5-b5f3-7e0073714689", "cz": "Bylo to první, co jsem slyšel.", "en": "It was the first time I had heard it.", "pattern": "affirmative", "note": "first time"}
+        ]
+      },
+    {
+      "grammar": "Přímá a nepřímá řeč",
+      "level": "B1",
+      "blok": "B1 nepřímá řeč — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "2e93ef4a-dabf-42a8-8ac0-5f6899fbac10", "cz": "Řekl, že pracuje.", "en": "He said that he worked.", "pattern": "affirmative", "note": "přítomný → minulý"},
+        {"id": "f4ce891c-79f7-4f09-8974-4692a5fc8765", "cz": "Řekla, že pracuje.", "en": "She said that she worked.", "pattern": "third_person", "note": "3. osoba ž."},
+        {"id": "d0c60667-f987-4a25-b563-7f92db5d0095", "cz": "Řekl, že bude pracovat.", "en": "He said that he would work.", "pattern": "question", "note": "budoucí → would"},
+        {"id": "69aa826a-4aca-4686-9dee-d6dc32c9c2bd", "cz": "Řekla, že nepracuje.", "en": "She said that she didn't work.", "pattern": "negative", "note": "zápor"},
+        {"id": "4a48cb28-2c37-45b9-b690-01fddcb07e2d", "cz": "Co řekl?", "en": "What did he say?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "fdb77291-dd3c-4e8f-aca8-99a0a578c7c4", "cz": "Řekl, že tam byl.", "en": "He said that he had been there.", "pattern": "affirmative", "note": "minulý → past perfect"}
+        ]
+      },
+    {
+      "grammar": "Přímá a nepřímá řeč",
+      "level": "B1",
+      "blok": "B1 nepřímá řeč — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "f5e2f195-2cf1-435b-bed8-47d82bae7cad", "cz": "Zeptal se, jestli pracuji.", "en": "He asked if I worked.", "pattern": "question", "note": "nepřímá otázka"},
+        {"id": "8d4c2a04-bd73-479e-9845-2ed7e898193d", "cz": "Zeptala se, kde bydlím.", "en": "She asked where I lived.", "pattern": "question", "note": "WH nepřímá otázka"},
+        {"id": "798e4a24-8fce-452d-97c0-314dc79f62d2", "cz": "Zeptal se, kdy přijdu.", "en": "He asked when I would come.", "pattern": "wh_question", "note": "WHEN nepřímá"},
+        {"id": "22c42561-721b-467c-a697-410b6faddfae", "cz": "Zeptala se, co dělám.", "en": "She asked what I was doing.", "pattern": "wh_question", "note": "WHAT nepřímá"},
+        {"id": "896d29af-8418-4e3a-b0bd-694991cccafa", "cz": "Zeptal se, jestli mám čas.", "en": "He asked if I had time.", "pattern": "indirect", "note": "if nepřímá"},
+        {"id": "32a20050-8284-410f-8076-39ef748740d6", "cz": "Zeptali se, kde jsem byl.", "en": "They asked where I had been.", "pattern": "wh_question", "note": "WHERE - past perfect"}
+        ]
+      },
+    {
+      "grammar": "Podmínka 1. typ",
+      "level": "B1",
+      "blok": "B1 podmínky — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "74334d02-47bc-4044-a73d-8d41c5390339", "cz": "Když budeš pracovat, uspěješ.", "en": "If you work hard, you will succeed.", "pattern": "affirmative", "note": "1. podmínka - reálná"},
+        {"id": "012e48bd-d5f3-41a3-a23d-63539293aff8", "cz": "Když bude pracovat, uspěje.", "en": "If she works hard, she will succeed.", "pattern": "third_person", "note": "1. podmínka - 3. os."},
+        {"id": "63e55860-28eb-4ebe-86ac-50be5014a468", "cz": "Uspěješ, když budeš pracovat?", "en": "Will you succeed if you work hard?", "pattern": "question", "note": "otázka"},
+        {"id": "a8a8522d-1edf-4003-b546-afa3c3a28a37", "cz": "Když nebudeš pracovat, neuspěješ.", "en": "If you don't work hard, you won't succeed.", "pattern": "negative", "note": "zápor"},
+        {"id": "a91b90ac-e005-486d-9a59-743985e5fc21", "cz": "Co se stane, když budeš pracovat?", "en": "What will happen if you work hard?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "2f29a2cd-12ba-4ec6-8a88-194c70e738a7", "cz": "Uspěje ona, když bude pracovat?", "en": "Will she succeed if she works hard?", "pattern": "question", "note": "otázka 3. os."}
+        ]
+      },
+    {
+      "grammar": "Podmínka 1. typ",
+      "level": "B1",
+      "blok": "B1 podmínky — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "9348ad7a-7b25-42d8-8eb0-82a7363046d8", "cz": "Kdybych měl čas, zavolal bych ti.", "en": "If I had time, I would call you.", "pattern": "affirmative", "note": "2. podmínka - nereálná"},
+        {"id": "022595b0-ab1b-4bed-86d0-4269232f072d", "cz": "Kdybys měl čas, zavolal bys mi?", "en": "If you had time, would you call me?", "pattern": "question", "note": "otázka"},
+        {"id": "60d6ce9d-305f-4f21-822d-a0a014bc568c", "cz": "Kdybych měl čas, nezavolal bych ti.", "en": "If I had time, I wouldn't call you.", "pattern": "negative", "note": "zápor"},
+        {"id": "37f8310f-f054-4ec1-aff0-d290ea1e02c1", "cz": "Kdybych byl ty, šel bych tam.", "en": "If I were you, I would go there.", "pattern": "wh_question", "note": "if I were you"},
+        {"id": "76c2fc10-c6aa-440e-b1fb-b84465fd2a04", "cz": "Co bys dělal, kdybys měl čas?", "en": "What would you do if you had time?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "c1f0ee21-d4a7-4f84-88c3-b0b53fb964a1", "cz": "Zavolala by ti, kdyby měla čas.", "en": "She would call you if she had time.", "pattern": "third_person", "note": "3. osoba"}
+        ]
+      },
+    {
+      "grammar": "Podmínka 3. typ",
+      "level": "B1",
+      "blok": "B1 podmínky 3. typ — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "df6924c2-0a5f-4ff1-9e30-6c1cd6d4ce5d", "cz": "Kdybych přišel včas, viděl bych ho.", "en": "If I had come on time, I would have seen him.", "pattern": "affirmative", "note": "3. podmínka"},
+        {"id": "537b417e-3766-4652-a6c7-dd992750463b", "cz": "Kdybys zavolal, věděl bych to.", "en": "If you had called, I would have known.", "pattern": "negative", "note": "3. podmínka"},
+        {"id": "2be3d6be-3bb7-446c-b9e3-35380d806f5d", "cz": "Kdybych studoval, složil bych zkoušku.", "en": "If I had studied, I would have passed.", "pattern": "question", "note": "3. podmínka"},
+        {"id": "e5ee9b57-2a39-4089-80d4-eab35b99aeb6", "cz": "Kdyby nepršelo, šli bychom ven.", "en": "If it hadn't rained, we would have gone out.", "pattern": "negative", "note": "3. podmínka - zápor"},
+        {"id": "c8bfb0a6-f692-468b-8100-b521f6a2cf49", "cz": "Co bys udělal, kdybys věděl?", "en": "What would you have done if you had known?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "197ee12e-1e43-412a-aa08-d7dd3b2b4156", "cz": "Litoval bych, kdybych nešel.", "en": "I would have regretted it if I hadn't gone.", "pattern": "affirmative", "note": "lítost"}
+        ]
+      },
+    {
+      "grammar": "Přímá a nepřímá řeč",
+      "level": "B1",
+      "blok": "B1 přímá řeč — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "175c74bb-dc50-4056-bc98-60fda9b503f9", "cz": "Řekl: Jsem unavený.", "en": "He said: I am tired.", "pattern": "affirmative", "note": "přímá řeč - oznamovací"},
+        {"id": "5a639289-f32c-4988-8a33-583f10acd229", "cz": "Řekl, že je unavený.", "en": "He said that he was tired.", "pattern": "affirmative", "note": "nepřímá řeč - oznamovací"},
+        {"id": "5dc88d42-ab90-4f8d-a1da-095500df6855", "cz": "Řekla: Pracuji každý den.", "en": "She said: I work every day.", "pattern": "question", "note": "přímá řeč"},
+        {"id": "e27956f1-4399-49cc-9175-730b2e36a275", "cz": "Řekla, že pracuje každý den.", "en": "She said that she worked every day.", "pattern": "indirect", "note": "nepřímá řeč"},
+        {"id": "d4024375-1e69-4d5e-8699-7bd40811a178", "cz": "Řekl: Půjdu domů.", "en": "He said: I will go home.", "pattern": "affirmative", "note": "přímá řeč - budoucí"},
+        {"id": "bc0a05dc-4d4e-4ec7-a411-8feda0360c3e", "cz": "Řekl, že půjde domů.", "en": "He said that he would go home.", "pattern": "indirect", "note": "nepřímá řeč - would"}
+        ]
+      },
+    {
+      "grammar": "Přímá a nepřímá řeč",
+      "level": "B1",
+      "blok": "B1 přímá řeč — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "cb987973-2566-44ca-a9ce-a68588260955", "cz": "Zeptal se: Kde bydlíš?", "en": "He asked: Where do you live?", "pattern": "question", "note": "přímá otázka"},
+        {"id": "700350d7-9a19-4fbb-bfec-45f186d8737d", "cz": "Zeptal se, kde bydlím.", "en": "He asked where I lived.", "pattern": "question", "note": "nepřímá otázka"},
+        {"id": "73fe157b-3f60-47fd-be3d-21da22d458c9", "cz": "Zeptala se: Máš čas?", "en": "She asked: Do you have time?", "pattern": "question", "note": "přímá yes/no otázka"},
+        {"id": "e790764d-1377-407e-b033-9ae5b491f425", "cz": "Zeptala se, jestli mám čas.", "en": "She asked if I had time.", "pattern": "indirect", "note": "nepřímá - if"},
+        {"id": "af427656-828a-4019-9f12-23d38d41a19e", "cz": "Řekl mi: Přijď zítra.", "en": "He told me: Come tomorrow.", "pattern": "imperative", "note": "přímá řeč - rozkaz"},
+        {"id": "f5037cd7-1af2-4375-94d2-68640574d91e", "cz": "Řekl mi, abych přišel zítra.", "en": "He told me to come the next day.", "pattern": "imperative", "note": "nepřímá - rozkaz"}
+        ]
+      },
+    {
+      "grammar": "Přímá a nepřímá řeč",
+      "level": "B1",
+      "blok": "B1 přímá řeč — věta 3",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "720bd035-528d-424b-bbf9-f7f8f433e932", "cz": "Řekl: Byl jsem tam.", "en": "He said: I was there.", "pattern": "affirmative", "note": "přímá - minulý čas"},
+        {"id": "44450578-42a0-4df6-9f36-367fc7e504ef", "cz": "Řekl, že tam byl.", "en": "He said that he had been there.", "pattern": "indirect", "note": "nepřímá - past perfect"},
+        {"id": "52cea64a-a566-4011-b3cc-def6ac65d7ae", "cz": "Řekla: Udělala jsem to.", "en": "She said: I have done it.", "pattern": "question", "note": "přímá - PP"},
+        {"id": "53f10458-5f3e-44d4-8596-a7480dc955f1", "cz": "Řekla, že to udělala.", "en": "She said that she had done it.", "pattern": "indirect", "note": "nepřímá - past perfect"},
+        {"id": "24194695-3786-45c6-8237-7477ba7c8150", "cz": "Řekl: Nemůžu přijít.", "en": "He said: I can't come.", "pattern": "affirmative", "note": "přímá - can"},
+        {"id": "e026cdc7-e9c6-4ba8-b095-32f7cb554e36", "cz": "Řekl, že nemůže přijít.", "en": "He said that he couldn't come.", "pattern": "indirect", "note": "nepřímá - couldn't"}
+        ]
+      },
+    {
+      "grammar": "Trpný rod",
+      "level": "B1",
+      "blok": "B1 trpný rod — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "738bd514-91e4-4841-a11f-459147be35cc", "cz": "Zpráva je psána každý den.", "en": "The report is written every day.", "pattern": "affirmative", "note": "přítomný čas"},
+        {"id": "ccb3acfa-de97-4819-9342-fa75a05703b3", "cz": "Je zpráva psána každý den?", "en": "Is the report written every day?", "pattern": "question", "note": "otázka"},
+        {"id": "ebf46ae4-7d7d-485f-a104-f1666aa584e0", "cz": "Zpráva není psána každý den.", "en": "The report is not written every day.", "pattern": "negative", "note": "zápor"},
+        {"id": "645fee1b-ab8e-4e20-be66-933c8a60e012", "cz": "Zpráva byla napsána včera.", "en": "The report was written yesterday.", "pattern": "wh_question", "note": "minulý čas"},
+        {"id": "21d19f31-0634-4848-a96d-74e8a9671853", "cz": "Byla zpráva napsána včera?", "en": "Was the report written yesterday?", "pattern": "question", "note": "otázka minulý"},
+        {"id": "94175ae9-c37a-496e-a5ca-41582b969406", "cz": "Zpráva nebyla napsána včera.", "en": "The report was not written yesterday.", "pattern": "negative", "note": "zápor minulý"}
+        ]
+      },
+    {
+      "grammar": "Trpný rod",
+      "level": "B1",
+      "blok": "B1 trpný rod — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "4a8656b2-42fd-4b17-9c25-e825fc41fcc4", "cz": "Auto bylo opraveno.", "en": "The car has been repaired.", "pattern": "affirmative", "note": "present perfect"},
+        {"id": "395179b2-65aa-4330-9db1-1177e1457d51", "cz": "Bylo auto opraveno?", "en": "Has the car been repaired?", "pattern": "question", "note": "otázka"},
+        {"id": "3ee35993-6057-4a03-bdc0-c9cc55275b9f", "cz": "Auto nebylo opraveno.", "en": "The car has not been repaired.", "pattern": "negative", "note": "zápor"},
+        {"id": "a45ace46-fcd4-4428-8112-57862889fec3", "cz": "Auto bude opraveno zítra.", "en": "The car will be repaired tomorrow.", "pattern": "wh_question", "note": "budoucí čas"},
+        {"id": "49050235-4920-40fe-b83e-9d3f6d52d1da", "cz": "Bude auto opraveno zítra?", "en": "Will the car be repaired tomorrow?", "pattern": "question", "note": "budoucí otázka"},
+        {"id": "7aa56032-3e7f-4d1d-b063-15bc2c7fad59", "cz": "Kdy bude auto opraveno?", "en": "When will the car be repaired?", "pattern": "wh_question", "note": "WHEN otázka"}
+        ]
+      },
+    {
+      "grammar": "Trpný rod",
+      "level": "B1",
+      "blok": "B1 trpný rod průběhový — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "a2c729a6-069d-4d10-984e-5f28d2ec143c", "cz": "Auto se právě opravuje.", "en": "The car is being repaired.", "pattern": "affirmative", "note": "průběhový přítomný"},
+        {"id": "c1a823c2-168d-4c2c-9d7c-12ce98401be9", "cz": "Auto se opravovalo.", "en": "The car was being repaired.", "pattern": "negative", "note": "průběhový minulý"},
+        {"id": "264c8117-a73f-4369-a6af-ab0cf11797f8", "cz": "Opravuje se auto?", "en": "Is the car being repaired?", "pattern": "question", "note": "otázka přítomný"},
+        {"id": "90dd1329-9881-42b6-9fc5-60f3467c8d9a", "cz": "Auto se neopravuje.", "en": "The car is not being repaired.", "pattern": "negative", "note": "zápor přítomný"},
+        {"id": "9b9ce57a-26b4-4558-8cb7-057c16acb28e", "cz": "Dům se staví.", "en": "The house is being built.", "pattern": "affirmative", "note": "je stavěn"},
+        {"id": "b23aa704-ec25-44ac-857c-d0ff33ec61a5", "cz": "Dům se stavěl celý rok.", "en": "The house was being built all year.", "pattern": "affirmative", "note": "byl stavěn"}
+        ]
+      },
+    {
+      "grammar": "Trpný rod",
+      "level": "B1",
+      "blok": "B1 trpný rod způsobová — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "4f0c4658-f8d9-41e3-9797-2864af3306c4", "cz": "To musí být uděláno.", "en": "It must be done.", "pattern": "passive", "note": "must + trpný"},
+        {"id": "20da2ea1-32fa-40c1-beed-a66fb03d7cce", "cz": "To by mělo být uděláno.", "en": "It should be done.", "pattern": "passive", "note": "should + trpný"},
+        {"id": "9f64953c-3301-423f-9184-634136aaf510", "cz": "To může být změněno.", "en": "It can be changed.", "pattern": "passive", "note": "can + trpný"},
+        {"id": "15422180-d96c-49c5-8d53-1efde14d1a1a", "cz": "To nemůže být změněno.", "en": "It can't be changed.", "pattern": "passive", "note": "can't + trpný"},
+        {"id": "d1709281-98dd-4045-8c06-3ffc04ec6402", "cz": "Musí to být hotovo do pátku.", "en": "It must be done by Friday.", "pattern": "passive", "note": "must + trpný + čas"},
+        {"id": "272a10e5-b480-48a2-a9f4-83f6b092a77d", "cz": "To mohlo být uděláno dříve.", "en": "It could have been done earlier.", "pattern": "affirmative", "note": "could have been"}
+        ]
+      },
+    {
+      "grammar": "Used to",
+      "level": "B1",
+      "blok": "B1 used to — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "f5614d2d-f40e-4ac3-b171-d07fff7199de", "cz": "Dříve jsem kouřil.", "en": "I used to smoke.", "pattern": "affirmative", "note": "used to - oznamovací"},
+        {"id": "31a8e480-b052-43f2-9f76-c04b0d1d2600", "cz": "Dříve kouřila.", "en": "She used to smoke.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "7b98cf04-5a82-4e6a-a4ab-53b18d215d81", "cz": "Kouřil jsi dříve?", "en": "Did you use to smoke?", "pattern": "question", "note": "otázka"},
+        {"id": "8fba007b-01c1-455b-b296-6f63c8d69c33", "cz": "Dříve jsem nekouřil.", "en": "I didn't use to smoke.", "pattern": "negative", "note": "zápor"},
+        {"id": "70813bda-eadb-40f3-84ec-62d290922589", "cz": "Kouřil on dříve?", "en": "Did he use to smoke?", "pattern": "question", "note": "otázka 3. os."},
+        {"id": "cfe89e39-05fb-4279-81f9-6e6ccc08ecd4", "cz": "Dříve jsem kouřil, ale teď nekouřím.", "en": "I used to smoke but now I don't.", "pattern": "affirmative", "note": "kontrast"}
+        ]
+      },
+    {
+      "grammar": "Used to",
+      "level": "B1",
+      "blok": "B1 used to — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "a36a1ee3-1576-4c04-b1e5-be226489975d", "cz": "Dříve jsem bydlel v Praze.", "en": "I used to live in Prague.", "pattern": "affirmative", "note": "bydliště"},
+        {"id": "11b782b9-8df3-4099-a8d3-eeda9b10e565", "cz": "Dříve bydlela v Praze.", "en": "She used to live in Prague.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "fcb2c571-7a2a-4c2c-b164-678ac976121d", "cz": "Bydlel jsi dříve v Praze?", "en": "Did you use to live in Prague?", "pattern": "question", "note": "otázka"},
+        {"id": "25128962-09ff-4b96-a4a4-a64ed372a256", "cz": "Dříve jsem nebydlel v Praze.", "en": "I didn't use to live in Prague.", "pattern": "negative", "note": "zápor"},
+        {"id": "aadb57b6-3764-4602-9ff8-f575ec310c73", "cz": "Kde jsi dříve bydlel?", "en": "Where did you use to live?", "pattern": "wh_question", "note": "WHERE otázka"},
+        {"id": "2a958cae-cb81-4526-990b-586157279ccf", "cz": "Dříve jsem bydlel v Praze, teď v Brně.", "en": "I used to live in Prague, now I live in Brno.", "pattern": "affirmative", "note": "kontrast"}
+        ]
+      },
+    {
+      "grammar": "Vedlejší věty",
+      "level": "B1",
+      "blok": "B1 vedlejší věty — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "d9ec9160-fbac-490a-b054-53907756b842", "cz": "Zavolám, až přijdu domů.", "en": "I will call when I get home.", "pattern": "wh_question", "note": "when - budoucnost"},
+        {"id": "b6d9a662-1de7-4e65-8ccc-3dac63ed2aee", "cz": "Počkej, dokud nepřijdu.", "en": "Wait until I come.", "pattern": "negative", "note": "until"},
+        {"id": "b038e4aa-f139-4d59-8390-8954a92f98c5", "cz": "Udělám to, jakmile budu moci.", "en": "I will do it as soon as I can.", "pattern": "question", "note": "as soon as"},
+        {"id": "b73c2e7e-71b1-4d9e-9728-6f830bdbc19e", "cz": "Zůstaň, dokud neskončí.", "en": "Stay until it finishes.", "pattern": "wh_question", "note": "until - přítomný"},
+        {"id": "e1855bbd-25fc-4f27-9ee5-ecf8159c9f64", "cz": "Zavolám, předtím než odjedu.", "en": "I will call before I leave.", "pattern": "affirmative", "note": "before"},
+        {"id": "af87951e-3c08-4b32-8af8-fac16fd960bd", "cz": "Zavolej, jakmile dorazíš.", "en": "Call me as soon as you arrive.", "pattern": "imperative", "note": "as soon as - rozkaz"}
+        ]
+      },
+    {
+      "grammar": "Vedlejší věty",
+      "level": "B1",
+      "blok": "B1 vedlejší věty — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "1b0e3d0b-1e03-444a-b01e-384e706a572d", "cz": "Ačkoli byl unavený, pracoval.", "en": "Although he was tired, he worked.", "pattern": "affirmative", "note": "although"},
+        {"id": "c1de9b41-db3d-47ee-94f4-a56511a61b99", "cz": "Pracoval, ačkoli byl unavený.", "en": "He worked although he was tired.", "pattern": "negative", "note": "although - jiné pořadí"},
+        {"id": "488a310c-5474-409f-9480-73ce74171bb3", "cz": "Protože jsem nemocný, zůstanu doma.", "en": "Because I am ill, I will stay home.", "pattern": "question", "note": "because"},
+        {"id": "a13594b4-91d6-4974-8e22-63b5689938c9", "cz": "Zůstanu doma, protože jsem nemocný.", "en": "I will stay home because I am ill.", "pattern": "wh_question", "note": "because - jiné pořadí"},
+        {"id": "c1cc3905-2c6c-4cff-bfe5-eef75f241a33", "cz": "Pracuji tvrdě, aby dítě mělo vše.", "en": "I work hard so that my child has everything.", "pattern": "affirmative", "note": "so that"},
+        {"id": "25c7109b-7489-409b-99d7-80f91d3707e2", "cz": "Přišel jsem brzy, abych nečekal.", "en": "I came early so as not to wait.", "pattern": "affirmative", "note": "so as not to"}
+        ]
+      },
+    {
+      "grammar": "Wish",
+      "level": "B1",
+      "blok": "B1 wish — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "a62fb436-7d68-47c5-9c61-bea1955915e6", "cz": "Přál bych si, abych uměl lépe anglicky.", "en": "I wish I could speak better English.", "pattern": "affirmative", "note": "wish + could"},
+        {"id": "233a929d-c95a-4a71-9923-883997078a88", "cz": "Přeje si, aby uměla lépe anglicky.", "en": "She wishes she could speak better English.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "007641ac-17a4-4989-aaf8-0d92c090943d", "cz": "Přál bych si, abych měl více času.", "en": "I wish I had more time.", "pattern": "question", "note": "wish + had"},
+        {"id": "85d8d73d-f293-4b1a-a436-10f365e34f57", "cz": "Přeje si, aby měl více peněz.", "en": "He wishes he had more money.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "3bf37001-5c61-4ebe-9459-080b4d51636a", "cz": "Přál bych si, abych to neudělal.", "en": "I wish I hadn't done it.", "pattern": "affirmative", "note": "wish + past perfect"},
+        {"id": "99305b3a-767e-4a1f-a55c-493bba065714", "cz": "Co bys chtěl změnit?", "en": "What do you wish you could change?", "pattern": "wh_question", "note": "WHAT otázka"}
+        ]
+      },
+    {
+      "grammar": "Would rather",
+      "level": "B1",
+      "blok": "B1 would rather — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "79fe353a-4689-4a07-8772-6aed9a8a5c21", "cz": "Raději bych šel domů.", "en": "I would rather go home.", "pattern": "affirmative", "note": "would rather + holý inf."},
+        {"id": "0dbff052-4fe3-47f8-bd51-2e4b044323c2", "cz": "Raději by zůstala.", "en": "She would rather stay.", "pattern": "third_person", "note": "3. osoba"},
+        {"id": "9b3930af-0d82-49ed-b567-a313724fc2ff", "cz": "Raději bys šel domů?", "en": "Would you rather go home?", "pattern": "question", "note": "otázka"},
+        {"id": "3ea38651-0d47-44f4-9cc1-4d638c67013e", "cz": "Raději bych nešel.", "en": "I would rather not go.", "pattern": "negative", "note": "zápor"},
+        {"id": "da161f5d-ce4a-4cc5-ada3-0b612065be9c", "cz": "Co bys raději dělal?", "en": "What would you rather do?", "pattern": "wh_question", "note": "WHAT otázka"},
+        {"id": "80e5cbb8-e921-452a-9c92-2f51d88ef9fd", "cz": "Raději bych, abys zůstal.", "en": "I would rather you stayed.", "pattern": "affirmative", "note": "would rather + past subj."}
+        ]
+      },
+    {
+      "grammar": "Způsobová minulá (could have...)",
+      "level": "B1",
+      "blok": "B1 způsobová slovesa III — věta 1",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "358ed878-a727-4f98-9035-301f2c959669", "cz": "Mohl jsi to říct.", "en": "You could have said it.", "pattern": "affirmative", "note": "could have + PP"},
+        {"id": "a95a5f06-564f-4aa0-831a-4c988b627672", "cz": "Mohl jsi zavolat.", "en": "You could have called.", "pattern": "negative", "note": "could have - výtka"},
+        {"id": "4cfc9dd5-bf70-4f85-a48a-4718b1a9ff58", "cz": "Měl jsi to udělat.", "en": "You should have done it.", "pattern": "question", "note": "should have - výtka"},
+        {"id": "0d48e49b-b164-4661-af06-c930951e91f7", "cz": "Neměl jsi to říkat.", "en": "You shouldn't have said it.", "pattern": "wh_question", "note": "shouldn't have"},
+        {"id": "59f79cf9-2f41-45f9-8b1c-9913c1c112bc", "cz": "Musel to vědět.", "en": "He must have known it.", "pattern": "affirmative", "note": "must have - dedukce min."},
+        {"id": "71c8f505-cd59-47e7-a551-25de02b32963", "cz": "Nemohl to vědět.", "en": "He can't have known it.", "pattern": "affirmative", "note": "can't have - dedukce"}
+        ]
+      },
+    {
+      "grammar": "Způsobová minulá (could have...)",
+      "level": "B1",
+      "blok": "B1 způsobová slovesa III — věta 2",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "9efee514-12fd-451d-b219-1f2795769698", "cz": "Možná to věděl.", "en": "He might have known it.", "pattern": "affirmative", "note": "might have"},
+        {"id": "5018393a-7322-46a4-bfda-8b79c772b518", "cz": "Možná to neudělal.", "en": "He might not have done it.", "pattern": "negative", "note": "might not have"},
+        {"id": "eb503637-f7a4-458d-a3b8-938f40e64c01", "cz": "Nemusel to udělat.", "en": "He didn't need to do it.", "pattern": "question", "note": "needn't have"},
+        {"id": "14c34a1b-ccbf-4809-b551-51ab8b17ab3c", "cz": "Nemusel přicházet.", "en": "He needn't have come.", "pattern": "wh_question", "note": "needn't have - zbytečná akce"},
+        {"id": "dcb881d2-1a69-42b2-8ffd-e94d029472ef", "cz": "Byl povolen vstup.", "en": "He was allowed to enter.", "pattern": "affirmative", "note": "be allowed to"},
+        {"id": "bdc7a0dd-9c7d-4b6f-a0d4-1ec1efc33e52", "cz": "Nebyl povolen vstup.", "en": "He wasn't allowed to enter.", "pattern": "negative", "note": "be allowed to - zápor"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A2",
+      "blok": "Každodenní - cestování — věta 1",
+      "topic": "Cestování",
+      "sentences": [
+        {"id": "19dac216-0987-47c8-9438-74af4a92a6cf", "cz": "Kdy odjíždí vlak do Prahy?", "en": "When does the train to Prague leave?", "pattern": "affirmative", "note": "jízdní řád"},
+        {"id": "f838854f-cc7f-4154-9c21-2320a8c0dec6", "cz": "Vlak odjíždí v deset hodin.", "en": "The train leaves at ten o'clock.", "pattern": "negative", "note": "odpověď"},
+        {"id": "ef9f3360-fccc-488d-b175-fc7c8fee1c34", "cz": "Odkud odjíždí vlak?", "en": "Where does the train leave from?", "pattern": "wh_question", "note": "WHERE otázka"},
+        {"id": "06d4236a-2d71-460e-afe3-82f051cfb569", "cz": "Z kterého nástupiště?", "en": "Which platform is it?", "pattern": "wh_question", "note": "nástupiště"},
+        {"id": "5725f6a3-6166-4059-ac9a-29d0ea094ad8", "cz": "Vlak má zpoždění.", "en": "The train is delayed.", "pattern": "affirmative", "note": "zpoždění"},
+        {"id": "81cde59d-dedd-44f8-a600-11f265efba14", "cz": "Jak dlouho trvá cesta?", "en": "How long does the journey take?", "pattern": "affirmative", "note": "délka cesty"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A2",
+      "blok": "Každodenní - cestování — věta 2",
+      "topic": "Cestování",
+      "sentences": [
+        {"id": "66ab935d-546c-41df-96d3-6d7e59ed1ed3", "cz": "Chtěl bych jízdenku do Prahy.", "en": "I would like a ticket to Prague.", "pattern": "affirmative", "note": "nákup jízdenky"},
+        {"id": "56d7d595-c618-4979-8915-2bf155662f15", "cz": "Zpáteční nebo jednosměrnou?", "en": "Return or single?", "pattern": "negative", "note": "typ jízdenky"},
+        {"id": "b1f78b04-248e-4ef4-bea5-91b082fb9342", "cz": "Zpáteční, prosím.", "en": "Return, please.", "pattern": "question", "note": "odpověď"},
+        {"id": "544475be-263d-459f-82d0-2eea15a87067", "cz": "Kolik stojí jízdenka?", "en": "How much is the ticket?", "pattern": "wh_question", "note": "cena"},
+        {"id": "7b84106f-2371-41e1-b1cd-cf0258cb362c", "cz": "Je v ceně místenka?", "en": "Is a seat reservation included?", "pattern": "affirmative", "note": "místenka"},
+        {"id": "62656365-b94f-4226-888f-0a4c3213fc05", "cz": "Musím přestupovat?", "en": "Do I have to change?", "pattern": "affirmative", "note": "přestup"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A2",
+      "blok": "Každodenní - formální e-mail — věta 1",
+      "topic": "Práce a kancelář",
+      "sentences": [
+        {"id": "9fc34cfe-6eb9-47a7-b48a-ce73805b28e4", "cz": "Dovolte mi se představit.", "en": "Allow me to introduce myself.", "pattern": "affirmative", "note": "úvod"},
+        {"id": "8b88d0d9-eb20-486d-ae11-2412eed73c4f", "cz": "Píši ohledně vaší nabídky.", "en": "I am writing with regard to your offer.", "pattern": "negative", "note": "důvod"},
+        {"id": "1f577918-1533-47f1-9062-4095c3cce5b1", "cz": "Rád bych si dohodl schůzku.", "en": "I would like to arrange a meeting.", "pattern": "question", "note": "schůzka"},
+        {"id": "d3974436-4d23-4cdf-b336-1248465319f0", "cz": "Bylo by možné se setkat v pátek?", "en": "Would it be possible to meet on Friday?", "pattern": "wh_question", "note": "návrh"},
+        {"id": "51e983f7-91cb-4c5f-aa22-ee28692ce0aa", "cz": "S pozdravem.", "en": "Yours sincerely.", "pattern": "affirmative", "note": "závěr - jméno známo"},
+        {"id": "457cc12c-87ce-43b2-b5f8-3a4d622950cf", "cz": "S úctou.", "en": "Yours faithfully.", "pattern": "affirmative", "note": "závěr - jméno neznámo"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A2",
+      "blok": "Každodenní - formální e-mail — věta 2",
+      "topic": "Práce a kancelář",
+      "sentences": [
+        {"id": "7ab9f934-47ae-478b-b643-6b9699dd9e47", "cz": "Odkazuji se na váš e-mail ze dne...", "en": "I refer to your email of...", "pattern": "affirmative", "note": "odkaz na předchozí"},
+        {"id": "34ef6295-137a-42ce-a221-bfbc61d4eaa3", "cz": "Přikládám životopis.", "en": "Please find attached my CV.", "pattern": "negative", "note": "příloha"},
+        {"id": "e05c99c1-9da3-4084-99b8-751a1ceb4774", "cz": "Neváhejte mě kontaktovat.", "en": "Please do not hesitate to contact me.", "pattern": "question", "note": "nabídka pomoci"},
+        {"id": "ef8b8437-5115-42c3-bdc7-6435df794358", "cz": "Těším se na vaši odpověď.", "en": "I look forward to hearing from you.", "pattern": "wh_question", "note": "závěr"},
+        {"id": "f48a343f-6a75-4c59-b2dd-23e0b2e68a29", "cz": "Omlouváme se za zpoždění.", "en": "We apologise for the delay.", "pattern": "affirmative", "note": "omluva"},
+        {"id": "68a7fe1e-5067-4b66-adbd-ff6a1d1abd02", "cz": "Potvrzujeme přijetí vaší objednávky.", "en": "We confirm receipt of your order.", "pattern": "affirmative", "note": "potvrzení"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A2",
+      "blok": "Každodenní - hotel — věta 1",
+      "topic": "Cestování",
+      "sentences": [
+        {"id": "49bb5227-c6ba-4343-9764-19489e9f6105", "cz": "Chtěl bych rezervovat pokoj.", "en": "I would like to book a room.", "pattern": "affirmative", "note": "rezervace"},
+        {"id": "2f5ff4f9-03cc-4417-956b-9cb21a78e04f", "cz": "Na kolik nocí?", "en": "How many nights?", "pattern": "question", "note": "otázka"},
+        {"id": "fb3bbdaa-7eba-4ebf-a3c1-f32c8079c9ce", "cz": "Na dvě noci, prosím.", "en": "For two nights, please.", "pattern": "question", "note": "odpověď"},
+        {"id": "aa24c351-dbd7-44c9-b3c7-5611a16f15ab", "cz": "Mám rezervaci na jméno Novák.", "en": "I have a reservation under the name Novak.", "pattern": "wh_question", "note": "check-in"},
+        {"id": "bb0b9d2a-66fb-4827-9da8-6a6aa97b8dc6", "cz": "V kolik je snídaně?", "en": "What time is breakfast?", "pattern": "affirmative", "note": "čas snídaně"},
+        {"id": "24170833-a871-4e53-86bf-2a83fbbc2cb9", "cz": "Kdy musím uvolnit pokoj?", "en": "What time is check-out?", "pattern": "affirmative", "note": "checkout"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A2",
+      "blok": "Každodenní - lékař — věta 1",
+      "topic": "Zdraví a lékař",
+      "sentences": [
+        {"id": "766186e0-337f-4783-b3e8-b3609c1e1d01", "cz": "Bolí mě hlava.", "en": "I have a headache.", "pattern": "affirmative", "note": "bolest hlavy"},
+        {"id": "2d4a163d-3257-4232-94a9-1808e58d1578", "cz": "Bolí mě záda.", "en": "I have a backache.", "pattern": "negative", "note": "záda"},
+        {"id": "c5913be6-4421-480d-a725-6fea4707b121", "cz": "Je mi špatně.", "en": "I feel sick.", "pattern": "question", "note": "nevolnost"},
+        {"id": "e2a72602-6bb0-48e8-a0f7-103ba35bae75", "cz": "Mám teplotu.", "en": "I have a temperature.", "pattern": "wh_question", "note": "teplota"},
+        {"id": "4600e841-9a7a-40b9-84f7-e5b5d4afb054", "cz": "Kašlu od včerejška.", "en": "I have been coughing since yesterday.", "pattern": "affirmative", "note": "kašel"},
+        {"id": "3b684ed9-72e7-4f51-b9cf-0c61e304378b", "cz": "Co vás bolí?", "en": "What seems to be the problem?", "pattern": "question", "note": "otázka lékaře"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A2",
+      "blok": "Každodenní - lékař — věta 2",
+      "topic": "Zdraví a lékař",
+      "sentences": [
+        {"id": "f2310ae7-0c03-4463-80ac-fe7343f8dbcd", "cz": "Jak dlouho vás to bolí?", "en": "How long have you had this pain?", "pattern": "affirmative", "note": "délka"},
+        {"id": "e436328e-3f7d-4297-a536-396d03826d7f", "cz": "Bolí mě to tři dny.", "en": "I have had this pain for three days.", "pattern": "negative", "note": "for"},
+        {"id": "9a48a6d2-bff6-4b09-ba51-7d6fb83ab800", "cz": "Beru léky na tlak.", "en": "I take medicine for blood pressure.", "pattern": "question", "note": "léky"},
+        {"id": "014d3af0-83a0-4169-b521-a497df713945", "cz": "Jsem alergický na penicilin.", "en": "I am allergic to penicillin.", "pattern": "wh_question", "note": "alergie"},
+        {"id": "be30c64b-707c-499e-9215-9cc4c6b31557", "cz": "Napíšu vám recept.", "en": "I will write you a prescription.", "pattern": "affirmative", "note": "recept"},
+        {"id": "1ffd794d-2bb3-4e41-95a0-cd3afe91c2cf", "cz": "Musíte odpočívat.", "en": "You must rest.", "pattern": "affirmative", "note": "doporučení"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A2",
+      "blok": "Každodenní - nakupování — věta 1",
+      "topic": "Nakupování",
+      "sentences": [
+        {"id": "6620a8a3-1933-4af6-b1cf-68d83536dfbe", "cz": "Hledám zimní bundu.", "en": "I am looking for a winter jacket.", "pattern": "affirmative", "note": "průběhový čas"},
+        {"id": "6ec4f20d-ca11-41c6-85da-fff7663ca866", "cz": "Jakou velikost nosíte?", "en": "What size do you take?", "pattern": "question", "note": "otázka na velikost"},
+        {"id": "5b116b70-7d8f-436c-bab2-bdc0a1218dab", "cz": "Nosím velikost M.", "en": "I take size M.", "pattern": "question", "note": "odpověď"},
+        {"id": "b37a0d74-3432-4165-899b-11fcda6cefeb", "cz": "Mohu to zkusit?", "en": "Can I try it on?", "pattern": "wh_question", "note": "žádost"},
+        {"id": "55938ea6-1bd7-4805-b816-d895ddf7f720", "cz": "Kolik to stojí?", "en": "How much does it cost?", "pattern": "affirmative", "note": "cena"},
+        {"id": "ec3e70f4-e26f-4328-bb02-d73b622e0622", "cz": "Vezmu si to.", "en": "I will take it.", "pattern": "affirmative", "note": "rozhodnutí"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A2",
+      "blok": "Každodenní - orientace — věta 1",
+      "topic": "Cestování",
+      "sentences": [
+        {"id": "8f12f20d-ddbd-4775-a0e4-3e256c778c80", "cz": "Kde je nádraží?", "en": "Where is the train station?", "pattern": "wh_question", "note": "WHERE otázka"},
+        {"id": "a37163c0-6491-458e-bbb3-107a6ce53eaa", "cz": "Jděte rovně a pak doleva.", "en": "Go straight on and then turn left.", "pattern": "negative", "note": "instrukce"},
+        {"id": "9f20a26a-e26f-4192-9368-bc94d1956738", "cz": "Je to daleko?", "en": "Is it far from here?", "pattern": "question", "note": "vzdálenost"},
+        {"id": "41356d6c-2d27-439c-a01d-e8f716326059", "cz": "Jsou to asi dvě minuty pěšky.", "en": "It is about two minutes on foot.", "pattern": "wh_question", "note": "odpověď"},
+        {"id": "0b4768a1-a51b-4dba-981c-b36a8d22cb0f", "cz": "Promiňte, zabloudil jsem.", "en": "Excuse me, I am lost.", "pattern": "affirmative", "note": "pomoc"},
+        {"id": "9560e44d-cafb-4f0e-a9a5-bd9a2868dfd9", "cz": "Můžete mi ukázat na mapě?", "en": "Could you show me on the map?", "pattern": "affirmative", "note": "mapa"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A2",
+      "blok": "Každodenní - počasí a small talk — věta 1",
+      "topic": "Sociální situace",
+      "sentences": [
+        {"id": "8b128536-0042-4865-952e-fe1b242d3d0f", "cz": "Jaké je dnes počasí?", "en": "What is the weather like today?", "pattern": "question", "note": "otázka na počasí"},
+        {"id": "07c5dd28-1d02-420a-89f3-db710280a6d2", "cz": "Je hezky.", "en": "The weather is nice.", "pattern": "negative", "note": "hezké počasí"},
+        {"id": "c4632a88-ada5-438c-b72b-1fe4418c91ba", "cz": "Prší.", "en": "It is raining.", "pattern": "question", "note": "prší"},
+        {"id": "8907e1f3-d93f-46e1-a89c-09958f78560e", "cz": "Bude zítra hezky?", "en": "Will it be nice tomorrow?", "pattern": "wh_question", "note": "předpověď"},
+        {"id": "c89f944e-79c6-41ff-a8b1-df59be2095f1", "cz": "Jak se máš?", "en": "How are you?", "pattern": "affirmative", "note": "small talk"},
+        {"id": "cb2af08e-f38f-4874-91e7-5466e5307767", "cz": "Skvěle, díky. A ty?", "en": "Great, thanks. And you?", "pattern": "affirmative", "note": "odpověď"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A2",
+      "blok": "Každodenní - počasí a small talk — věta 2",
+      "topic": "Sociální situace",
+      "sentences": [
+        {"id": "7e10db36-2d13-4a00-8658-6851169a70b7", "cz": "Jak se ti daří?", "en": "How are things going?", "pattern": "affirmative", "note": "small talk"},
+        {"id": "df86a53e-b089-47bd-a92a-3e393dd3a97b", "cz": "Celkem dobře, díky.", "en": "Pretty good, thanks.", "pattern": "negative", "note": "odpověď"},
+        {"id": "f2ff262f-dec9-4f2f-bd97-5b3588bf8213", "cz": "Co je nového?", "en": "What's new?", "pattern": "question", "note": "small talk"},
+        {"id": "d8cad9e3-5852-4dd4-bb46-a96381ac4f75", "cz": "Nic moc, jako vždy.", "en": "Not much, same as usual.", "pattern": "wh_question", "note": "odpověď"},
+        {"id": "e4d55169-bed9-4260-8fdd-95fb3c4a944d", "cz": "Jak byl víkend?", "en": "How was your weekend?", "pattern": "affirmative", "note": "minulý čas"},
+        {"id": "4497e6b9-6638-419f-b942-9f4f87d6fcab", "cz": "Byl skvělý, díky.", "en": "It was great, thanks.", "pattern": "affirmative", "note": "odpověď"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A2",
+      "blok": "Každodenní - práce — věta 1",
+      "topic": "Práce a kancelář",
+      "sentences": [
+        {"id": "0bb0e186-4d54-4864-be1d-9e04a150c8f6", "cz": "Mám schůzku v deset.", "en": "I have a meeting at ten.", "pattern": "affirmative", "note": "schůzka"},
+        {"id": "4832340d-fbb9-4010-bb58-1d51f10236f4", "cz": "Schůzka byla odložena.", "en": "The meeting has been postponed.", "pattern": "passive", "note": "trpný rod"},
+        {"id": "4a82c0a2-0c48-419a-bae6-75cd7ac2761b", "cz": "Kdy je schůzka?", "en": "When is the meeting?", "pattern": "wh_question", "note": "WHEN otázka"},
+        {"id": "dc323706-b43c-4d0e-b41b-00b9e0d42439", "cz": "Schůzka trvá hodinu.", "en": "The meeting lasts an hour.", "pattern": "wh_question", "note": "délka"},
+        {"id": "cca2b0d5-f420-446e-a0f7-04b57919caa3", "cz": "Mohu se zúčastnit schůzky?", "en": "Can I attend the meeting?", "pattern": "affirmative", "note": "účast"},
+        {"id": "55c115f4-0426-40d6-abec-220c4f51436a", "cz": "Schůzka byla zrušena.", "en": "The meeting has been cancelled.", "pattern": "affirmative", "note": "zrušení"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A2",
+      "blok": "Každodenní - práce — věta 2",
+      "topic": "Práce a kancelář",
+      "sentences": [
+        {"id": "a1c32cb3-ba8c-410e-add7-81a97e101257", "cz": "Pošlu vám e-mail.", "en": "I will send you an email.", "pattern": "affirmative", "note": "e-mail"},
+        {"id": "76dfaa48-436a-4dc5-8046-29056590a9c9", "cz": "Dostal jsi můj e-mail?", "en": "Did you get my email?", "pattern": "negative", "note": "přijetí"},
+        {"id": "f5576fd3-b2b6-4cd2-8bf8-937efed884b1", "cz": "Odpovím na váš e-mail zítra.", "en": "I will reply to your email tomorrow.", "pattern": "question", "note": "odpověď"},
+        {"id": "8a81e880-070c-407e-9d69-db6437fbfd91", "cz": "Přiložím soubor.", "en": "I will attach a file.", "pattern": "wh_question", "note": "příloha"},
+        {"id": "5f731343-fab8-473e-a539-efccc978670d", "cz": "Nemohl jsem otevřít přílohu.", "en": "I couldn't open the attachment.", "pattern": "affirmative", "note": "problém"},
+        {"id": "20dcfcf7-f334-497e-b3bc-56d9d10bf87a", "cz": "Pošlete mi to znovu.", "en": "Please send it to me again.", "pattern": "affirmative", "note": "žádost"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A2",
+      "blok": "Každodenní - restaurace — věta 1",
+      "topic": "Každodenní rutina",
+      "sentences": [
+        {"id": "92ecac0b-9ced-4b2f-9ddd-fcc4347154e3", "cz": "Chtěl bych si objednat.", "en": "I would like to order.", "pattern": "affirmative", "note": "žádost"},
+        {"id": "c5d24c2d-d1fe-4bc6-bf2c-c55b8aad03b9", "cz": "Co si dáte?", "en": "What would you like?", "pattern": "negative", "note": "nabídka"},
+        {"id": "f4e42cd0-8588-4112-b80b-0db4882d81d3", "cz": "Dám si steak.", "en": "I will have the steak.", "pattern": "question", "note": "objednávka"},
+        {"id": "53cb5878-7883-4405-807c-4daf149295c8", "cz": "Jak by jste chtěl steak?", "en": "How would you like your steak?", "pattern": "wh_question", "note": "upřesnění"},
+        {"id": "b0c2481d-9bd5-440f-bdb5-3ca0efb93351", "cz": "Přinesete mi účet?", "en": "Could you bring me the bill?", "pattern": "affirmative", "note": "zdvořilá žádost"},
+        {"id": "0ae13f7b-587b-4eae-b656-e500f13d0a57", "cz": "Je v ceně spropitné?", "en": "Is service included?", "pattern": "question", "note": "praktická otázka"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A2",
+      "blok": "Každodenní - telefon — věta 1",
+      "topic": "Sociální situace",
+      "sentences": [
+        {"id": "c08f1ec2-19af-4557-8ec5-f8f30a0b9243", "cz": "Chtěl bych mluvit s panem Novákem.", "en": "I would like to speak to Mr Novak.", "pattern": "affirmative", "note": "žádost"},
+        {"id": "721f5dcb-2876-43cc-bf0a-018748f448fe", "cz": "Mohl bych mluvit s panem Novákem?", "en": "Could I speak to Mr Novak?", "pattern": "question", "note": "zdvořilá otázka"},
+        {"id": "6f27a19f-f65c-432c-9f63-33c9d8bb1797", "cz": "Pan Novák tady není.", "en": "Mr Novak is not here.", "pattern": "question", "note": "odmítnutí"},
+        {"id": "578c7eea-d40c-4ab0-bc60-63c06a553b62", "cz": "Kdy bude zpět?", "en": "When will he be back?", "pattern": "wh_question", "note": "WHEN otázka"},
+        {"id": "83689aa0-0103-4031-88a1-eb508016bb63", "cz": "Mohu zanechat zprávu?", "en": "Can I leave a message?", "pattern": "affirmative", "note": "žádost"},
+        {"id": "608a3b44-85f2-4695-a0f4-1b3a843c90e6", "cz": "Zavolám znovu později.", "en": "I will call back later.", "pattern": "affirmative", "note": "budoucí záměr"}
+        ]
+      }
+  ]
+}

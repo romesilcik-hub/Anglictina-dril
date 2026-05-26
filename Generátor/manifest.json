@@ -1,0 +1,26 @@
+{
+  "name": "AJ Dril — Prompt Builder",
+  "short_name": "Prompt Builder",
+  "description": "Generátor promptů pro tvorbu drilových vět",
+  "start_url": "./prompt_builder.html",
+  "display": "standalone",
+  "background_color": "#f4f6f9",
+  "theme_color": "#2e75b6",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "../aj_dril/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "../aj_dril/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education"],
+  "lang": "cs"
+}

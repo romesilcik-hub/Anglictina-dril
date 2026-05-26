@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJ Dril — Prompt Builder</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2e75b6">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Prompt Builder">
+  <link rel="apple-touch-icon" href="../aj_dril/icon-192.png">
+  <style>
+    html { font-size: clamp(15px, 1vw + 13px, 18px); }
+    .app-subtitle { font-size:.85rem; color:var(--color-text-muted); margin-bottom:1.5rem; }
+
+    .section-card {
+      background:var(--color-surface); border:1px solid var(--color-border);
+      border-radius:var(--radius-lg); padding:1.25rem; margin-bottom:1rem;
+      box-shadow:var(--shadow-sm);
+    }
+    .section-card-title {
+      font-size:.78rem; font-weight:700; color:var(--color-text-muted);
+      text-transform:uppercase; letter-spacing:.05em; margin-bottom:1rem;
+    }
+    .builder-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    @media(max-width:520px){ .builder-grid { grid-template-columns:1fr; } }
+
+    .field-group { display:flex; flex-direction:column; gap:.35rem; }
+    .field-group label {
+      font-size:.77rem; font-weight:700; color:var(--color-text-muted);
+      text-transform:uppercase; letter-spacing:.05em;
+    }
+    .field-group select,
+    .field-group input[type=text],
+    .field-group textarea {
+      width:100%; padding:7px 11px; border-radius:var(--radius-sm);
+      border:1px solid var(--color-border); background:var(--color-surface);
+      color:var(--color-text); font-size:.85rem; font-family:var(--font); outline:none;
+    }
+    .field-group select:focus,
+    .field-group input:focus,
+    .field-group textarea:focus { border-color:var(--color-primary); }
+    .field-group textarea { min-height:70px; resize:vertical; }
+
+    /* Badge počtu vět */
+    .count-badge {
+      display:inline-block; font-size:.72rem; font-weight:700;
+      padding:2px 9px; border-radius:12px; margin-left:6px;
+      background:var(--color-primary-bg); color:var(--color-primary-text);
+      vertical-align:middle;
+    }
+    .count-badge.none { background:#fef3c7; color:#92400e; }
+    .count-badge.some { background:#e6f4ec; color:#1e8c45; }
+
+    /* Oddělovač */
+    .sep-row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-top:.5rem; }
+    .sep-btn {
+      padding:5px 13px; border-radius:var(--radius-xl); border:1px solid var(--color-border);
+      background:var(--color-surface); color:var(--color-text-muted);
+      font-size:.82rem; font-family:var(--font); cursor:pointer; transition:all .15s;
+    }
+    .sep-btn.active { background:var(--color-primary); color:#fff; border-color:transparent; font-weight:600; }
+    .sep-custom { display:none; }
+    .sep-custom.show { display:flex; gap:6px; align-items:center; }
+
+    /* Patterny */
+    .patterns-panel {
+      background:var(--color-surface); border:1px solid var(--color-border);
+      border-radius:var(--radius-lg); padding:.85rem 1.25rem;
+      margin-bottom:1rem; box-shadow:var(--shadow-sm);
+    }
+    .patterns-panel summary {
+      cursor:pointer; font-size:.88rem; font-weight:600;
+      color:var(--color-text-muted); list-style:none; user-select:none;
+      display:flex; align-items:center; gap:8px;
+    }
+    .pat-count {
+      font-size:.75rem; background:var(--color-primary); color:#fff;
+      padding:1px 8px; border-radius:12px; font-weight:600; margin-left:auto;
+    }
+    .patterns-grid {
+      display:grid; grid-template-columns:repeat(auto-fill, minmax(200px,1fr));
+      gap:.5rem .75rem; margin-top:.9rem;
+    }
+    .pattern-item {
+      display:flex; align-items:center; gap:.45rem; font-size:.85rem;
+      color:var(--color-text); cursor:pointer; user-select:none;
+      padding:.25rem .35rem; border-radius:var(--radius-sm); transition:background .1s;
+    }
+    .pattern-item:hover { background:var(--color-surface-alt); }
+    .pattern-item input[type=checkbox] {
+      width:15px; height:15px; accent-color:var(--color-primary); cursor:pointer; flex-shrink:0;
+    }
+    .pat-actions {
+      display:flex; gap:8px; margin-top:.65rem; padding-top:.65rem;
+      border-top:1px solid var(--color-border-light);
+    }
+
+    /* Stat řádek */
+    .stat-row {
+      display:flex; gap:16px; flex-wrap:wrap; margin-top:.65rem;
+      font-size:.8rem; color:var(--color-text-muted);
+    }
+    .stat-row strong { color:var(--color-primary); }
+
+    /* Přehled databáze */
+    .db-panel {
+      background:var(--color-surface); border:1px solid var(--color-border);
+      border-radius:var(--radius-lg); margin-bottom:1rem; box-shadow:var(--shadow-sm);
+      overflow:hidden;
+    }
+    .db-panel summary {
+      cursor:pointer; padding:.85rem 1.25rem;
+      font-size:.88rem; font-weight:700; color:var(--color-text-muted);
+      list-style:none; user-select:none; background:var(--color-surface-alt);
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .db-panel summary:hover { background:var(--color-border-light); }
+    .db-inner { padding:1rem 1.25rem; }
+    .db-load-row { display:flex; align-items:center; gap:.75rem; flex-wrap:wrap; margin-bottom:.85rem; }
+    .db-status-txt { font-size:.8rem; color:var(--color-text-muted); }
+    .db-status-txt.ok { color:var(--color-success); font-weight:600; }
+
+    /* Tabulka přehledu */
+    .db-table-wrap { overflow-x:auto; }
+    .db-table {
+      width:100%; border-collapse:collapse; font-size:.78rem;
+    }
+    .db-table th {
+      background:var(--color-surface-alt); color:var(--color-text-muted);
+      font-weight:700; text-align:left; padding:5px 10px;
+      border-bottom:2px solid var(--color-border); white-space:nowrap;
+    }
+    .db-table td {
+      padding:4px 10px; border-bottom:1px solid var(--color-border-light);
+      vertical-align:top;
+    }
+    .db-table tr:hover td { background:var(--color-surface-alt); }
+    .db-count { font-weight:700; color:var(--color-primary); }
+    .db-count.zero { color:var(--color-text-light); font-weight:400; }
+    .db-bloks { color:var(--color-text-light); font-size:.72rem; margin-top:2px; }
+    .db-gram-header td {
+      background:var(--color-primary-bg); color:var(--color-primary-text);
+      font-weight:700; padding:6px 10px; border-bottom:1px solid var(--color-border);
+    }
+
+    /* Výstup */
+    .output-panel {
+      background:var(--color-surface); border:1px solid var(--color-primary);
+      border-radius:var(--radius-lg); padding:1.25rem; margin-bottom:1rem;
+      box-shadow:0 2px 12px rgba(46,117,182,.08); display:none;
+    }
+    .output-label {
+      font-size:.75rem; font-weight:700; color:var(--color-primary-text);
+      text-transform:uppercase; letter-spacing:.05em; margin-bottom:.75rem;
+    }
+    .output-textarea {
+      width:100%; min-height:340px; padding:.85rem 1rem;
+      border-radius:var(--radius-sm); border:1px solid var(--color-border);
+      background:var(--color-surface-alt); color:var(--color-text);
+      font-size:.82rem; font-family:var(--font); line-height:1.6;
+      resize:vertical; outline:none;
+    }
+    .output-textarea:focus { border-color:var(--color-primary); }
+    .copy-btn {
+      display:inline-flex; align-items:center; gap:6px;
+      padding:9px 22px; border-radius:var(--radius-xl); border:none;
+      background:var(--color-primary); color:#fff; font-size:.9rem;
+      font-family:var(--font); font-weight:600; cursor:pointer; transition:all .15s;
+    }
+    .copy-btn:hover { background:var(--color-primary-text); }
+    .copy-btn.copied { background:var(--color-success); }
+    .info-box {
+      background:var(--color-primary-bg); border:1px solid var(--color-primary);
+      border-radius:var(--radius-md); padding:.75rem 1rem;
+      font-size:.82rem; color:var(--color-primary-text); line-height:1.5; margin-top:.75rem;
+    }
+    .checkbox-row {
+      display:flex; align-items:center; gap:.45rem; font-size:.85rem;
+      color:var(--color-text); cursor:pointer; user-select:none;
+    }
+    .checkbox-row input[type=checkbox] {
+      width:15px; height:15px; accent-color:var(--color-primary); cursor:pointer;
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+
+  <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
+    <div class="app-title" style="margin-bottom:0">✍️ AJ Dril — Prompt Builder</div>
+    <button id="dbIconBtn" onclick="toggleDbPanel()" title="Přehled existujících vět v databázi" style="background:none;border:1px solid var(--color-border);border-radius:var(--radius-md);cursor:pointer;font-size:1.1rem;padding:5px 9px;color:var(--color-text-muted);">📊</button>
+  </div>
+
+  <!-- Přehled databáze (skrytý) -->
+  <div class="db-panel" id="dbPanelWrap" style="display:none;margin-bottom:1rem;">
+    <div class="db-inner">
+      <div class="db-load-row">
+        <input type="file" id="dbJsonFile" accept=".json" style="display:none">
+        <button class="btn btn-sm" onclick="document.getElementById('dbJsonFile').click()">📂 Načíst JSON databázi</button>
+        <span class="db-status-txt" id="dbStatusTxt">Načti soubor aj_dril_databaze.json exportovaný z Excelu</span>
+        <span id="dbSummaryBadge" style="font-size:.75rem;color:var(--color-text-light);font-weight:400"></span>
+      </div>
+      <div id="dbTableWrap"></div>
+      <div style="text-align:right;margin-top:.75rem;padding-top:.75rem;border-top:0.5px solid var(--color-border);">
+        <button class="btn btn-sm btn-ghost" onclick="toggleDbPanel()">✕ Zavřít přehled</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Parametry -->
+  <div class="section-card">
+    <div class="section-card-title" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+      <span>Parametry generování</span>
+      <span style="display:flex;align-items:center;gap:6px;">
+        <input type="file" id="temataTxt" accept=".txt" style="display:none">
+        <button class="btn btn-sm btn-ghost" style="font-size:.75rem;padding:3px 10px;text-transform:none;font-weight:400;" onclick="document.getElementById('temataTxt').click()">📂 Načíst témata.txt</button>
+        <span id="temataSrc" style="font-size:.72rem;color:var(--color-text-light)"></span>
+        <button onclick="toggleDetailSettings()" id="detailSettingsBtn" style="font-size:.75rem;font-weight:600;padding:3px 10px;border-radius:var(--radius-xl);border:1px solid var(--color-border);background:var(--color-surface-alt);color:var(--color-text-muted);cursor:pointer;">⚙ Detailní nastavení</button>
+      </span>
+    </div>
+    <div class="builder-grid">
+
+      <div class="field-group">
+        <label>Úroveň</label>
+        <select id="selLevel" onchange="buildGrammarSelect(); updateStats(); updateCountBadge();">
+          <option value="A0">A0 — Začátečník</option>
+          <option value="A1" selected>A1 — Základní</option>
+          <option value="A2">A2 — Mírně pokročilý</option>
+          <option value="B1">B1 — Středně pokročilý</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label>
+          Gramatický jev
+          <span class="count-badge" id="gramCountBadge" style="display:none"></span>
+        </label>
+        <select id="selGrammar" onchange="updateStats(); updateCountBadge(); applyGrammarPatternExclusion();">
+          <!-- Generuje JS -->
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label>
+          Téma <span class="count-badge" id="topicCountBadge" style="display:none"></span>
+        </label>
+        <span id="topicSrc" style="font-size:.72rem;color:var(--color-text-light);margin-bottom:2px;display:block"></span>
+        <select id="selTopic" onchange="onTopicChange(); updateCountBadge();">
+          <option>Obecné</option>
+          <option>Práce a kancelář</option>
+          <option>Každodenní rutina</option>
+          <option>Cestování</option>
+          <option>Nakupování</option>
+          <option>Zdraví a lékař</option>
+          <option>Domov a rodina</option>
+          <option>Volný čas</option>
+          <option>Sociální situace</option>
+          <option>Vzdělání</option>
+          <option value="__vlastni__">✎ Vlastní téma...</option>
+        </select>
+        <input type="text" id="inpTopicVlastni" placeholder="Napiš vlastní téma..." style="display:none;margin-top:4px">
+      </div>
+
+      <div class="field-group">
+        <label>Počet bloků</label>
+        <select id="selPocet" onchange="updateStats()">
+          <option value="2">2 bloky</option>
+          <option value="3" selected>3 bloky</option>
+          <option value="5">5 bloků</option>
+          <option value="8">8 bloků</option>
+          <option value="10">10 bloků</option>
+          <option value="15">15 bloků</option>
+          <option value="20">20 bloků</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label>Klíčové sloveso / zaměření (volitelné)</label>
+        <input type="text" id="inpSeed" placeholder="např. work, call, buy, go...">
+      </div>
+
+      <div class="field-group">
+        <label>Extra instrukce (volitelné)</label>
+        <textarea id="inpExtra" placeholder="např. Zaměř se na pracovní prostředí. Vyhni se příliš jednoduchým větám."></textarea>
+      </div>
+
+    </div>
+
+    <div id="detailSettings" style="display:none">
+      <!-- Oddělovač -->
+      <div style="margin-top:1rem">
+        <div class="section-card-title" style="margin-bottom:.5rem">Oddělovač sloupců ve výstupu</div>
+        <div class="sep-row">
+          <button class="sep-btn" id="sepTab"    onclick="setSep('tab')">⇥ Tabulátor</button>
+          <button class="sep-btn active" id="sepSemi" onclick="setSep('semi')">; Středník</button>
+          <button class="sep-btn" id="sepPipe"   onclick="setSep('pipe')">| Svislítko</button>
+          <button class="sep-btn" id="sepComma"  onclick="setSep('comma')">, Čárka</button>
+          <button class="sep-btn" id="sepCustom" onclick="setSep('custom')">✎ Vlastní</button>
+        </div>
+        <div class="sep-custom" id="sepCustomRow">
+          <label>Vlastní oddělovač:</label>
+          <input type="text" id="inpSepCustom" maxlength="5" placeholder="|" style="width:80px">
+        </div>
+      </div>
+
+      <!-- Záhlaví -->
+      <div style="margin-top:.85rem">
+        <label class="checkbox-row">
+          <input type="checkbox" id="chkZahlavi">
+          Zahrnout řádek se záhlavím sloupců
+        </label>
+      </div>
+
+      <div class="stat-row" id="statRow">
+        <span>Celkem vět: <strong id="statVety">0</strong></span>
+        <span>Bloků: <strong id="statBloky">3</strong></span>
+        <span>Vět v bloku: <strong id="statVBloku">0</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Patterny -->
+  <details class="patterns-panel" open>
+    <summary>
+      ☑ Typy vět (patterny)
+      <span class="pat-count" id="patCount">6 vybráno</span>
+    </summary>
+    <div class="patterns-grid" id="patternsGrid"></div>
+    <div class="pat-actions">
+      <button class="btn btn-sm" onclick="selectAllPat(true)">Vybrat vše</button>
+      <button class="btn btn-sm btn-ghost" onclick="selectAllPat(false)">Zrušit vše</button>
+    </div>
+  </details>
+
+  <!-- Tlačítko -->
+  <div class="controls" style="margin-bottom:1rem">
+    <button class="btn btn-primary" onclick="generatePrompt()">✍️ Vygenerovat prompt</button>
+    <button class="btn btn-ghost btn-sm" onclick="resetForm()">↺ Reset</button>
+  </div>
+
+  <!-- Výstup -->
+  <div class="output-panel" id="outputPanel">
+    <div class="output-label">📋 Hotový prompt — zkopíruj a vlož do Claude / ChatGPT</div>
+    <textarea class="output-textarea" id="outputText" readonly onclick="this.select()"></textarea>
+    <div class="controls" style="margin-top:.75rem">
+      <button class="copy-btn" id="copyBtn" onclick="copyPrompt()">📋 Kopírovat prompt</button>
+      <button class="btn btn-sm btn-ghost" onclick="generatePrompt()">↺ Znovu</button>
+    </div>
+    <div class="info-box">
+      💡 <strong>Jak dál:</strong> Zkopíruj prompt → vlož do Claude nebo ChatGPT → dostaneš tabulku →
+      v Excelu: Data → Z textu → vlož obsah a vyber oddělovač → zkopíruj do listu DATA v AJ_Dril_v3.xlsx
+    </div>
+  </div>
+
+</div>
+<script>
+
+// ── Gramatika podle úrovně ────────────────────────────────────────────────────
+const GRAMMAR_BY_LEVEL = {
+  A0: [
+    'Sloveso být (to be)',
+    'Členy (a/an/the)',
+    'Množné číslo',
+    'Zájmena',
+    'Číslovky',
+  ],
+  A1: [
+    'Přítomný čas prostý',
+    'Minulý čas prostý',
+    'Budoucí čas (will)',
+    'Budoucí čas (going to)',
+    'Způsobová — can/could',
+    'Způsobová — must/have to',
+    'Způsobová — should/ought to',
+    'Rozkazy a návrhy',
+    'Předložky místa a času',
+    'There is / There are',
+    'Some / any / much / many',
+    'Sponová slovesa',
+    'Příslovce frekvence',
+    'Souhlasné reakce',
+    'Nepravidelná slovesa',
+  ],
+  A2: [
+    'Přítomný čas průběhový',
+    'Předpřítomný čas',
+    'Minulý čas průběhový',
+    'Způsobová — might/may',
+    'Infinitiv',
+    'Gerundium',
+    'Frázová slovesa',
+    'Stupňování přídavných jmen',
+    'Kvantifikátory (all/both/each)',
+    'Dovětky (question tags)',
+    'Slovesa se dvěma předměty',
+    'Tvoření slov',
+  ],
+  B1: [
+    'Předpřítomný průběhový',
+    'Předminulý čas',
+    'Budoucí průběhový',
+    'Způsobová minulá (could have...)',
+    'Trpný rod',
+    'Přímá a nepřímá řeč',
+    'Podmínka 1. typ',
+    'Podmínka 2. typ',
+    'Podmínka 3. typ',
+    'Used to',
+    'Wish',
+    'Would rather',
+    "It's time",
+    'Have something done',
+    'Vedlejší věty',
+  ],
+};
+
+const GRAMMAR_GROUPS = [
+  { label: '── Základy ──────────────', items: [
+    'Sloveso být (to be)','Členy (a/an/the)','Množné číslo','Zájmena','Číslovky'
+  ]},
+  { label: '── Časy ─────────────────', items: [
+    'Přítomný čas prostý','Přítomný čas průběhový','Předpřítomný čas','Předpřítomný průběhový',
+    'Minulý čas prostý','Minulý čas průběhový','Předminulý čas',
+    'Budoucí čas (will)','Budoucí čas (going to)','Budoucí průběhový'
+  ]},
+  { label: '── Způsobová slovesa ────', items: [
+    'Způsobová — can/could','Způsobová — must/have to','Způsobová — should/ought to',
+    'Způsobová — might/may','Způsobová minulá (could have...)'
+  ]},
+  { label: '── Infinitiv a gerundium ', items: [
+    'Infinitiv','Gerundium'
+  ]},
+  { label: '── Konstrukce ───────────', items: [
+    'Trpný rod','Podmínka 1. typ','Podmínka 2. typ','Podmínka 3. typ',
+    'Přímá a nepřímá řeč','Vedlejší věty','Used to','Wish','Would rather',"It's time",'Have something done'
+  ]},
+  { label: '── Slovní zásoba ────────', items: [
+    'Frázová slovesa','Stupňování přídavných jmen','Kvantifikátory (all/both/each)',
+    'Dovětky (question tags)','Tvoření slov','Předložky místa a času',
+    'There is / There are','Some / any / much / many','Sponová slovesa',
+    'Příslovce frekvence','Slovesa se dvěma předměty','Rozkazy a návrhy','Nepravidelná slovesa',
+    'Souhlasné reakce'
+  ]}
+];
+
+function buildGrammarSelect() {
+  const level   = document.getElementById('selLevel').value;
+  const validGs = new Set(GRAMMAR_BY_LEVEL[level] || []);
+  const sel     = document.getElementById('selGrammar');
+  const cur     = sel.value;
+  sel.innerHTML = '';
+  GRAMMAR_GROUPS.forEach(group => {
+    const items = group.items.filter(g => validGs.has(g));
+    if (!items.length) return;
+    const og = document.createElement('optgroup');
+    og.label = group.label;
+    items.forEach(g => {
+      const o = document.createElement('option');
+      o.value = g;
+      if (dbStats) {
+        const gramData = dbStats[g];
+        const cnt = gramData ? Object.values(gramData).reduce((s, v) => s + v.count, 0) : 0;
+        o.textContent = g + ' (' + cnt + ')';
+      } else {
+        o.textContent = g;
+      }
+      applyFreq(o, GRAMMAR_FREQ[g] || 0);
+      if (g === cur) o.selected = true;
+      og.appendChild(o);
+    });
+    sel.appendChild(og);
+  });
+  if (!sel.value && sel.options.length) sel.selectedIndex = 0;
+  refreshTopicCounts();
+  applyGrammarPatternExclusion();
+}
+
+// ── Patterny ──────────────────────────────────────────────────────────────────
+const PATTERNS = [
+  { key:'affirmative',   label:'Oznamovací věta',          def:true  },
+  { key:'negative',      label:'Záporná věta',              def:true  },
+  { key:'question',      label:'Otázka (ano/ne)',            def:true  },
+  { key:'wh_question',   label:'WH otázka (co/kde/kdy...)', def:true  },
+  { key:'third_person',  label:'3. osoba (he/she/it)',       def:true  },
+  { key:'plural',        label:'Množné číslo (they/we)',     def:true  },
+  { key:'imperative',    label:'Rozkaz',                     def:false },
+  { key:'passive',       label:'Trpný rod',                  def:false },
+  { key:'indirect',      label:'Nepřímá řeč',                def:false },
+  { key:'comparison',    label:'Srovnání',                   def:false },
+  { key:'tag_question',  label:'Dovětek (že?)',               def:false },
+  { key:'conditional',   label:'Podmínková věta',            def:false },
+  { key:'time_clause',   label:'Časová vedlejší věta',       def:false },
+  { key:'first_person',  label:'1. osoba (I/we)',            def:false },
+  { key:'second_person', label:'2. osoba (you)',             def:false },
+];
+
+// Frekvence gramatik v reálné angličtině (1=vzácné … 5=velmi časté)
+const GRAMMAR_FREQ = {
+  'Sloveso být (to be)':5,'Členy (a/an/the)':4,'Množné číslo':4,'Zájmena':4,'Číslovky':3,
+  'Přítomný čas prostý':5,'Přítomný čas průběhový':4,'Předpřítomný čas':3,'Předpřítomný průběhový':2,
+  'Minulý čas prostý':5,'Minulý čas průběhový':3,'Předminulý čas':2,
+  'Budoucí čas (will)':4,'Budoucí čas (going to)':4,'Budoucí průběhový':2,
+  'Způsobová — can/could':4,'Způsobová — must/have to':3,'Způsobová — should/ought to':3,
+  'Způsobová — might/may':3,'Způsobová minulá (could have...)':1,
+  'Infinitiv':3,'Gerundium':2,
+  'Trpný rod':3,'Podmínka 1. typ':3,'Podmínka 2. typ':2,'Podmínka 3. typ':1,
+  'Přímá a nepřímá řeč':2,'Vedlejší věty':2,'Used to':2,
+  'Wish':1,'Would rather':1,"It's time":1,'Have something done':2,
+  'Frázová slovesa':3,'Stupňování přídavných jmen':3,'Kvantifikátory (all/both/each)':2,
+  'Dovětky (question tags)':1,'Tvoření slov':2,'Předložky místa a času':4,
+  'There is / There are':3,'Some / any / much / many':3,'Sponová slovesa':4,
+  'Příslovce frekvence':3,'Slovesa se dvěma předměty':2,'Rozkazy a návrhy':2,
+  'Nepravidelná slovesa':4,'Souhlasné reakce':2,
+};
+
+// Frekvence typů vět v reálné angličtině (1=vzácné … 5=velmi časté)
+const PAT_FREQ = {
+  affirmative:5, negative:4, question:3, wh_question:3,
+  third_person:3, plural:3, passive:3,
+  conditional:2, time_clause:2, imperative:2, comparison:2,
+  first_person:2, second_person:2,
+  indirect:1, tag_question:1,
+};
+
+const FREQ_LABELS = ['','velmi vzácné','méně časté','středně časté','časté','velmi časté'];
+function freqColor(n) {
+  if(n>=5) return '#16a34a';
+  if(n>=4) return '#ea580c';
+  if(n>=3) return '#d97706';
+  if(n>=2) return '#3b82f6';
+  return '#9ca3af';
+}
+function applyFreq(el, n) {
+  if(!n) return;
+  el.style.color = freqColor(n);
+  el.title = '★'.repeat(n)+'☆'.repeat(5-n);
+}
+
+// Gramatiky, které samy definují formu věty — redundantní patterny se automaticky vyloučí
+const GRAMMAR_PATTERN_EXCLUDE = {
+  'Trpný rod':               ['passive'],
+  'Dovětky (question tags)': ['tag_question', 'question', 'wh_question'],
+  'Podmínka 1. typ':         ['conditional'],
+  'Podmínka 2. typ':         ['conditional', 'imperative'],
+  'Podmínka 3. typ':         ['conditional', 'imperative'],
+  'Přímá a nepřímá řeč':     ['indirect'],
+  'Rozkazy a návrhy':        ['imperative'],
+  'Wish':                    ['imperative', 'passive', 'conditional'],
+  'Would rather':            ['imperative'],
+  "It's time":               ['imperative', 'conditional'],
+  'Have something done':     ['passive'],
+  'Předpřítomný průběhový':  ['passive'],
+};
+
+// Specifická pravidla pro generování VĚT — kde AI nejčastěji chybuje
+const GRAMMAR_SENTENCE_RULES = {
+  'Předminulý čas':
+    'Každá věta MUSÍ obsahovat dva minulé děje — předminulý vyjadřuje ten DŘÍVĚJŠÍ z nich. ' +
+    'Zahrň oba děje do jedné věty nebo použij spojky when/after/before/by the time. ' +
+    'Příklad: "Když jsem přišel, on už odešel." → "When I arrived, he had already left." ' +
+    'NIKDY negeneruj větu kde je předminulý bez časového kontextu druhého děje.',
+
+  'Předpřítomný čas':
+    'Věty MUSÍ obsahovat časový výraz jasně odkazující na "až do teď": ' +
+    'for, since, already, just, yet, ever, never, recently, lately, so far. ' +
+    'Bez těchto výrazů nelze odlišit předpřítomný od minulého času. ' +
+    'Příklad: "Pracuju tu 5 let." → "I have worked here for 5 years."',
+
+  'Předpřítomný průběhový':
+    'Věty MUSÍ obsahovat for nebo since — zdůrazňují jak dlouho děj trvá a stále probíhá. ' +
+    'Příklad: "Čekám tu hodinu." → "I have been waiting here for an hour." ' +
+    'Důraz je na průběhu a trvání, ne na výsledku. ' +
+    'POZOR na časové věty: s "when" se present perfect continuous nepoužívá — místo toho použij "after" nebo "by the time". ' +
+    'Příklad: NE "When I have been waiting..." → ANO "After I have been preparing for a long time, I feel more confident."',
+
+  'Podmínka 1. typ':
+    'Každá věta MUSÍ mít IF část + výsledkovou část — obě ve stejné větě. ' +
+    'Struktura: IF + přítomný čas → WILL + infinitiv. ' +
+    'Vyjadřuje reálnou podmínku, která může nastat. ' +
+    'NIKDY negeneruj jen jednu část podmínky.',
+
+  'Podmínka 2. typ':
+    'Každá věta MUSÍ mít IF část + výsledkovou část — obě ve stejné větě. ' +
+    'Struktura: IF + minulý čas → WOULD + infinitiv. ' +
+    'Vyjadřuje nepravděpodobnou nebo hypotetickou přítomnou/budoucí situaci. ' +
+    'NIKDY negeneruj jen jednu část podmínky.',
+
+  'Podmínka 3. typ':
+    'Každá věta MUSÍ mít IF část + výsledkovou část — obě ve stejné větě. ' +
+    'Struktura: IF + předminulý → WOULD HAVE + 3. tvar. ' +
+    'Vyjadřuje nereálnou minulou situaci — nestalo se, ale mohlo. ' +
+    'NIKDY negeneruj jen jednu část podmínky.',
+
+  'Způsobová minulá (could have...)':
+    'Věty musí jasně vyjadřovat co se MOHLO/MĚLO stát ale nestalo (nebo opak). ' +
+    'Přidej kontext proč to nakonec nenastalo nebo nastalo jinak. ' +
+    'Příklad: "Mohl jsem přijít, ale byl jsem nemocný." → "I could have come, but I was ill."',
+
+  'Přímá a nepřímá řeč':
+    'Každý blok ukazuj posun časů při přechodu z přímé do nepřímé řeči. ' +
+    'Zahrň do věty signál: said (that) / told me (that) / asked if. ' +
+    'Jasně ukazuj změnu: přítomný→minulý, will→would, can→could, am→was. ' +
+    'Příklad: "Jsem unavený." → He said he was tired. ' +
+    'ROZKAZ v nepřímé řeči: použij told + to + infinitiv (NE "should"). Příklad: "Jdi domů." → He told me to go home. ' +
+    'TAG QUESTION v nepřímé řeči: nelze zachovat přímý dovětek — přepiš na asked if. Příklad: "Jdeš, že?" → She asked if I was going. ' +
+    'V celé větě NESMÍ být dva různé časové rámce: buď celá reported speech, nebo přímá citace — nikdy kombinace.',
+
+  'Trpný rod':
+    'Používej pasivum pouze tam kde je přirozené: konatel je neznámý, nepodstatný nebo záměrně vynechán. ' +
+    'NEVYNUCUJ pasivum tam kde zní nepřirozeně. ' +
+    'Věty bez "by + konatel" jsou preferované — to je smysl pasiva.',
+
+  'Wish':
+    'KAŽDÁ věta MUSÍ obsahovat slovo "wish" nebo "if only" — nikdy negeneruj větu bez této struktury. ' +
+    'JASNĚ odlišuj dva typy: ' +
+    '(1) wish + minulý čas = přání o přítomnosti (Kéž bych teď byl...) ' +
+    '(2) wish + předminulý = lítost o minulosti (Kéž bych tehdy byl...) ' +
+    'V jednom bloku používej jen jeden typ — typ urči podle tématu. Nikdy nemíchej. ' +
+    'NIKDY negeneruj čistou podmínkovou větu (If I had..., I would...) bez wish — to není wish.',
+
+  'Used to':
+    'Každá věta MUSÍ implikovat že zvyk nebo stav JIŽ NEPLATÍ — teď je jinak. ' +
+    'Příklad: "Dřív jsem kouřil, ale teď nekouřím." → "I used to smoke, but I don\'t anymore." ' +
+    'Bez kontrastu se smyslem "used to" ztrácí. ' +
+    '"Used to" MUSÍ být hlavní struktura věty — ne jen odkaz v srovnávací klauzuli (např. "like I used to" nestačí). ' +
+    'V nepřímé řeči: zachovej "used to" beze změny (není potřeba backshift) a celá věta musí zůstat v reportovaném čase. ' +
+    'Nevytvářej duplicitní věty — každý pattern musí mít unikátní strukturu.',
+
+  'Have something done':
+    'Každá věta musí jasně vyjadřovat kauzativní strukturu: podmět NECHÁ provést akci někým jiným — je příjemcem, ne vykonavatelem. ' +
+    'Příklady: dát si ostřihnout vlasy, nechat opravit auto, objednat si doručení. ' +
+    'Struktura: HAVE + předmět + 3. tvar.',
+
+  "It's time":
+    'Struktura: IT\'S TIME + podmět + minulý čas (subjunktivní forma). ' +
+    'Příklad: "Je čas, abys šel." → "It\'s time you went." ' +
+    'Vyjadřuje urgentnost nebo výzvu k akci. Pozor: ne "It\'s time you go" — to je gramaticky špatně. ' +
+    'KAŽDÁ věta musí obsahovat "It\'s time" — nikdy negeneruj čistou podmínkovou větu bez této struktury. ' +
+    'ZÁPOR: nepoužívej "It\'s time you didn\'t..." — je to nepřirozené. Místo toho použij "It\'s time you stopped + gerundium". Příklad: "It\'s time you stopped postponing it." ' +
+    'DUPLIKÁTY: second_person a affirmative jsou různé věty — second_person musí mít odlišný obsah.',
+
+  'Would rather':
+    'Struktura pro stejný podmět: WOULD RATHER + holý infinitiv (bez to). ' +
+    'Struktura pro jiný podmět: WOULD RATHER + podmět + minulý čas. ' +
+    'Příklad: "Raději bych šel pěšky." → "I\'d rather walk." ' +
+    '"Raději bych, kdybys šel." → "I\'d rather you went."',
+
+  'Vedlejší věty':
+    'Střídej DEFINING (bez čárky, who/that/which) a NON-DEFINING (s čárkou, who/which) vedlejší věty. ' +
+    'Defining: "The man who called is my boss." (která) ' +
+    'Non-defining: "My boss, who called yesterday, is strict." (a ten = navíc info). ' +
+    'Jasně ukazuj rozdíl v interpunkci.',
+
+  'Způsobová — can/could':
+    'KAŽDÁ věta musí obsahovat "can" nebo "could" — nikdy negeneruj větu bez modálního slovesa. ' +
+    'Střídej can a could napříč patterny: can = přítomná schopnost/možnost; could = minulá schopnost, zdvořilá žádost nebo hypotetická možnost. ' +
+    'Časové věty (time_clause): věta MUSÍ obsahovat can/could — NE jen "I will drive when I have a licence" bez modálního. ' +
+    'Příklad time_clause: "I can drive anywhere when I have a licence." ' +
+    'Nevytvářej duplikáty — first_person a affirmative mají různé věty.',
+
+  'Budoucí průběhový':
+    'Každá věta MUSÍ mít jasný budoucí časový odkaz: at 8pm, this time tomorrow, next week, when you arrive... ' +
+    'Vyjadřuje děj probíhající v určitý bod v budoucnosti, ne jen budoucí záměr.',
+
+  'Dovětky (question tags)':
+    'Věta + dovětek = JEDNA celá věta. ' +
+    'Kladná věta → záporný dovětek; záporná věta → kladný dovětek. ' +
+    'Pomocné sloveso v dovětku musí odpovídat hlavní větě. ' +
+    'Příklad: "Pracuješ tady, že?" → "You work here, don\'t you?" ' +
+    'DŮLEŽITÉ: dovětek se připojuje POUZE k oznamovacím větám — nikdy k otázkám. ' +
+    '"Do you...?, don\'t you?" nebo "Why do you...?, don\'t you?" jsou gramaticky špatně — to jsou kombinace, které neexistují.',
+
+  'Frázová slovesa':
+    'Každý blok = jedno konkrétní frázové sloveso s jeho specifickým významem. ' +
+    'Nepoužívej různá frázová slovesa v jednom bloku. ' +
+    'U separabilních sloves ukaž oba varianty: "give up smoking" i "give it up". ' +
+    'Uveď konkrétní frázové sloveso v názvu bloku.',
+
+  'Gerundium':
+    'Gerundium = -ING jako podstatné jméno — ne průběhový čas. ' +
+    'Prioritizuj věty kde MUSÍ být gerundium: po předložkách (without/after/before) a po typických slovesech (enjoy/avoid/finish/mind/suggest). ' +
+    'Vyhni se větám kde je záměna s infinitivem možná — ty nejsou pro nácvik gerundia typické.',
+
+  'Podmínka 1. typ':
+    'Každá věta MUSÍ mít IF část + výsledkovou část. Struktura: IF + přítomný → WILL + inf.',
+};
+
+// Gramatika-specifické tipy pro generování poznámek — vychází ze studijních materiálů NJS
+const GRAMMAR_NOTE_HINT = {
+  // A0
+  'Sloveso být (to be)':           'časuje se nepravidelně: I am / he is / they are; záporně: isn\'t / aren\'t',
+  'Členy (a/an/the)':              'a/an = neurčitý (poprvé zmíněno), the = určitý (známá věc); před samohláskou "an"',
+  'Množné číslo':                  'pravidelně přidej -s/-es; nepravidelné: man→men, child→children, foot→feet',
+  'Zájmena':                       'podmětová (I/he/she) × předmětová (me/him/her); přivlastňovací: my/his/her',
+  'Číslovky':                      'základní (one, two...) × řadové (first, second...); výslovnost teen vs. -ty',
+  // A1
+  'Přítomný čas prostý':           'vyjadřuje zvyk, rutinu, fakta; 3. os. sing.: přidej -s/-es; záporně don\'t / doesn\'t',
+  'Minulý čas prostý':             'pravidelná slovesa: +ed; nepravidelná: 2. tvar (go→went); záporně didn\'t + infinitiv',
+  'Budoucí čas (will)':            'WILL + infinitiv; spontánní rozhodnutí, předpověď; záporně won\'t',
+  'Budoucí čas (going to)':        'AM/IS/ARE + GOING TO + infinitiv; plán, záměr, nebo viditelný výsledek',
+  'Způsobová — can/could':         'can = umět/moci (přítomnost); could = mohl bych (podmínka) nebo uměl jsem (minulost)',
+  'Způsobová — must/have to':      'must = subjektivní povinnost (já chci); have to = objektivní povinnost (pravidlo, okolnosti)',
+  'Způsobová — should/ought to':   'should = doporučení, rada ("měl bys"); ought to = totéž, formálnější',
+  'Rozkazy a návrhy':              'rozkaz: holý infinitiv (Come!); záporně: Don\'t + inf.; návrh: Let\'s + inf.',
+  'Předložky místa a času':        'místo: in (prostor), on (plocha), at (bod); čas: in (rok/měsíc), on (den), at (hodina)',
+  'There is / There are':          'there is + sing. (Je tu jedna...); there are + pl. (Jsou tu...); záporně: there isn\'t / aren\'t',
+  'Some / any / much / many':      'some = kladné věty; any = záporné/otázky; much + nespočetné; many + spočetné',
+  'Sponová slovesa':               'look/feel/seem/sound/taste/smell + přídavné jméno (ne příslovce): He looks tired.',
+  'Příslovce frekvence':           'always/usually/often/sometimes/rarely/never; stojí PŘED významovým slovesem, ZA be',
+  'Souhlasné reakce':              'So do I / Neither do I; So am I / Neither am I; klíč: pomocné sloveso kopíruje čas',
+  'Nepravidelná slovesa':          'infinitiv → minulý čas → příčestí (3. tvar): go→went→gone; learn→learnt→learnt',
+  // A2
+  'Přítomný čas průběhový':        'AM/IS/ARE + -ING; vyjadřuje děj právě probíhající nebo dočasný plán v blízké budoucnosti',
+  'Předpřítomný čas':              'HAVE/HAS + 3. tvar; popisuje stav/zkušenost trvající "až do teď"; do češtiny = přítomný čas',
+  'Minulý čas průběhový':          'WAS/WERE + -ING; probíhající děj v minulosti, často přerušený jiným dějem (when/while)',
+  'Způsobová — might/may':         'might/may = možná, asi (nižší jistota než "will"); might = o něco méně jistá než may',
+  'Infinitiv':                     'po slovesech (want, need, decide...); po přídavných jménech; pro vyjádření účelu (to = aby)',
+  'Gerundium':                     '-ING jako podstatné jméno; po předložkách vždy gerundium; po některých slovesech (enjoy, avoid, finish...)',
+  'Frázová slovesa':               'sloveso + předložka/příslovce mění celý význam: look up ≠ look, give up ≠ give',
+  'Stupňování přídavných jmen':    'krátká slova: -er/-est; dlouhá: more/most; nepravidelné: good→better→best',
+  'Kvantifikátory (all/both/each)':'all = všichni/vše; both = oba; each = každý jednotlivě; every = každý (celek)',
+  'Dovětky (question tags)':       'kladná věta → záporný dovětek (He is, isn\'t he?); záporná → kladný (He isn\'t, is he?)',
+  'Slovesa se dvěma předměty':     'give/send/show/tell + KOMU + CO; nebo + CO + to + KOMU',
+  'Tvoření slov':                  'přípony: -tion/-ness/-ment/-er; předpony: un-/dis-/re-; odvozování ze základního slova',
+  // B1
+  'Předpřítomný průběhový':        'HAVE/HAS BEEN + -ING; důraz na průběh/trvání děje až do teď; s for/since',
+  'Předminulý čas':                'HAD + 3. tvar; děj dokončený PŘED jiným minulým dějem; "předminulost"',
+  'Budoucí průběhový':             'WILL BE + -ING; děj probíhající v určitý moment v budoucnosti',
+  'Způsobová minulá (could have...)':'COULD/SHOULD/WOULD + HAVE + 3. tvar; vyjadřuje co se mohlo/mělo stát ale nestalo',
+  'Trpný rod':                     'BE (v příslušném čase) + 3. tvar slovesa; kdo jedná je nepodstatný nebo neznámý',
+  'Přímá a nepřímá řeč':           'nepřímá řeč: say that + posun časů (přítomný→minulý, will→would); změna zájmen',
+  'Podmínka 1. typ':               'IF + přítomný čas → WILL + infinitiv; reálná podmínka, může nastat',
+  'Podmínka 2. typ':               'IF + minulý čas → WOULD + infinitiv; nereálná přítomná podmínka, zřejmě nenastane',
+  'Podmínka 3. typ':               'IF + předminulý → WOULD HAVE + 3. tvar; nereálná minulá podmínka, nestalo se',
+  'Used to':                       'USED TO + infinitiv; zvyk nebo stav v minulosti, který už neplatí (teď je jinak)',
+  'Wish':                          'wish + minulý čas = přání o přítomnosti; wish + předminulý = lítost nad minulostí',
+  'Would rather':                  'WOULD RATHER + infinitiv (bez to); vyjadřuje preferenci: "Raději bych..."',
+  "It's time":                     "IT'S TIME + minulý čas; vyjadřuje že je na čase něco udělat: It's time you went.",
+  'Have something done':           'HAVE + předmět + 3. tvar; nechat něco udělat někým jiným (služba)',
+  'Vedlejší věty':                 'vztažné věty: who (osoby) / which (věci) / that (obojí); defining × non-defining',
+};
+
+const LEVEL_DESC = {
+  A0: 'velmi jednoduché věty, základní slovní zásoba',
+  A1: 'jednoduché přirozené věty, běžná slovní zásoba',
+  A2: 'středně složité věty, rozmanitá slovní zásoba',
+  B1: 'složitější struktury, idiomy přijatelné',
+};
+
+const PAT_EXAMPLES = {
+  affirmative:   ['Zavolal jsem kolegovi.', 'I called my colleague.'],
+  negative:      ['Nezavolal jsem kolegovi.', "I didn't call my colleague."],
+  question:      ['Zavolal jsi kolegovi?', 'Did you call your colleague?'],
+  wh_question:   ['Komu jsi zavolal?', 'Who did you call?'],
+  third_person:  ['Zavolala kolegovi.', 'She called her colleague.'],
+  plural:        ['Zavolali kolegovi.', 'They called their colleague.'],
+  imperative:    ['Zavolej kolegovi!', 'Call your colleague!'],
+  passive:       ['Bylo mu zavoláno.', 'He was called.'],
+  indirect:      ['Řekl, že zavolal.', 'He said that he had called.'],
+  comparison:    ['Zavolal dříve než ona.', 'He called earlier than she did.'],
+  tag_question:  ['Zavolal jsi, že?', "You called, didn't you?"],
+  conditional:   ['Kdybys zavolal, věděl bych to.', 'If you had called, I would have known.'],
+  time_clause:   ['Zavolám, až přijdu domů.', "I'll call when I get home."],
+  first_person:  ['Zavolám ti zítra.', "I'll call you tomorrow."],
+  second_person: ['Zavoláš mi?', 'Will you call me?'],
+};
+
+// ── Databáze — přehled existujících vět ──────────────────────────────────────
+// Struktura: dbStats[grammar][topic] = { count: N, bloks: Set }
+let dbStats = null;
+let dbTotalSents = 0;
+
+document.getElementById('dbJsonFile').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      const data = JSON.parse(ev.target.result);
+      parseDbStats(data);
+      buildGrammarSelect();  // obnov s počty vět
+      refreshTopicCounts();  // obnov témata s počty
+      renderDbTable();
+      updateCountBadge();
+      document.getElementById('dbStatusTxt').textContent = '✓ načteno: ' + file.name + ' (' + dbTotalSents + ' vět)';
+      document.getElementById('dbStatusTxt').className = 'db-status-txt ok';
+      document.getElementById('dbSummaryBadge').textContent = dbTotalSents + ' vět celkem';
+      document.getElementById('dbPanelWrap').style.display = '';
+    } catch(err) {
+      document.getElementById('dbStatusTxt').textContent = '✗ Chyba při načítání: ' + err.message;
+      document.getElementById('dbStatusTxt').className = 'db-status-txt';
+    }
+  };
+  reader.readAsText(file, 'UTF-8');
+  e.target.value = '';
+});
+
+function parseDbStats(data) {
+  dbStats = {};
+  dbTotalSents = 0;
+  const blocks = data.blocks || [];
+  blocks.forEach(b => {
+    const g = b.grammar || '?';
+    const t = b.topic || 'Obecné';
+    const cnt = (b.sentences || []).length;
+    if (!dbStats[g]) dbStats[g] = {};
+    if (!dbStats[g][t]) dbStats[g][t] = { count: 0, bloks: [] };
+    dbStats[g][t].count += cnt;
+    if (b.blok) dbStats[g][t].bloks.push(b.blok);
+    dbTotalSents += cnt;
+  });
+}
+
+function renderDbTable() {
+  if (!dbStats) { document.getElementById('dbTableWrap').innerHTML = ''; return; }
+
+  // Seřaď gramatiky podle GRAMMAR_BY_LEVEL pořadí
+  const allGrams = [];
+  Object.values(GRAMMAR_BY_LEVEL).forEach(list => list.forEach(g => { if (!allGrams.includes(g)) allGrams.push(g); }));
+  // Přidej gramatiky co jsou v datech ale ne v seznamu
+  Object.keys(dbStats).forEach(g => { if (!allGrams.includes(g)) allGrams.push(g); });
+
+  // Sbírej všechna témata
+  const allTopics = new Set();
+  Object.values(dbStats).forEach(td => Object.keys(td).forEach(t => allTopics.add(t)));
+  const topics = [...allTopics].sort();
+
+  let html = '<div class="db-table-wrap"><table class="db-table"><thead><tr>';
+  html += '<th>Gramatika</th><th>Téma</th><th>Vět</th><th>Existující bloky</th>';
+  html += '</tr></thead><tbody>';
+
+  allGrams.forEach(g => {
+    if (!dbStats[g]) return;
+    const gramTotal = Object.values(dbStats[g]).reduce((s, v) => s + v.count, 0);
+    html += `<tr class="db-gram-header"><td colspan="4">${g} — celkem ${gramTotal} vět</td></tr>`;
+    topics.forEach(t => {
+      const entry = dbStats[g] && dbStats[g][t];
+      if (!entry) return;
+      const blokList = entry.bloks.slice(0, 8).join(', ') + (entry.bloks.length > 8 ? '…' : '');
+      html += `<tr>
+        <td></td>
+        <td>${t}</td>
+        <td class="db-count${entry.count === 0 ? ' zero' : ''}">${entry.count}</td>
+        <td><div class="db-bloks">${blokList}</div></td>
+      </tr>`;
+    });
+  });
+
+  html += '</tbody></table></div>';
+  document.getElementById('dbTableWrap').innerHTML = html;
+}
+
+function getExistingBloks(grammar, topic) {
+  if (!dbStats || !dbStats[grammar]) return [];
+  const entry = dbStats[grammar][topic];
+  return entry ? entry.bloks : [];
+}
+
+function getExistingCount(grammar, topic) {
+  if (!dbStats || !dbStats[grammar]) return null;
+  const entry = dbStats[grammar][topic];
+  return entry ? entry.count : 0;
+}
+
+function refreshTopicCounts() {
+  if (!dbStats) return;
+  const grammar = document.getElementById('selGrammar').value;
+  document.querySelectorAll('#selTopic option').forEach(o => {
+    if (o.value === '__vlastni__') return;
+    // data-base uloží čisté jméno tématu při prvním volání
+    if (!o.dataset.base) o.dataset.base = o.value;
+    const base = o.dataset.base;
+    if (!base || base === '__vlastni__') return;
+    const cnt = getExistingCount(grammar, base);
+    o.textContent = base + ' (' + (cnt !== null ? cnt : 0) + ')';
+  });
+}
+
+function updateCountBadge() {
+  if (!dbStats) {
+    document.getElementById('gramCountBadge').style.display = 'none';
+    document.getElementById('topicCountBadge').style.display = 'none';
+    return;
+  }
+  const grammar = document.getElementById('selGrammar').value;
+  const topic   = getSelectedTopic();
+
+  // Badge u gramatiky — celkový počet napříč tématy
+  const gramBadge = document.getElementById('gramCountBadge');
+  if (dbStats[grammar]) {
+    const total = Object.values(dbStats[grammar]).reduce((s, v) => s + v.count, 0);
+    gramBadge.textContent = total + ' vět';
+    gramBadge.className = 'count-badge ' + (total > 0 ? 'some' : 'none');
+    gramBadge.style.display = '';
+  } else {
+    gramBadge.textContent = '0 vět';
+    gramBadge.className = 'count-badge none';
+    gramBadge.style.display = '';
+  }
+
+  // Badge u tématu — počet pro konkrétní kombinaci
+  const topicBadge = document.getElementById('topicCountBadge');
+  const cnt = getExistingCount(grammar, topic);
+  if (cnt !== null) {
+    topicBadge.textContent = cnt + ' vět v této kombinaci';
+    topicBadge.className = 'count-badge ' + (cnt > 0 ? 'some' : 'none');
+    topicBadge.style.display = '';
+  } else {
+    topicBadge.textContent = '0 vět v této kombinaci';
+    topicBadge.className = 'count-badge none';
+    topicBadge.style.display = '';
+  }
+}
+
+// ── Oddělovač ─────────────────────────────────────────────────────────────────
+let currentSep = 'semi';
+
+function setSep(type) {
+  currentSep = type;
+  ['tab','semi','pipe','comma','custom'].forEach(s => {
+    document.getElementById('sep'+s.charAt(0).toUpperCase()+s.slice(1)).classList.toggle('active', s===type);
+  });
+  document.getElementById('sepCustomRow').classList.toggle('show', type==='custom');
+}
+
+function getSepChar() {
+  switch(currentSep) {
+    case 'tab':    return '\t';
+    case 'semi':   return ';';
+    case 'pipe':   return '|';
+    case 'comma':  return ',';
+    case 'custom': return document.getElementById('inpSepCustom').value || '|';
+  }
+}
+
+function getSepLabel() {
+  switch(currentSep) {
+    case 'tab':    return 'tabulátor (\\t)';
+    case 'semi':   return 'středník (;)';
+    case 'pipe':   return 'svislítko (|)';
+    case 'comma':  return 'čárka (,)';
+    case 'custom': return 'vlastní: ' + (document.getElementById('inpSepCustom').value || '|');
+  }
+}
+
+// ── Témata ───────────────────────────────────────────────────────────────────
+const DEFAULT_TOPICS = [
+  'Obecné','Práce a kancelář','Každodenní rutina','Cestování',
+  'Nakupování','Zdraví a lékař','Domov a rodina','Volný čas',
+  'Sociální situace','Vzdělání'
+];
+
+function onTopicChange() {
+  const sel = document.getElementById('selTopic');
+  document.getElementById('inpTopicVlastni').style.display = sel.value === '__vlastni__' ? '' : 'none';
+  updateCountBadge();
+}
+
+function getSelectedTopic() {
+  const sel = document.getElementById('selTopic');
+  if (sel.value === '__vlastni__') return document.getElementById('inpTopicVlastni').value.trim() || 'Vlastní téma';
+  return sel.value;
+}
+
+function buildTopicSelect(topics) {
+  const sel = document.getElementById('selTopic');
+  const cur = sel.value;
+  sel.innerHTML = '';
+  topics.forEach(t => {
+    const o = document.createElement('option');
+    o.value = t; o.textContent = t; o.dataset.base = t;
+    if (t === cur) o.selected = true;
+    sel.appendChild(o);
+  });
+  const ov = document.createElement('option');
+  ov.value = '__vlastni__'; ov.textContent = '✎ Vlastní téma...';
+  sel.appendChild(ov);
+  refreshTopicCounts();
+}
+
+document.getElementById('temataTxt').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const lines = ev.target.result.split('\n').map(l=>l.trim()).filter(l=>l&&!l.startsWith('#'));
+    if (!lines.length) return;
+    buildTopicSelect([...DEFAULT_TOPICS, ...lines.filter(l=>!DEFAULT_TOPICS.includes(l))]);
+    document.getElementById('temataSrc').textContent = '✓ ' + file.name + ' (' + lines.length + ' témat)';
+    const firstNew = lines.find(l => !DEFAULT_TOPICS.includes(l));
+    if (firstNew) document.getElementById('selTopic').value = firstNew;
+  };
+  reader.readAsText(file, 'UTF-8');
+  e.target.value = '';
+});
+
+(async () => {
+  try {
+    const resp = await fetch('temata.txt');
+    if (!resp.ok) return;
+    const text = await resp.text();
+    const lines = text.split('\n').map(l=>l.trim()).filter(l=>l&&!l.startsWith('#'));
+    if (!lines.length) return;
+    buildTopicSelect([...DEFAULT_TOPICS, ...lines.filter(l=>!DEFAULT_TOPICS.includes(l))]);
+    document.getElementById('temataSrc').textContent = '✓ temata.txt (' + lines.length + ' témat)';
+  } catch(e) {}
+})();
+
+// ── Patterny UI ───────────────────────────────────────────────────────────────
+function buildPatternsGrid() {
+  const grid = document.getElementById('patternsGrid');
+  grid.innerHTML = '';
+  PATTERNS.forEach(p => {
+    const lbl = document.createElement('label');
+    lbl.className = 'pattern-item';
+    const cb = document.createElement('input');
+    cb.type = 'checkbox'; cb.value = p.key; cb.checked = p.def;
+    cb.onchange = updateStats;
+    lbl.appendChild(cb);
+    const span = document.createElement('span');
+    span.textContent = p.label;
+    applyFreq(span, PAT_FREQ[p.key] || 0);
+    lbl.appendChild(span);
+    grid.appendChild(lbl);
+  });
+  updateStats();
+}
+
+function selectAllPat(val) {
+  document.querySelectorAll('#patternsGrid input[type=checkbox]:not(:disabled)').forEach(cb => cb.checked = val);
+  updateStats();
+}
+
+function applyGrammarPatternExclusion() {
+  const grammar     = document.getElementById('selGrammar').value;
+  const excludeKeys = GRAMMAR_PATTERN_EXCLUDE[grammar] || [];
+
+  document.querySelectorAll('#patternsGrid .pattern-item').forEach(item => {
+    const cb  = item.querySelector('input[type=checkbox]');
+    const key = cb ? cb.value : null;
+    const oldHint = item.querySelector('.pat-excluded-hint');
+    if (oldHint) oldHint.remove();
+
+    if (key && excludeKeys.includes(key)) {
+      cb.checked  = false;
+      cb.disabled = true;
+      item.style.opacity = '0.45';
+      item.title = 'Tento typ věty je daný samotnou gramatikou — není třeba ho zadávat zvlášť';
+      const hint = document.createElement('span');
+      hint.className = 'pat-excluded-hint';
+      hint.style.cssText = 'font-size:.72rem;color:var(--color-text-light);margin-left:4px';
+      hint.textContent = '(dáno gramatikou)';
+      item.appendChild(hint);
+    } else {
+      cb.disabled = false;
+      item.style.opacity = '';
+      item.title = '';
+    }
+  });
+  updateStats();
+}
+
+function getSelectedPatterns() {
+  return [...document.querySelectorAll('#patternsGrid input[type=checkbox]:checked:not(:disabled)')].map(cb => cb.value);
+}
+
+function getPatLabel(key) {
+  return (PATTERNS.find(p=>p.key===key)||{label:key}).label;
+}
+
+function updateStats() {
+  const pats  = getSelectedPatterns();
+  const pocet = parseInt(document.getElementById('selPocet').value) || 3;
+  document.getElementById('statVety').textContent   = pats.length * pocet;
+  document.getElementById('statBloky').textContent  = pocet;
+  document.getElementById('statVBloku').textContent = pats.length;
+  document.getElementById('patCount').textContent   = pats.length + ' vybráno';
+}
+
+// ── Generování promptu ────────────────────────────────────────────────────────
+function generatePrompt() {
+  const grammar  = document.getElementById('selGrammar').value;
+  const level    = document.getElementById('selLevel').value;
+  const topic    = getSelectedTopic();
+  const pocet    = parseInt(document.getElementById('selPocet').value) || 3;
+  const seed     = document.getElementById('inpSeed').value.trim();
+  const extra    = document.getElementById('inpExtra').value.trim();
+  const pats     = getSelectedPatterns();
+  const zahlavi  = document.getElementById('chkZahlavi').checked;
+  const sep      = getSepChar();
+  const sepLabel = getSepLabel();
+
+  if (!grammar) { alert('Vyber gramatický jev.'); return; }
+  if (pats.length === 0) { alert('Vyber aspoň jeden typ věty.'); return; }
+
+  const levelPopis  = LEVEL_DESC[level] || level;
+  const celkem      = pocet * pats.length;
+  const patsSeznam  = pats.map((p,i) => `   ${i+1}. ${getPatLabel(p)} (pattern: ${p})`).join('\n');
+  const existBloks  = getExistingBloks(grammar, topic);
+  const gramHint    = GRAMMAR_NOTE_HINT[grammar] || null;
+  const gramRules   = GRAMMAR_SENTENCE_RULES[grammar] || null;
+
+  const zahlaviRadek = zahlavi
+    ? ['grammar','level','blok','topic','pattern','CZ','EN','poznamka'].join(sep)
+    : null;
+
+  const PAT_NOTE = {
+    affirmative:   'slovosled: podmět + sloveso',
+    negative:      "zápor: don't / doesn't / didn't",
+    question:      'otázka: pomocné do/does/did + podmět',
+    wh_question:   'WH slovo na začátku věty',
+    third_person:  '3. os. sing.: přidej -s/-es',
+    plural:        'they/we: tvar slovesa bez -s',
+    imperative:    'rozkaz: sloveso v základním tvaru',
+    passive:       'trpný rod: BE + 3. tvar slovesa',
+    indirect:      'nepřímá řeč: said that + minulý čas',
+    comparison:    'srovnání: more/less + than',
+    tag_question:  'dovětek: kladná věta → záporný dovětek',
+    conditional:   'podmínka: IF + čas → výsledek',
+    time_clause:   'časová věta: when/after/before + přít. čas',
+    first_person:  '1. osoba: I / we',
+    second_person: '2. osoba: you'
+  };
+  const priklady = pats.map(p => {
+    const [cz, en] = PAT_EXAMPLES[p] || ['česká věta', 'english sentence'];
+    const note = PAT_NOTE[p] || p;
+    return [grammar, level, 'zavolat kolegovi', topic, p, cz, en, note].join(sep);
+  }).join('\n');
+
+  const existBloksSection = existBloks.length > 0
+    ? `\nEXISTUJÍCÍ BLOKY (NEVYGENERUJ ZNOVU — vyhni se těmto situacím/slovesům):
+${existBloks.map(b => '- ' + b).join('\n')}\n`
+    : '';
+
+  let prompt =
+`Jsi expert na výuku angličtiny metodou drilu. Vygeneruj ${pocet} dril bloků pro procvičení gramatiky.
+
+PARAMETRY GENEROVÁNÍ:
+- Gramatický jev: ${grammar}
+- Úroveň: ${level} — ${levelPopis}
+- Téma: ${topic}
+- Počet bloků: ${pocet}
+- Počet vět v každém bloku: ${pats.length}
+- Celkem vět: ${celkem}${seed ? '\n- Klíčové sloveso / zaměření: ' + seed : ''}${extra ? '\n- Extra instrukce: ' + extra : ''}
+${existBloksSection}${gramHint ? `KLÍČOVÁ CHARAKTERISTIKA GRAMATIKY (použij jako základ pro poznámky):
+${gramHint}
+
+` : ''}${gramRules ? `SPECIFICKÁ PRAVIDLA PRO TUTO GRAMATIKU (striktně dodržuj):
+${gramRules}
+
+` : ''}TYPY VĚT V KAŽDÉM BLOKU (v tomto pořadí):
+${patsSeznam}
+
+PRAVIDLA:
+1. Každý blok = jedna konkrétní situace nebo sloveso
+2. Každý blok musí mít JINÉ základní sloveso nebo situaci — nepakuj je
+3. Ke každému bloku vygeneruj přesně ${pats.length} vět — jednu pro každý typ výše, ve stejném pořadí
+4. Věty musí být přirozené a praktické pro dospělé studenty češtiny učící se anglicky
+5. Česká věta musí přesně gramaticky i významově odpovídat anglickému překladu
+6. Pokud typ věty neodpovídá danému gramatickému jevu, přizpůsob ho nejbližší možné formě
+7. Sloupec "blok" = stručný název situace česky (max 4 slova, např. "zavolat kolegovi")
+8. Sloupec "poznamka" = výstižná poznámka pro studenta česky — vysvětli pravidlo tvorby, klíčový prvek nebo gramatickou past specifickou pro tuto větu. Příklady: "WOULD HAVE + 3. tvar", "for = po dobu / since = od kdy", "doesn't = 3. os. sing.", "HAD + 3. tvar = předminulý". Každá věta v bloku MŮŽE mít jinou poznámku. Max 1 krátká věta nebo fráze.
+
+VÝSTUPNÍ FORMÁT:
+Tabulka s oddělovačem: ${sepLabel}
+${zahlavi ? 'První řádek = záhlaví sloupců.' : 'BEZ řádku záhlaví — rovnou data.'}
+Sloupce: grammar ${sep} level ${sep} blok ${sep} topic ${sep} pattern ${sep} CZ ${sep} EN ${sep} poznamka
+
+PŘÍKLAD výstupu pro jeden blok (zavolat kolegovi):
+${zahlaviRadek ? zahlaviRadek + '\n' : ''}${priklady}
+
+DŮLEŽITÉ:
+- Odpověz POUZE tabulkou, žádný jiný text před ani za
+- Použij oddělovač: ${sepLabel}
+- Pokud hodnota obsahuje znak oddělovače, ohraničit ji uvozovkami
+- Vygeneruj přesně ${celkem} datových řádků${zahlavi ? ' + 1 řádek záhlaví' : ''}`;
+
+  document.getElementById('outputText').value = prompt;
+  document.getElementById('outputPanel').style.display = 'block';
+  document.getElementById('outputPanel').scrollIntoView({ behavior:'smooth' });
+  document.getElementById('copyBtn').textContent = '📋 Kopírovat prompt';
+  document.getElementById('copyBtn').classList.remove('copied');
+}
+
+function copyPrompt() {
+  const ta = document.getElementById('outputText');
+  ta.select();
+  try {
+    document.execCommand('copy');
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = '✓ Zkopírováno!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Kopírovat prompt'; btn.classList.remove('copied'); }, 2500);
+  } catch(e) {
+    alert('Označ text ručně (Ctrl+A) a zkopíruj Ctrl+C');
+  }
+}
+
+function resetForm() {
+  document.getElementById('inpSeed').value = '';
+  document.getElementById('inpExtra').value = '';
+  document.getElementById('outputPanel').style.display = 'none';
+  buildPatternsGrid();
+  applyGrammarPatternExclusion(); // po resetu gridu znovu aplikuj vyloučení
+  updateStats();
+}
+
+function toggleDbPanel() {
+  const w = document.getElementById('dbPanelWrap');
+  w.style.display = w.style.display === 'none' ? '' : 'none';
+}
+
+function toggleDetailSettings() {
+  const w = document.getElementById('detailSettings');
+  const btn = document.getElementById('detailSettingsBtn');
+  const open = w.style.display === 'none';
+  w.style.display = open ? '' : 'none';
+  btn.style.background = open ? 'var(--color-primary-bg)' : 'var(--color-surface-alt)';
+  btn.style.color = open ? 'var(--color-primary-text)' : 'var(--color-text-muted)';
+  btn.style.borderColor = open ? 'var(--color-primary)' : 'var(--color-border)';
+}
+
+// ── Start ─────────────────────────────────────────────────────────────────────
+buildPatternsGrid();   // grid musí existovat dřív než buildGrammarSelect() zavolá applyGrammarPatternExclusion()
+buildGrammarSelect();
+setSep('tab');
+
+// Auto-načtení JSON databáze
+(async () => {
+  try {
+    const resp = await fetch('../aj_dril/aj_dril_databaze.json');
+    if (!resp.ok) throw new Error();
+    const data = await resp.json();
+    parseDbStats(data);
+    buildGrammarSelect();
+    refreshTopicCounts();
+    renderDbTable();
+    updateCountBadge();
+    document.getElementById('dbStatusTxt').textContent = '✓ Databáze načtena automaticky (' + dbTotalSents + ' vět)';
+    document.getElementById('dbStatusTxt').className = 'db-status-txt ok';
+    document.getElementById('dbSummaryBadge').textContent = dbTotalSents + ' vět celkem';
+  } catch(e) {}
+})();
+</script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')
+        .catch(() => {});
+    });
+  }
+</script>
+</body>
+</html>

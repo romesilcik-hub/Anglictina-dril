@@ -1,0 +1,69 @@
+# temata.txt — Vlastní témata pro AJ Dril Prompt Builder
+# Každý řádek = jedno téma
+# Řádky začínající # jsou komentáře a ignorují se
+# Prázdné řádky se ignorují
+# Soubor ulož ve stejné složce jako prompt_builder.html
+
+# ── Pracovní témata ───────────────────────────────────────────────────────────
+Firemní komunikace
+Pracovní pohovor
+Prezentace a schůzky
+Obchodní jednání
+Zákaznický servis
+Administrativa a dokumenty
+Projektové řízení
+Teamová spolupráce
+
+# ── Gastronomie a stravování ──────────────────────────────────────────────────
+V restauraci
+Vaření a recepty
+Kavárna a fast food
+Stravování v práci
+
+# ── Doprava a pohyb ───────────────────────────────────────────────────────────
+Veřejná doprava
+Řízení auta
+Letiště a letadlo
+Na nádraží
+Navigace a orientace
+
+# ── Ubytování ────────────────────────────────────────────────────────────────
+Hotel a recepce
+Pronájem bytu
+Bydlení a sousedé
+
+# ── Technologie ───────────────────────────────────────────────────────────────
+Počítače a internet
+Mobilní telefon
+Sociální sítě
+Technické problémy
+
+# ── Zdraví a sport ────────────────────────────────────────────────────────────
+U lékaře a v lékárně
+Fitness a cvičení
+Sporty a aktivity
+Psychická pohoda
+
+# ── Peníze a finance ─────────────────────────────────────────────────────────
+Bankovnictví
+Nakupování online
+Pojištění
+Spoření a investice
+
+# ── Vzdělání a kariéra ───────────────────────────────────────────────────────
+Jazykový kurz
+Studium a škola
+Rekvalifikace
+Kariérní rozvoj
+
+# ── Příroda a prostředí ──────────────────────────────────────────────────────
+Počasí a klima
+Příroda a výlety
+Ekologie
+Zahrada a zemědělství
+
+# ── Kultura a zábava ─────────────────────────────────────────────────────────
+Kino a divadlo
+Hudba a koncerty
+Knihy a čtení
+Cestování za kulturou
