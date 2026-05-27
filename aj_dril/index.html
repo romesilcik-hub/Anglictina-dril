@@ -178,6 +178,19 @@
       cursor:pointer; transition:all .15s; white-space:nowrap;
     }
     .fav-filter-btn.active { background:#fef3c7; color:#92400e; border-color:#d97706; }
+
+    /* Notifikace chybějícího hlasu */
+    .voice-notice {
+      display:flex; align-items:flex-start; gap:.6rem;
+      margin-bottom:.85rem; padding:.75rem 1rem;
+      background:#fff8e7; border:1px solid #f59e0b;
+      border-radius:var(--radius-md);
+      font-size:.82rem; color:#78350f; line-height:1.4;
+    }
+    .voice-notice a { color:#92400e; font-weight:700; }
+    .voice-notice a:hover { color:#78350f; }
+    body.dark .voice-notice { background:#2a1d00; border-color:#92400e; color:#fcd34d; }
+    body.dark .voice-notice a { color:#fbbf24; }
   </style>
 </head>
 <body>
@@ -193,6 +206,16 @@
       <a href="https://forms.gle/Nf4wmG7aLCxH4ag78" target="_blank" rel="noopener" class="btn btn-sm btn-ghost" title="Zpětná vazba">💬</a>
       <button class="btn btn-sm btn-ghost" onclick="toggleHelp()" title="Nápověda">❓</button>
     </div>
+  </div>
+
+  <!-- Notifikace chybějícího hlasu -->
+  <div class="voice-notice hidden" id="voiceNotice">
+    <span style="font-size:1.1rem;flex-shrink:0">🔊</span>
+    <span style="flex:1" id="voiceNoticeText"></span>
+    <span style="display:flex;gap:.75rem;align-items:center;flex-shrink:0;margin-left:.5rem">
+      <a href="ms-settings:speech" id="voiceNoticeLink" title="Otevřít nastavení řeči ve Windows">Jak nainstalovat →</a>
+      <button onclick="dismissVoiceNotice()" style="background:none;border:none;cursor:pointer;font-size:1rem;color:inherit;padding:0 2px;line-height:1;opacity:.7" title="Zavřít">✕</button>
+    </span>
   </div>
 
   <!-- Načtení databáze -->
@@ -983,12 +1006,44 @@ function buildOrders() {
 // ══════════════════════════════════════════════════════════════════════════════
 // HLASY
 // ══════════════════════════════════════════════════════════════════════════════
+let voiceCheckTimer=null;
+
 function loadVoices() {
   const all=speechSynthesis.getVoices();
   const czV=all.filter(v=>v.lang.startsWith('cs')||v.lang.startsWith('sk'));
   const enV=all.filter(v=>v.lang.startsWith('en'));
   fillVoiceSelect('czVoice',czV,cfg.czVoice,['cs-CZ','cs','sk']);
   fillVoiceSelect('enVoice',enV.length?enV:all,cfg.enVoice,['en-GB','en-US','en']);
+
+  // Notifikace: zkontroluj až po ustálení — getVoices() se plní postupně
+  if(voiceCheckTimer) clearTimeout(voiceCheckTimer);
+  voiceCheckTimer=setTimeout(checkVoiceNotice, 1500);
+}
+
+function checkVoiceNotice() {
+  if(localStorage.getItem('aj_voice_notice_dismissed')) return;
+  const all=speechSynthesis.getVoices();
+  if(!all.length) return; // hlasy se vůbec nenačetly, neupozorňuj
+  const czV=all.filter(v=>v.lang.startsWith('cs')||v.lang.startsWith('sk'));
+  const enV=all.filter(v=>v.lang.startsWith('en'));
+  const notice=document.getElementById('voiceNotice');
+  const txt=document.getElementById('voiceNoticeText');
+  if(czV.length===0 && enV.length===0) {
+    txt.innerHTML='Nejsou nainstalovány české ani anglické hlasy — výslovnost nebude fungovat. Ve Windows je stáhneš přes <strong>Nastavení → Čas a jazyk → Řeč</strong>.';
+    notice.classList.remove('hidden');
+  } else if(czV.length===0) {
+    txt.innerHTML='Není nainstalovaný <strong>český hlas</strong> — česká věta se nebude číst nahlas. Bez něj přijdeš o klíčovou část drilu.';
+    notice.classList.remove('hidden');
+  }
+}
+
+function dismissVoiceNotice() {
+  document.getElementById('voiceNotice').classList.add('hidden');
+  try{localStorage.setItem('aj_voice_notice_dismissed','1');}catch(e){}
+}
+
+function resetVoiceNotice() {
+  try{localStorage.removeItem('aj_voice_notice_dismissed');}catch(e){}
 }
 
 function fillVoiceSelect(id,voices,savedName,prefLangs) {
