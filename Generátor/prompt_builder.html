@@ -105,12 +105,6 @@
       border-top:1px solid var(--color-border-light);
     }
 
-    /* Stat řádek */
-    .stat-row {
-      display:flex; gap:16px; flex-wrap:wrap; margin-top:.65rem;
-      font-size:.8rem; color:var(--color-text-muted);
-    }
-    .stat-row strong { color:var(--color-primary); }
 
     /* Přehled databáze */
     .db-panel {
@@ -245,7 +239,7 @@
           Gramatický jev
           <span class="count-badge" id="gramCountBadge" style="display:none"></span>
         </label>
-        <select id="selGrammar" onchange="updateStats(); updateCountBadge(); applyGrammarPatternExclusion();">
+        <select id="selGrammar" onchange="updateStats(); updateCountBadge(); applyGrammarPatternExclusion(); selectAllPat(true);">
           <!-- Generuje JS -->
         </select>
       </div>
@@ -273,15 +267,8 @@
 
       <div class="field-group">
         <label>Počet bloků</label>
-        <select id="selPocet" onchange="updateStats()">
-          <option value="2">2 bloky</option>
-          <option value="3" selected>3 bloky</option>
-          <option value="5">5 bloků</option>
-          <option value="8">8 bloků</option>
-          <option value="10">10 bloků</option>
-          <option value="15">15 bloků</option>
-          <option value="20">20 bloků</option>
-        </select>
+        <input type="number" id="selPocet" value="10" min="1" max="30" step="1"
+               oninput="updateStats()" style="width:100%;padding:7px 11px;border-radius:var(--radius-sm);border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text);font-size:.85rem;font-family:var(--font);outline:none;box-sizing:border-box;">
       </div>
 
       <div class="field-group">
@@ -321,11 +308,41 @@
         </label>
       </div>
 
-      <div class="stat-row" id="statRow">
-        <span>Celkem vět: <strong id="statVety">0</strong></span>
-        <span>Bloků: <strong id="statBloky">3</strong></span>
-        <span>Vět v bloku: <strong id="statVBloku">0</strong></span>
+      <!-- Jazyk promptu -->
+      <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--color-border-light)">
+        <div class="section-card-title" style="margin-bottom:.6rem">Jazyk vygenerovaného promptu</div>
+        <div style="display:flex;flex-direction:column;gap:.5rem">
+          <label class="checkbox-row" style="cursor:pointer">
+            <input type="radio" name="promptLang" id="promptLangCS" value="cs">
+            🇨🇿 Česky
+          </label>
+          <label class="checkbox-row" style="cursor:pointer">
+            <input type="radio" name="promptLang" id="promptLangEN" value="en" checked>
+            🇬🇧 Anglicky — méně tokenů, lepší pochopení formátu
+          </label>
+        </div>
       </div>
+
+      <!-- Ukládání -->
+      <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--color-border-light)">
+        <div class="section-card-title" style="margin-bottom:.6rem">Ukládání vygenerovaného promptu</div>
+        <div style="display:flex;flex-direction:column;gap:.5rem">
+          <label class="checkbox-row" style="cursor:pointer">
+            <input type="radio" name="saveMode" id="saveModeFile" value="file" checked onchange="onSaveModeChange()">
+            Uložit do souboru
+          </label>
+          <label class="checkbox-row" style="cursor:pointer">
+            <input type="radio" name="saveMode" id="saveModeCopy" value="copy" onchange="onSaveModeChange()">
+            Jen kopírovat do schránky
+          </label>
+        </div>
+        <div id="folderPickerWrap" style="margin-top:.75rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+          <button class="btn btn-sm" onclick="pickSaveFolder()">📁 Vybrat složku</button>
+          <span id="folderName" style="font-size:.8rem;color:var(--color-text-muted)">Složka není vybrána — použije se dialog při každém uložení</span>
+          <button id="folderClearBtn" onclick="clearSaveFolder()" style="display:none;font-size:.75rem;padding:2px 8px;border-radius:var(--radius-xl);border:1px solid var(--color-border);background:transparent;color:var(--color-text-muted);cursor:pointer">✕ Zrušit</button>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -484,6 +501,7 @@ function buildGrammarSelect() {
   refreshTopicCounts();
   applyLevelPatternRestriction();
   applyGrammarPatternExclusion();
+  selectAllPat(true); // při změně úrovně vyber vše dostupné
 }
 
 // Patterny dostupné podle úrovně (kumulativní — každá úroveň zahrnuje i předchozí)
@@ -850,6 +868,276 @@ const PAT_EXAMPLES = {
   second_person: ['Zavoláš mi?', 'Will you call me?'],
 };
 
+// ── Anglické verze textů pro prompt ──────────────────────────────────────────
+
+const LEVEL_DESC_EN = {
+  A0: 'very simple sentences, basic vocabulary',
+  A1: 'simple natural sentences, everyday vocabulary',
+  A2: 'moderately complex sentences, varied vocabulary',
+  B1: 'more complex structures, idioms acceptable',
+};
+
+const PAT_NOTE_EN = {
+  affirmative:   'word order: subject + verb',
+  negative:      "negative: don't / doesn't / didn't",
+  question:      'question: auxiliary do/does/did + subject',
+  wh_question:   'WH word at the start of the sentence',
+  third_person:  '3rd person singular: add -s/-es',
+  plural:        'they/we: verb form without -s',
+  imperative:    'command: verb in base form',
+  passive:       'passive voice: BE + past participle',
+  indirect:      'reported speech: said that + past tense',
+  comparison:    'comparison: more/less + than',
+  tag_question:  'tag: positive sentence → negative tag',
+  conditional:   'condition: IF + tense → result',
+  time_clause:   'time clause: when/after/before + present tense',
+  first_person:  '1st person: I / we',
+  second_person: '2nd person: you',
+};
+
+const GRAMMAR_NOTE_HINT_EN = {
+  'Sloveso být (to be)':           'irregular conjugation: I am / he is / they are; negative: isn\'t / aren\'t',
+  'Členy (a/an/the)':              'a/an = indefinite (first mention), the = definite (known thing); "an" before vowel',
+  'Množné číslo':                  'regular: add -s/-es; irregular: man→men, child→children, foot→feet',
+  'Zájmena':                       'subject (I/he/she) vs. object (me/him/her); possessive: my/his/her',
+  'Číslovky':                      'cardinal (one, two...) vs. ordinal (first, second...); pronunciation teen vs. -ty',
+  'Přítomný čas prostý':           'expresses habit, routine, facts; 3rd person sing.: add -s/-es; negative: don\'t / doesn\'t',
+  'Minulý čas prostý':             'regular verbs: +ed; irregular: 2nd form (go→went); negative: didn\'t + infinitive',
+  'Budoucí čas (will)':            'WILL + infinitive; spontaneous decision, prediction; negative: won\'t',
+  'Budoucí čas (going to)':        'AM/IS/ARE + GOING TO + infinitive; plan, intention, or visible evidence',
+  'Způsobová — can/could':         'can = ability/possibility (present); could = conditional or past ability',
+  'Způsobová — must/have to':      'must = subjective obligation (internal); have to = objective obligation (rule, circumstance)',
+  'Způsobová — should/ought to':   'should = advice, recommendation; ought to = same, more formal',
+  'Rozkazy a návrhy':              'command: bare infinitive (Come!); negative: Don\'t + inf.; suggestion: Let\'s + inf.',
+  'Předložky místa a času':        'place: in (space), on (surface), at (point); time: in (year/month), on (day), at (hour)',
+  'There is / There are':          'there is + sing.; there are + pl.; negative: there isn\'t / aren\'t',
+  'Some / any / much / many':      'some = affirmative; any = negative/questions; much + uncountable; many + countable',
+  'Sponová slovesa':               'look/feel/seem/sound/taste/smell + adjective (not adverb): He looks tired.',
+  'Příslovce frekvence':           'always/usually/often/sometimes/rarely/never; BEFORE main verb, AFTER be',
+  'Souhlasné reakce':              'So do I / Neither do I; So am I / Neither am I; auxiliary verb matches tense',
+  'Nepravidelná slovesa':          'infinitive → past → past participle: go→went→gone; learn→learnt→learnt',
+  'Přítomný čas průběhový':        'AM/IS/ARE + -ING; action happening right now or temporary plan in near future',
+  'Předpřítomný čas':              'HAVE/HAS + 3rd form; state/experience lasting "up to now"; Czech = present tense',
+  'Minulý čas průběhový':          'WAS/WERE + -ING; ongoing past action, often interrupted by another (when/while)',
+  'Způsobová — might/may':         'might/may = maybe, perhaps (lower certainty than "will"); might slightly less certain than may',
+  'Infinitiv':                     'after verbs (want, need, decide...); after adjectives; to express purpose (to = in order to)',
+  'Gerundium':                     '-ING as a noun; always gerund after prepositions; after some verbs (enjoy, avoid, finish...)',
+  'Frázová slovesa':               'verb + particle changes the whole meaning: look up ≠ look, give up ≠ give',
+  'Stupňování přídavných jmen':    'short words: -er/-est; long words: more/most; irregular: good→better→best',
+  'Kvantifikátory (all/both/each)':'all = everyone/everything; both = both (two); each = each individually; every = each (as a whole)',
+  'Dovětky (question tags)':       'positive sentence → negative tag (He is, isn\'t he?); negative → positive (He isn\'t, is he?)',
+  'Slovesa se dvěma předměty':     'give/send/show/tell + TO WHOM + WHAT; or + WHAT + to + WHOM',
+  'Tvoření slov':                  'suffixes: -tion/-ness/-ment/-er; prefixes: un-/dis-/re-; deriving from base word',
+  'Předpřítomný průběhový':        'HAVE/HAS BEEN + -ING; emphasis on duration up to now; with for/since',
+  'Předminulý čas':                'HAD + 3rd form; action completed BEFORE another past action; "past perfect"',
+  'Budoucí průběhový':             'WILL BE + -ING; action in progress at a specific moment in the future',
+  'Způsobová minulá (could have...)':'COULD/SHOULD/WOULD + HAVE + 3rd form; what could/should have happened but didn\'t',
+  'Trpný rod':                     'BE (in appropriate tense) + 3rd form; agent is unimportant or unknown',
+  'Přímá a nepřímá řeč':           'reported speech: say that + tense shift (present→past, will→would); pronoun change',
+  'Podmínka 1. typ':               'IF + present tense → WILL + infinitive; real condition, can happen',
+  'Podmínka 2. typ':               'IF + past tense → WOULD + infinitive; unreal present condition, unlikely',
+  'Podmínka 3. typ':               'IF + past perfect → WOULD HAVE + 3rd form; unreal past condition, didn\'t happen',
+  'Used to':                       'USED TO + infinitive; past habit or state that no longer applies (now is different)',
+  'Wish':                          'wish + past = wish about present; wish + past perfect = regret about past',
+  'Would rather':                  'WOULD RATHER + bare infinitive; expresses preference: "I\'d rather..."',
+  "It's time":                     "IT'S TIME + past tense (subjunctive); it's time to do something: It's time you went.",
+  'Have something done':           'HAVE + object + 3rd form; have something done by someone else (service)',
+  'Vedlejší věty':                 'relative clauses: who (persons) / which (things) / that (both); defining vs. non-defining',
+};
+
+const GRAMMAR_SENTENCE_RULES_EN = {
+  'Předminulý čas':
+    'Each sentence MUST contain two past actions — the past perfect expresses the EARLIER one. ' +
+    'Include both actions in one sentence or use conjunctions: when/after/before/by the time. ' +
+    'Example: "Když jsem přišel, on už odešel." → "When I arrived, he had already left." ' +
+    'NEVER generate a past perfect sentence without the temporal context of the second action.',
+
+  'Předpřítomný čas':
+    'Sentences MUST contain a time expression clearly referring to "up to now": ' +
+    'for, since, already, just, yet, ever, never, recently, lately, so far. ' +
+    'Without these expressions it\'s impossible to distinguish present perfect from simple past. ' +
+    'Example: "Pracuju tu 5 let." → "I have worked here for 5 years."',
+
+  'Předpřítomný průběhový':
+    'Sentences MUST contain for or since — emphasising how long the action has been ongoing. ' +
+    'Example: "Čekám tu hodinu." → "I have been waiting here for an hour." ' +
+    'Focus is on the ongoing process and duration, not the result. ' +
+    'WATCH OUT with time clauses: present perfect continuous is NOT used with "when" — use "after" or "by the time" instead. ' +
+    'Example: NOT "When I have been waiting..." → YES "After I have been preparing for a long time, I feel more confident."',
+
+  'Podmínka 1. typ':
+    'Each sentence MUST have an IF clause + result clause — both in the same sentence. ' +
+    'Structure: IF + present tense → WILL + infinitive. ' +
+    'Expresses a real condition that may actually happen. ' +
+    'NEVER generate only one part of the conditional.',
+
+  'Podmínka 2. typ':
+    'Each sentence MUST have an IF clause + result clause — both in the same sentence. ' +
+    'Structure: IF + past tense → WOULD + infinitive. ' +
+    'Expresses an improbable or hypothetical present/future situation. ' +
+    'NEVER generate only one part of the conditional.',
+
+  'Podmínka 3. typ':
+    'Each sentence MUST have an IF clause + result clause — both in the same sentence. ' +
+    'Structure: IF + past perfect → WOULD HAVE + 3rd form. ' +
+    'Expresses an unreal past situation — it didn\'t happen but could have. ' +
+    'NEVER generate only one part of the conditional.',
+
+  'Způsobová minulá (could have...)':
+    'Sentences must clearly express what COULD/SHOULD have happened but didn\'t (or the opposite). ' +
+    'Add context explaining why it ultimately didn\'t happen or happened differently. ' +
+    'Example: "Mohl jsem přijít, ale byl jsem nemocný." → "I could have come, but I was ill."',
+
+  'Přímá a nepřímá řeč':
+    'Each block should show the tense shift when converting direct to reported speech. ' +
+    'Include a reporting verb: said (that) / told me (that) / asked if. ' +
+    'Clearly show the change: present→past, will→would, can→could, am→was. ' +
+    'Example: "Jsem unavený." → He said he was tired. ' +
+    'COMMANDS in reported speech: use told + to + infinitive (NOT "should"). Example: He told me to go home. ' +
+    'TAG QUESTIONS in reported speech: rewrite as asked if. Example: She asked if I was going. ' +
+    'The whole sentence MUST NOT mix two time frames: either full reported speech or a direct quote — never both.',
+
+  'Trpný rod':
+    'Use passive voice only where natural: the agent is unknown, unimportant or deliberately omitted. ' +
+    'DO NOT force passive where it sounds unnatural. ' +
+    'Sentences without "by + agent" are preferred — that is the point of passive voice.',
+
+  'Wish':
+    'EVERY sentence MUST contain "wish" or "if only" — never generate a sentence without this structure. ' +
+    'CLEARLY distinguish two types: ' +
+    '(1) wish + past tense = wish about the present (I wish I were...) ' +
+    '(2) wish + past perfect = regret about the past (I wish I had been...) ' +
+    'Use only one type per block. Never mix. ' +
+    'NEVER generate a pure conditional sentence (If I had..., I would...) without wish — that is not a wish structure.',
+
+  'Used to':
+    'Every sentence MUST imply that the habit or state NO LONGER APPLIES — now is different. ' +
+    'Example: "Dřív jsem kouřil, ale teď nekouřím." → "I used to smoke, but I don\'t anymore." ' +
+    '"Used to" MUST be the main structure — not just a comparative reference (e.g. "like I used to" is not enough). ' +
+    'In reported speech: keep "used to" unchanged (no backshift needed). ' +
+    'Don\'t create duplicate sentences — each pattern must have a unique structure.',
+
+  'Have something done':
+    'Every sentence must clearly express the causative structure: the subject HAS the action done by someone else. ' +
+    'Examples: get a haircut, have the car repaired, order a delivery. ' +
+    'Structure: HAVE + object + 3rd form.',
+
+  "It's time":
+    'Structure: IT\'S TIME + subject + past tense (subjunctive). ' +
+    'Example: "Je čas, abys šel." → "It\'s time you went." ' +
+    'Expresses urgency or a call to action. NOT "It\'s time you go" — grammatically wrong. ' +
+    'EVERY sentence must contain "It\'s time". ' +
+    'NEGATIVE: do NOT use "It\'s time you didn\'t..." — unnatural. Use "It\'s time you stopped + gerund" instead. ' +
+    'DUPLICATES: second_person and affirmative must have different content.',
+
+  'Would rather':
+    'Same subject: WOULD RATHER + bare infinitive (without to). ' +
+    'Different subject: WOULD RATHER + subject + past tense. ' +
+    'Example: "Raději bych šel pěšky." → "I\'d rather walk." ' +
+    '"Raději bych, kdybys šel." → "I\'d rather you went."',
+
+  'Vedlejší věty':
+    'Alternate between DEFINING (no comma, who/that/which) and NON-DEFINING (with comma, who/which) relative clauses. ' +
+    'Defining: "The man who called is my boss." ' +
+    'Non-defining: "My boss, who called yesterday, is strict." ' +
+    'Clearly show the difference in punctuation.',
+
+  'Způsobová — can/could':
+    'EVERY sentence must contain "can" or "could" — never generate without the modal verb. ' +
+    'Alternate can and could: can = present ability/possibility; could = past ability, polite request, hypothetical. ' +
+    'Time clauses MUST contain can/could — NOT just "I will drive when I have a licence" without modal. ' +
+    'Example: "I can drive anywhere when I have a licence." ' +
+    'Don\'t create duplicates — first_person and affirmative must have different sentences.',
+
+  'Budoucí průběhový':
+    'Every sentence MUST have a clear future time reference: at 8pm, this time tomorrow, next week, when you arrive... ' +
+    'Expresses an action in progress at a specific point in the future, not just a future intention.',
+
+  'Dovětky (question tags)':
+    'Sentence + tag = ONE complete sentence. ' +
+    'Positive sentence → negative tag; negative sentence → positive tag. ' +
+    'The auxiliary verb in the tag must match the main clause. ' +
+    'Example: "Pracuješ tady, že?" → "You work here, don\'t you?" ' +
+    'IMPORTANT: tags are added ONLY to declarative sentences — NEVER to questions. ' +
+    '"Do you...?, don\'t you?" is grammatically wrong — this combination does not exist.',
+
+  'Frázová slovesa':
+    'Each block = one specific phrasal verb with its specific meaning. ' +
+    'Do not use different phrasal verbs in one block. ' +
+    'For separable verbs show both variants: "give up smoking" and "give it up". ' +
+    'State the specific phrasal verb in the block name.',
+
+  'Gerundium':
+    'Gerund = -ING as a noun — not the present continuous. ' +
+    'Prioritise sentences where gerund is REQUIRED: after prepositions (without/after/before) and after typical verbs (enjoy/avoid/finish/mind/suggest). ' +
+    'Avoid sentences where confusion with the infinitive is possible.',
+
+  'Přítomný čas prostý':
+    'Sentences MUST express a habit, routine or general fact — NOT an action happening right now. ' +
+    'NEVER use the continuous form (-ing) for routines. ' +
+    'NEVER use the present perfect (have + 3rd form) — belongs to a higher level. ' +
+    'Example of habit: "Každý den jdu pěšky do práce." → "I walk to work every day." ' +
+    'Example of fact: "Voda se vaří při 100°C." → "Water boils at 100°C."',
+
+  'Přítomný čas průběhový':
+    'Sentences MUST express an action currently in progress (now, at this moment) or a temporary state. ' +
+    'NEVER use the continuous for routines or general truths — that\'s the simple present. ' +
+    'Stative verbs (know/like/want/need/believe/understand) MUST NOT be in continuous. ' +
+    'Example: "Teď čtu knihu." → "I am reading a book now." ' +
+    'Example of temporary: "Tento týden pracuju z domu." → "I am working from home this week."',
+
+  'Minulý čas prostý':
+    'Sentences MUST express a completed action at a specific time in the past. ' +
+    'ALWAYS add or imply a time reference: yesterday, last week, in 2020, when I was young. ' +
+    'NEVER use the present perfect (have + 3rd form) — students at A1 don\'t know it yet. ' +
+    'Regular verbs: +ed. Irregular: use 2nd form (go→went, see→saw). ' +
+    'Negative: didn\'t + infinitive (NEVER didn\'t went — only didn\'t go). ' +
+    'Example: "Včera jsem šel do kina." → "I went to the cinema yesterday."',
+
+  'Minulý čas průběhový':
+    'Sentences MUST express an action IN PROGRESS at a specific moment in the past. ' +
+    'Best contexts: (1) interrupted action — was doing when something happened; (2) parallel actions — while + was doing. ' +
+    'NEVER use past continuous for a completed action — that\'s simple past. ' +
+    'Example: "Četl jsem, když zazvonilo." → "I was reading when the doorbell rang." ' +
+    'Example: "Zatímco jsem vařil, ona telefonovala." → "While I was cooking, she was calling."',
+
+  'Budoucí čas (will)':
+    'Use WILL ONLY for: (1) spontaneous decision at the moment of speaking; (2) prediction without evidence; (3) offers and promises. ' +
+    'NEVER use will for pre-planned intentions — that\'s going to. ' +
+    'Example spontaneous: "Já to vezmu." (decided right now) → "I\'ll take it." ' +
+    'Example prediction: "Myslím, že bude pršet." → "I think it will rain." ' +
+    'Negative: won\'t.',
+
+  'Budoucí čas (going to)':
+    'Use GOING TO ONLY for: (1) pre-planned intention; (2) prediction based on visible evidence. ' +
+    'NEVER use going to for spontaneous decisions — that\'s will. ' +
+    'Example intention: "Příští týden jedeme na dovolenou." → "We are going to go on holiday next week." ' +
+    'Example evidence: "Podívej na ty mraky." → "Look at those clouds — it\'s going to rain." ' +
+    'Conjugate BE correctly: I am, he/she/it is, they/we/you are.',
+
+  'Způsobová — must/have to':
+    'MUST = subjective obligation — speaker feels the necessity themselves (comes from within). ' +
+    'HAVE TO = objective obligation — external rule, law, circumstance (comes from outside). ' +
+    'NEVER mix them — each block must clearly show one type. ' +
+    'Negative: must not = prohibition; don\'t have to = not necessary — these are DIFFERENT things. ' +
+    'Example must: "Musím zavolat mamince." → "I must call my mum." ' +
+    'Example have to: "Musím mít pas." (law) → "I have to have a passport."',
+
+  'Způsobová — should/ought to':
+    'SHOULD = advice, recommendation, expectation. ' +
+    'OUGHT TO = same, but more formal and stronger moral obligation. ' +
+    'NEVER use should/ought to for prohibition or necessity — that\'s must/have to. ' +
+    'Negative: shouldn\'t = not recommended. ' +
+    'Example: "Měl bys víc spát." → "You should sleep more."',
+
+  'Způsobová — might/may':
+    'MIGHT/MAY = maybe, perhaps — expresses uncertainty or possibility (not certainty). ' +
+    'Certainty scale: will (100%) > should (90%) > may (50%) > might (30%). ' +
+    'NEVER use might/may as strong obligation — that\'s must. ' +
+    'Example: "Možná přijde zítra." → "He might come tomorrow." or "He may come tomorrow." ' +
+    'May is slightly more formal and slightly more certain than might.',
+};
+
 // ── Databáze — přehled existujících vět ──────────────────────────────────────
 // Struktura: dbStats[grammar][topic] = { count: N, bloks: Set }
 let dbStats = null;
@@ -1018,7 +1306,16 @@ function getSepChar() {
   }
 }
 
-function getSepLabel() {
+function getSepLabel(lang) {
+  if (lang === 'en') {
+    switch(currentSep) {
+      case 'tab':    return 'TAB (the actual tab character between columns, ASCII 0x09)';
+      case 'semi':   return 'semicolon (;)';
+      case 'pipe':   return 'pipe (|)';
+      case 'comma':  return 'comma (,)';
+      case 'custom': return 'custom: ' + (document.getElementById('inpSepCustom').value || '|');
+    }
+  }
   switch(currentSep) {
     case 'tab':    return 'tabulátor (\\t)';
     case 'semi':   return 'středník (;)';
@@ -1192,10 +1489,8 @@ function getPatLabel(key) {
 function updateStats() {
   const pats  = getSelectedPatterns();
   const pocet = parseInt(document.getElementById('selPocet').value) || 3;
-  document.getElementById('statVety').textContent   = pats.length * pocet;
-  document.getElementById('statBloky').textContent  = pocet;
-  document.getElementById('statVBloku').textContent = pats.length;
-  document.getElementById('patCount').textContent   = pats.length + ' vybráno';
+  const celkem = pats.length * pocet;
+  document.getElementById('patCount').textContent = pats.length + ' patterny · ' + celkem + ' vět';
 }
 
 // ── Generování promptu ────────────────────────────────────────────────────────
@@ -1209,35 +1504,37 @@ function generatePrompt() {
   const pats     = getSelectedPatterns();
   const zahlavi  = document.getElementById('chkZahlavi').checked;
   const sep      = getSepChar();
-  const sepLabel = getSepLabel();
 
   if (!grammar) { alert('Vyber gramatický jev.'); return; }
   if (pats.length === 0) { alert('Vyber aspoň jeden typ věty.'); return; }
 
+  const lang        = document.querySelector('input[name="promptLang"]:checked')?.value || 'cs';
+  const sepLabel    = getSepLabel(lang);
   const levelPopis  = LEVEL_DESC[level] || level;
   const celkem      = pocet * pats.length;
   const patsSeznam  = pats.map((p,i) => `   ${i+1}. ${getPatLabel(p)} (pattern: ${p})`).join('\n');
   const existBloks  = getExistingBloks(grammar, topic);
-  const gramHint    = GRAMMAR_NOTE_HINT[grammar] || null;
-  const gramRules   = GRAMMAR_SENTENCE_RULES[grammar] || null;
+  const gramHint    = (lang === 'en' ? GRAMMAR_NOTE_HINT_EN[grammar] : GRAMMAR_NOTE_HINT[grammar]) || null;
+  const gramRules   = (lang === 'en' ? GRAMMAR_SENTENCE_RULES_EN[grammar] : GRAMMAR_SENTENCE_RULES[grammar]) || null;
 
   // Sestavit seznam zakázaných gramatik (vše nad aktuální úroveň)
+
   const LEVEL_ORDER = ['A0','A1','A2','B1'];
   const curLevelIdx = LEVEL_ORDER.indexOf(level);
   const forbidden = LEVEL_ORDER
     .filter((_,i) => i > curLevelIdx)
     .flatMap(l => GRAMMAR_BY_LEVEL[l] || []);
   const levelGuard = forbidden.length > 0
-    ? `\nOMEZENÍ ÚROVNĚ (striktně dodržuj):
-Věty musí odpovídat úrovni ${level} — nepoužívej žádné gramatické jevy nad tuto úroveň.
-Zakázané konstrukce pro tuto úroveň: ${forbidden.join(', ')}.\n`
+    ? (lang === 'en'
+      ? `\nLEVEL RESTRICTION (strictly follow):\nSentences must match level ${level} — do not use any grammar constructions above this level.\nForbidden constructions for this level: ${forbidden.join(', ')}.\n`
+      : `\nOMEZENÍ ÚROVNĚ (striktně dodržuj):\nVěty musí odpovídat úrovni ${level} — nepoužívej žádné gramatické jevy nad tuto úroveň.\nZakázané konstrukce pro tuto úroveň: ${forbidden.join(', ')}.\n`)
     : '';
 
   const zahlaviRadek = zahlavi
     ? ['grammar','level','blok','topic','pattern','CZ','EN','poznamka'].join(sep)
     : null;
 
-  const PAT_NOTE = {
+  const PAT_NOTE = lang === 'en' ? PAT_NOTE_EN : {
     affirmative:   'slovosled: podmět + sloveso',
     negative:      "zápor: don't / doesn't / didn't",
     question:      'otázka: pomocné do/does/did + podmět',
@@ -1252,7 +1549,7 @@ Zakázané konstrukce pro tuto úroveň: ${forbidden.join(', ')}.\n`
     conditional:   'podmínka: IF + čas → výsledek',
     time_clause:   'časová věta: when/after/before + přít. čas',
     first_person:  '1. osoba: I / we',
-    second_person: '2. osoba: you'
+    second_person: '2. osoba: you',
   };
   const priklady = pats.map(p => {
     const [cz, en] = PAT_EXAMPLES[p] || ['česká věta', 'english sentence'];
@@ -1261,16 +1558,65 @@ Zakázané konstrukce pro tuto úroveň: ${forbidden.join(', ')}.\n`
   }).join('\n');
 
   const existBloksSection = existBloks.length > 0
-    ? `\nEXISTUJÍCÍ BLOKY (NEVYGENERUJ ZNOVU — vyhni se těmto situacím/slovesům):
-${existBloks.map(b => '- ' + b).join('\n')}\n`
+    ? (lang === 'en'
+      ? `\nEXISTING BLOCKS (DO NOT REGENERATE — avoid these situations/verbs):\n${existBloks.map(b => '- ' + b).join('\n')}\n`
+      : `\nEXISTUJÍCÍ BLOKY (NEVYGENERUJ ZNOVU — vyhni se těmto situacím/slovesům):\n${existBloks.map(b => '- ' + b).join('\n')}\n`)
     : '';
 
-  let prompt =
+  const levelPopisLang = lang === 'en'
+    ? (LEVEL_DESC_EN[level] || levelPopis)
+    : levelPopis;
+
+  let prompt = lang === 'en'
+?
+`You are an English teaching expert specialising in drill-based learning. Generate ${pocet} drill blocks for grammar practice.
+
+GENERATION PARAMETERS:
+- Grammar point: ${grammar}
+- Level: ${level} — ${levelPopisLang}
+- Topic: ${topic}
+- Number of blocks: ${pocet}
+- Sentences per block: ${pats.length}
+- Total sentences: ${celkem}${seed ? '\n- Key verb / focus: ' + seed : ''}${extra ? '\n- Extra instructions: ' + extra : ''}
+${existBloksSection}${levelGuard}${gramHint ? `KEY GRAMMAR CHARACTERISTICS (use as basis for the notes column):
+${gramHint}
+
+` : ''}${gramRules ? `SPECIFIC RULES FOR THIS GRAMMAR POINT (follow strictly):
+${gramRules}
+
+` : ''}SENTENCE TYPES IN EACH BLOCK (in this order):
+${patsSeznam}
+
+RULES:
+1. Each block = one specific situation or verb
+2. Each block must use a DIFFERENT base verb or situation — do not repeat
+3. For each block generate exactly ${pats.length} sentences — one for each type above, in the same order
+4. Sentences must be natural and practical for adult Czech speakers learning English
+5. The Czech sentence must match the English translation exactly — both grammatically and in meaning
+6. If a sentence type does not fit the grammar point, adapt it to the closest possible form
+7. Column "blok" = brief name of the situation in Czech (max 4 words, e.g. "zavolat kolegovi")
+8. Column "poznamka" = concise note for the student in Czech — explain the formation rule, key element or grammar trap specific to this sentence. Examples: "WOULD HAVE + 3rd form", "for = for a period / since = from when", "doesn't = 3rd person sing.", "HAD + 3rd form = past perfect". Each sentence in a block CAN have a different note. Max 1 short sentence or phrase.
+
+OUTPUT FORMAT:
+Separator between columns: ${sepLabel}
+${zahlavi ? 'First row = column headers.' : 'NO header row — data directly.'}
+Exactly 8 columns per row: grammar ${sep} level ${sep} blok ${sep} topic ${sep} pattern ${sep} CZ ${sep} EN ${sep} poznamka
+
+EXAMPLE output for one block (zavolat kolegovi):
+${zahlaviRadek ? zahlaviRadek + '\n' : ''}${priklady}
+
+IMPORTANT:
+- Output the TABLE ONLY — no explanations, no extra text before or after
+- Separate columns with the actual tab character (not the text "\\t")
+- Each row has EXACTLY 8 columns — no more, no less
+- Write cell values directly — do NOT prefix them with the column name (e.g. write "doesn't = 3rd person" NOT "poznamka: doesn't = 3rd person")
+- Generate exactly ${celkem} data rows${zahlavi ? ' + 1 header row' : ''}`
+:
 `Jsi expert na výuku angličtiny metodou drilu. Vygeneruj ${pocet} dril bloků pro procvičení gramatiky.
 
 PARAMETRY GENEROVÁNÍ:
 - Gramatický jev: ${grammar}
-- Úroveň: ${level} — ${levelPopis}
+- Úroveň: ${level} — ${levelPopisLang}
 - Téma: ${topic}
 - Počet bloků: ${pocet}
 - Počet vět v každém bloku: ${pats.length}
@@ -1311,8 +1657,29 @@ DŮLEŽITÉ:
   document.getElementById('outputText').value = prompt;
   document.getElementById('outputPanel').style.display = 'block';
   document.getElementById('outputPanel').scrollIntoView({ behavior:'smooth' });
-  document.getElementById('copyBtn').textContent = '📋 Kopírovat prompt';
-  document.getElementById('copyBtn').classList.remove('copied');
+
+  const saveMode = document.getElementById('saveModeFile').checked ? 'file' : 'copy';
+  const copyBtn  = document.getElementById('copyBtn');
+
+  // vždy zkopírovat do schránky
+  const doCopy = () => navigator.clipboard.writeText(prompt).catch(() => {});
+
+  if (saveMode === 'file') {
+    const filename = buildFilename(level, grammar, getSelectedTopic());
+    savePromptToFile(prompt, filename).then(result => {
+      doCopy();
+      if (result === 'aborted') return; // uživatel zrušil dialog
+      copyBtn.textContent = result === 'saved' ? '✓ Uloženo + zkopírováno!' : '✓ Staženo + zkopírováno!';
+      copyBtn.classList.add('copied');
+      setTimeout(() => { copyBtn.textContent = '📋 Kopírovat prompt'; copyBtn.classList.remove('copied'); }, 3000);
+    });
+  } else {
+    doCopy().then ? doCopy().then(() => {
+      copyBtn.textContent = '✓ Zkopírováno!';
+      copyBtn.classList.add('copied');
+      setTimeout(() => { copyBtn.textContent = '📋 Kopírovat prompt'; copyBtn.classList.remove('copied'); }, 2500);
+    }) : doCopy();
+  }
 }
 
 function copyPrompt() {
@@ -1339,6 +1706,160 @@ function resetForm() {
   updateStats();
 }
 
+// ── Ukládání do složky (File System Access API + IndexedDB) ──────────────────
+
+// IndexedDB — uložení/načtení directory handle
+const IDB_NAME = 'prompt-builder-store', IDB_STORE = 'handles', IDB_KEY = 'saveFolder';
+
+function openIdb() {
+  return new Promise((res, rej) => {
+    const req = indexedDB.open(IDB_NAME, 1);
+    req.onupgradeneeded = e => e.target.result.createObjectStore(IDB_STORE);
+    req.onsuccess = e => res(e.target.result);
+    req.onerror   = e => rej(e.target.error);
+  });
+}
+
+async function idbPut(value) {
+  const db = await openIdb();
+  return new Promise((res, rej) => {
+    const tx = db.transaction(IDB_STORE, 'readwrite');
+    tx.objectStore(IDB_STORE).put(value, IDB_KEY);
+    tx.oncomplete = () => res();
+    tx.onerror = e => rej(e.target.error);
+  });
+}
+
+async function idbGet() {
+  const db = await openIdb();
+  return new Promise((res, rej) => {
+    const tx = db.transaction(IDB_STORE, 'readonly');
+    const req = tx.objectStore(IDB_STORE).get(IDB_KEY);
+    req.onsuccess = e => res(e.target.result);
+    req.onerror   = e => rej(e.target.error);
+  });
+}
+
+async function idbDelete() {
+  const db = await openIdb();
+  return new Promise((res, rej) => {
+    const tx = db.transaction(IDB_STORE, 'readwrite');
+    tx.objectStore(IDB_STORE).delete(IDB_KEY);
+    tx.oncomplete = () => res();
+    tx.onerror = e => rej(e.target.error);
+  });
+}
+
+let savedDirHandle = null;
+
+async function loadSavedFolder() {
+  try {
+    const handle = await idbGet();
+    if (!handle) return;
+    const perm = await handle.queryPermission({ mode: 'readwrite' });
+    if (perm === 'granted' || perm === 'prompt') {
+      savedDirHandle = handle;
+      updateFolderUI(handle.name);
+    }
+  } catch(e) {}
+}
+
+function updateFolderUI(name) {
+  const nameEl  = document.getElementById('folderName');
+  const clearBtn = document.getElementById('folderClearBtn');
+  if (name) {
+    nameEl.textContent = '📂 ' + name;
+    nameEl.style.color = 'var(--color-success, #16a34a)';
+    clearBtn.style.display = '';
+  } else {
+    nameEl.textContent = 'Složka není vybrána — použije se dialog při každém uložení';
+    nameEl.style.color = 'var(--color-text-muted)';
+    clearBtn.style.display = 'none';
+  }
+}
+
+async function pickSaveFolder() {
+  if (!('showDirectoryPicker' in window)) {
+    alert('Tvůj prohlížeč nepodporuje výběr složky. Použij Chrome nebo Edge.');
+    return;
+  }
+  try {
+    const handle = await window.showDirectoryPicker({ mode: 'readwrite' });
+    savedDirHandle = handle;
+    await idbPut(handle);
+    updateFolderUI(handle.name);
+  } catch(e) {
+    if (e.name !== 'AbortError') alert('Nepodařilo se vybrat složku: ' + e.message);
+  }
+}
+
+async function clearSaveFolder() {
+  savedDirHandle = null;
+  await idbDelete();
+  updateFolderUI(null);
+}
+
+function onSaveModeChange() {
+  const isFile = document.getElementById('saveModeFile').checked;
+  document.getElementById('folderPickerWrap').style.display = isFile ? '' : 'none';
+}
+
+function toSafeFilename(str) {
+  return str
+    .normalize('NFD').replace(/[̀-ͯ]/g, '') // diakritika pryč
+    .replace(/[^a-zA-Z0-9_\- ]/g, '')                // jen písmena, čísla, pomlčka
+    .trim().replace(/\s+/g, '_');                      // mezery → podtržítko
+}
+
+function buildFilename(level, grammar, topic) {
+  const lvl = level || 'XX';
+  const gr  = toSafeFilename(grammar || 'prompt').slice(0, 40);
+  const top = toSafeFilename(topic   || '').slice(0, 30);
+  const ts  = new Date().toISOString().slice(0,10); // YYYY-MM-DD
+  return top ? `${lvl}_${gr}_${top}_${ts}.txt` : `${lvl}_${gr}_${ts}.txt`;
+}
+
+async function savePromptToFile(content, filename) {
+  // Pokus o uložení do vybrané složky
+  if (savedDirHandle) {
+    try {
+      const perm = await savedDirHandle.requestPermission({ mode: 'readwrite' });
+      if (perm === 'granted') {
+        const fh  = await savedDirHandle.getFileHandle(filename, { create: true });
+        const wr  = await fh.createWritable();
+        await wr.write(content);
+        await wr.close();
+        return 'saved'; // uloženo
+      }
+    } catch(e) {
+      console.warn('Ukládání do složky selhalo, zkusím dialog.', e);
+    }
+  }
+  // Fallback — dialog Uložit jako
+  if ('showSaveFilePicker' in window) {
+    try {
+      const fh = await window.showSaveFilePicker({
+        suggestedName: filename,
+        types: [{ description: 'Textový soubor', accept: { 'text/plain': ['.txt'] } }]
+      });
+      const wr = await fh.createWritable();
+      await wr.write(content);
+      await wr.close();
+      return 'saved';
+    } catch(e) {
+      if (e.name === 'AbortError') return 'aborted';
+      console.warn(e);
+    }
+  }
+  // Poslední fallback — automatické stažení
+  const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = filename; a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  return 'downloaded';
+}
+
 function toggleDbPanel() {
   const w = document.getElementById('dbPanelWrap');
   w.style.display = w.style.display === 'none' ? '' : 'none';
@@ -1358,6 +1879,7 @@ function toggleDetailSettings() {
 buildPatternsGrid();   // grid musí existovat dřív než buildGrammarSelect() zavolá applyGrammarPatternExclusion()
 buildGrammarSelect();
 setSep('tab');
+loadSavedFolder(); // načti uloženou složku z IndexedDB
 
 // Auto-načtení JSON databáze
 (async () => {

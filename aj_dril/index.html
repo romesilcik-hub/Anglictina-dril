@@ -190,6 +190,7 @@
       <button class="dark-toggle" id="darkToggle" onclick="toggleDark()" title="Tmavý režim">🌙</button>
       <button class="btn btn-sm btn-ghost" id="dbOverviewToggle" onclick="toggleDbOverview()" style="display:none" title="Přehled databáze">📊</button>
       <button class="btn btn-sm btn-ghost" id="statsToggle" onclick="toggleStats()" style="display:none" title="Statistiky">📈</button>
+      <a href="https://forms.gle/Nf4wmG7aLCxH4ag78" target="_blank" rel="noopener" class="btn btn-sm btn-ghost" title="Zpětná vazba">💬</a>
       <button class="btn btn-sm btn-ghost" onclick="toggleHelp()" title="Nápověda">❓</button>
     </div>
   </div>
@@ -281,12 +282,14 @@
         <div class="setting-group" style="gap:.5rem">
           <label class="checkbox-row">
             <input type="checkbox" id="shuffleBlocks" onchange="saveSetting('shuffleBlocks',this.checked);reloadActive()">
-            Náhodné pořadí bloků
+            Zamíchat bloky
           </label>
-          <label class="checkbox-row">
+          <div class="setting-hint">Blok = skupina vět na jedno téma (např. „zavolat kolegovi"). Zamíchání střídá témata v náhodném pořadí — neučíš se věty nazpaměť.</div>
+          <label class="checkbox-row" style="margin-top:.35rem">
             <input type="checkbox" id="shuffleSents" onchange="saveSetting('shuffleSents',this.checked);reloadActive()">
-            Náhodné pořadí vět v bloku
+            Zamíchat věty v bloku
           </label>
+          <div class="setting-hint">Věty v každém tématu (kladná, záporná, otázka...) se zobrazují v náhodném pořadí.</div>
         </div>
         <div class="settings-divider"></div>
         <div class="setting-group" style="gap:.5rem">
@@ -294,6 +297,7 @@
             <input type="checkbox" id="autoMode" onchange="saveSetting('autoMode',this.checked);toggleAutoMode()">
             Automatické pokračování
           </label>
+          <div class="setting-hint">Věty se přehrávají a střídají samy — bez klikání. Ideální na mobilu při chůzi nebo jiné aktivitě.</div>
         </div>
         <div class="setting-group hidden" id="autoDelayGroup">
           <span>Pauza mezi větami</span>
@@ -392,6 +396,12 @@
 
       <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">🔍 Filtry</div>
       <p style="margin:0 0 .75rem">Čtyři filtry omezují výběr vět: <strong>Úroveň</strong> (A0–B1), <strong>Gramatický jev</strong>, <strong>Téma</strong> a <strong>Typy vět</strong>. Filtry jsou závislé — po změně Úrovně se Gramatika aktualizuje automaticky. Tlačítko <strong>⭐ Oblíbené</strong> zobrazí jen věty označené hvězdičkou. Ikonou <strong>📊</strong> otevřeš přehled databáze — kliknutím na řádek nastavíš filtr a rovnou začneš drilovat.</p>
+
+      <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">🔀 Bloky a pořadí</div>
+      <p style="margin:0 0 .5rem">Věty jsou rozděleny do <strong>bloků</strong> — každý blok je jedna situace nebo sloveso (např. „zavolat kolegovi", „objednat si jídlo"). V každém bloku jsou různé typy vět: kladná, záporná, otázka, rozkaz atd.</p>
+      <p style="margin:0 0 .25rem"><strong>Zamíchat bloky</strong> — témata se střídají v náhodném pořadí. Bez zamíchání vždy začínáš od začátku — to může vést k tomu, že se nechtěně naučíš pořadí, ne věty samotné.</p>
+      <p style="margin:0 0 .25rem"><strong>Zamíchat věty v bloku</strong> — typy vět v každém tématu se zobrazují náhodně.</p>
+      <p style="margin:0 0 .75rem"><strong>Automatické pokračování</strong> — věty se přehrávají a střídají samy bez klikání. Zapni v Nastavení nebo klávesou <strong>A</strong>. Pozastavit klávesou <strong>P</strong>. Ideální na mobilu při chůzi.</p>
 
       <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">▶ Průběh drilování</div>
       <p style="margin:0 0 .75rem">Aplikace nejprve přečte českou větu, po pauze přečte anglický překlad. Tlačítko <strong>Další →</strong> přejde na další větu. Tlačítko <strong>↻ CZ</strong> nebo <strong>↻ EN</strong> větu přehraje znovu. <strong>Přeskočit</strong> větu přeskočí bez hodnocení.</p>

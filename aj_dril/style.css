@@ -160,6 +160,11 @@ body {
 
 .settings-divider { grid-column: 1/-1; height: 1px; background: var(--color-border-light); }
 
+.setting-hint {
+  font-size: .72rem; color: var(--color-text-muted);
+  line-height: 1.4; margin-left: 1.35rem;
+}
+
 /* Témata */
 .topics-wrap { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; }
 .topic-btn {
