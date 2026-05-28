@@ -70,9 +70,11 @@
     .mb-level   { background:#f0f8e8; color:#2d6a2d; }
     .mb-topic   { background:#fff8e7; color:#7a5c00; }
     .mb-pattern { background:#f5f0ff; color:#5b3fa0; }
+    .mb-block   { background:#e8f0fe; color:#1a56a0; }
     body.dark .mb-level   { background:#0d2a0d; color:#6dbf6d; }
     body.dark .mb-topic   { background:#2a2000; color:#c4a030; }
     body.dark .mb-pattern { background:#1a0d2a; color:#b090e0; }
+    body.dark .mb-block   { background:#0d1a2a; color:#6090d0; }
 
     /* Hvězdička */
     .fav-btn {
@@ -262,29 +264,45 @@
           <span>🇬🇧 Hlas — anglická věta</span>
           <select id="enVoice" onchange="saveSetting('enVoice',this.value)"></select>
         </div>
-        <div class="setting-group">
-          <span>Rychlost EN</span>
-          <div class="slider-row">
-            <input type="range" id="enRate" min="0.5" max="1.5" step="0.05" value="0.85"
-                   oninput="saveSetting('enRate',this.value);document.getElementById('enRateVal').textContent=parseFloat(this.value).toFixed(2)">
-            <span class="slider-val" id="enRateVal">0.85</span>
+        <div class="en-rate-stack">
+          <div class="setting-group">
+            <span>Rychlost EN (1. přehrání)</span>
+            <div class="slider-row">
+              <input type="range" id="enRate" min="0.5" max="1.5" step="0.05" value="0.85"
+                     oninput="saveSetting('enRate',this.value);document.getElementById('enRateVal').textContent=parseFloat(this.value).toFixed(2)">
+              <span class="slider-val" id="enRateVal">0.85</span>
+              <label class="rmode-lbl" id="rmode1" title="3. a další přehrání touto rychlostí">
+                <input type="radio" name="enRepeatMode" value="first" onchange="saveSetting('enRepeatMode',this.value)"> 3.+
+              </label>
+            </div>
+          </div>
+          <div class="setting-group" id="enRate2Group">
+            <span>Rychlost EN (2. přehrání)</span>
+            <div class="slider-row">
+              <input type="range" id="enRate2" min="0.5" max="1.5" step="0.05" value="0.65"
+                     oninput="saveSetting('enRate2',this.value);document.getElementById('enRate2Val').textContent=parseFloat(this.value).toFixed(2)">
+              <span class="slider-val" id="enRate2Val">0.65</span>
+              <label class="rmode-lbl" id="rmode2" title="3. a další přehrání touto rychlostí">
+                <input type="radio" name="enRepeatMode" value="second" onchange="saveSetting('enRepeatMode',this.value)"> 3.+
+              </label>
+            </div>
           </div>
         </div>
         <div class="settings-divider"></div>
+        <div class="setting-group">
+          <span>Opakování EN věty</span>
+          <div class="slider-row">
+            <input type="range" id="enRepeat" min="1" max="5" step="1" value="1"
+                   oninput="saveSetting('enRepeat',this.value);document.getElementById('enRepeatVal').textContent=this.value+'×';toggleRepeatSpeedUI(this.value)">
+            <span class="slider-val" id="enRepeatVal">1×</span>
+          </div>
+        </div>
         <div class="setting-group">
           <span>Pauza před EN odpovědí</span>
           <div class="slider-row">
             <input type="range" id="pauseSec" min="0" max="8" step="1" value="3"
                    oninput="saveSetting('pauseSec',this.value);document.getElementById('pauseVal').textContent=this.value+'s'">
             <span class="slider-val" id="pauseVal">3s</span>
-          </div>
-        </div>
-        <div class="setting-group">
-          <span>Opakování EN věty</span>
-          <div class="slider-row">
-            <input type="range" id="enRepeat" min="1" max="5" step="1" value="1"
-                   oninput="saveSetting('enRepeat',this.value);document.getElementById('enRepeatVal').textContent=this.value+'×'">
-            <span class="slider-val" id="enRepeatVal">1×</span>
           </div>
         </div>
         <div class="settings-divider"></div>
@@ -529,6 +547,7 @@
         <span class="meta-badge mb-level"   id="mLevel"></span>
         <span class="meta-badge mb-grammar" id="mGrammar"></span>
         <span class="meta-badge mb-topic"   id="mTopic"></span>
+        <span class="meta-badge mb-block"   id="mBlock"></span>
         <span class="meta-badge mb-pattern" id="mPattern"></span>
       </div>
       <button class="fav-btn" id="favBtn" onclick="toggleFav()" title="Oblíbená věta">☆</button>
@@ -593,8 +612,8 @@ const STORAGE_STAT = 'aj_dril_stats_v3';
 // KONFIGURACE
 // ══════════════════════════════════════════════════════════════════════════════
 let cfg = {
-  czVoice:'', enVoice:'', czRate:0.9, enRate:0.85,
-  pauseSec:3, enRepeat:1, playCZ:true, playEN:true,
+  czVoice:'', enVoice:'', czRate:0.9, enRate:0.85, enRate2:0.65,
+  pauseSec:3, enRepeat:1, enRepeatMode:'second', playCZ:true, playEN:true,
   shuffleBlocks:true, shuffleSents:true,
   autoMode:false, autoDelay:3,
   showRating:true, dailyGoal:20,
@@ -619,8 +638,13 @@ function loadCfg() {
   document.getElementById('dailyGoal').value = cfg.dailyGoal||20;
   document.getElementById('czRateVal').textContent    = parseFloat(cfg.czRate).toFixed(2);
   document.getElementById('enRateVal').textContent    = parseFloat(cfg.enRate).toFixed(2);
+  document.getElementById('enRate2').value            = cfg.enRate2||0.65;
+  document.getElementById('enRate2Val').textContent   = parseFloat(cfg.enRate2||0.65).toFixed(2);
   document.getElementById('pauseVal').textContent     = cfg.pauseSec+'s';
   document.getElementById('enRepeatVal').textContent  = cfg.enRepeat+'×';
+  const _rm=document.querySelector(`input[name="enRepeatMode"][value="${cfg.enRepeatMode||'second'}"]`);
+  if(_rm)_rm.checked=true;
+  toggleRepeatSpeedUI(cfg.enRepeat||1);
   document.getElementById('autoDelayVal').textContent = (cfg.autoDelay||3)+'s';
   document.getElementById('dailyGoalVal').textContent = cfg.dailyGoal||20;
   document.getElementById('playCZ').checked       = cfg.playCZ!==false;
@@ -1085,10 +1109,23 @@ function speak(text,voiceName,rate,cb,forceLang) {
 function replayCZ(){speak(document.getElementById('sentCZ').textContent,document.getElementById('czVoice').value,cfg.czRate,null,'cs-CZ');}
 function replayEN(){document.getElementById('sentEN').classList.add('visible');playENRepeated(document.getElementById('sentEN').textContent,null,'en-GB');}
 
+function toggleRepeatSpeedUI(n) {
+  n=parseInt(n);
+  document.getElementById('enRate2Group').classList.toggle('visible',n>=2);
+  ['rmode1','rmode2'].forEach(id=>document.getElementById(id).classList.toggle('visible',n>=3));
+}
+
 function playENRepeated(text,onDone,forceLang) {
-  const repeats=parseInt(document.getElementById('enRepeat').value)||1;
+  const repeats=parseInt(cfg.enRepeat)||1;
   let count=0;
-  function one(){count++;speak(text,document.getElementById('enVoice').value,cfg.enRate,count<repeats?one:onDone,forceLang||'en-GB');}
+  function one(){
+    let rate;
+    if(count===0) rate=cfg.enRate;
+    else if(count===1) rate=cfg.enRate2||0.65;
+    else rate=(cfg.enRepeatMode==='first') ? cfg.enRate : (cfg.enRate2||0.65);
+    count++;
+    speak(text,document.getElementById('enVoice').value,rate,count<repeats?one:onDone,forceLang||'en-GB');
+  }
   one();
 }
 
@@ -1404,6 +1441,7 @@ function showCurrent() {
   document.getElementById('mGrammar').textContent=block.grammar||'';
   document.getElementById('mLevel').textContent  =block.level||'';
   document.getElementById('mTopic').textContent  =block.topic||'';
+  document.getElementById('mBlock').textContent  =block.blok||'';
   document.getElementById('mPattern').textContent=PAT_LABELS[sent.pattern]||sent.pattern||'';
   document.getElementById('cardBadge').textContent='Blok '+(bPos%blockOrder.length+1)+'/'+blockOrder.length+' · Věta '+(sPos%so.length+1)+'/'+so.length;
   document.getElementById('sPos').textContent=(sPos%so.length+1)+'/'+so.length;
@@ -1523,7 +1561,7 @@ function nextSent() {
   const bi=blockOrder[bPos%blockOrder.length];
   const so=sentOrders[bi];
   sPos++;
-  if(sPos>=so.length){sPos=0;bPos=(bPos+1)%blockOrder.length;}
+  if(sPos>=so.length){sPos=0;bPos++;if(bPos>=blockOrder.length){bPos=0;buildOrders();}}
   updateScores();showCurrent();
 }
 
@@ -1535,7 +1573,7 @@ function skipSent() {
   const bi=blockOrder[bPos%blockOrder.length];
   const so=sentOrders[bi];
   sPos++;
-  if(sPos>=so.length){sPos=0;bPos=(bPos+1)%blockOrder.length;}
+  if(sPos>=so.length){sPos=0;bPos++;if(bPos>=blockOrder.length){bPos=0;buildOrders();}}
   showCurrent();
 }
 

@@ -151,6 +151,12 @@ body {
 .slider-row { display: flex; align-items: center; gap: .5rem; }
 .slider-row input[type=range] { flex: 1; accent-color: var(--color-primary); }
 .slider-val { font-size: .83rem; font-weight: 700; color: var(--color-primary); min-width: 32px; text-align: right; }
+.en-rate-stack { display:flex; flex-direction:column; gap:.3rem; }
+#enRate2Group { visibility:hidden; opacity:0; transition:opacity .2s ease, visibility 0s .2s; }
+#enRate2Group.visible { visibility:visible; opacity:1; transition:opacity .2s ease, visibility 0s 0s; }
+.rmode-lbl { display:flex; align-items:center; gap:.2rem; font-size:.72rem; font-weight:700; color:var(--color-text-muted); white-space:nowrap; cursor:pointer; user-select:none; opacity:0; pointer-events:none; transition:opacity .2s ease; }
+.rmode-lbl.visible { opacity:1; pointer-events:auto; }
+.rmode-lbl input[type=radio] { accent-color:var(--color-primary); cursor:pointer; }
 
 .checkbox-row {
   display: flex; align-items: center; gap: .45rem;
