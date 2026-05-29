@@ -60,6 +60,45 @@
     .filter-group { display:flex; flex-direction:column; gap:.3rem; }
     .filter-lbl { font-size:.75rem; color:var(--color-text-muted); font-weight:700; text-transform:uppercase; letter-spacing:.04em; white-space:nowrap; }
     .filter-sel { width:100%; padding:5px 10px; border-radius:var(--radius-sm); border:1px solid var(--color-border); background:var(--color-surface); color:var(--color-text); font-size:.82rem; font-family:var(--font); cursor:pointer; outline:none; box-sizing:border-box; }
+    /* Custom select dropdown */
+    .cs-wrap { position:relative; width:100%; }
+    .cs-btn  { width:100%; display:flex; align-items:center; gap:4px;
+               padding:5px 10px; border-radius:var(--radius-sm); border:1px solid var(--color-border);
+               background:var(--color-surface); color:var(--color-text); font-size:.82rem;
+               font-family:var(--font); cursor:pointer; text-align:left; outline:none;
+               white-space:nowrap; overflow:hidden; }
+    .cs-label{ flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0; }
+    .cs-arrow{ flex-shrink:0; font-size:.65rem; opacity:.55; transition:transform .15s; }
+    .cs-wrap.cs-open .cs-arrow { transform:rotate(180deg); }
+    .cs-wrap.cs-disabled .cs-btn { opacity:.5; pointer-events:none; }
+    .cs-list { display:none; position:absolute; top:calc(100% + 2px); left:0; right:0;
+               background:var(--color-surface); border:1px solid var(--color-primary);
+               border-radius:var(--radius-sm); z-index:300; overflow:hidden;
+               box-shadow:0 4px 16px rgba(0,0,0,.18); }
+    .cs-wrap.cs-open .cs-list { display:block; }
+    .cs-scroll { max-height:240px; overflow-y:auto; }
+    .cs-item { padding:8px 12px; cursor:pointer; font-size:.82rem; color:var(--color-text);
+               border-bottom:1px solid var(--color-border-light); white-space:normal; line-height:1.3; }
+    .cs-item:last-child  { border-bottom:none; }
+    .cs-item:active      { background:var(--color-primary-bg); color:var(--color-primary-text); }
+    .cs-item.cs-selected { background:var(--color-primary-bg); color:var(--color-primary-text); font-weight:600; }
+    .cs-group{ padding:4px 8px; font-size:.67rem; font-weight:700; letter-spacing:.04em;
+               color:var(--color-text-muted); background:var(--color-surface-alt);
+               border-bottom:1px solid var(--color-border-light); text-transform:uppercase; }
+    /* Tenký scrollbar */
+    .cs-scroll { scrollbar-width:thin; scrollbar-color:var(--color-primary) transparent; }
+    .cs-scroll::-webkit-scrollbar { width:3px; }
+    .cs-scroll::-webkit-scrollbar-thumb { background:var(--color-primary); border-radius:2px; }
+    /* Gradient fade dole — position:absolute mimo scroll kontejner */
+    .cs-fade-bot { position:absolute; bottom:0; left:0; right:0; height:32px;
+                   background:linear-gradient(transparent, rgba(46,117,182,0.25));
+                   pointer-events:none; transition:opacity .15s; z-index:10; }
+    @media (max-width:600px) {
+      .filter-wrap { grid-template-columns:1fr; gap:6px; }
+      .filter-fav-row { grid-column:1; }
+      .cs-btn  { font-size:13px; padding:6px 10px; }
+      .cs-item { font-size:13px; padding:10px 12px; }
+    }
     .filter-sel:focus { border-color:var(--color-primary); }
     .filter-fav-row { grid-column:1/-1; }
 
@@ -119,8 +158,10 @@
       border:1px solid var(--color-border); background:var(--color-surface);
       font-size:.82rem; font-family:var(--font); font-weight:600;
       cursor:pointer; transition:all .15s; text-align:center;
+      outline:none; -webkit-tap-highlight-color:transparent;
     }
     .rating-btn:hover { transform:translateY(-1px); box-shadow:0 2px 8px rgba(0,0,0,.1); }
+    .rating-btn:focus { outline:none; background:var(--color-surface); transform:none; box-shadow:none; }
     .rb-good  { color:var(--color-success); border-color:var(--color-success); }
     .rb-good:hover  { background:var(--color-success-bg); }
     .rb-ok    { color:#d97706; border-color:#d97706; }
@@ -533,8 +574,12 @@
   <!-- Filtry -->
   <div class="filter-wrap" id="filterWrap" style="display:none">
     <div class="filter-group">
-      <label class="filter-lbl" for="fLevel">Úroveň</label>
-      <select class="filter-sel" id="fLevel" onchange="onFilterChange('level')">
+      <label class="filter-lbl">Úroveň</label>
+      <div class="cs-wrap" id="cs-fLevel">
+        <button class="cs-btn" onclick="toggleCS('fLevel')"><span class="cs-label">Vše</span><span class="cs-arrow">▾</span></button>
+        <div class="cs-list"></div>
+      </div>
+      <select id="fLevel" onchange="onFilterChange('level')" style="display:none">
         <option value="">Vše</option>
         <option value="A0">A0 — Začátečník</option>
         <option value="A1">A1 — Základní</option>
@@ -543,20 +588,32 @@
       </select>
     </div>
     <div class="filter-group">
-      <label class="filter-lbl" for="fGrammar">Gramatický jev</label>
-      <select class="filter-sel" id="fGrammar" onchange="onFilterChange('grammar')">
+      <label class="filter-lbl">Gramatický jev</label>
+      <div class="cs-wrap" id="cs-fGrammar">
+        <button class="cs-btn" onclick="toggleCS('fGrammar')"><span class="cs-label">Veškerá gramatika</span><span class="cs-arrow">▾</span></button>
+        <div class="cs-list"></div>
+      </div>
+      <select id="fGrammar" onchange="onFilterChange('grammar')" style="display:none">
         <option value="">Veškerá gramatika</option>
       </select>
     </div>
     <div class="filter-group">
-      <label class="filter-lbl" for="fTopic">Téma</label>
-      <select class="filter-sel" id="fTopic" onchange="onFilterChange('topic')">
+      <label class="filter-lbl">Téma</label>
+      <div class="cs-wrap" id="cs-fTopic">
+        <button class="cs-btn" onclick="toggleCS('fTopic')"><span class="cs-label">Všechna témata</span><span class="cs-arrow">▾</span></button>
+        <div class="cs-list"></div>
+      </div>
+      <select id="fTopic" onchange="onFilterChange('topic')" style="display:none">
         <option value="">Všechna témata</option>
       </select>
     </div>
     <div class="filter-group">
-      <label class="filter-lbl" for="fPattern">Typy vět</label>
-      <select class="filter-sel" id="fPattern" onchange="onFilterChange('pattern')">
+      <label class="filter-lbl">Typy vět</label>
+      <div class="cs-wrap" id="cs-fPattern">
+        <button class="cs-btn" onclick="toggleCS('fPattern')"><span class="cs-label">Všechny typy vět</span><span class="cs-arrow">▾</span></button>
+        <div class="cs-list"></div>
+      </div>
+      <select id="fPattern" onchange="onFilterChange('pattern')" style="display:none">
         <option value="">Všechny typy vět</option>
       </select>
     </div>
@@ -1068,7 +1125,187 @@ function buildOrders() {
 // ══════════════════════════════════════════════════════════════════════════════
 // HLASY
 // ══════════════════════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════════════════════════
+// CUSTOM SELECT DROPDOWNY
+// ══════════════════════════════════════════════════════════════════════════════
+function toggleCS(id) {
+  const wrap=document.getElementById('cs-'+id);
+  if(!wrap||wrap.classList.contains('cs-disabled'))return;
+  const wasOpen=wrap.classList.contains('cs-open');
+  closeAllCS();
+  if(!wasOpen){
+    wrap.classList.add('cs-open');
+    // Refresh fade až bude list viditelný a bude mít správné rozměry
+    setTimeout(()=>{
+      const scroll=wrap.querySelector('.cs-scroll');
+      const fade=wrap.querySelector('.cs-fade-bot');
+      if(scroll&&fade){
+        const hasScroll=scroll.scrollHeight>scroll.clientHeight+6;
+        fade.style.opacity=hasScroll?'1':'0';
+      }
+    },30);
+  }
+}
+
+function closeAllCS() {
+  document.querySelectorAll('.cs-wrap.cs-open').forEach(w=>w.classList.remove('cs-open'));
+}
+
+function syncCustomSelect(id) {
+  const sel=document.getElementById(id);
+  const wrap=document.getElementById('cs-'+id);
+  if(!sel||!wrap)return;
+
+  // Aktualizuj label
+  const si=sel.selectedIndex;
+  wrap.querySelector('.cs-label').textContent = si>=0 ? sel.options[si].text : '';
+  wrap.classList.toggle('cs-disabled', sel.disabled);
+
+  // Přegeneruj položky do .cs-scroll uvnitř .cs-list
+  const list=wrap.querySelector('.cs-list');
+  list.innerHTML='';
+
+  const scroll=document.createElement('div');
+  scroll.className='cs-scroll';
+  list.appendChild(scroll);
+
+  Array.from(sel.children).forEach(child=>{
+    if(child.tagName==='OPTGROUP'){
+      const g=document.createElement('div');
+      g.className='cs-group'; g.textContent=child.label;
+      scroll.appendChild(g);
+      Array.from(child.children).forEach(opt=>scroll.appendChild(_csItem(opt,id,sel.value)));
+    } else {
+      scroll.appendChild(_csItem(child,id,sel.value));
+    }
+  });
+
+  // Gradient fade — position:absolute na dno .cs-list, mimo scroll kontejner
+  const fade=document.createElement('div');
+  fade.className='cs-fade-bot';
+  list.appendChild(fade);
+  const upd=()=>{ fade.style.opacity=(scroll.scrollTop+scroll.clientHeight>=scroll.scrollHeight-6)?'0':'1'; };
+  scroll.onscroll=upd;
+  setTimeout(upd, 20);
+}
+
+function _csItem(opt,filterId,curVal) {
+  const d=document.createElement('div');
+  d.className='cs-item'+(opt.value===curVal?' cs-selected':'');
+  d.textContent=opt.text;
+  d.onclick=e=>{
+    e.stopPropagation();
+    document.getElementById(filterId).value=opt.value;
+    closeAllCS();
+    document.getElementById(filterId).dispatchEvent(new Event('change'));
+  };
+  return d;
+}
+
+function syncCustomSelects() {
+  ['fLevel','fGrammar','fTopic','fPattern'].forEach(syncCustomSelect);
+}
+
+// Zavřít dropdown kliknutím mimo
+document.addEventListener('click', e=>{
+  if(!e.target.closest('.cs-wrap'))closeAllCS();
+});
+
 let voiceCheckTimer=null;
+
+function initCapacitorDrillListener() {
+  // Voláno z native vlákna přes evaluateJavascript — aktualizuje UI
+  window._drillNextSent = function(data) {
+    if(!data) return;
+    // Reset hodnocení — skryj a odeber focus ze všech tlačítek
+    document.getElementById('ratingWrap').classList.add('rating-hidden');
+    document.querySelectorAll('.rating-btn').forEach(b => b.blur());
+    // Nejdřív schovat EN a vymazat text — aby nezůstala viditelná stará EN věta
+    const enEl = document.getElementById('sentEN');
+    enEl.classList.remove('visible');
+    enEl.textContent = '';
+    // Reset hodnocení — přegenerovat tlačítka aby zmizelo `:active` zvýraznění
+    const rw = document.getElementById('ratingWrap');
+    rw.classList.add('rating-hidden');
+    rw.innerHTML = '<button class="rating-btn rb-good" onclick="rateSent(\'good\')">✓ Uměl jsem</button>'
+                 + '<button class="rating-btn rb-ok"   onclick="rateSent(\'ok\')">~ Skoro</button>'
+                 + '<button class="rating-btn rb-bad"  onclick="rateSent(\'bad\')">✗ Neuměl jsem</button>';
+    // Zobraz CZ
+    document.getElementById('sentCZ').textContent = data.czText || '';
+    done++;
+    updateScores();
+    // EN text uložit — zobrazí ho _drillShowEN volaný z native vlákna
+    // přesně ve chvíli kdy EN začne hrát (po CZ + pauze)
+    window._drillPendingEN = data.enText || '';
+  };
+  // Voláno z native přesně když EN začíná hrát — zobrazí EN větu
+  window._drillShowEN = function() {
+    const enEl = document.getElementById('sentEN');
+    enEl.textContent = window._drillPendingEN || '';
+    enEl.classList.add('visible');
+    const rw = document.getElementById('ratingWrap');
+    if(document.getElementById('showRating').checked)
+      rw.classList.remove('rating-hidden');
+  };
+  // Zachováno pro zpětnou kompatibilitu (manuální přehrání)
+  window._drillSentenceDone = function() {
+    if(document.getElementById('autoMode').checked && !autoPaused && activeBlocks.length)
+      nextSent();
+  };
+}
+
+// Spustí nativní drill smyčku — celé přehrávání probíhá v Android vláknu, JS jen zobrazuje
+function startCapacitorAuto() {
+  const sentences = activeBlocks.flatMap(b => b.sentences.map(s => ({
+    czText: s.cz || '',
+    enText: s.en || ''
+  })));
+  if(!sentences.length) return;
+
+  const repeats = parseInt(cfg.enRepeat)||1;
+  const enRates = [];
+  for(let i=0;i<repeats;i++){
+    if(i===0) enRates.push(cfg.enRate);
+    else if(i===1) enRates.push(cfg.enRate2||0.65);
+    else enRates.push(cfg.enRepeatMode==='first' ? cfg.enRate : (cfg.enRate2||0.65));
+  }
+
+  window.Capacitor.Plugins.DrillTTS.startAuto({
+    sentences,
+    czRate:      cfg.czRate,
+    enRates,
+    pauseMs:     document.getElementById('playCZ').checked && document.getElementById('playEN').checked
+                   ? (parseInt(cfg.pauseSec)||3)*1000 : 0,
+    autoDelayMs: (parseInt(cfg.autoDelay)||3)*1000,
+    czEnabled:   document.getElementById('playCZ').checked,
+    enEnabled:   document.getElementById('playEN').checked,
+    shuffle:     cfg.shuffleSents !== false
+  });
+}
+
+function adaptUIForCapacitor() {
+  initCapacitorDrillListener();
+  // Skryj výběry hlasů — nativní TTS používá systémový engine
+  ['czVoice','enVoice'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el&&el.closest('.setting-group')) el.closest('.setting-group').style.display='none';
+  });
+  // Přidej info o TTS pod settings-grid
+  const grid=document.querySelector('.settings-grid');
+  if(grid){
+    const info=document.createElement('p');
+    info.style.cssText='font-size:.78rem;color:var(--color-text-muted);margin:.5rem 0 0;grid-column:1/-1';
+    info.textContent='🤖 Hlasy řídí systémový TTS engine Androidu. Lze změnit v Nastavení → Usnadnění → Převod textu na řeč.';
+    grid.appendChild(info);
+  }
+  // Uprav uvítací overlay — skryj výběry hlasů, změň nadpis
+  const wTitle=document.querySelector('.welcome-title');
+  if(wTitle) wTitle.textContent='👋 Vítej v AJ Drilu';
+  const wHint=document.querySelector('.welcome-hint');
+  if(wHint) wHint.textContent='Hlasy zajišťuje systémový TTS engine Androidu. Rychlosti přehrávání si nastavíš v ⚙ Nastavení.';
+  [document.querySelector('.welcome-row:nth-child(3)'),
+   document.querySelector('.welcome-row:nth-child(4)')].forEach(el=>{if(el)el.style.display='none';});
+}
 
 function loadVoices() {
   const all=speechSynthesis.getVoices();
@@ -1128,13 +1365,66 @@ function fillVoiceSelect(id,voices,savedName,prefLangs) {
   }
 }
 
-speechSynthesis.onvoiceschanged=loadVoices;
-loadVoices();
+if(isCapacitor()) {
+  adaptUIForCapacitor();
+} else {
+  speechSynthesis.onvoiceschanged=loadVoices;
+  loadVoices();
+}
 
 // ══════════════════════════════════════════════════════════════════════════════
 // TTS
 // ══════════════════════════════════════════════════════════════════════════════
+function isCapacitor() {
+  return typeof window.Capacitor !== 'undefined' && window.Capacitor.isNativePlatform();
+}
+
+function cancelSpeech() {
+  if(isCapacitor()) {
+    try { window.Capacitor.Plugins.DrillTTS.stop(); } catch(e){}
+    try { window.Capacitor.Plugins.TextToSpeech.stop(); } catch(e){}
+  } else {
+    if(window.speechSynthesis) speechSynthesis.cancel();
+  }
+}
+
+// Nativní přehrání celé věty (CZ + pauza + EN×opakování) — pro Capacitor auto mode
+// Celá sekvence běží v native Android TTS, JS se probudí až po dokončení věty
+function speakSentenceNative(sent) {
+  const repeats = parseInt(cfg.enRepeat)||1;
+  const enRates = [];
+  for(let i=0;i<repeats;i++){
+    if(i===0) enRates.push(cfg.enRate);
+    else if(i===1) enRates.push(cfg.enRate2||0.65);
+    else enRates.push(cfg.enRepeatMode==='first' ? cfg.enRate : (cfg.enRate2||0.65));
+  }
+  const playCZ = document.getElementById('playCZ').checked;
+  const playEN = document.getElementById('playEN').checked;
+  window.Capacitor.Plugins.DrillTTS.speakSentence({
+    czText:      playCZ ? (sent.cz||'') : '',
+    enText:      playEN ? (sent.en||'') : '',
+    enLang:      'en-GB',
+    czRate:      cfg.czRate,
+    enRates:     playEN ? enRates : [],
+    pauseMs:     playCZ && playEN ? (parseInt(cfg.pauseSec)||3)*1000 : 0,
+    autoDelayMs: (parseInt(cfg.autoDelay)||3)*1000
+  });
+  // Zobraz EN větu a hodnocení okamžitě (uživatel čte, zatímco poslouchá)
+  const enEl=document.getElementById('sentEN');
+  enEl.textContent=sent.en||''; enEl.classList.add('visible');
+  if(document.getElementById('showRating').checked)
+    document.getElementById('ratingWrap').classList.remove('rating-hidden');
+}
+
 function speak(text,voiceName,rate,cb,forceLang) {
+  if(isCapacitor()) {
+    cancelSpeech();
+    const lang = forceLang || 'en-GB';
+    window.Capacitor.Plugins.TextToSpeech.speak({
+      text, lang, rate: parseFloat(rate)||1.0, pitch: 1.0, volume: 1.0
+    }).then(()=>{ if(cb) cb(); }).catch(()=>{ if(cb) cb(); });
+    return;
+  }
   if(!window.speechSynthesis){if(cb)cb();return;}
   const u=new SpeechSynthesisUtterance(text);
   const v=speechSynthesis.getVoices().find(v=>v.name===voiceName);
@@ -1142,7 +1432,7 @@ function speak(text,voiceName,rate,cb,forceLang) {
   else if(forceLang){u.lang=forceLang;}
   u.rate=parseFloat(rate)||1;
   if(cb) u.onend=cb;
-  speechSynthesis.cancel();
+  cancelSpeech();
   speechSynthesis.speak(u);
 }
 
@@ -1406,6 +1696,7 @@ function updateCascade() {
   patterns.forEach(p=>{const o=document.createElement('option');o.value=p;const lbl=PAT_LABELS[p]||p;const cnt=allSents.filter(s=>s.pattern===p).length;o.textContent=lbl+' ('+cnt+')';applyFreq(o,PAT_FREQ[p]||0);if(p===curP)o.selected=true;fPattern.appendChild(o);});
   if(curP && excludePats.includes(curP)) fPattern.value=''; // reset pokud byl vybrán vyloučený pattern
   fPattern.disabled = patterns.length<=1;
+  syncCustomSelects();
 }
 
 function applyFilters(resetPos=true) {
@@ -1479,7 +1770,7 @@ function startFromWelcome() {
 function showCurrent() {
   if(pauseTimer){clearTimeout(pauseTimer);pauseTimer=null;}
   if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
-  speechSynthesis.cancel();
+  cancelSpeech();
   document.getElementById('ratingWrap').classList.add('rating-hidden');
 
   if(!activeBlocks.length){
@@ -1518,7 +1809,7 @@ function showCurrent() {
   savePos();
 
   setTimeout(()=>{
-    speechSynthesis.cancel();
+    cancelSpeech();
     setTimeout(()=>{
       const playCZ=document.getElementById('playCZ').checked;
       const playEN2=document.getElementById('playEN').checked;
@@ -1589,8 +1880,15 @@ function toggleAutoMode(forceOff) {
   const adg=document.getElementById('autoDelayGroup');
   if(isAuto)adg.classList.remove('hidden');else adg.classList.add('hidden');
   document.getElementById('autoIndicator').style.display=isAuto?'flex':'none';
-  if(!isAuto){if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}autoPaused=false;}
-  if(isAuto)document.getElementById('autoStatusText').textContent='Automatický režim zapnut...';
+  if(!isAuto){
+    if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
+    autoPaused=false;
+    if(isCapacitor()) try{window.Capacitor.Plugins.DrillTTS.stopAuto();}catch(e){}
+  }
+  if(isAuto){
+    document.getElementById('autoStatusText').textContent='Automatický režim zapnut...';
+    if(isCapacitor()) startCapacitorAuto();
+  }
 }
 
 function toggleAutoPause() {
@@ -1617,7 +1915,7 @@ function toggleAutoPause() {
 function nextSent() {
   if(pauseTimer){clearTimeout(pauseTimer);pauseTimer=null;}
   if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
-  speechSynthesis.cancel();
+  cancelSpeech();
   autoPaused=false;
   document.getElementById('autoPauseBtn').textContent='⏸ Pozastavit';
   done++;
@@ -1631,7 +1929,7 @@ function nextSent() {
 function skipSent() {
   if(pauseTimer){clearTimeout(pauseTimer);pauseTimer=null;}
   if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
-  speechSynthesis.cancel();
+  cancelSpeech();
   autoPaused=false;
   const bi=blockOrder[bPos%blockOrder.length];
   const so=sentOrders[bi];
