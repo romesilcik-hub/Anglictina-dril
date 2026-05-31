@@ -323,6 +323,21 @@
         </div>
       </div>
 
+      <!-- Varianta angličtiny -->
+      <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--color-border-light)">
+        <div class="section-card-title" style="margin-bottom:.6rem">Varianta angličtiny</div>
+        <div style="display:flex;flex-direction:column;gap:.5rem">
+          <label class="checkbox-row" style="cursor:pointer">
+            <input type="radio" name="engVariant" id="engVariantBR" value="british" checked>
+            🇬🇧 Britská angličtina — výchozí (jazykové školy v ČR)
+          </label>
+          <label class="checkbox-row" style="cursor:pointer">
+            <input type="radio" name="engVariant" id="engVariantUS" value="american">
+            🇺🇸 Americká angličtina
+          </label>
+        </div>
+      </div>
+
       <!-- Ukládání -->
       <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--color-border-light)">
         <div class="section-card-title" style="margin-bottom:.6rem">Ukládání vygenerovaného promptu</div>
@@ -1509,6 +1524,17 @@ function generatePrompt() {
   if (pats.length === 0) { alert('Vyber aspoň jeden typ věty.'); return; }
 
   const lang        = document.querySelector('input[name="promptLang"]:checked')?.value || 'cs';
+  const engVariant  = document.querySelector('input[name="engVariant"]:checked')?.value || 'british';
+  const engVariantLabel = engVariant === 'british'
+    ? (lang === 'en' ? 'British English' : 'britská angličtina')
+    : (lang === 'en' ? 'American English' : 'americká angličtina');
+  const engVariantNote = engVariant === 'british'
+    ? (lang === 'en'
+      ? 'Use British English throughout: spelling (colour, organise, centre, favourite), vocabulary (flat, lift, autumn, post, biscuit, motorway), grammar (have got, at the weekend, different from/to).'
+      : 'Používej britskou angličtinu: pravopis (colour, organise, centre), slovní zásoba (flat, lift, autumn, post, biscuit, motorway), gramatika (have got, at the weekend).')
+    : (lang === 'en'
+      ? 'Use American English throughout: spelling (color, organize, center, favorite), vocabulary (apartment, elevator, fall, mail, cookie, highway), grammar (have, on the weekend, different from/than).'
+      : 'Používej americkou angličtinu: pravopis (color, organize, center), slovní zásoba (apartment, elevator, fall, mail, cookie, highway), gramatika (have, on the weekend).');
   const sepLabel    = getSepLabel(lang);
   const levelPopis  = LEVEL_DESC[level] || level;
   const celkem      = pocet * pats.length;
@@ -1577,7 +1603,10 @@ GENERATION PARAMETERS:
 - Topic: ${topic}
 - Number of blocks: ${pocet}
 - Sentences per block: ${pats.length}
-- Total sentences: ${celkem}${seed ? '\n- Key verb / focus: ' + seed : ''}${extra ? '\n- Extra instructions: ' + extra : ''}
+- Total sentences: ${celkem}
+- English variety: ${engVariantLabel}${seed ? '\n- Key verb / focus: ' + seed : ''}${extra ? '\n- Extra instructions: ' + extra : ''}
+
+${engVariantNote}
 ${existBloksSection}${levelGuard}${gramHint ? `KEY GRAMMAR CHARACTERISTICS (use as basis for the notes column):
 ${gramHint}
 
@@ -1620,7 +1649,10 @@ PARAMETRY GENEROVÁNÍ:
 - Téma: ${topic}
 - Počet bloků: ${pocet}
 - Počet vět v každém bloku: ${pats.length}
-- Celkem vět: ${celkem}${seed ? '\n- Klíčové sloveso / zaměření: ' + seed : ''}${extra ? '\n- Extra instrukce: ' + extra : ''}
+- Celkem vět: ${celkem}
+- Varianta angličtiny: ${engVariantLabel}${seed ? '\n- Klíčové sloveso / zaměření: ' + seed : ''}${extra ? '\n- Extra instrukce: ' + extra : ''}
+
+${engVariantNote}
 ${existBloksSection}${levelGuard}${gramHint ? `KLÍČOVÁ CHARAKTERISTIKA GRAMATIKY (použij jako základ pro poznámky):
 ${gramHint}
 

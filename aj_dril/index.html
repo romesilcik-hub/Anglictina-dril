@@ -76,7 +76,7 @@
                border-radius:var(--radius-sm); z-index:300; overflow:hidden;
                box-shadow:0 4px 16px rgba(0,0,0,.18); }
     .cs-wrap.cs-open .cs-list { display:block; }
-    .cs-scroll { max-height:240px; overflow-y:auto; }
+    .cs-scroll { max-height:400px; overflow-y:auto; }
     .cs-item { padding:8px 12px; cursor:pointer; font-size:.82rem; color:var(--color-text);
                border-bottom:1px solid var(--color-border-light); white-space:normal; line-height:1.3; }
     .cs-item:last-child  { border-bottom:none; }
@@ -85,6 +85,20 @@
     .cs-group{ padding:4px 8px; font-size:.67rem; font-weight:700; letter-spacing:.04em;
                color:var(--color-text-muted); background:var(--color-surface-alt);
                border-bottom:1px solid var(--color-border-light); text-transform:uppercase; }
+    /* Klávesové zkratky — skrýt na dotykových zařízeních */
+    @media (pointer: coarse) { #shortcutHint { display: none !important; } }
+    /* Fixovaná spodní lišta na mobilu */
+    @media (pointer: coarse) {
+      #bottomBar {
+        position: fixed; bottom: 0; left: 0; right: 0;
+        background: var(--color-surface);
+        border-top: 1px solid var(--color-border);
+        padding: .6rem 1rem env(safe-area-inset-bottom, .4rem);
+        z-index: 100;
+        box-shadow: 0 -2px 8px rgba(0,0,0,.08);
+      }
+      .app { padding-bottom: 100px; }
+    }
     /* Tenký scrollbar */
     .cs-scroll { scrollbar-width:thin; scrollbar-color:var(--color-primary) transparent; }
     .cs-scroll::-webkit-scrollbar { width:3px; }
@@ -660,24 +674,27 @@
     </div>
   </div>
 
-  <!-- Ovládání -->
-  <div class="controls" id="controlsWrap" style="display:none">
-    <button class="btn btn-sm" onclick="replayCZ()">↻ CZ</button>
-    <button class="btn btn-sm" onclick="replayEN()">↻ EN</button>
-    <button class="btn btn-primary" onclick="nextSent()">Další →</button>
-    <button class="btn btn-ghost btn-sm" onclick="skipSent()">přeskočit</button>
-  </div>
+  <!-- Ovládání — na mobilu fixované dole -->
+  <div id="bottomBar">
+    <div class="controls" id="controlsWrap" style="display:none">
+      <button class="btn btn-sm" onclick="replayCZ()">↻ CZ</button>
+      <button class="btn btn-sm" onclick="replayEN()">↻ EN</button>
+      <button class="btn btn-primary" onclick="nextSent()">Další →</button>
+      <button class="btn btn-ghost btn-sm" onclick="skipSent()">přeskočit</button>
+      <button class="btn btn-ghost btn-sm" onclick="skipBlock()" id="skipBlockWrap" style="display:none">Další blok →→</button>
+    </div>
 
-  <!-- Auto indikátor -->
-  <div class="auto-bar" id="autoIndicator">
-    <span class="auto-pulse"></span>
-    <span id="autoStatusText">Automatický režim</span>
-    <button class="auto-pause-btn" id="autoPauseBtn" onclick="toggleAutoPause()">⏸ Pozastavit</button>
-    <button class="auto-pause-btn" onclick="toggleAutoMode(true)" style="border-color:var(--color-danger);color:var(--color-danger)">✕</button>
-  </div>
+    <!-- Auto indikátor -->
+    <div class="auto-bar" id="autoIndicator">
+      <span class="auto-pulse"></span>
+      <span id="autoStatusText">Automatický režim</span>
+      <button class="auto-pause-btn" id="autoPauseBtn" onclick="toggleAutoPause()">⏸ Pozastavit</button>
+      <button class="auto-pause-btn" onclick="toggleAutoMode(true)" style="border-color:var(--color-danger);color:var(--color-danger)">✕</button>
+    </div>
 
-  <div id="shortcutHint" style="display:none;margin-top:.75rem;font-size:.72rem;color:var(--color-text-light);text-align:center;">
-    Mezerník / → = další &nbsp;·&nbsp; R = přehrát EN &nbsp;·&nbsp; C = přehrát CZ &nbsp;·&nbsp; S = přeskočit &nbsp;·&nbsp; A = auto &nbsp;·&nbsp; P = pauza
+    <div id="shortcutHint" style="display:none;margin-top:.75rem;font-size:.72rem;color:var(--color-text-light);text-align:center;">
+      Mezerník / → = další &nbsp;·&nbsp; R = přehrát EN &nbsp;·&nbsp; C = přehrát CZ &nbsp;·&nbsp; S = přeskočit &nbsp;·&nbsp; B = další blok &nbsp;·&nbsp; A = auto &nbsp;·&nbsp; P = pauza
+    </div>
   </div>
 
 </div>
@@ -694,6 +711,7 @@ let blockOrder   = [], sentOrders = [];
 let bPos = 0, sPos = 0, done = 0, total = 0;
 let pauseTimer = null, autoTimer = null;
 let autoPaused = false;
+let playToken = 0; // generační čítač — každá nová věta dostane jiný token
 let favFilter  = false;
 let currentSentKey = null; // klíč aktuální věty pro oblíbené
 
@@ -1622,26 +1640,26 @@ const GRAMMAR_PATTERN_EXCLUDE = {
 
 // Struktura optgroup pro filtr gramatiky
 const GRAMMAR_GROUPS = [
-  { label: '── Základy ──────────────', items: [
+  { label: 'Základy', items: [
     'Sloveso být (to be)','Členy (a/an/the)','Množné číslo','Zájmena','Číslovky'
   ]},
-  { label: '── Časy ─────────────────', items: [
+  { label: 'Časy', items: [
     'Přítomný čas prostý','Přítomný čas průběhový','Předpřítomný čas','Předpřítomný průběhový',
     'Minulý čas prostý','Minulý čas průběhový','Předminulý čas',
     'Budoucí čas (will)','Budoucí čas (going to)','Budoucí průběhový'
   ]},
-  { label: '── Způsobová slovesa ────', items: [
+  { label: 'Způsobová slovesa', items: [
     'Způsobová — can/could','Způsobová — must/have to','Způsobová — should/ought to',
     'Způsobová — might/may','Způsobová minulá (could have...)'
   ]},
-  { label: '── Infinitiv a gerundium ', items: [
+  { label: 'Infinitiv a gerundium', items: [
     'Infinitiv','Gerundium'
   ]},
-  { label: '── Konstrukce ───────────', items: [
+  { label: 'Konstrukce', items: [
     'Trpný rod','Podmínka 1. typ','Podmínka 2. typ','Podmínka 3. typ',
     'Přímá a nepřímá řeč','Vedlejší věty','Used to','Wish','Would rather','It\'s time','Have something done'
   ]},
-  { label: '── Slovní zásoba ────────', items: [
+  { label: 'Slovní zásoba', items: [
     'Frázová slovesa','Stupňování přídavných jmen','Kvantifikátory (all/both/each)',
     'Dovětky (question tags)','Tvoření slov','Předložky místa a času',
     'There is / There are','Some / any / much / many','Sponová slovesa',
@@ -1740,6 +1758,7 @@ function initApp(tryRestorePos) {
   document.getElementById('loadPanel').style.display='none';
   ['settingsPanel','filterWrap','scoresWrap','progressBar','drillCard','controlsWrap','shortcutHint','dailyBar']
     .forEach(id=>document.getElementById(id).style.display='');
+  document.getElementById('skipBlockWrap').style.display='';
   document.getElementById('statsToggle').style.display='';
   document.getElementById('dbOverviewToggle').style.display='';
   if(cfg.autoMode){document.getElementById('autoIndicator').style.display='flex';document.getElementById('autoDelayGroup').classList.remove('hidden');}
@@ -1770,6 +1789,7 @@ function startFromWelcome() {
 function showCurrent() {
   if(pauseTimer){clearTimeout(pauseTimer);pauseTimer=null;}
   if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
+  playToken++; // zneplatní všechny probíhající callbacky předchozí věty
   cancelSpeech();
   document.getElementById('ratingWrap').classList.add('rating-hidden');
 
@@ -1808,27 +1828,32 @@ function showCurrent() {
   updateFavBtn();
   savePos();
 
+  const myToken = playToken;
   setTimeout(()=>{
+    if(playToken !== myToken) return; // věta se mezitím změnila
     cancelSpeech();
     setTimeout(()=>{
+      if(playToken !== myToken) return; // věta se mezitím změnila
       const playCZ=document.getElementById('playCZ').checked;
       const playEN2=document.getElementById('playEN').checked;
-      if(playCZ){speak(sent.cz,document.getElementById('czVoice').value,cfg.czRate,()=>scheduleEN(sent.en,playEN2),'cs-CZ');}
-      else{scheduleEN(sent.en,playEN2);}
+      if(playCZ){speak(sent.cz,document.getElementById('czVoice').value,cfg.czRate,()=>{if(playToken===myToken)scheduleEN(sent.en,playEN2,myToken);},'cs-CZ');}
+      else{scheduleEN(sent.en,playEN2,myToken);}
     },80);
   },250);
 }
 
-function scheduleEN(text,playEN2) {
+function scheduleEN(text,playEN2,token) {
+  const myToken = (token !== undefined) ? token : playToken;
   const delay=parseInt(document.getElementById('pauseSec').value)*1000;
   pauseTimer=setTimeout(()=>{
+    if(playToken !== myToken) return; // věta se mezitím změnila
     const el=document.getElementById('sentEN');
     el.textContent=text; el.classList.add('visible');
     // Zobraz hodnocení
     if(document.getElementById('showRating').checked) {
       document.getElementById('ratingWrap').classList.remove('rating-hidden');
     }
-    if(playEN2){playENRepeated(text,()=>scheduleAutoNext(),'en-GB');}
+    if(playEN2){playENRepeated(text,()=>{if(playToken===myToken)scheduleAutoNext();},'en-GB');}
     else{scheduleAutoNext();}
   },delay);
 }
@@ -1926,6 +1951,17 @@ function nextSent() {
   updateScores();showCurrent();
 }
 
+function skipBlock() {
+  if(pauseTimer){clearTimeout(pauseTimer);pauseTimer=null;}
+  if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
+  cancelSpeech();
+  autoPaused=false;
+  sPos=0;
+  bPos++;
+  if(bPos>=blockOrder.length){bPos=0;buildOrders();}
+  showCurrent();
+}
+
 function skipSent() {
   if(pauseTimer){clearTimeout(pauseTimer);pauseTimer=null;}
   if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
@@ -1953,6 +1989,7 @@ document.addEventListener('keydown',e=>{
   else if(e.key==='r'||e.key==='R')replayEN();
   else if(e.key==='c'||e.key==='C')replayCZ();
   else if(e.key==='s'||e.key==='S')skipSent();
+  else if(e.key==='b'||e.key==='B')skipBlock();
   else if(e.key==='a'||e.key==='A')toggleAutoMode();
   else if(e.key==='p'||e.key==='P')toggleAutoPause();
   else if(e.key==='1')rateSent('good');
