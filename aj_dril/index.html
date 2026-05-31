@@ -97,7 +97,9 @@
         z-index: 100;
         box-shadow: 0 -2px 8px rgba(0,0,0,.08);
       }
-      .app { padding-bottom: 100px; }
+      .app { padding-bottom: 100px; } /* výchozí — přepisuje JS funkce updateBottomPadding() */
+
+      /* Magnetický snap — řeší JS, ne CSS */
     }
     /* Tenký scrollbar */
     .cs-scroll { scrollbar-width:thin; scrollbar-color:var(--color-primary) transparent; }
@@ -682,6 +684,7 @@
       <button class="btn btn-primary" onclick="nextSent()">Další →</button>
       <button class="btn btn-ghost btn-sm" onclick="skipSent()">přeskočit</button>
       <button class="btn btn-ghost btn-sm" onclick="skipBlock()" id="skipBlockWrap" style="display:none">Další blok →→</button>
+      <button class="btn btn-ghost btn-sm" id="autoToggleBtn" onclick="toggleAutoMode()" style="margin-left:auto">▶▶ Auto</button>
     </div>
 
     <!-- Auto indikátor -->
@@ -714,6 +717,67 @@ let autoPaused = false;
 let playToken = 0; // generační čítač — každá nová věta dostane jiný token
 let favFilter  = false;
 let currentSentKey = null; // klíč aktuální věty pro oblíbené
+
+// Dynamický padding — zabrání překrytí obsahu fixním bottomBarem na mobilu
+function updateBottomPadding() {
+  const bar = document.getElementById('bottomBar');
+  if(!bar) return;
+  const h = bar.offsetHeight;
+  if(h > 0) {
+    document.querySelector('.app').style.paddingBottom = (h + 12) + 'px';
+    document.documentElement.style.setProperty('--bottom-bar-h', (h + 8) + 'px');
+  }
+}
+
+// ── MAGNETICKÝ SNAP ──────────────────────────────────────────────────────────
+// Na mobilu: když skončí scrollování a spodek drill-karty je blízko bottomBaru,
+// plynule dosrolujeme tak, aby spodek karty seděl těsně nad bottomBarem.
+// Uživatel může kdykoliv normálně scrollovat jinam — snap se aktivuje jen
+// když se přiblíží do "magnetické zóny" (SNAP_ZONE px).
+(function initMagneticSnap() {
+  if(!window.matchMedia('(pointer: coarse)').matches) return; // jen mobil
+
+  const SNAP_ZONE = 100;  // px — v této vzdálenosti se magnet "sepne"
+  const SNAP_GAP  = 8;    // px — mezera mezi spodkem karty a topem bottomBaru
+  let scrollTimer = null;
+  let userScrolling = false;
+  let lastScrollY = 0;
+
+  function doSnap(behavior) {
+    const card = document.getElementById('drillCard');
+    const bar  = document.getElementById('bottomBar');
+    if(!card || !bar || card.style.display === 'none') return;
+
+    const cardBottom = card.getBoundingClientRect().bottom;
+    const barTop     = bar.getBoundingClientRect().top;
+    const gap        = cardBottom - barTop;
+
+    if(gap > -SNAP_ZONE && gap < SNAP_ZONE) {
+      window.scrollTo({ top: window.scrollY + gap + SNAP_GAP, behavior });
+    }
+  }
+
+  // Po uživatelském scrollu — hezký plynulý glide
+  function trySnapSmooth() { doSnap('smooth'); }
+
+  // Po změně obsahu karty — okamžité, bez animace (uživatel nevidí přechod)
+  function trySnapInstant() {
+    // requestAnimationFrame × 2: čeká až browser vykreslí novou výšku karty
+    requestAnimationFrame(() => requestAnimationFrame(() => doSnap('instant')));
+  }
+
+  window._magneticSnap = trySnapInstant;
+
+  window.addEventListener('scroll', () => {
+    userScrolling = true;
+    lastScrollY = window.scrollY;
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
+      userScrolling = false;
+      trySnapSmooth();
+    }, 200);
+  }, { passive: true });
+})();
 
 const STORAGE_DBS  = 'aj_dril_databases_v3';
 const STORAGE_CFG  = 'aj_dril_cfg_v3';
@@ -1236,34 +1300,31 @@ function initCapacitorDrillListener() {
   window._drillNextSent = function(data) {
     if(!data) return;
     // Reset hodnocení — skryj a odeber focus ze všech tlačítek
-    document.getElementById('ratingWrap').classList.add('rating-hidden');
     document.querySelectorAll('.rating-btn').forEach(b => b.blur());
-    // Nejdřív schovat EN a vymazat text — aby nezůstala viditelná stará EN věta
-    const enEl = document.getElementById('sentEN');
-    enEl.classList.remove('visible');
-    enEl.textContent = '';
-    // Reset hodnocení — přegenerovat tlačítka aby zmizelo `:active` zvýraznění
     const rw = document.getElementById('ratingWrap');
     rw.classList.add('rating-hidden');
     rw.innerHTML = '<button class="rating-btn rb-good" onclick="rateSent(\'good\')">✓ Uměl jsem</button>'
                  + '<button class="rating-btn rb-ok"   onclick="rateSent(\'ok\')">~ Skoro</button>'
                  + '<button class="rating-btn rb-bad"  onclick="rateSent(\'bad\')">✗ Neuměl jsem</button>';
+    // Nastav EN text okamžitě (skrytý) — výška karty se ustálí hned
+    const enEl = document.getElementById('sentEN');
+    enEl.textContent = data.enText || '';
+    enEl.classList.remove('visible'); // opacity:0, ale zabírá místo
     // Zobraz CZ
     document.getElementById('sentCZ').textContent = data.czText || '';
     done++;
     updateScores();
-    // EN text uložit — zobrazí ho _drillShowEN volaný z native vlákna
-    // přesně ve chvíli kdy EN začne hrát (po CZ + pauze)
-    window._drillPendingEN = data.enText || '';
+    // Snap jednou s konečnou výškou
+    if(window._magneticSnap) window._magneticSnap();
   };
-  // Voláno z native přesně když EN začíná hrát — zobrazí EN větu
+  // Voláno z native přesně když EN začíná hrát — jen odkryje, text je nastaven
   window._drillShowEN = function() {
     const enEl = document.getElementById('sentEN');
-    enEl.textContent = window._drillPendingEN || '';
-    enEl.classList.add('visible');
+    enEl.classList.add('visible'); // bez změny textu — výška beze změny
     const rw = document.getElementById('ratingWrap');
     if(document.getElementById('showRating').checked)
       rw.classList.remove('rating-hidden');
+    // Snap není potřeba — výška karty se nezměnila
   };
   // Zachováno pro zpětnou kompatibilitu (manuální přehrání)
   window._drillSentenceDone = function() {
@@ -1427,11 +1488,13 @@ function speakSentenceNative(sent) {
     pauseMs:     playCZ && playEN ? (parseInt(cfg.pauseSec)||3)*1000 : 0,
     autoDelayMs: (parseInt(cfg.autoDelay)||3)*1000
   });
-  // Zobraz EN větu a hodnocení okamžitě (uživatel čte, zatímco poslouchá)
+  // EN text nastaven předem v showCurrent — stačí odkrýt
   const enEl=document.getElementById('sentEN');
-  enEl.textContent=sent.en||''; enEl.classList.add('visible');
+  if(enEl.textContent !== (sent.en||'')) enEl.textContent=sent.en||'';
+  enEl.classList.add('visible');
   if(document.getElementById('showRating').checked)
     document.getElementById('ratingWrap').classList.remove('rating-hidden');
+  // Snap není potřeba — výška karty se nezměnila
 }
 
 function speak(text,voiceName,rate,cb,forceLang) {
@@ -1761,7 +1824,13 @@ function initApp(tryRestorePos) {
   document.getElementById('skipBlockWrap').style.display='';
   document.getElementById('statsToggle').style.display='';
   document.getElementById('dbOverviewToggle').style.display='';
-  if(cfg.autoMode){document.getElementById('autoIndicator').style.display='flex';document.getElementById('autoDelayGroup').classList.remove('hidden');}
+  if(cfg.autoMode){
+    document.getElementById('autoIndicator').style.display='flex';
+    document.getElementById('autoDelayGroup').classList.remove('hidden');
+    const autoBtn=document.getElementById('autoToggleBtn');
+    if(autoBtn){autoBtn.textContent='■ Auto';autoBtn.style.color='var(--color-primary)';autoBtn.style.borderColor='var(--color-primary)';}
+  }
+  setTimeout(updateBottomPadding, 100);
   showStatus('✓ '+db.blocks.length+' bloků · '+countSents()+' vět',true);
   renderDbList();
   populateFilters();
@@ -1812,21 +1881,30 @@ function showCurrent() {
   const si=so[sPos%so.length];
   const sent=block.sentences[si];
 
-  document.getElementById('mGrammar').textContent=block.grammar||'';
-  document.getElementById('mLevel').textContent  =block.level||'';
-  document.getElementById('mTopic').textContent  =block.topic||'';
-  document.getElementById('mBlock').textContent  =block.blok||'';
-  document.getElementById('mPattern').textContent=PAT_LABELS[sent.pattern]||sent.pattern||'';
-  document.getElementById('cardBadge').textContent='Blok '+(bPos%blockOrder.length+1)+'/'+blockOrder.length+' · Věta '+(sPos%so.length+1)+'/'+so.length;
-  document.getElementById('sPos').textContent=(sPos%so.length+1)+'/'+so.length;
-  document.getElementById('sentCZ').textContent=sent.cz||'';
+  // Krok 1: schovat EN a rating (fade-out 200ms), CZ zatím beze změny
   const enEl=document.getElementById('sentEN');
-  enEl.classList.remove('visible'); enEl.textContent='';
-  document.getElementById('sentNote').textContent=sent.note||'';
-  const prog=total>0?(done/total)*100:0;
-  document.getElementById('progressFill').style.width=Math.round(prog)+'%';
-  updateFavBtn();
-  savePos();
+  enEl.classList.remove('visible'); // opacity:0 — spustí CSS přechod
+
+  // Krok 2: po fade-out nastavit nový obsah a odkrýt CZ
+  const myTokenContent = playToken;
+  setTimeout(()=>{
+    if(playToken !== myTokenContent) return;
+    document.getElementById('mGrammar').textContent=block.grammar||'';
+    document.getElementById('mLevel').textContent  =block.level||'';
+    document.getElementById('mTopic').textContent  =block.topic||'';
+    document.getElementById('mBlock').textContent  =block.blok||'';
+    document.getElementById('mPattern').textContent=PAT_LABELS[sent.pattern]||sent.pattern||'';
+    document.getElementById('cardBadge').textContent='Blok '+(bPos%blockOrder.length+1)+'/'+blockOrder.length+' · Věta '+(sPos%so.length+1)+'/'+so.length;
+    document.getElementById('sPos').textContent=(sPos%so.length+1)+'/'+so.length;
+    document.getElementById('sentCZ').textContent=sent.cz||'';
+    enEl.textContent=sent.en||''; // nový EN text (stále opacity:0)
+    document.getElementById('sentNote').textContent=sent.note||'';
+    const prog=total>0?(done/total)*100:0;
+    document.getElementById('progressFill').style.width=Math.round(prog)+'%';
+    updateFavBtn();
+    savePos();
+    if(window._magneticSnap) window._magneticSnap();
+  }, 200); // odpovídá době fade-out přechodu EN
 
   const myToken = playToken;
   setTimeout(()=>{
@@ -1848,8 +1926,10 @@ function scheduleEN(text,playEN2,token) {
   pauseTimer=setTimeout(()=>{
     if(playToken !== myToken) return; // věta se mezitím změnila
     const el=document.getElementById('sentEN');
-    el.textContent=text; el.classList.add('visible');
-    // Zobraz hodnocení
+    // text je nastaven předem v showCurrent — stačí odhalit
+    if(el.textContent !== text) el.textContent=text;
+    el.classList.add('visible');
+    // Zobraz hodnocení (výška karty se nemění — jen visibility)
     if(document.getElementById('showRating').checked) {
       document.getElementById('ratingWrap').classList.remove('rating-hidden');
     }
@@ -1899,7 +1979,8 @@ function scheduleAutoNext() {
 
 function toggleAutoMode(forceOff) {
   const cb=document.getElementById('autoMode');
-  if(forceOff===true)cb.checked=false;
+  if(forceOff===true) cb.checked=false;
+  else if(forceOff===undefined) cb.checked=!cb.checked; // přepnutí z tlačítka
   const isAuto=cb.checked;
   saveSetting('autoMode',isAuto);
   const adg=document.getElementById('autoDelayGroup');
@@ -1911,9 +1992,21 @@ function toggleAutoMode(forceOff) {
     if(isCapacitor()) try{window.Capacitor.Plugins.DrillTTS.stopAuto();}catch(e){}
   }
   if(isAuto){
+    // Reset pauzy — auto vždy startuje jako spuštěný
+    autoPaused=false;
+    document.getElementById('autoPauseBtn').textContent='⏸ Pozastavit';
     document.getElementById('autoStatusText').textContent='Automatický režim zapnut...';
     if(isCapacitor()) startCapacitorAuto();
+    else scheduleAutoNext(); // web: ihned naplánuj další větu
   }
+  // Aktualizuj tlačítko Auto v bottomBaru
+  const autoBtn = document.getElementById('autoToggleBtn');
+  if(autoBtn) {
+    autoBtn.textContent = isAuto ? '■ Auto' : '▶▶ Auto';
+    autoBtn.style.color = isAuto ? 'var(--color-primary)' : '';
+    autoBtn.style.borderColor = isAuto ? 'var(--color-primary)' : '';
+  }
+  setTimeout(updateBottomPadding, 50); // počkej až se DOM překreslí
 }
 
 function toggleAutoPause() {
@@ -1996,6 +2089,13 @@ document.addEventListener('keydown',e=>{
   else if(e.key==='2')rateSent('ok');
   else if(e.key==='3')rateSent('bad');
 });
+
+// ══════════════════════════════════════════════════════════════════════════════
+// DYNAMICKÝ PADDING BOTTOMBAR — pojistka pro všechny změny výšky
+// ══════════════════════════════════════════════════════════════════════════════
+if(window.ResizeObserver) {
+  new ResizeObserver(()=>updateBottomPadding()).observe(document.getElementById('bottomBar'));
+}
 
 // ══════════════════════════════════════════════════════════════════════════════
 // START
