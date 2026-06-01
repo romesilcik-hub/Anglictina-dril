@@ -1067,12 +1067,13 @@ function recordRating(rating, grammarName, sentId) {
   if(!stats.byGrammar[grammarName]) stats.byGrammar[grammarName]={good:0,bad:0};
   if(rating==='good') stats.byGrammar[grammarName].good++;
   else if(rating==='bad') stats.byGrammar[grammarName].bad++;
-  // Per věta (pro budoucí SRS) — ulož výsledek s ID
+  // Per věta (SRS) — ulož výsledek s ID a posledním hodnocením
   if(sentId){
     if(!stats.bySent) stats.bySent={};
-    if(!stats.bySent[sentId]) stats.bySent[sentId]={good:0,ok:0,bad:0,last:null};
+    if(!stats.bySent[sentId]) stats.bySent[sentId]={good:0,ok:0,bad:0,last:null,lastRating:null};
     stats.bySent[sentId][rating]++;
     stats.bySent[sentId].last=new Date().toISOString().split('T')[0];
+    stats.bySent[sentId].lastRating=rating;
   }
   saveStats();
   updateDailyBar();
@@ -1194,14 +1195,80 @@ function shuffle(arr) {
   return a;
 }
 
+// Počítadlo cyklů — každý 5. cyklus = refresh (zobrazí i dobře známé věty)
+let srsCycle = 0;
+const SRS_REFRESH_EVERY = 5;
+
+// Vrátí SRS váhu věty (vyšší = dřív v pořadí) a příznak jestli se má zobrazit
+function srsInfo(sentId) {
+  if(!sentId || !stats.bySent || !stats.bySent[sentId]) {
+    return { weight: 1.0, skip: false }; // nikdy neviděná — neutrální
+  }
+  const s = stats.bySent[sentId];
+  const totalGood = s.good || 0;
+  const lr = s.lastRating;
+
+  // Dobře zvládnutá věta (good 3× a více, naposledy good) → přeskočit v normálním cyklu
+  if(totalGood >= 3 && lr === 'good') {
+    const isRefresh = (srsCycle % SRS_REFRESH_EVERY === 0);
+    return { weight: 0.3, skip: !isRefresh };
+  }
+
+  // Váha podle posledního hodnocení
+  if(lr === 'bad')  return { weight: 3.0, skip: false };
+  if(lr === 'ok')   return { weight: 1.5, skip: false };
+  if(lr === 'good') return { weight: 0.8, skip: false };
+  return { weight: 1.0, skip: false };
+}
+
+// Vážený shuffle (Efraimidis-Spirakis): bloky s vyšší vahou se zobrazují častěji
+function weightedShuffle(indices, weights) {
+  return [...indices]
+    .map(i => ({ i, score: Math.random() ** (1 / (weights[i] || 0.01)) }))
+    .sort((a, b) => b.score - a.score)
+    .map(x => x.i);
+}
+
+// Spočítá adaptivní váhu bloku: frekvence × (1 - výkon uživatele)
+// Výkon = good / (good + bad), neznámá gramatika = 0.5 (neutrální)
+function blockWeight(grammar) {
+  const maxW = 15.8; // max hodnota v GRAMMAR_WEIGHT (Přítomný čas prostý)
+  const freq = (GRAMMAR_WEIGHT[grammar] || 1) / maxW; // normalizováno 0-1
+
+  const g = stats.byGrammar && stats.byGrammar[grammar];
+  let vykon = 0.5; // neutrální pokud žádná data
+  if (g && (g.good + g.bad) > 0) {
+    vykon = g.good / (g.good + g.bad);
+  }
+
+  return freq * (1 - vykon);
+}
+
 function buildOrders() {
-  const n=activeBlocks.length;
-  blockOrder = cfg.shuffleBlocks ? shuffle([...Array(n).keys()]) : [...Array(n).keys()];
-  sentOrders = activeBlocks.map((b,i)=>{
-    const m=b.sentences.length;
-    return cfg.shuffleSents ? shuffle([...Array(m).keys()]) : [...Array(m).keys()];
+  const n = activeBlocks.length;
+  const gram = document.getElementById('fGrammar') ? document.getElementById('fGrammar').value : '';
+
+  if (cfg.shuffleBlocks && !gram) {
+    // Adaptivní vážený výběr: frekvence × (1 - výkon uživatele)
+    // Pouze když není vybrána konkrétní gramatika
+    const weights = activeBlocks.map(b => blockWeight(b.grammar));
+    blockOrder = weightedShuffle([...Array(n).keys()], weights);
+  } else {
+    blockOrder = cfg.shuffleBlocks ? shuffle([...Array(n).keys()]) : [...Array(n).keys()];
+  }
+  sentOrders = activeBlocks.map((b) => {
+    const indices = [...Array(b.sentences.length).keys()];
+    if(!cfg.shuffleSents) return indices;
+
+    // SRS: filtruj a váhuj věty podle historie uživatele
+    const infos = indices.map(i => ({ i, ...srsInfo(b.sentences[i].id) }));
+    const visible = infos.filter(x => !x.skip);
+
+    // Pokud by filtr vyprázdnil blok (vše přeskočeno), zobraz vše jako refresh
+    const pool = visible.length > 0 ? visible : infos;
+    return weightedShuffle(pool.map(x => x.i), pool.map(x => x.weight));
   });
-  total = activeBlocks.reduce((a,b)=>a+b.sentences.length,0);
+  total = sentOrders.reduce((a,so)=>a+so.length, 0);
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
@@ -1638,37 +1705,54 @@ function onFilterChange(changed) {
 
 const PAT_LABELS = {
   affirmative:'Oznamovací', negative:'Záporné', question:'Otázka', wh_question:'WH otázka',
-  third_person:'3. osoba', plural:'Množné číslo', imperative:'Rozkaz', passive:'Trpný rod',
-  indirect:'Nepřímá řeč', comparison:'Srovnání', tag_question:'Dovětek',
-  conditional:'Podmínka', time_clause:'Časová věta', first_person:'1. osoba', second_person:'2. osoba'
+  imperative:'Rozkaz', passive:'Trpný rod', indirect:'Nepřímá řeč', comparison:'Srovnání',
+  tag_question:'Dovětek', conditional:'Podmínka', time_clause:'Časová věta',
 };
 
 // Frekvence gramatik v reálné angličtině (1=vzácné … 5=velmi časté)
 const GRAMMAR_FREQ = {
-  'Sloveso být (to be)':5,'Členy (a/an/the)':4,'Množné číslo':4,'Zájmena':4,'Číslovky':3,
+  'Sloveso být (to be)':5,'Členy (a/an/the)':5,'Množné číslo':3,'Zájmena':5,'Číslovky':3,
   'Přítomný čas prostý':5,'Přítomný čas průběhový':4,'Předpřítomný čas':3,'Předpřítomný průběhový':2,
-  'Minulý čas prostý':5,'Minulý čas průběhový':3,'Předminulý čas':2,
-  'Budoucí čas (will)':4,'Budoucí čas (going to)':4,'Budoucí průběhový':2,
+  'Minulý čas prostý':5,'Minulý čas průběhový':2,'Předminulý čas':2,
+  'Budoucí čas (will)':3,'Budoucí čas (going to)':3,'Budoucí průběhový':1,
   'Způsobová — can/could':4,'Způsobová — must/have to':3,'Způsobová — should/ought to':3,
-  'Způsobová — might/may':3,'Způsobová minulá (could have...)':1,
+  'Způsobová — might/may':2,'Způsobová minulá (could have...)':1,
   'Infinitiv':3,'Gerundium':2,
-  'Trpný rod':3,'Podmínka 1. typ':3,'Podmínka 2. typ':2,'Podmínka 3. typ':1,
+  'Trpný rod':2,'Podmínka 1. typ':2,'Podmínka 2. typ':2,'Podmínka 3. typ':1,
   'Přímá a nepřímá řeč':2,'Vedlejší věty':2,'Used to':2,
-  'Wish':1,'Would rather':1,"It's time":1,'Have something done':2,
-  'Frázová slovesa':3,'Stupňování přídavných jmen':3,'Kvantifikátory (all/both/each)':2,
+  'Wish':1,'Would rather':1,"It's time":1,'Have something done':1,
+  'Frázová slovesa':3,'Stupňování přídavných jmen':2,'Kvantifikátory (all/both/each)':2,
   'Dovětky (question tags)':1,'Tvoření slov':2,'Předložky místa a času':4,
-  'There is / There are':3,'Some / any / much / many':3,'Sponová slovesa':4,
+  'There is / There are':2,'Some / any / much / many':3,'Sponová slovesa':3,
   'Příslovce frekvence':3,'Slovesa se dvěma předměty':2,'Rozkazy a návrhy':2,
-  'Nepravidelná slovesa':4,'Souhlasné reakce':2,
+  'Nepravidelná slovesa':3,'Souhlasné reakce':2,
+};
+
+// Reálné corpus frekvence pro vážený výběr bloků (Krámský 1969, BNC/COCA, normalizováno)
+const GRAMMAR_WEIGHT = {
+  'Přítomný čas prostý':15.8,'Členy (a/an/the)':11.3,'Minulý čas prostý':8.5,
+  'Sloveso být (to be)':7.3,'Zájmena':6.2,'Předložky místa a času':5.6,
+  'Přítomný čas průběhový':4.5,'Způsobová — can/could':3.9,'Budoucí čas (will)':3.4,
+  'Předpřítomný čas':2.8,'Some / any / much / many':2.3,'Způsobová — must/have to':2.0,
+  'Způsobová — should/ought to':1.7,'Budoucí čas (going to)':1.7,'Frázová slovesa':1.7,
+  'Příslovce frekvence':1.5,'Způsobová — might/may':1.4,'Infinitiv':1.4,
+  'Číslovky':1.1,'Množné číslo':1.1,'Gerundium':1.0,'Vedlejší věty':1.0,
+  'Podmínka 1. typ':0.9,'Nepravidelná slovesa':0.9,'Minulý čas průběhový':0.8,
+  'Sponová slovesa':0.8,'Stupňování přídavných jmen':0.8,'Trpný rod':0.7,
+  'There is / There are':0.7,'Rozkazy a návrhy':0.7,'Souhlasné reakce':0.6,
+  'Kvantifikátory (all/both/each)':0.6,'Podmínka 2. typ':0.6,'Přímá a nepřímá řeč':0.6,
+  'Předpřítomný průběhový':0.6,'Tvoření slov':0.6,'Slovesa se dvěma předměty':0.5,
+  'Předminulý čas':0.5,'Used to':0.5,'Podmínka 3. typ':0.3,
+  'Způsobová minulá (could have...)':0.3,'Budoucí průběhový':0.2,'Wish':0.2,
+  'Would rather':0.2,'Dovětky (question tags)':0.2,'Have something done':0.2,
+  "It's time":0.2,
 };
 
 // Frekvence typů vět v reálné angličtině (1=vzácné … 5=velmi časté)
 const PAT_FREQ = {
   affirmative:5, negative:4, question:3, wh_question:3,
-  third_person:3, plural:3, passive:3,
-  conditional:2, time_clause:2, imperative:2, comparison:2,
-  first_person:2, second_person:2,
-  indirect:1, tag_question:1,
+  imperative:2, comparison:2, time_clause:2,
+  passive:2, conditional:1, indirect:1, tag_question:1,
 };
 
 const FREQ_LABELS = ['','velmi vzácné','méně časté','středně časté','časté','velmi časté'];
@@ -2040,7 +2124,7 @@ function nextSent() {
   const bi=blockOrder[bPos%blockOrder.length];
   const so=sentOrders[bi];
   sPos++;
-  if(sPos>=so.length){sPos=0;bPos++;if(bPos>=blockOrder.length){bPos=0;buildOrders();}}
+  if(sPos>=so.length){sPos=0;bPos++;if(bPos>=blockOrder.length){bPos=0;srsCycle++;buildOrders();}}
   updateScores();showCurrent();
 }
 
