@@ -4,6 +4,9 @@
 # Prázdné řádky se ignorují
 # Soubor ulož ve stejné složce jako prompt_builder.html
 
+# ── Obecná témata ───────────────────────────────────────────────────────────
+Obecné
+
 # ── Pracovní témata ───────────────────────────────────────────────────────────
 Firemní komunikace
 Pracovní pohovor

@@ -521,33 +521,29 @@ function buildGrammarSelect() {
 
 // Patterny dostupné podle úrovně (kumulativní — každá úroveň zahrnuje i předchozí)
 const PATTERN_BY_LEVEL = {
-  A0: ['affirmative','negative','question','wh_question','first_person','second_person','third_person','plural'],
-  A1: ['affirmative','negative','question','wh_question','first_person','second_person','third_person','plural','imperative'],
-  A2: ['affirmative','negative','question','wh_question','first_person','second_person','third_person','plural','imperative','comparison','tag_question','time_clause'],
-  B1: ['affirmative','negative','question','wh_question','first_person','second_person','third_person','plural','imperative','comparison','tag_question','time_clause','passive','indirect','conditional'],
+  A0: ['affirmative','negative','question','wh_question'],
+  A1: ['affirmative','negative','question','wh_question','imperative'],
+  A2: ['affirmative','negative','question','wh_question','imperative','comparison','tag_question','time_clause'],
+  B1: ['affirmative','negative','question','wh_question','imperative','comparison','tag_question','time_clause','passive','indirect','conditional'],
 };
 
 // ── Patterny ──────────────────────────────────────────────────────────────────
 const PATTERNS = [
   // A0
-  { key:'affirmative',   label:'Oznamovací věta',          def:true  },
-  { key:'negative',      label:'Záporná věta',              def:true  },
-  { key:'question',      label:'Otázka (ano/ne)',            def:true  },
-  { key:'wh_question',   label:'WH otázka (co/kde/kdy...)', def:true  },
-  { key:'third_person',  label:'3. osoba (he/she/it)',       def:true  },
-  { key:'plural',        label:'Množné číslo (they/we)',     def:true  },
-  { key:'first_person',  label:'1. osoba (I/we)',            def:false },
-  { key:'second_person', label:'2. osoba (you)',             def:false },
+  { key:'affirmative',   label:'Oznamovací věta (rotace osob)',  def:true  },
+  { key:'negative',      label:'Záporná věta (rotace osob)',     def:true  },
+  { key:'question',      label:'Otázka (ano/ne)',                 def:true  },
+  { key:'wh_question',   label:'WH otázka (co/kde/kdy...)',      def:true  },
   // A1
-  { key:'imperative',    label:'Rozkaz',                     def:false },
+  { key:'imperative',    label:'Rozkaz',                          def:false },
   // A2
-  { key:'comparison',    label:'Srovnání',                   def:false },
-  { key:'tag_question',  label:'Dovětek (že?)',               def:false },
-  { key:'time_clause',   label:'Časová vedlejší věta',       def:false },
+  { key:'comparison',    label:'Srovnání',                        def:false },
+  { key:'tag_question',  label:'Dovětek (že?)',                   def:false },
+  { key:'time_clause',   label:'Časová vedlejší věta',            def:false },
   // B1
-  { key:'passive',       label:'Trpný rod',                  def:false },
-  { key:'indirect',      label:'Nepřímá řeč',                def:false },
-  { key:'conditional',   label:'Podmínková věta',            def:false },
+  { key:'passive',       label:'Trpný rod',                       def:false },
+  { key:'indirect',      label:'Nepřímá řeč',                     def:false },
+  { key:'conditional',   label:'Podmínková věta',                 def:false },
 ];
 
 // Frekvence gramatik v reálné angličtině (1=vzácné … 5=velmi časté)
@@ -572,10 +568,8 @@ const GRAMMAR_FREQ = {
 // Frekvence typů vět v reálné angličtině (1=vzácné … 5=velmi časté)
 const PAT_FREQ = {
   affirmative:5, negative:4, question:3, wh_question:3,
-  third_person:3, plural:3, passive:3,
-  conditional:2, time_clause:2, imperative:2, comparison:2,
-  first_person:2, second_person:2,
-  indirect:1, tag_question:1,
+  imperative:2, comparison:2, time_clause:2, passive:2,
+  conditional:1, indirect:1, tag_question:1,
 };
 
 const FREQ_LABELS = ['','velmi vzácné','méně časté','středně časté','časté','velmi časté'];
@@ -693,7 +687,7 @@ const GRAMMAR_SENTENCE_RULES = {
     'Vyjadřuje urgentnost nebo výzvu k akci. Pozor: ne "It\'s time you go" — to je gramaticky špatně. ' +
     'KAŽDÁ věta musí obsahovat "It\'s time" — nikdy negeneruj čistou podmínkovou větu bez této struktury. ' +
     'ZÁPOR: nepoužívej "It\'s time you didn\'t..." — je to nepřirozené. Místo toho použij "It\'s time you stopped + gerundium". Příklad: "It\'s time you stopped postponing it." ' +
-    'DUPLIKÁTY: second_person a affirmative jsou různé věty — second_person musí mít odlišný obsah.',
+    'Střídej osoby v affirmative větách: I / you / he/she / they.',
 
   'Would rather':
     'Struktura pro stejný podmět: WOULD RATHER + holý infinitiv (bez to). ' +
@@ -712,7 +706,7 @@ const GRAMMAR_SENTENCE_RULES = {
     'Střídej can a could napříč patterny: can = přítomná schopnost/možnost; could = minulá schopnost, zdvořilá žádost nebo hypotetická možnost. ' +
     'Časové věty (time_clause): věta MUSÍ obsahovat can/could — NE jen "I will drive when I have a licence" bez modálního. ' +
     'Příklad time_clause: "I can drive anywhere when I have a licence." ' +
-    'Nevytvářej duplikáty — first_person a affirmative mají různé věty.',
+    'Střídej osoby v affirmative větách: I / you / he/she / they.',
 
   'Budoucí průběhový':
     'Každá věta MUSÍ mít jasný budoucí časový odkaz: at 8pm, this time tomorrow, next week, when you arrive... ' +
@@ -893,12 +887,10 @@ const LEVEL_DESC_EN = {
 };
 
 const PAT_NOTE_EN = {
-  affirmative:   'word order: subject + verb',
-  negative:      "negative: don't / doesn't / didn't",
+  affirmative:   'positive sentence — person rotates across blocks (first/second/third_singular/plural)',
+  negative:      "negative sentence — person rotates across blocks (first/second/third_singular/plural)",
   question:      'question: auxiliary do/does/did + subject',
   wh_question:   'WH word at the start of the sentence',
-  third_person:  '3rd person singular: add -s/-es',
-  plural:        'they/we: verb form without -s',
   imperative:    'command: verb in base form',
   passive:       'passive voice: BE + past participle',
   indirect:      'reported speech: said that + past tense',
@@ -906,8 +898,6 @@ const PAT_NOTE_EN = {
   tag_question:  'tag: positive sentence → negative tag',
   conditional:   'condition: IF + tense → result',
   time_clause:   'time clause: when/after/before + present tense',
-  first_person:  '1st person: I / we',
-  second_person: '2nd person: you',
 };
 
 const GRAMMAR_NOTE_HINT_EN = {
@@ -1043,7 +1033,7 @@ const GRAMMAR_SENTENCE_RULES_EN = {
     'Expresses urgency or a call to action. NOT "It\'s time you go" — grammatically wrong. ' +
     'EVERY sentence must contain "It\'s time". ' +
     'NEGATIVE: do NOT use "It\'s time you didn\'t..." — unnatural. Use "It\'s time you stopped + gerund" instead. ' +
-    'DUPLICATES: second_person and affirmative must have different content.',
+    'Rotate persons in affirmative sentences: I / you / he/she / they.',
 
   'Would rather':
     'Same subject: WOULD RATHER + bare infinitive (without to). ' +
@@ -1062,7 +1052,7 @@ const GRAMMAR_SENTENCE_RULES_EN = {
     'Alternate can and could: can = present ability/possibility; could = past ability, polite request, hypothetical. ' +
     'Time clauses MUST contain can/could — NOT just "I will drive when I have a licence" without modal. ' +
     'Example: "I can drive anywhere when I have a licence." ' +
-    'Don\'t create duplicates — first_person and affirmative must have different sentences.',
+    'Rotate persons in affirmative sentences: I / you / he/she / they.',
 
   'Budoucí průběhový':
     'Every sentence MUST have a clear future time reference: at 8pm, this time tomorrow, next week, when you arrive... ' +
@@ -1557,16 +1547,14 @@ function generatePrompt() {
     : '';
 
   const zahlaviRadek = zahlavi
-    ? ['grammar','level','blok','topic','pattern','CZ','EN','poznamka'].join(sep)
+    ? ['grammar','level','blok','topic','pattern','person','CZ','EN','poznamka'].join(sep)
     : null;
 
   const PAT_NOTE = lang === 'en' ? PAT_NOTE_EN : {
-    affirmative:   'slovosled: podmět + sloveso',
-    negative:      "zápor: don't / doesn't / didn't",
+    affirmative:   'kladná věta — osoba se střídá mezi bloky (first/second/third_singular/plural)',
+    negative:      "záporná věta — osoba se střídá mezi bloky (first/second/third_singular/plural)",
     question:      'otázka: pomocné do/does/did + podmět',
     wh_question:   'WH slovo na začátku věty',
-    third_person:  '3. os. sing.: přidej -s/-es',
-    plural:        'they/we: tvar slovesa bez -s',
     imperative:    'rozkaz: sloveso v základním tvaru',
     passive:       'trpný rod: BE + 3. tvar slovesa',
     indirect:      'nepřímá řeč: said that + minulý čas',
@@ -1574,13 +1562,14 @@ function generatePrompt() {
     tag_question:  'dovětek: kladná věta → záporný dovětek',
     conditional:   'podmínka: IF + čas → výsledek',
     time_clause:   'časová věta: when/after/before + přít. čas',
-    first_person:  '1. osoba: I / we',
-    second_person: '2. osoba: you',
   };
-  const priklady = pats.map(p => {
+
+  const PERSONS_ROTATION = ['first','second','third_singular','plural'];
+  const priklady = pats.map((p, i) => {
     const [cz, en] = PAT_EXAMPLES[p] || ['česká věta', 'english sentence'];
     const note = PAT_NOTE[p] || p;
-    return [grammar, level, 'zavolat kolegovi', topic, p, cz, en, note].join(sep);
+    const person_val = (p === 'affirmative' || p === 'negative') ? PERSONS_ROTATION[i % 4] : '';
+    return [grammar, level, 'zavolat kolegovi', topic, p, person_val, cz, en, note].join(sep);
   }).join('\n');
 
   const existBloksSection = existBloks.length > 0
@@ -1621,15 +1610,16 @@ RULES:
 2. Each block must use a DIFFERENT base verb or situation — do not repeat
 3. For each block generate exactly ${pats.length} sentences — one for each type above, in the same order
 4. Sentences must be natural and practical for adult Czech speakers learning English
-5. The Czech sentence must match the English translation exactly — both grammatically and in meaning
+5. The CZ column must be left EMPTY — do not generate Czech translations (they will be added automatically later)
 6. If a sentence type does not fit the grammar point, adapt it to the closest possible form
 7. Column "blok" = brief name of the situation in Czech (max 4 words, e.g. "zavolat kolegovi")
 8. Column "poznamka" = concise note for the student in Czech — explain the formation rule, key element or grammar trap specific to this sentence. Examples: "WOULD HAVE + 3rd form", "for = for a period / since = from when", "doesn't = 3rd person sing.", "HAD + 3rd form = past perfect". Each sentence in a block CAN have a different note. Max 1 short sentence or phrase.
+9. Column "person": for affirmative and negative sentences rotate through persons across blocks in this order: first → second → third_singular → plural → first → ... For all other patterns (question, wh_question, imperative, etc.) leave person empty ("").
 
 OUTPUT FORMAT:
 Separator between columns: ${sepLabel}
 ${zahlavi ? 'First row = column headers.' : 'NO header row — data directly.'}
-Exactly 8 columns per row: grammar ${sep} level ${sep} blok ${sep} topic ${sep} pattern ${sep} CZ ${sep} EN ${sep} poznamka
+Exactly 9 columns per row: grammar ${sep} level ${sep} blok ${sep} topic ${sep} pattern ${sep} person ${sep} CZ ${sep} EN ${sep} poznamka
 
 EXAMPLE output for one block (zavolat kolegovi):
 ${zahlaviRadek ? zahlaviRadek + '\n' : ''}${priklady}
@@ -1637,8 +1627,9 @@ ${zahlaviRadek ? zahlaviRadek + '\n' : ''}${priklady}
 IMPORTANT:
 - Output the TABLE ONLY — no explanations, no extra text before or after
 - Separate columns with the actual tab character (not the text "\\t")
-- Each row has EXACTLY 8 columns — no more, no less
+- Each row has EXACTLY 9 columns — no more, no less
 - Write cell values directly — do NOT prefix them with the column name (e.g. write "doesn't = 3rd person" NOT "poznamka: doesn't = 3rd person")
+- The CZ column (7th column) must be EMPTY — just two consecutive tab characters with nothing between them
 - Generate exactly ${celkem} data rows${zahlavi ? ' + 1 header row' : ''}`
 :
 `Jsi expert na výuku angličtiny metodou drilu. Vygeneruj ${pocet} dril bloků pro procvičení gramatiky.
@@ -1667,15 +1658,16 @@ PRAVIDLA:
 2. Každý blok musí mít JINÉ základní sloveso nebo situaci — nepakuj je
 3. Ke každému bloku vygeneruj přesně ${pats.length} vět — jednu pro každý typ výše, ve stejném pořadí
 4. Věty musí být přirozené a praktické pro dospělé studenty češtiny učící se anglicky
-5. Česká věta musí přesně gramaticky i významově odpovídat anglickému překladu
+5. Sloupec CZ nech PRÁZDNÝ — česky překlady se doplní automaticky, negeneruj je
 6. Pokud typ věty neodpovídá danému gramatickému jevu, přizpůsob ho nejbližší možné formě
 7. Sloupec "blok" = stručný název situace česky (max 4 slova, např. "zavolat kolegovi")
 8. Sloupec "poznamka" = výstižná poznámka pro studenta česky — vysvětli pravidlo tvorby, klíčový prvek nebo gramatickou past specifickou pro tuto větu. Příklady: "WOULD HAVE + 3. tvar", "for = po dobu / since = od kdy", "doesn't = 3. os. sing.", "HAD + 3. tvar = předminulý". Každá věta v bloku MŮŽE mít jinou poznámku. Max 1 krátká věta nebo fráze.
+9. Sloupec "person": u affirmative a negative vět střídej osoby napříč bloky v tomto pořadí: first → second → third_singular → plural → first → ... U všech ostatních vzorů (question, wh_question, imperative atd.) nech person prázdné ("").
 
 VÝSTUPNÍ FORMÁT:
 Tabulka s oddělovačem: ${sepLabel}
 ${zahlavi ? 'První řádek = záhlaví sloupců.' : 'BEZ řádku záhlaví — rovnou data.'}
-Sloupce: grammar ${sep} level ${sep} blok ${sep} topic ${sep} pattern ${sep} CZ ${sep} EN ${sep} poznamka
+Sloupce: grammar ${sep} level ${sep} blok ${sep} topic ${sep} pattern ${sep} person ${sep} CZ ${sep} EN ${sep} poznamka
 
 PŘÍKLAD výstupu pro jeden blok (zavolat kolegovi):
 ${zahlaviRadek ? zahlaviRadek + '\n' : ''}${priklady}
@@ -1684,6 +1676,8 @@ DŮLEŽITÉ:
 - Odpověz POUZE tabulkou, žádný jiný text před ani za
 - Použij oddělovač: ${sepLabel}
 - Pokud hodnota obsahuje znak oddělovače, ohraničit ji uvozovkami
+- Každý řádek má PŘESNĚ 9 sloupců — ne více, ne méně
+- Sloupec CZ (7. sloupec) musí být PRÁZDNÝ — jen dva tabulátory za sebou bez ničeho mezi nimi
 - Vygeneruj přesně ${celkem} datových řádků${zahlavi ? ' + 1 řádek záhlaví' : ''}`;
 
   document.getElementById('outputText').value = prompt;

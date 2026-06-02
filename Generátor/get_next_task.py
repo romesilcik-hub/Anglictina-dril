@@ -18,6 +18,7 @@ import re
 import unicodedata
 from pathlib import Path
 from datetime import date
+from collections import Counter
 
 # Paths — script is in Generátor/, project root is one level up
 BASE = Path(__file__).resolve().parent.parent
@@ -25,12 +26,34 @@ TEMATA_FILE   = BASE / "Generátor" / "temata.txt"
 CONFIG_FILE   = BASE / "aj_dril_generator_config.json"
 PROGRESS_FILE = BASE / "aj_dril_topics_progress.json"
 PROMPTY_DIR   = BASE / "Prompty"
+DB_FILE       = BASE / "aj_dril_databaze.json"
 
 LEVEL_ORDER = ["A0", "A1", "A2", "B1"]
 
+# Cílové frekvence gramatik (corpus research — Krámský 1969, BNC/COCA)
+GRAMMAR_TARGETS = {
+    'Přítomný čas prostý': 14.0, 'Členy (a/an/the)': 10.0, 'Minulý čas prostý': 7.5,
+    'Sloveso být (to be)': 6.5, 'Zájmena': 5.5, 'Předložky místa a času': 5.0,
+    'Přítomný čas průběhový': 4.0, 'Způsobová — can/could': 3.5, 'Budoucí čas (will)': 3.0,
+    'Předpřítomný čas': 2.5, 'Some / any / much / many': 2.0, 'Způsobová — must/have to': 1.8,
+    'Způsobová — should/ought to': 1.5, 'Budoucí čas (going to)': 1.5, 'Frázová slovesa': 1.5,
+    'Příslovce frekvence': 1.3, 'Způsobová — might/may': 1.2, 'Infinitiv': 1.2,
+    'Číslovky': 1.0, 'Množné číslo': 1.0, 'Gerundium': 0.9, 'Vedlejší věty': 0.9,
+    'Podmínka 1. typ': 0.8, 'Nepravidelná slovesa': 0.8, 'Minulý čas průběhový': 0.7,
+    'Sponová slovesa': 0.7, 'Stupňování přídavných jmen': 0.7, 'Trpný rod': 0.6,
+    'There is / There are': 0.6, 'Rozkazy a návrhy': 0.6, 'Souhlasné reakce': 0.5,
+    'Kvantifikátory (all/both/each)': 0.5, 'Podmínka 2. typ': 0.5, 'Přímá a nepřímá řeč': 0.5,
+    'Předpřítomný průběhový': 0.5, 'Tvoření slov': 0.5, 'Slovesa se dvěma předměty': 0.4,
+    'Předminulý čas': 0.4, 'Used to': 0.4, 'Podmínka 3. typ': 0.3,
+    'Způsobová minulá (could have...)': 0.3, 'Budoucí průběhový': 0.2, 'Wish': 0.2,
+    'Would rather': 0.2, 'Dovětky (question tags)': 0.2, 'Have something done': 0.15,
+    "It's time": 0.15,
+}
+_t = sum(GRAMMAR_TARGETS.values())
+GRAMMAR_TARGETS = {k: v / _t for k, v in GRAMMAR_TARGETS.items()}
+
 
 def read_topics():
-    """Read topics from temata.txt (skip comments and blank lines)."""
     topics = []
     with open(TEMATA_FILE, "r", encoding="utf-8") as f:
         for line in f:
@@ -59,7 +82,6 @@ def write_progress(progress):
 
 
 def to_safe_filename(s):
-    """Remove diacritics and special chars, replace spaces with underscores."""
     nfkd = unicodedata.normalize("NFD", s)
     no_diac = "".join(c for c in nfkd if unicodedata.category(c) != "Mn")
     clean = re.sub(r"[^a-zA-Z0-9_\- ]", "", no_diac)
@@ -75,14 +97,12 @@ def build_tsv_path(level, grammar, topic):
 
 
 def get_patterns_for_grammar(config, level, grammar):
-    """Return the list of patterns for a given grammar, applying exclusions."""
     level_patterns = config["levels"][level]["patterns"]
     exclude = config.get("grammar_pattern_exclude", {}).get(grammar, [])
     return [p for p in level_patterns if p not in exclude]
 
 
 def get_level_guard(config, level):
-    """Return forbidden grammar constructions for a given level (all levels above current)."""
     cur_idx = LEVEL_ORDER.index(level)
     forbidden = []
     for lvl in LEVEL_ORDER[cur_idx + 1:]:
@@ -96,9 +116,40 @@ def get_level_guard(config, level):
     )
 
 
+def compute_deficits():
+    """Spočítá deficit každé gramatiky: cílový podíl - skutečný podíl.
+    Bere v úvahu JSON databázi i TSV soubory ve složce Prompty (ještě neimportované)."""
+    counts = Counter()
+
+    if DB_FILE.exists():
+        with open(DB_FILE, "r", encoding="utf-8-sig") as f:
+            try:
+                data = json.load(f)
+                for block in data.get("blocks", []):
+                    counts[block["grammar"]] += len(block.get("sentences", []))
+            except Exception:
+                pass
+
+    for tsv in PROMPTY_DIR.glob("*.tsv"):
+        try:
+            with open(tsv, "r", encoding="utf-8") as f:
+                for line in f:
+                    parts = line.strip().split("\t")
+                    if len(parts) >= 2 and parts[0]:
+                        counts[parts[0]] += 1
+        except Exception:
+            pass
+
+    total = sum(counts.values()) or 1
+    deficits = {}
+    for grammar, target in GRAMMAR_TARGETS.items():
+        actual = counts.get(grammar, 0) / total
+        deficits[grammar] = target - actual
+
+    return deficits
+
+
 def get_all_combos(config, topics):
-    """Return all (level, grammar, topic) combinations in order (topic-first).
-    All grammars A0→B1 are generated for one topic before moving to the next topic."""
     combos = []
     for topic in topics:
         for level in LEVEL_ORDER:
@@ -112,55 +163,81 @@ def get_next(config, topics, progress):
         (c["level"], c["grammar"], c["topic"])
         for c in progress["completed"]
     }
-    for (level, grammar, topic) in get_all_combos(config, topics):
-        if (level, grammar, topic) not in completed_set:
-            patterns = get_patterns_for_grammar(config, level, grammar)
-            pattern_count = len(patterns)
-            total = pattern_count * 10
 
-            # Pattern labels for the prompt
-            pat_labels = {
-                "affirmative": "Affirmative sentence",
-                "negative": "Negative sentence",
-                "question": "Yes/No question",
-                "wh_question": "WH question",
-                "first_person": "1st person (I/we)",
-                "second_person": "2nd person (you)",
-                "third_person": "3rd person (he/she/it)",
-                "plural": "Plural (they/we)",
-                "imperative": "Imperative",
-                "comparison": "Comparison",
-                "tag_question": "Tag question",
-                "time_clause": "Time clause",
-                "passive": "Passive voice",
-                "indirect": "Reported speech",
-                "conditional": "Conditional",
-            }
-            patterns_list = "\n".join(
-                f"   {i+1}. {pat_labels.get(p, p)} (pattern: {p})"
-                for i, p in enumerate(patterns)
-            )
+    all_combos = get_all_combos(config, topics)
+    deficits = compute_deficits()
 
-            grammar_hint = config.get("grammar_hints", {}).get(grammar, "")
-            grammar_rules = config.get("grammar_rules", {}).get(grammar, "")
-            level_guard = get_level_guard(config, level)
-            level_desc = config["levels"][level]["level_desc"]
+    # Varianta A: dokončí jedno téma kompletně před přechodem na další.
+    # V rámci tématu seřadí gramatiky podle deficitu (největší chybí = první).
 
-            return {
-                "level": level,
-                "grammar": grammar,
-                "topic": topic,
-                "patterns": patterns,
-                "pattern_count": pattern_count,
-                "blocks": 10,
-                "total_sentences": total,
-                "patterns_list": patterns_list,
-                "grammar_hint": grammar_hint,
-                "grammar_rules": grammar_rules,
-                "level_guard": level_guard,
-                "level_desc": level_desc,
-                "tsv_path": build_tsv_path(level, grammar, topic),
-            }
+    topic_done = {t: 0 for t in topics}
+    topic_total = {t: 0 for t in topics}
+    for (level, grammar, topic) in all_combos:
+        topic_total[topic] += 1
+        if (level, grammar, topic) in completed_set:
+            topic_done[topic] += 1
+
+    # Vyber první nedokončené téma podle pořadí v temata.txt
+    active_topic = None
+    for topic in topics:
+        if topic_done[topic] < topic_total[topic]:
+            active_topic = topic
+            break
+
+    if active_topic is None:
+        return {"status": "all_done"}
+
+    # Pending kombinace pro aktivní téma, seřazené podle deficitu
+    pending = [
+        (level, grammar, topic)
+        for (level, grammar, topic) in all_combos
+        if topic == active_topic and (level, grammar, topic) not in completed_set
+    ]
+    pending.sort(key=lambda c: -deficits.get(c[1], 0))
+
+    for (level, grammar, topic) in pending:
+        patterns = get_patterns_for_grammar(config, level, grammar)
+        pattern_count = len(patterns)
+        total = pattern_count * 10
+
+        pat_labels = {
+            "affirmative": "Oznamovací věta — střídej osoby: I / you / he/she/it / they (person: first / second / third_singular / plural)",
+            "negative":    "Záporná věta — střídej osoby: I / you / he/she/it / they (person: first / second / third_singular / plural)",
+            "question":    'Otázka (ano/ne) — person: ""',
+            "wh_question": 'WH otázka (co/kde/kdy...) — person: ""',
+            "imperative":  'Rozkazovací věta — person: ""',
+            "comparison":  'Srovnání — person: ""',
+            "tag_question":'Dovětek (question tag) — person: ""',
+            "time_clause": 'Časová věta — person: ""',
+            "passive":     'Trpný rod — person: ""',
+            "indirect":    'Nepřímá řeč — person: ""',
+            "conditional": 'Podmínková věta — person: ""',
+        }
+        patterns_list = "\n".join(
+            f"   {i+1}. {pat_labels.get(p, p)} (pattern: {p})"
+            for i, p in enumerate(patterns)
+        )
+
+        grammar_hint = config.get("grammar_hints", {}).get(grammar, "")
+        grammar_rules = config.get("grammar_rules", {}).get(grammar, "")
+        level_guard = get_level_guard(config, level)
+        level_desc = config["levels"][level]["level_desc"]
+
+        return {
+            "level": level,
+            "grammar": grammar,
+            "topic": topic,
+            "patterns": patterns,
+            "pattern_count": pattern_count,
+            "blocks": 10,
+            "total_sentences": total,
+            "patterns_list": patterns_list,
+            "grammar_hint": grammar_hint,
+            "grammar_rules": grammar_rules,
+            "level_guard": level_guard,
+            "level_desc": level_desc,
+            "tsv_path": build_tsv_path(level, grammar, topic),
+        }
     return {"status": "all_done"}
 
 
