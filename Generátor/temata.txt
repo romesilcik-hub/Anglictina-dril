@@ -4,8 +4,12 @@
 # Prázdné řádky se ignorují
 # Soubor ulož ve stejné složce jako prompt_builder.html
 
-# ── Obecná témata ───────────────────────────────────────────────────────────
+# ── Obecná témata ────────────────────────────────────────────────────────────
 Obecné
+Každodenní rutina
+Popis lidí a osobnosti
+Rodina a vztahy
+Svátky a oslavy
 
 # ── Pracovní témata ───────────────────────────────────────────────────────────
 Firemní komunikace
@@ -16,12 +20,12 @@ Zákaznický servis
 Administrativa a dokumenty
 Projektové řízení
 Teamová spolupráce
+Telefonování a emaily
 
-# ── Gastronomie a stravování ──────────────────────────────────────────────────
+# ── Gastronomie a stravování ─────────────────────────────────────────────────
 V restauraci
 Vaření a recepty
 Kavárna a fast food
-Stravování v práci
 
 # ── Doprava a pohyb ───────────────────────────────────────────────────────────
 Veřejná doprava
@@ -34,6 +38,10 @@ Navigace a orientace
 Hotel a recepce
 Pronájem bytu
 Bydlení a sousedé
+
+# ── Nakupování ────────────────────────────────────────────────────────────────
+Nakupování v obchodě
+Nakupování online
 
 # ── Technologie ───────────────────────────────────────────────────────────────
 Počítače a internet
@@ -49,7 +57,6 @@ Psychická pohoda
 
 # ── Peníze a finance ─────────────────────────────────────────────────────────
 Bankovnictví
-Nakupování online
 Pojištění
 Spoření a investice
 
@@ -63,9 +70,10 @@ Kariérní rozvoj
 Počasí a klima
 Příroda a výlety
 Ekologie
-Zahrada a zemědělství
 
-# ── Kultura a zábava ─────────────────────────────────────────────────────────
+# ── Volný čas ────────────────────────────────────────────────────────────────
+Volný čas a koníčky
+Dovolená a cestování
 Kino a divadlo
 Hudba a koncerty
 Knihy a čtení
