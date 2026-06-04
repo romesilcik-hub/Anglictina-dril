@@ -1,6 +1,6 @@
 // AJ Dril — Service Worker
 // Verze cache — změň číslo když aktualizuješ aplikaci
-const CACHE_NAME = 'aj-dril-v15';
+const CACHE_NAME = 'aj-dril-v16';
 
 const ASSETS = [
   './',
