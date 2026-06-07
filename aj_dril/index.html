@@ -151,15 +151,34 @@
     .welcome-skip  { text-align:center; font-size:.78rem; color:var(--color-text-muted); cursor:pointer; margin:0; text-decoration:underline; }
     .welcome-skip:hover { color:var(--color-primary); }
 
-    /* Hvězdička */
-    .fav-btn {
+    /* Hvězdička + gramatika ikona */
+    .fav-btn, .gram-btn {
       background:transparent; border:none; font-size:1.3rem;
       cursor:pointer; padding:0 4px; line-height:1;
       color:var(--color-text-light); transition:all .15s;
       margin-left:auto;
     }
     .fav-btn.active { color:#f59e0b; }
-    .fav-btn:hover { transform:scale(1.2); }
+    .fav-btn:hover, .gram-btn:hover { transform:scale(1.2); }
+    .gram-btn { font-size:1.1rem; color:var(--color-text-muted); }
+    .gram-btn.active { color:var(--color-primary); }
+
+    /* Gramatický tip box */
+    .gram-tip {
+      display:none; margin-top:.75rem;
+      background:var(--color-surface-alt);
+      border-left:3px solid var(--color-primary);
+      border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+      padding:.6rem .85rem;
+    }
+    .gram-tip.visible { display:block; }
+    .gram-tip-title { font-size:.72rem; font-weight:700; color:var(--color-primary); text-transform:uppercase; letter-spacing:.05em; margin-bottom:.35rem; }
+    .gram-tip-text { font-size:.82rem; color:var(--color-text); line-height:1.6; margin:0 0 .3rem; }
+    .gram-tip-formula { font-size:.78rem; color:var(--color-text-muted); line-height:1.5; font-style:italic; }
+
+    /* Klik na slovo */
+    .w-click { cursor:pointer; border-radius:3px; transition:background .1s; }
+    .w-click:hover { background:var(--color-primary-bg); }
 
     /* Hodnocení */
     .rating-wrap {
@@ -270,6 +289,51 @@
     .voice-notice a:hover { color:#78350f; }
     body.dark .voice-notice { background:#2a1d00; border-color:#92400e; color:#fcd34d; }
     body.dark .voice-notice a { color:#fbbf24; }
+
+    /* ── CHYTRÝ REŽIM ─────────────────────────────────────────────── */
+    .smart-btn { font-size:1.1rem; opacity:.45; transition:opacity .2s; }
+    .smart-btn.active { opacity:1; filter:drop-shadow(0 0 4px #f59e0b); }
+
+    /* Overlay — sdílený styl pro first-launch + dokončení */
+    .smart-overlay {
+      display:none; position:fixed; inset:0; z-index:200;
+      background:rgba(0,0,0,.55); align-items:center; justify-content:center; padding:1rem;
+    }
+    .smart-overlay.visible { display:flex; }
+    .smart-box {
+      background:var(--color-surface); border-radius:var(--radius-lg);
+      padding:1.5rem; max-width:420px; width:100%; box-shadow:0 8px 32px rgba(0,0,0,.25);
+    }
+    .smart-box h2 { margin:0 0 .5rem; font-size:1.1rem; }
+    .smart-box p  { margin:0 0 1rem; font-size:.88rem; color:var(--color-text-muted); line-height:1.6; }
+    .smart-box .btn-row { display:flex; flex-direction:column; gap:.5rem; }
+    .smart-level-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(90px,1fr)); gap:.5rem; margin:.75rem 0; }
+    .smart-level-btn {
+      padding:.5rem; border-radius:var(--radius-sm); border:1.5px solid var(--color-border);
+      background:var(--color-surface-alt); cursor:pointer; font-size:.85rem; text-align:center;
+      color:var(--color-text); transition:border-color .15s,background .15s;
+    }
+    .smart-level-btn:hover { border-color:var(--color-primary); }
+    .smart-level-btn.selected { border-color:var(--color-primary); background:var(--color-primary-bg); color:var(--color-primary-text); font-weight:700; }
+
+    /* Lišta denního drilu */
+    #smartBar {
+      display:none; align-items:center; gap:.6rem;
+      padding:.35rem .75rem; background:var(--color-primary-bg);
+      border-radius:var(--radius-sm); margin:.5rem 0; font-size:.8rem; color:var(--color-primary-text);
+    }
+    #smartBar .smart-bar-fill-wrap { flex:1; height:5px; background:rgba(0,0,0,.12); border-radius:3px; }
+    #smartBar .smart-bar-fill { height:100%; border-radius:3px; background:var(--color-primary); transition:width .3s; }
+
+    /* Banner návrhu úrovně */
+    #levelSuggestBanner {
+      display:none; padding:.6rem .85rem; margin:.5rem 0;
+      background:#f0f8e8; border:1px solid #639922; border-radius:var(--radius-sm);
+      font-size:.82rem; color:#3B6D11; gap:.5rem; align-items:center;
+    }
+    body.dark #levelSuggestBanner { background:#0d2a0d; border-color:#3B6D11; color:#6dbf6d; }
+    #levelSuggestBanner.visible { display:flex; }
+    #levelSuggestBanner .lsb-text { flex:1; }
   </style>
 </head>
 <body>
@@ -282,6 +346,7 @@
       <button class="dark-toggle" id="darkToggle" onclick="toggleDark()" title="Tmavý režim">🌙</button>
       <button class="btn btn-sm btn-ghost" id="dbOverviewToggle" onclick="toggleDbOverview()" style="display:none" title="Přehled databáze">📊</button>
       <button class="btn btn-sm btn-ghost" id="statsToggle" onclick="toggleStats()" style="display:none" title="Statistiky">📈</button>
+      <button class="btn btn-sm btn-ghost smart-btn" id="smartToggleBtn" onclick="onSmartBtnClick()" style="display:none" title="Chytrý režim">💡</button>
       <a href="https://forms.gle/Nf4wmG7aLCxH4ag78" target="_blank" rel="noopener" class="btn btn-sm btn-ghost" title="Zpětná vazba">💬</a>
       <button class="btn btn-sm btn-ghost" onclick="toggleHelp()" title="Nápověda">❓</button>
     </div>
@@ -324,6 +389,33 @@
       <button class="btn btn-primary welcome-start" onclick="startFromWelcome()">Začít drilovat →</button>
       <p class="welcome-skip" onclick="startFromWelcome()">přeskočit nastavení</p>
     </div>
+  </div>
+
+  <!-- Chytrý režim — first launch overlay -->
+  <div class="smart-overlay" id="smartOnboardOverlay">
+    <div class="smart-box">
+      <div id="smartOnboardContent"></div>
+    </div>
+  </div>
+
+  <!-- Chytrý režim — dokončení drilu -->
+  <div class="smart-overlay" id="smartDoneOverlay">
+    <div class="smart-box" style="text-align:center">
+      <div style="font-size:2.5rem;margin-bottom:.5rem">🎉</div>
+      <h2 id="smartDoneTitle">Výborně!</h2>
+      <p id="smartDoneText"></p>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="smartContinue()">Pokračovat dál</button>
+        <button class="btn btn-ghost" onclick="smartDoneClose()">Zavřít</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Banner návrhu nové úrovně -->
+  <div id="levelSuggestBanner">
+    <span class="lsb-text" id="lsbText"></span>
+    <button class="btn btn-sm" id="lsbYes" onclick="smartAcceptLevel()">Přidat</button>
+    <button class="btn btn-sm btn-ghost" onclick="smartDeclineLevel()">Ještě ne</button>
   </div>
 
   <!-- Nastavení -->
@@ -514,9 +606,16 @@
         <div class="stat-lbl">úspěšnost</div>
       </div>
     </div>
+    <div id="radarWrap" style="display:none;margin:.75rem 0">
+      <div style="font-size:.75rem;font-weight:700;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem">Radar — gramatika</div>
+      <svg id="radarSvg" viewBox="0 0 260 260" width="100%" style="max-width:260px;display:block;margin:0 auto"></svg>
+    </div>
     <div style="font-size:.75rem;font-weight:700;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem">Nejslabší gramatika</div>
     <div class="weak-list" id="weakList"></div>
-    <button class="btn btn-sm btn-ghost" style="margin-top:.75rem;color:var(--color-danger)" onclick="clearStats()">🗑 Smazat statistiky</button>
+    <div style="display:flex;gap:.5rem;margin-top:.75rem;flex-wrap:wrap">
+      <button class="btn btn-sm btn-ghost" style="color:var(--color-danger)" onclick="clearStats()">🗑 Smazat statistiky</button>
+      <button class="btn btn-sm btn-ghost" style="color:var(--color-danger)" onclick="fullReset()">⚠ Plný reset pokroku</button>
+    </div>
   </div>
 
   <!-- Nápověda panel -->
@@ -540,10 +639,22 @@
       <p style="margin:0 0 .75rem"><strong>Automatické pokračování</strong> — věty se přehrávají a střídají samy bez klikání. Zapni v Nastavení nebo klávesou <strong>A</strong>. Pozastavit klávesou <strong>P</strong>. Ideální na mobilu při chůzi.</p>
 
       <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">▶ Průběh drilování</div>
-      <p style="margin:0 0 .75rem">Aplikace nejprve přečte českou větu, po pauze přečte anglický překlad. Tlačítko <strong>Další →</strong> přejde na další větu. Tlačítko <strong>↻ CZ</strong> nebo <strong>↻ EN</strong> větu přehraje znovu. <strong>Přeskočit</strong> větu přeskočí bez hodnocení.</p>
+      <p style="margin:0 0 .75rem">Aplikace nejprve přečte českou větu, po pauze přečte anglický překlad. Tlačítko <strong>Další →</strong> přejde na další větu. Tlačítko <strong>← Zpět</strong> se vrátí na předchozí větu (pamatuje posledních 50). Tlačítka <strong>↻ CZ</strong> a <strong>↻ EN</strong> větu přehrají znovu. <strong>Přeskočit</strong> větu přeskočí bez hodnocení.</p>
+
+      <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">📖 Gramatický tip</div>
+      <p style="margin:0 0 .75rem">Ikona <strong>📖</strong> na každé kartičce otevře stručné vysvětlení aktuálního gramatického jevu — popis, vzorec a příklad věty. Tip se automaticky zobrazí pokud opakovaně neznáš věty ze stejné gramatiky. Kliknutím ikonu znovu schováš.</p>
 
       <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">✓ Hodnocení</div>
       <p style="margin:0 0 .75rem"><strong>✓ Uměl jsem</strong> — větu znáš dobře. <strong>~ Skoro</strong> — větu znáš částečně nebo jsi zaváhal. <strong>✗ Neuměl jsem</strong> — větu neznáš. Hodnocení se ukládá do statistik, které zobrazíš ikonou <strong>📈</strong>.</p>
+
+      <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">💡 Chytrý režim</div>
+      <p style="margin:0 0 .5rem">Ikona <strong>💡</strong> v horní liště zapne chytrý režim — aplikace sama rozhoduje co a v jakém pořadí procvičovat. Zobrazí se po prvních 20 větách.</p>
+      <ul style="margin:.3rem 0 .6rem 1.2rem;padding:0">
+        <li><strong>Dril dne</strong> — každý den připraví balíček ~20 vět. Mix špatně zvládnutých, dávno neviděných a nových.</li>
+        <li><strong>Adaptivní úroveň</strong> — když zvládáš aktuální úroveň na 85 %+, aplikace navrhne přidat další.</li>
+        <li><strong>Automatická tiráž</strong> — při opakovaném selhání na stejném gramatickém jevu se tip zobrazí sám.</li>
+        <li>Chytrý režim lze kdykoli vypnout a znovu zapnout — stav se uchovává.</li>
+      </ul>
 
       <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">🔊 Hlasy a výslovnost</div>
       <p style="margin:0 0 .3rem">Aplikace používá <strong>Web Speech API</strong> — hlasy jsou zabudované přímo v systému nebo prohlížeči, žádný internet ani poplatek. Jak nastavit:</p>
@@ -560,6 +671,7 @@
       <table style="width:100%;border-collapse:collapse;font-size:.8rem;margin-bottom:.75rem">
         <tbody>
           <tr><td style="padding:3px 8px 3px 0;color:var(--color-primary);font-weight:700;white-space:nowrap">Mezerník / →</td><td style="padding:3px 0">Další věta</td></tr>
+          <tr><td style="padding:3px 8px 3px 0;color:var(--color-primary);font-weight:700">←</td><td style="padding:3px 0">Předchozí věta (zpět)</td></tr>
           <tr><td style="padding:3px 8px 3px 0;color:var(--color-primary);font-weight:700">R</td><td style="padding:3px 0">Přehrát anglickou větu</td></tr>
           <tr><td style="padding:3px 8px 3px 0;color:var(--color-primary);font-weight:700">C</td><td style="padding:3px 0">Přehrát českou větu</td></tr>
           <tr><td style="padding:3px 8px 3px 0;color:var(--color-primary);font-weight:700">S</td><td style="padding:3px 0">Přeskočit větu</td></tr>
@@ -572,7 +684,8 @@
       <p style="margin:0 0 .75rem">Hvězdička ☆ na kartě věty přidá/odebere větu z oblíbených. Oblíbené se ukládají v prohlížeči. Filtr <strong>⭐ Oblíbené</strong> zobrazí jen označené věty — vhodné pro opakování problematických vět.</p>
 
       <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">📈 Statistiky a denní cíl</div>
-      <p style="margin:0">Ikona <strong>📈</strong> zobrazí celkový počet procvičených vět, úspěšnost a nejslabší gramatické jevy. Denní cíl (počet vět) nastav v <strong>⚙ Nastavení</strong> — progress bar ho zobrazuje v horní části aplikace.</p>
+      <p style="margin:0 0 .5rem">Ikona <strong>📈</strong> zobrazí celkový počet procvičených vět, úspěšnost a nejslabší gramatické jevy. Denní cíl (počet vět) nastav v <strong>⚙ Nastavení</strong> — progress bar ho zobrazuje v horní části aplikace.</p>
+      <p style="margin:0">Radar graf znázorňuje výkon per gramatický jev — okamžitě vidíš kde máš rezervy a co zvládáš dobře. Zobrazí se po prvních hodnoceních.</p>
 
     </div>
     <div style="text-align:right;margin-top:.75rem;padding-top:.75rem;border-top:0.5px solid var(--color-border);">
@@ -646,6 +759,13 @@
     <div class="score-card"><div class="score-num" id="sBlocks">0</div><div class="score-lbl">bloků</div></div>
   </div>
 
+  <!-- Smart bar — dril dne -->
+  <div id="smartBar">
+    <span id="smartBarLabel">Dril dne</span>
+    <div class="smart-bar-fill-wrap"><div class="smart-bar-fill" id="smartBarFill" style="width:0%"></div></div>
+    <span id="smartBarCount">0/20</span>
+  </div>
+
   <!-- Progress bar -->
   <div class="progress-bar" id="progressBar" style="display:none">
     <div class="progress-fill" id="progressFill" style="width:0%"></div>
@@ -661,13 +781,18 @@
         <span class="meta-badge mb-block"   id="mBlock"></span>
         <span class="meta-badge mb-pattern" id="mPattern"></span>
       </div>
+      <button class="gram-btn" id="gramBtn" onclick="toggleGramTip()" title="Gramatický tip">📖</button>
       <button class="fav-btn" id="favBtn" onclick="toggleFav()" title="Oblíbená věta">☆</button>
     </div>
-    <div class="card-badge" id="cardBadge">Blok 1 · Věta 1/6</div>
     <div class="sentence-cz" id="sentCZ">—</div>
     <div class="sentence-divider"></div>
     <div class="sentence-en" id="sentEN">—</div>
     <div class="sentence-note" id="sentNote"></div>
+    <div class="gram-tip" id="gramTip">
+      <div class="gram-tip-title" id="gramTipTitle"></div>
+      <p class="gram-tip-text" id="gramTipText"></p>
+      <div class="gram-tip-formula" id="gramTipFormula"></div>
+    </div>
     <!-- Hodnocení -->
     <div class="rating-wrap rating-hidden" id="ratingWrap">
       <button class="rating-btn rb-good" onclick="rateSent('good')">✓ Uměl jsem</button>
@@ -681,6 +806,7 @@
     <div class="controls" id="controlsWrap" style="display:none">
       <button class="btn btn-sm" onclick="replayCZ()">↻ CZ</button>
       <button class="btn btn-sm" onclick="replayEN()">↻ EN</button>
+      <button class="btn btn-sm btn-ghost" onclick="prevSent()" id="prevSentBtn">← Zpět</button>
       <button class="btn btn-primary" onclick="nextSent()">Další →</button>
       <button class="btn btn-ghost btn-sm" onclick="skipSent()">přeskočit</button>
       <button class="btn btn-ghost btn-sm" onclick="skipBlock()" id="skipBlockWrap" style="display:none">Další blok →→</button>
@@ -696,7 +822,7 @@
     </div>
 
     <div id="shortcutHint" style="display:none;margin-top:.75rem;font-size:.72rem;color:var(--color-text-light);text-align:center;">
-      Mezerník / → = další &nbsp;·&nbsp; R = přehrát EN &nbsp;·&nbsp; C = přehrát CZ &nbsp;·&nbsp; S = přeskočit &nbsp;·&nbsp; B = další blok &nbsp;·&nbsp; A = auto &nbsp;·&nbsp; P = pauza
+      Mezerník / → = další &nbsp;·&nbsp; ← = zpět &nbsp;·&nbsp; R = přehrát EN &nbsp;·&nbsp; C = přehrát CZ &nbsp;·&nbsp; S = přeskočit &nbsp;·&nbsp; B = další blok &nbsp;·&nbsp; A = auto &nbsp;·&nbsp; P = pauza
     </div>
   </div>
 
@@ -712,6 +838,7 @@ let db           = null;
 let activeBlocks = [];
 let blockOrder   = [], sentOrders = [];
 let bPos = 0, sPos = 0, done = 0, total = 0;
+let sentHistory = []; // historie pro tlačítko Zpět
 let pauseTimer = null, autoTimer = null;
 let autoPaused = false;
 let playToken = 0; // generační čítač — každá nová věta dostane jiný token
@@ -851,6 +978,7 @@ function toggleDark() {
   const isDark = document.body.classList.contains('dark');
   document.getElementById('darkToggle').textContent = isDark ? '☀️' : '🌙';
   saveSetting('darkMode', isDark);
+  renderRadar();
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
@@ -1077,12 +1205,45 @@ function recordRating(rating, grammarName, sentId) {
   }
   saveStats();
   updateDailyBar();
+  if(smart.testActive) {
+    const block = activeBlocks[blockOrder[bPos%blockOrder.length]];
+    smart.testResults.push({level: block?.level||'', rating});
+    if(smart.testResults.length >= smart.testSents.length) finishCalibTest();
+  }
+  if(smart.enabled) smartRecordRating(rating, grammarName);
+  checkSmartModeHint();
 }
 
 function clearStats() {
   if(!confirm('Smazat všechny statistiky?')) return;
   stats={total:0,good:0,ok:0,bad:0,today:0,todayDate:new Date().toDateString(),streak:0,lastDate:'',byGrammar:{}};
   saveStats(); renderStats(); updateDailyBar();
+}
+
+function fullReset() {
+  if(!confirm('Plný reset pokroku — smaže statistiky, SRS historii, oblíbené věty, pozici v drilování a stav chytrého režimu.\n\nNastavení hlasů a databáze zůstanou.\n\nPokračovat?')) return;
+  // Statistiky
+  stats={total:0,good:0,ok:0,bad:0,today:0,todayDate:new Date().toDateString(),streak:0,lastDate:'',byGrammar:{},bySent:{}};
+  saveStats();
+  // Pozice
+  try{localStorage.removeItem(STORAGE_POS);}catch(e){}
+  // Oblíbené
+  favs=new Set(); saveFavs(); updateFavBtn();
+  // Chytrý režim
+  smart={enabled:false,levels:[],drillDone:0,drillDate:'',drillGoal:20,calibrated:false,extraAllowed:false,recentRatings:[],levelSuggestedAt:0,pendingSuggestLevel:null,hintShown:false,testSents:[],testResults:[],testActive:false};
+  saveSmart();
+  // UI
+  document.getElementById('smartBar').style.display='none';
+  document.getElementById('levelSuggestBanner').classList.remove('visible');
+  document.getElementById('filterWrap').style.opacity='';
+  document.getElementById('filterWrap').style.pointerEvents='';
+  document.getElementById('smartToggleBtn').style.display='none';
+  updateSmartBtn();
+  localStorage.removeItem('aj_dril_setup_done');
+  renderStats(); updateDailyBar();
+  bPos=0; sPos=0; done=0; sentHistory=[];
+  buildOrders(); updateScores();
+  if(activeBlocks.length) showCurrent();
 }
 
 function renderStats() {
@@ -1100,13 +1261,727 @@ function renderStats() {
     .map(([name,v])=>({name, pct:Math.round(v.bad/(v.good+v.bad)*100), total:v.good+v.bad}))
     .sort((a,b)=>b.pct-a.pct)
     .slice(0,5);
-  if(!entries.length) { weakList.innerHTML='<div style="font-size:.78rem;color:var(--color-text-light);padding:.25rem 0">Zatím žádná data — hodnoť věty tlačítky ✓/~/✗</div>'; return; }
-  weakList.innerHTML = entries.map(e=>`
+  if(!entries.length) { weakList.innerHTML='<div style="font-size:.78rem;color:var(--color-text-light);padding:.25rem 0">Zatím žádná data — hodnoť věty tlačítky ✓/~/✗</div>'; }
+  else { weakList.innerHTML = entries.map(e=>`
     <div class="weak-item">
       <span class="weak-name">${e.name}</span>
       <div class="weak-bar-wrap"><div class="weak-bar" style="width:${e.pct}%"></div></div>
       <span class="weak-pct">${e.pct}% chyb</span>
-    </div>`).join('');
+    </div>`).join(''); }
+  renderRadar();
+}
+
+function renderRadar() {
+  const svg = document.getElementById('radarSvg');
+  const wrap = document.getElementById('radarWrap');
+  if(!svg || !wrap) return;
+
+  // Sestaví data — min. 3 hodnocení na jev
+  const items = Object.entries(stats.byGrammar)
+    .filter(([,v]) => v.good + v.bad >= 3)
+    .map(([name, v]) => ({ name, score: v.good / (v.good + v.bad) }));
+
+  if(items.length < 3) { wrap.style.display = 'none'; return; }
+  wrap.style.display = '';
+
+  const N = items.length;
+  const cx = 130, cy = 130, R = 95, Rlabel = 112;
+  const dark = document.body.classList.contains('dark');
+  const colorGrid   = dark ? '#2a2d40' : '#e0e4ef';
+  const colorAxis   = dark ? '#3a3e55' : '#cdd2e4';
+  const colorArea   = dark ? 'rgba(99,160,255,0.18)' : 'rgba(59,130,246,0.15)';
+  const colorStroke = dark ? '#7eb8f7' : '#3b82f6';
+  const colorLabel  = dark ? '#9ba3bf' : '#555e80';
+  const colorDot    = dark ? '#7eb8f7' : '#2563eb';
+
+  function pt(i, r) {
+    const a = (2 * Math.PI * i / N) - Math.PI / 2;
+    return [cx + r * Math.cos(a), cy + r * Math.sin(a)];
+  }
+
+  let html = '';
+
+  // Mřížka (20 % / 40 % / 60 % / 80 % / 100 %)
+  [0.2, 0.4, 0.6, 0.8, 1].forEach(t => {
+    const pts = items.map((_, i) => pt(i, R * t));
+    html += `<polygon points="${pts.map(p=>p.join(',')).join(' ')}" fill="none" stroke="${colorGrid}" stroke-width="0.8"/>`;
+  });
+
+  // Osy
+  items.forEach((_, i) => {
+    const [x, y] = pt(i, R);
+    html += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="${colorAxis}" stroke-width="0.8"/>`;
+  });
+
+  // Datový polygon
+  const dataPts = items.map((d, i) => pt(i, R * d.score));
+  html += `<polygon points="${dataPts.map(p=>p.join(',')).join(' ')}" fill="${colorArea}" stroke="${colorStroke}" stroke-width="1.8" stroke-linejoin="round"/>`;
+
+  // Body
+  dataPts.forEach(([x, y]) => {
+    html += `<circle cx="${x}" cy="${y}" r="3" fill="${colorDot}"/>`;
+  });
+
+  // Popisky — zkrátit dlouhé názvy
+  items.forEach((d, i) => {
+    const [x, y] = pt(i, Rlabel);
+    const label = d.name.length > 18 ? d.name.slice(0, 16) + '…' : d.name;
+    const anchor = x < cx - 5 ? 'end' : x > cx + 5 ? 'start' : 'middle';
+    const pct = Math.round(d.score * 100);
+    html += `<text x="${x}" y="${y}" text-anchor="${anchor}" dominant-baseline="middle"
+      font-size="8.5" fill="${colorLabel}" font-family="system-ui,sans-serif">${label} ${pct}%</text>`;
+  });
+
+  svg.innerHTML = html;
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// GRAMATICKÉ TIPY
+// ══════════════════════════════════════════════════════════════════════════════
+const GRAM_TIPS = {
+  'Přítomný čas prostý': {
+    text: 'Popisuje pravidelně se opakující děje, trvalé stavy a obecné pravdy. Třetí osoba jednotného čísla (he/she/it) přidává koncovku -s nebo -es.',
+    formula: 'Vzorec: I/you/we/they + sloveso | he/she/it + sloveso-s\n→ She drinks coffee every morning. / Water boils at 100 °C.'
+  },
+  'Přítomný čas průběhový': {
+    text: 'Vyjadřuje děj, který probíhá právě teď nebo dočasně v tomto období. Zdůrazňuje, že jde o akci v procesu — ještě neskončila.',
+    formula: 'Vzorec: am/is/are + sloveso-ing\n→ He is reading a book right now. / I\'m staying with my parents this month.'
+  },
+  'Minulý čas prostý': {
+    text: 'Popisuje ukončený děj v minulosti. Téměř vždy se pojí s časovým určením (yesterday, last week, in 2020). Pravidelná slovesa přidávají -ed, nepravidelná mají vlastní tvar.',
+    formula: 'Vzorec: sloveso v minulém tvaru (pravidelné: +ed | nepravidelné: 2. tvar)\n→ We watched a film last night. / She went to Paris in June.'
+  },
+  'Minulý čas průběhový': {
+    text: 'Vyjadřuje děj, který probíhal v určitém okamžiku v minulosti. Často tvoří pozadí příběhu, do kterého vstoupí jiný (kratší) minulý děj.',
+    formula: 'Vzorec: was/were + sloveso-ing\n→ I was cooking when she called. / They were sleeping at midnight.'
+  },
+  'Předpřítomný čas': {
+    text: 'Spojuje minulost s přítomností — děj proběhl v minulosti, ale výsledek nebo dopad trvá teď. Používá se také pro zkušenosti bez udání přesného času.',
+    formula: 'Vzorec: have/has + 3. tvar slovesa (past participle)\n→ I have never been to Japan. / She has already finished the report.'
+  },
+  'Předpřítomný průběhový': {
+    text: 'Vyjadřuje děj, který začal v minulosti a stále trvá (nebo právě skončil). Klade důraz na délku trvání — proto tam skoro vždy najdeš for nebo since.',
+    formula: 'Vzorec: have/has + been + sloveso-ing\n→ She has been studying for three hours. / It has been raining since morning.'
+  },
+  'Předminulý čas': {
+    text: 'Vyjadřuje děj, který proběhl před jiným minulým dějem. Je to „minulost minulosti" — říká co se stalo jako první.',
+    formula: 'Vzorec: had + 3. tvar slovesa\n→ When I arrived, she had already left. / He ate because he hadn\'t had breakfast.'
+  },
+  'Budoucí čas (will)': {
+    text: 'Používá se pro spontánní rozhodnutí učiněná v okamžiku mluvení, předpovědi o budoucnosti, sliby a nabídky. Není to plán — ten vyjadřuje going to.',
+    formula: 'Vzorec: will + infinitiv (bez to)\n→ I\'ll call you tomorrow. / It will probably rain. / I\'ll help you with that.'
+  },
+  'Budoucí čas (going to)': {
+    text: 'Vyjadřuje záměr nebo plán, o kterém bylo rozhodnuto předem. Také předpověď na základě toho, co právě vidíme nebo cítíme.',
+    formula: 'Vzorec: am/is/are + going to + infinitiv\n→ We\'re going to visit my parents this weekend. / Look at those clouds — it\'s going to rain.'
+  },
+  'Budoucí průběhový': {
+    text: 'Vyjadřuje děj, který bude probíhat v určitém okamžiku v budoucnosti. Také se používá pro zdvořilé otázky na plány nebo jako přirozený průběh věcí.',
+    formula: 'Vzorec: will be + sloveso-ing\n→ This time tomorrow I\'ll be flying to London. / Will you be using the car tonight?'
+  },
+  'Podmínka 1. typ': {
+    text: 'Reálná podmínka — je pravděpodobné nebo možné, že situace nastane. Mluvíme o budoucnosti nebo přítomnosti. Podmínková část (if) je v přítomném čase.',
+    formula: 'Vzorec: If + přítomný čas prostý, will + infinitiv\n→ If it rains, we\'ll stay at home. / If you study hard, you\'ll pass.'
+  },
+  'Podmínka 2. typ': {
+    text: 'Nereálná nebo nepravděpodobná situace v přítomnosti či budoucnosti. Říkáš, co by bylo, kdyby — ale ve skutečnosti to tak není nebo je to velmi nepravděpodobné.',
+    formula: 'Vzorec: If + minulý čas, would + infinitiv\n→ If I had more money, I would travel the world. / If I were you, I wouldn\'t do that.'
+  },
+  'Podmínka 3. typ': {
+    text: 'Nereálná situace v minulosti — spekuluješ o tom, co se nestalo, ale mohlo. Velmi časté pro vyjádření lítosti nebo kritiky zpětně.',
+    formula: 'Vzorec: If + předminulý čas, would have + 3. tvar slovesa\n→ If she had studied harder, she would have passed. / If I\'d known, I would have come earlier.'
+  },
+  'Trpný rod': {
+    text: 'Používá se, když je důležitější to, co se stalo, než kdo to udělal. Konatel buď není znám, nebo není v dané situaci podstatný.',
+    formula: 'Vzorec: am/is/are/was/were/has been... + 3. tvar slovesa\n→ The letter was sent yesterday. / English is spoken all over the world.'
+  },
+  'Způsobová — can/could': {
+    text: 'Can vyjadřuje schopnost nebo povolení v přítomnosti. Could je minulý tvar (byl/a jsem schopný/á), ale také zdvořilejší a méně přímá forma pro žádosti a návrhy.',
+    formula: 'Vzorec: can/could + infinitiv (bez to)\n→ She can speak four languages. / Could you help me, please? / When I was young, I could run very fast.'
+  },
+  'Způsobová — must/have to': {
+    text: 'Must vyjadřuje vnitřní povinnost nebo silné přesvědčení mluvčího. Have to vyjadřuje vnější povinnost danou pravidly, zákonem nebo okolnostmi. V záporu se liší: mustn\'t = nesmíš, don\'t have to = nemusíš.',
+    formula: 'Vzorec: must/have to + infinitiv (bez to)\n→ You must be quiet here. / I have to work on Saturdays. / You don\'t have to come if you\'re busy.'
+  },
+  'Způsobová — should/ought to': {
+    text: 'Vyjadřují radu, doporučení nebo morální povinnost. Říkáš, co je správné, vhodné nebo rozumné — ale nenutíš. Should je o trochu běžnější než ought to.',
+    formula: 'Vzorec: should/ought to + infinitiv\n→ You should drink more water. / You ought to apologise. / Should I call him?'
+  },
+  'Způsobová — might/may': {
+    text: 'Vyjadřují možnost nebo pravděpodobnost v přítomnosti nebo budoucnosti. May je o trochu jistější než might. Obě se také používají pro zdvořilé povolení.',
+    formula: 'Vzorec: might/may + infinitiv (bez to)\n→ It might rain later. / She may already know. / May I sit here?'
+  },
+  'Způsobová minulá (could have...)': {
+    text: 'Spekulace o minulosti — co se mohlo, mělo nebo nemuselo stát, ale nestalo. Velmi časté s could (mohlo být), should (mělo být) a would (bylo by). Přenáší způsobovost do minulého času.',
+    formula: 'Vzorec: could/should/would/might + have + 3. tvar slovesa\n→ You should have told me earlier. / She could have been a doctor. / It might have been an accident.'
+  },
+  'Přímá a nepřímá řeč': {
+    text: 'Přímá řeč cituje slova doslova v uvozovkách. Nepřímá řeč převypráví — mění časy dozadu (přítomný → minulý), zájmena a časová určení (today → that day, yesterday → the day before).',
+    formula: 'Vzorec: He said (that) + věta s posunutým časem\n→ "I\'m tired." → He said he was tired. / "I\'ll come." → She said she would come.'
+  },
+  'Předložky místa a času': {
+    text: 'In se používá pro rok, měsíc, roční období a město/zemi. On pro den v týdnu a datum. At pro konkrétní čas a přesné místo. Pozor na výjimky: at night, in the morning, at the weekend.',
+    formula: 'Vzorec: in (rok/měsíc/město) | on (den/datum) | at (čas/konkrétní bod)\n→ The meeting is on Monday at 9 o\'clock in the conference room.'
+  },
+  'Příslovce frekvence': {
+    text: 'Říkají, jak často se něco děje. Stojí před hlavním slovesem, ale za slovesem be. Pořadí: always > usually > often > sometimes > rarely > never.',
+    formula: 'Vzorec: podmět + příslovce + sloveso (nebo: podmět + be + příslovce)\n→ She always drinks tea in the morning. / He is never late.'
+  },
+  'Gerundium': {
+    text: 'Sloveso použité jako podstatné jméno — jako podmět, předmět nebo za předložkou. Tvoří se přidáním -ing. Po určitých slovesech stojí gerundium povinně (enjoy, avoid, mind, finish, suggest, keep).',
+    formula: 'Vzorec: sloveso + -ing (jako podmět nebo po: enjoy/avoid/mind/suggest/after/before/without...)\n→ I enjoy reading in the evenings. / Swimming is good for your health.'
+  },
+  'Infinitiv': {
+    text: 'Základní tvar slovesa stojí po určitých slovesech, přídavných jménech nebo podstatných jménech. Vyjadřuje záměr, plán nebo účel. Po určitých slovesech (make, let, help) stojí bez to.',
+    formula: 'Vzorec: to + infinitiv (po: want/need/decide/plan/hope/would like/agree...)\n→ She decided to study medicine. / I need to go now.'
+  },
+  'Dovětky (question tags)': {
+    text: 'Krátké otázky na konci věty, kterými žádáš souhlas nebo potvrzení. Pravidlo: kladná věta → záporný dovětek a naopak. Pomocné sloveso musí odpovídat větě.',
+    formula: 'Vzorec: kladná věta + záporné pomocné sloveso + zájmeno?\n→ It\'s cold today, isn\'t it? / You don\'t smoke, do you? / She can drive, can\'t she?'
+  },
+  'Souhlasné reakce': {
+    text: 'Krátké odpovědi, kterými vyjádříš souhlas nebo nesouhlas bez opakování celé věty. So/Neither + pomocné sloveso + podmět.',
+    formula: 'Vzorec: "So + aux + I" (souhlas s kladnou) | "Neither + aux + I" (souhlas se zápornou)\n→ "I love pizza." – "So do I." / "I haven\'t seen him." – "Neither have I."'
+  },
+  'Wish': {
+    text: 'Vyjadřuje přání o něčem nereálném nebo jiném, než jak to ve skutečnosti je. Čas za wish se posouvá dozadu: přítomnost → minulý čas, minulost → předminulý čas.',
+    formula: 'Vzorec: I wish + minulý čas (přítomnost) | I wish + předminulý čas (lítost z minulosti)\n→ I wish I could drive. / I wish I hadn\'t said that.'
+  },
+  'Would rather': {
+    text: 'Vyjadřuje přednost nebo upřednostňování jedné věci před druhou. Pokud mluvíš o jiné osobě, stojí za ní minulý čas.',
+    formula: 'Vzorec: would rather + infinitiv (bez to) | would rather + podmět + minulý čas\n→ I\'d rather stay home tonight. / I\'d rather you didn\'t smoke here.'
+  },
+  'It\'s time': {
+    text: 'Říká, že je nejvyšší čas něco udělat — s nádechem naléhavosti nebo lehkého napomenutí. Ve struktuře s podmětem stojí za it\'s time minulý čas (i když mluvíme o přítomnosti nebo budoucnosti).',
+    formula: 'Vzorec: It\'s time + to + infinitiv | It\'s time + podmět + minulý čas\n→ It\'s time to go. / It\'s time you went to bed.'
+  },
+  'Used to': {
+    text: 'Vyjadřuje zvyk nebo trvalý stav v minulosti, který v přítomnosti už neplatí. Zdůrazňuje kontrast s dneškem. Pozor: neexistuje tvar pro přítomný čas.',
+    formula: 'Vzorec: used to + infinitiv\n→ I used to play football every weekend. / She used to live in London.'
+  },
+  'Have something done': {
+    text: 'Vyjadřuje, že si necháváš něco udělat někým jiným — platíš za službu nebo o ni žádáš. Neděláš to sám. Používá se i v minulém nebo budoucím čase.',
+    formula: 'Vzorec: have/get + předmět + 3. tvar slovesa\n→ I had my car repaired. / She got her hair cut. / We\'re having the house painted.'
+  },
+  'Frázová slovesa': {
+    text: 'Spojení slovesa a předložky nebo příslovce, které dohromady tvoří nový — často přenesený — význam. Nelze ho odvodit ze samostatných slov, proto je nutné je učit celé.',
+    formula: 'Vzorec: sloveso + částice (up/down/in/out/on/off/away/over...)\n→ Could you turn off the light? / She gave up smoking. / I\'ll look into it.'
+  },
+  'Členy (a/an/the)': {
+    text: 'A/an používáš při první zmínce nebo když mluvíš o libovolném zástupci skupiny. The používáš, když jde o konkrétní věc, o které oba víte, nebo když je jen jedna. Bez členu: obecná jména v množném čísle a nepočitatelná podstatná jména.',
+    formula: 'Vzorec: a/an = nová nebo nespecifická věc | the = konkrétní nebo jedinou svého druhu\n→ I saw a dog. The dog was very friendly. / The sun rises in the east.'
+  },
+  'There is / There are': {
+    text: 'Říká, že něco existuje nebo se nachází na určitém místě. There is stojí před podstatným jménem v jednotném čísle nebo nepočitatelným, there are před množným číslem.',
+    formula: 'Vzorec: There is/are + podmět + místo\n→ There is a book on the table. / There are three cats in the garden. / Is there any milk?'
+  },
+  'Sponová slovesa': {
+    text: 'Slovesa, která nespojují podmět s dějem, ale s jeho vlastností nebo stavem. Za nimi stojí přídavné jméno (ne příslovce). Patří sem: look, feel, seem, taste, smell, sound, appear, become, get, stay.',
+    formula: 'Vzorec: podmět + sponové sloveso + přídavné jméno\n→ The soup smells delicious. / She looks tired. / He became famous overnight.'
+  },
+  'Stupňování přídavných jmen': {
+    text: 'Krátká přídavná jména (1–2 slabiky) přidávají -er/-est. Delší přídavná jména (3+ slabiky) používají more/most. Některá jsou nepravidelná: good → better → best, bad → worse → worst.',
+    formula: 'Vzorec: -er than / the -est | more ... than / the most ...\n→ This film is more interesting than the last one. / She\'s the tallest in the class.'
+  },
+  'Množné číslo': {
+    text: 'Pravidelné množné číslo přidává -s nebo -es (po s, x, ch, sh). Slova na -f/-fe mění na -ves (leaf → leaves). Mnohá podstatná jména mají nepravidelný tvar, který je nutné znát.',
+    formula: 'Vzorec: pravidelné: noun + s/es | nepravidelné: child→children, foot→feet, mouse→mice, man→men\n→ The children are playing in the garden.'
+  },
+  'Nepravidelná slovesa': {
+    text: 'Tato slovesa netvoří minulý čas ani příčestí minulé pomocí -ed, ale mají vlastní tvary, které je nutné znát nazpaměť. Existují tři sloupce: infinitiv → minulý čas → příčestí minulé (3. tvar).',
+    formula: 'Vzorec: infinitiv → minulý čas → příčestí minulé\n→ go→went→gone | buy→bought→bought | break→broke→broken | take→took→taken'
+  },
+  'Zájmena': {
+    text: 'Osobní zájmena se mění podle funkce ve větě. Podmět (I/he/she) se liší od předmětu (me/him/her). Přivlastňovací mají dvě formy: před podstatným jménem (my/his) a samostatnou (mine/his). Zvratná (myself/himself) vyjadřují, že podmět děj vykonává sám na sobě.',
+    formula: 'Podmět: I/you/he/she/we/they | Předmět: me/you/him/her/us/them\nPřivlastňovací: my/your/his/her/our/their | Samostatné: mine/yours/his/hers/ours/theirs\n→ She gave it to him, but it wasn\'t hers.'
+  },
+  'Kvantifikátory (all/both/each)': {
+    text: 'All = vše nebo všichni obecně (více než dvě). Both = oba (ze dvou). Each = každý jednotlivě (zdůrazňuje jednotlivce). Each stojí vždy s podstatným jménem v jednotném čísle.',
+    formula: 'Vzorec: all (of) the + mn.č. | both (of) the + mn.č. | each + podst. jméno v jedn.č.\n→ All the students passed. / Both sisters work abroad. / Each child got a prize.'
+  },
+  'Some / any / much / many': {
+    text: 'Some stojí v kladných větách a nabídkách. Any v záporech a otázkách. Much se pojí s nepočitatelnými podstatnými jmény (much water, much time). Many s počitatelnými (many people, many cars).',
+    formula: 'Vzorec: some (kladná/nabídka) | any (záporná/otázka) | much (nepočitatelné) | many (počitatelné)\n→ There isn\'t any milk. / Would you like some tea? / She has many friends.'
+  },
+  'Vedlejší věty': {
+    text: 'Věty, které rozvíjejí hlavní větu a nemohou stát samostatně. Časové (when, after, before, while), příčinné (because, since, as), přípustkové (although, even though), podmínkové (if, unless), účelové (so that).',
+    formula: 'Vzorec: vedlejší věta + čárka + hlavní | nebo: hlavní + vedlejší (bez čárky)\n→ Although it was raining, we went for a walk. / I left early because I was tired.'
+  },
+  'Sloveso být (to be)': {
+    text: 'Nejdůležitější anglické sloveso. Slouží k popisu stavu, vlastností, povolání, národnosti a místa. Je také pomocným slovesem v průběhových časech a trpném rodě.',
+    formula: 'Vzorec: am (I) | is (he/she/it) | are (you/we/they) + přídavné jméno nebo podstatné jméno\n→ She is a doctor. / They are very tired. / Where is the station?'
+  },
+  'Slovesa se dvěma předměty': {
+    text: 'Slovesa jako give, send, tell, show, offer, lend, bring mají dva předměty: nepřímý (komu?) a přímý (co?). Pořadí se může změnit, ale pak přidáváme předložku to nebo for.',
+    formula: 'Vzorec: sloveso + nepřímý předmět + přímý předmět | nebo: sloveso + přímý předmět + to/for + nepřímý\n→ She gave him a present. / She gave a present to him.'
+  },
+  'Rozkazy a návrhy': {
+    text: 'Rozkaz tvoříš prostým infinitivem bez podmětového zájmena. Zápor: Don\'t + infinitiv. Pro návrhy zahrnující mluvčího slouží Let\'s. Zdvořilejší varianta: Could you...? / Would you mind...?',
+    formula: 'Vzorec: sloveso! | Don\'t + sloveso! | Let\'s + sloveso\n→ Close the door. / Don\'t be late. / Let\'s go for a walk.'
+  },
+  'Tvoření slov': {
+    text: 'Anglická slova lze tvořit pomocí předpon (un-, re-, over-, mis-, pre-...) a přípon (-ness, -ful, -less, -ion, -ly, -er, -ment...). Znalost těchto prvků pomáhá odhadnout nebo zapamatovat si neznámá slova.',
+    formula: 'Vzorec: předpona + základ + přípona\n→ happy → unhappy → unhappiness | care → careful → carefully | employ → employer → unemployment'
+  },
+  'Číslovky': {
+    text: 'Základní číslovky (one, two, three...) slouží k počítání a jako přívlastek. Řadové (first, second, third, fourth...) vyjadřují pořadí — pozor na nepravidelné first, second, third a hláskové změny u pátého (fifth), dvanáctého (twelfth) atd.',
+    formula: 'Vzorec: základní: one/two/three... | řadové: first/second/third + th od čtvrtého dál\n→ She finished third in the race. / I need two tickets. / It\'s his twenty-first birthday.'
+  }
+};
+
+let gramTipVisible = false;
+let currentGrammar = '';
+
+function toggleGramTip() {
+  const tip = document.getElementById('gramTip');
+  const btn = document.getElementById('gramBtn');
+  if(!tip) return;
+  gramTipVisible = !gramTipVisible;
+  if(gramTipVisible) {
+    loadGramTip(currentGrammar);
+    tip.classList.add('visible');
+    btn.classList.add('active');
+  } else {
+    tip.classList.remove('visible');
+    btn.classList.remove('active');
+  }
+}
+
+function hideGramTip() {
+  gramTipVisible = false;
+  const tip = document.getElementById('gramTip');
+  const btn = document.getElementById('gramBtn');
+  if(tip) tip.classList.remove('visible');
+  if(btn) btn.classList.remove('active');
+}
+
+function loadGramTip(grammarName) {
+  const data = GRAM_TIPS[grammarName];
+  const title = document.getElementById('gramTipTitle');
+  const text  = document.getElementById('gramTipText');
+  const form  = document.getElementById('gramTipFormula');
+  if(!title || !text || !form) return;
+  if(!data) {
+    title.textContent = grammarName || '';
+    text.textContent  = 'Pro tento gramatický jev zatím není tip k dispozici.';
+    form.textContent  = '';
+    return;
+  }
+  title.textContent = grammarName;
+  text.textContent  = data.text;
+  form.textContent  = data.formula;
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// CHYTRÝ REŽIM
+// ══════════════════════════════════════════════════════════════════════════════
+const STORAGE_SMART = 'aj_dril_smart_v1';
+let smart = {
+  enabled: false,
+  levels: [],
+  drillDone: 0,
+  drillDate: '',
+  drillGoal: 20,
+  calibrated: false,
+  extraAllowed: false,
+  recentRatings: [],
+  levelSuggestedAt: 0,
+  pendingSuggestLevel: null,
+  hintShown: false,
+  testSents: [],
+  testResults: [],
+  testActive: false,
+};
+
+function loadSmart() {
+  try { const s=localStorage.getItem(STORAGE_SMART); if(s) smart={...smart,...JSON.parse(s)}; } catch(e){}
+}
+function saveSmart() {
+  try { localStorage.setItem(STORAGE_SMART,JSON.stringify(smart)); } catch(e){}
+}
+
+// Vrátí seřazené dostupné úrovně z databáze
+function dbLevels() {
+  if(!db) return [];
+  const order = ['A0','A1','A2','B1','B2','C1','C2'];
+  const found = [...new Set(db.blocks.map(b=>b.level).filter(Boolean))];
+  return order.filter(l=>found.includes(l));
+}
+
+// Úspěšnost per úroveň z dosavadní historie
+function levelStats(level) {
+  if(!db||!stats.bySent) return {good:0,total:0};
+  let good=0,total=0;
+  db.blocks.filter(b=>b.level===level).forEach(b=>{
+    b.sentences.forEach(s=>{
+      const st=stats.bySent[s.id];
+      if(st){good+=st.good;total+=st.good+(st.ok||0)+st.bad;}
+    });
+  });
+  return {good,total};
+}
+
+// Detekce nejpravděpodobnější úrovně z history
+function detectLevelFromHistory() {
+  const levels = dbLevels();
+  let bestLevel = levels[0] || 'A0';
+  let bestPct = 0;
+  for(const lvl of levels) {
+    const {good,total} = levelStats(lvl);
+    if(total < 5) continue;
+    const pct = good/total;
+    if(pct >= 0.65 && lvl > bestLevel) bestLevel = lvl;
+    if(total >= 5) bestPct = Math.max(bestPct, Math.round(pct*100));
+  }
+  return {level: bestLevel, pct: bestPct};
+}
+
+// ── Zobraz / skryj tlačítko 💡 ────────────────────────────────────────────
+function updateSmartBtn() {
+  const btn = document.getElementById('smartToggleBtn');
+  if(!btn) return;
+  if(smart.enabled) {
+    btn.classList.add('active');
+    btn.title = 'Chytrý režim — zapnutý (klikni pro vypnutí)';
+  } else {
+    btn.classList.remove('active');
+    btn.title = 'Chytrý režim';
+  }
+}
+
+// ── Klik na 💡 ────────────────────────────────────────────────────────────
+function onSmartBtnClick() {
+  if(smart.enabled) {
+    deactivateSmartMode();
+  } else {
+    if(!smart.calibrated) {
+      showSmartOnboard();
+    } else {
+      activateSmartMode();
+    }
+  }
+}
+
+// ── Aktivace / deaktivace ─────────────────────────────────────────────────
+function activateSmartMode() {
+  smart.enabled = true;
+  smart.extraAllowed = false;
+  saveSmart();
+  updateSmartBtn();
+  applySmartFilters();
+  updateSmartBar();
+  document.getElementById('smartBar').style.display = 'flex';
+  document.getElementById('filterWrap').style.opacity = '.35';
+  document.getElementById('filterWrap').style.pointerEvents = 'none';
+}
+
+function deactivateSmartMode() {
+  smart.enabled = false;
+  saveSmart();
+  updateSmartBtn();
+  document.getElementById('smartBar').style.display = 'none';
+  document.getElementById('levelSuggestBanner').classList.remove('visible');
+  document.getElementById('filterWrap').style.opacity = '';
+  document.getElementById('filterWrap').style.pointerEvents = '';
+  applyFilters(true);
+}
+
+// ── Aplikuj filtry pro chytrý režim (více úrovní) ─────────────────────────
+function applySmartFilters() {
+  if(!db) return;
+  const levels = smart.levels;
+  let filtered = db.blocks.filter(b => !b.level || levels.includes(b.level));
+  activeBlocks = filtered;
+  bPos=0; sPos=0; done=0;
+  buildOrders(); updateScores();
+  if(activeBlocks.length) showCurrent();
+  document.getElementById('sTotal').textContent = activeBlocks.reduce((a,b)=>a+b.sentences.length,0);
+  document.getElementById('sBlocks').textContent = activeBlocks.length;
+}
+
+// ── Denní lišta ───────────────────────────────────────────────────────────
+function updateSmartBar() {
+  const today = new Date().toISOString().split('T')[0];
+  if(smart.drillDate !== today) { smart.drillDone=0; smart.drillDate=today; smart.extraAllowed=false; saveSmart(); }
+  const goal = smart.drillGoal;
+  const done2 = Math.min(smart.drillDone, goal);
+  const pct = Math.round(done2/goal*100);
+  document.getElementById('smartBarFill').style.width = pct+'%';
+  document.getElementById('smartBarCount').textContent = smart.drillDone+'/'+goal;
+}
+
+// ── Zaznamenat hodnocení v chytrém režimu ─────────────────────────────────
+function smartRecordRating(rating, grammar) {
+  const today = new Date().toISOString().split('T')[0];
+  if(smart.drillDate !== today) { smart.drillDone=0; smart.drillDate=today; smart.extraAllowed=false; }
+  smart.drillDone++;
+  // Posledních 10 hodnocení pro auto-tiráž
+  smart.recentRatings.push({grammar, rating});
+  if(smart.recentRatings.length > 10) smart.recentRatings.shift();
+  saveSmart();
+  updateSmartBar();
+  // Zkontrolovat dokončení drilu
+  if(smart.drillDone === smart.drillGoal && !smart.extraAllowed) {
+    setTimeout(showSmartDone, 400);
+  }
+  // Auto gramatická tiráž
+  checkAutoGramTip(grammar);
+  // Návrh nové úrovně (kontroluj jen každých 30 hodnocení)
+  if(stats.total % 30 === 0) checkLevelSuggestion();
+}
+
+// ── Auto gramatická tiráž ─────────────────────────────────────────────────
+function checkAutoGramTip(grammar) {
+  if(!grammar) return;
+  const recent = smart.recentRatings;
+  const badCount = recent.filter(r=>r.grammar===grammar && r.rating==='bad').length;
+  if(badCount >= 3 && !document.getElementById('gramTip').classList.contains('visible')) {
+    gramTipVisible = true;
+    loadGramTip(grammar);
+    document.getElementById('gramTip').classList.add('visible');
+    document.getElementById('gramBtn').classList.add('active');
+  }
+}
+
+// ── Návrh nové úrovně ─────────────────────────────────────────────────────
+function checkLevelSuggestion() {
+  if(smart.levelSuggestedAt === stats.total) return;
+  const levels = dbLevels();
+  const currentTop = smart.levels[smart.levels.length-1];
+  const nextIdx = levels.indexOf(currentTop)+1;
+  if(nextIdx >= levels.length) return;
+  const nextLevel = levels[nextIdx];
+  // Zkontroluj úspěšnost aktuální nejvyšší úrovně
+  const {good,total} = levelStats(currentTop);
+  if(total < 20) return;
+  const pct = Math.round(good/total*100);
+  if(pct >= 85) {
+    smart.pendingSuggestLevel = nextLevel;
+    smart.levelSuggestedAt = stats.total;
+    saveSmart();
+    document.getElementById('lsbText').textContent =
+      currentTop+' zvládáš skvěle ('+pct+'% správně)! Chceš přidat '+nextLevel+'?';
+    document.getElementById('levelSuggestBanner').classList.add('visible');
+  }
+}
+
+function smartAcceptLevel() {
+  if(!smart.pendingSuggestLevel) return;
+  if(!smart.levels.includes(smart.pendingSuggestLevel)) {
+    smart.levels.push(smart.pendingSuggestLevel);
+  }
+  smart.pendingSuggestLevel = null;
+  saveSmart();
+  document.getElementById('levelSuggestBanner').classList.remove('visible');
+  applySmartFilters();
+}
+
+function smartDeclineLevel() {
+  smart.pendingSuggestLevel = null;
+  saveSmart();
+  document.getElementById('levelSuggestBanner').classList.remove('visible');
+}
+
+// ── Dokončení drilu ───────────────────────────────────────────────────────
+function showSmartDone() {
+  const pct = stats.total>0 ? Math.round(stats.good/stats.total*100) : 0;
+  document.getElementById('smartDoneTitle').textContent = 'Výborně! Dril dne splněn 🔥';
+  document.getElementById('smartDoneText').textContent =
+    'Dokončil/a jsi '+smart.drillGoal+' vět. Dnešní úspěšnost: '+pct+' %.';
+  document.getElementById('smartDoneOverlay').classList.add('visible');
+}
+
+function smartContinue() {
+  smart.extraAllowed = true;
+  saveSmart();
+  document.getElementById('smartDoneOverlay').classList.remove('visible');
+}
+
+function smartDoneClose() {
+  document.getElementById('smartDoneOverlay').classList.remove('visible');
+}
+
+// ── Hint — ukáž 💡 tlačítko po 20 větách ─────────────────────────────────
+function checkSmartModeHint() {
+  if(smart.hintShown || smart.calibrated || smart.enabled) return;
+  if(stats.total < 20) return;
+  smart.hintShown = true;
+  saveSmart();
+  document.getElementById('smartToggleBtn').style.display = '';
+  // Malá animace aby si toho všiml
+  const btn = document.getElementById('smartToggleBtn');
+  btn.style.transition = 'transform .3s';
+  btn.style.transform = 'scale(1.4)';
+  setTimeout(()=>{ btn.style.transform = ''; }, 600);
+}
+
+// ── First-launch onboarding ───────────────────────────────────────────────
+function showSmartOnboard() {
+  const overlay = document.getElementById('smartOnboardOverlay');
+  const content = document.getElementById('smartOnboardContent');
+  const hasHistory = stats.total >= 10;
+
+  if(hasHistory) {
+    const {level, pct} = detectLevelFromHistory();
+    content.innerHTML = `
+      <h2>💡 Chytrý režim</h2>
+      <p>Podle tvých výsledků vypadáš na úroveň <strong>${level}</strong> (${pct}% správně). Chceš začít tam?</p>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="smartStartWithLevel('${level}')">Ano, začít na ${level}</button>
+        <button class="btn btn-ghost" onclick="showSmartLevelChoice()">Vybrat jinak</button>
+      </div>`;
+  } else {
+    showSmartLevelChoiceInContent(content);
+  }
+  overlay.classList.add('visible');
+}
+
+function showSmartLevelChoice() {
+  const content = document.getElementById('smartOnboardContent');
+  showSmartLevelChoiceInContent(content);
+}
+
+function showSmartLevelChoiceInContent(content) {
+  const levels = dbLevels();
+  const grid = levels.map(l=>`<button class="smart-level-btn" onclick="toggleSmartLevelSelect('${l}',this)">${l}</button>`).join('');
+  content.innerHTML = `
+    <h2>💡 Chytrý režim — výběr úrovně</h2>
+    <p>Vyber úroveň, od které chceš začít. Nebo se nech otestovat.</p>
+    <div class="smart-level-grid">${grid}</div>
+    <div class="btn-row">
+      <button class="btn btn-primary" id="smartStartBtn" onclick="smartStartFromChoice()" disabled>Začít</button>
+      <button class="btn btn-ghost btn-sm" onclick="showSmartCalibTest()">Otestuj mě</button>
+      <button class="btn btn-ghost btn-sm" onclick="closeSmartOnboard()">Zrušit</button>
+    </div>`;
+}
+
+let _smartLevelChoice = null;
+function toggleSmartLevelSelect(level, btn) {
+  document.querySelectorAll('.smart-level-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  _smartLevelChoice = level;
+  const startBtn = document.getElementById('smartStartBtn');
+  if(startBtn) startBtn.disabled = false;
+}
+
+function smartStartFromChoice() {
+  if(!_smartLevelChoice) return;
+  smartStartWithLevel(_smartLevelChoice);
+}
+
+function smartStartWithLevel(level) {
+  smart.levels = [level];
+  smart.calibrated = true;
+  smart.drillDone = 0;
+  smart.drillDate = new Date().toISOString().split('T')[0];
+  saveSmart();
+  closeSmartOnboard();
+  activateSmartMode();
+}
+
+function closeSmartOnboard() {
+  document.getElementById('smartOnboardOverlay').classList.remove('visible');
+  _smartLevelChoice = null;
+}
+
+// ── Kalibrační test ───────────────────────────────────────────────────────
+function showSmartCalibTest() {
+  if(!db) return;
+  const levels = dbLevels();
+  // Vyber 3-4 věty z každé úrovně
+  const testSents = [];
+  levels.forEach(lvl => {
+    const blocks = db.blocks.filter(b=>b.level===lvl);
+    const sents = [];
+    blocks.forEach(b=>b.sentences.forEach(s=>sents.push({...s, level:lvl, grammar:b.grammar})));
+    // Náhodný výběr 3 vět
+    for(let i=sents.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[sents[i],sents[j]]=[sents[j],sents[i]];}
+    testSents.push(...sents.slice(0,3));
+  });
+  // Zamíchej celý test
+  for(let i=testSents.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[testSents[i],testSents[j]]=[testSents[j],testSents[i]];}
+
+  smart.testSents = testSents;
+  smart.testResults = [];
+  smart.testActive = true;
+  smart.testIdx = 0;
+  saveSmart();
+
+  const content = document.getElementById('smartOnboardContent');
+  content.innerHTML = `
+    <h2>Kalibrační test</h2>
+    <p>Přehrají se věty z různých úrovní. Hodnoť jak obvykle — aplikace pak navrhne úroveň pro tebe.</p>
+    <p style="font-size:.8rem;opacity:.7">Věta <span id="testProgress">1</span> z ${testSents.length}</p>
+    <button class="btn btn-primary" onclick="startCalibDrill()">Začít test →</button>
+    <br><button class="btn btn-ghost btn-sm" style="margin-top:.5rem" onclick="showSmartLevelChoice()">← Zpět</button>`;
+}
+
+function startCalibDrill() {
+  closeSmartOnboard();
+  // Spustí test — použijeme testSents jako activeBlocks
+  const blocks = {};
+  smart.testSents.forEach((s,i)=>{
+    const key = s.level+'__test';
+    if(!blocks[key]) blocks[key] = {level:s.level, grammar:s.grammar, blok:'Test', topic:'', sentences:[]};
+    blocks[key].sentences.push(s);
+  });
+  activeBlocks = Object.values(blocks);
+  bPos=0; sPos=0; done=0;
+  buildOrders(); updateScores(); showCurrent();
+}
+
+function finishCalibTest() {
+  if(!smart.testActive) return;
+  smart.testActive = false;
+  saveSmart();
+  // Analyzuj výsledky
+  const byLevel = {};
+  smart.testResults.forEach(r=>{
+    if(!byLevel[r.level]) byLevel[r.level]={good:0,total:0};
+    byLevel[r.level].total++;
+    if(r.rating==='good') byLevel[r.level].good++;
+  });
+  const levels = dbLevels();
+  let suggestedLevel = levels[0];
+  for(const lvl of levels) {
+    const s = byLevel[lvl];
+    if(!s||s.total===0) break;
+    const pct = s.good/s.total;
+    if(pct >= 0.6) suggestedLevel = lvl;
+    else break;
+  }
+  // Zobraz výsledek
+  const content = document.getElementById('smartOnboardContent');
+  document.getElementById('smartOnboardOverlay').classList.add('visible');
+  content.innerHTML = `
+    <h2>Výsledek testu</h2>
+    <p>Na základě testu ti doporučujeme začít na úrovni <strong>${suggestedLevel}</strong>. Chceš to potvrdit?</p>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="smartStartWithLevel('${suggestedLevel}')">Začít na ${suggestedLevel}</button>
+      <button class="btn btn-ghost" onclick="showSmartLevelChoice()">Vybrat jinak</button>
+    </div>`;
+}
+
+// ── Integrace s initApp ───────────────────────────────────────────────────
+function smartInit() {
+  loadSmart();
+  // Zobraz tlačítko pokud má historii nebo je kalibrated
+  if(smart.calibrated || stats.total >= 20) {
+    document.getElementById('smartToggleBtn').style.display = '';
+    smart.hintShown = true;
+  }
+  updateSmartBtn();
+  if(smart.enabled) {
+    document.getElementById('smartBar').style.display = 'flex';
+    updateSmartBar();
+    document.getElementById('filterWrap').style.opacity = '.35';
+    document.getElementById('filterWrap').style.pointerEvents = 'none';
+    if(smart.pendingSuggestLevel) {
+      document.getElementById('lsbText').textContent =
+        smart.levels[smart.levels.length-1]+' zvládáš skvěle! Chceš přidat '+smart.pendingSuggestLevel+'?';
+      document.getElementById('levelSuggestBanner').classList.add('visible');
+    }
+  }
 }
 
 function toggleDbOverview() {
@@ -1375,7 +2250,7 @@ function initCapacitorDrillListener() {
                  + '<button class="rating-btn rb-bad"  onclick="rateSent(\'bad\')">✗ Neuměl jsem</button>';
     // Nastav EN text okamžitě (skrytý) — výška karty se ustálí hned
     const enEl = document.getElementById('sentEN');
-    enEl.textContent = data.enText || '';
+    enEl.innerHTML = wrapWords(data.enText || '');
     enEl.classList.remove('visible'); // opacity:0, ale zabírá místo
     // Zobraz CZ
     document.getElementById('sentCZ').textContent = data.czText || '';
@@ -1557,7 +2432,7 @@ function speakSentenceNative(sent) {
   });
   // EN text nastaven předem v showCurrent — stačí odkrýt
   const enEl=document.getElementById('sentEN');
-  if(enEl.textContent !== (sent.en||'')) enEl.textContent=sent.en||'';
+  if(enEl.textContent !== (sent.en||'')) enEl.innerHTML=wrapWords(sent.en||'');
   enEl.classList.add('visible');
   if(document.getElementById('showRating').checked)
     document.getElementById('ratingWrap').classList.remove('rating-hidden');
@@ -1586,6 +2461,20 @@ function speak(text,voiceName,rate,cb,forceLang) {
 
 function replayCZ(){speak(document.getElementById('sentCZ').textContent,document.getElementById('czVoice').value,cfg.czRate,null,'cs-CZ');}
 function replayEN(){document.getElementById('sentEN').classList.add('visible');playENRepeated(document.getElementById('sentEN').textContent,null,'en-GB');}
+
+function wrapWords(text){
+  if(!text) return '';
+  return text.split(/(\s+)/).map(tok =>
+    /^\s+$/.test(tok) ? tok :
+    `<span class="w-click" onclick="clickWord(this)">${tok.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</span>`
+  ).join('');
+}
+function clickWord(el){
+  const word = el.textContent.replace(/^[^a-zA-Z0-9']+|[^a-zA-Z0-9']+$/g,'');
+  if(!word) return;
+  const enVoice = document.getElementById('enVoice') ? document.getElementById('enVoice').value : '';
+  speak(word, enVoice, cfg.enRate||1, null, 'en-GB');
+}
 
 function previewVoice(lang, voiceName) {
   if(!voiceName) return;
@@ -1908,6 +2797,7 @@ function initApp(tryRestorePos) {
   document.getElementById('skipBlockWrap').style.display='';
   document.getElementById('statsToggle').style.display='';
   document.getElementById('dbOverviewToggle').style.display='';
+  if(smart.calibrated||stats.total>=20) document.getElementById('smartToggleBtn').style.display='';
   if(cfg.autoMode){
     document.getElementById('autoIndicator').style.display='flex';
     document.getElementById('autoDelayGroup').classList.remove('hidden');
@@ -1919,8 +2809,11 @@ function initApp(tryRestorePos) {
   renderDbList();
   populateFilters();
   updateDailyBar();
+  smartInit();
   if(!localStorage.getItem('aj_dril_setup_done')) {
     document.getElementById('welcomeOverlay').style.display='flex';
+  } else if(smart.enabled) {
+    applySmartFilters();
   } else {
     if(tryRestorePos&&loadPos()){updateScores();showCurrent();}
     else{applyFilters(true);}
@@ -1929,6 +2822,8 @@ function initApp(tryRestorePos) {
 
 function startFromWelcome() {
   localStorage.setItem('aj_dril_setup_done','1');
+  document.getElementById('fLevel').value = 'A0';
+  syncCustomSelects();
   const ov=document.getElementById('welcomeOverlay');
   ov.style.opacity='0';
   ov.style.transition='opacity .25s ease';
@@ -1945,6 +2840,7 @@ function showCurrent() {
   playToken++; // zneplatní všechny probíhající callbacky předchozí věty
   cancelSpeech();
   document.getElementById('ratingWrap').classList.add('rating-hidden');
+  hideGramTip();
 
   if(!activeBlocks.length){
     document.getElementById('sentCZ').textContent='Žádné věty pro zvolený filtr.';
@@ -1974,14 +2870,14 @@ function showCurrent() {
   setTimeout(()=>{
     if(playToken !== myTokenContent) return;
     document.getElementById('mGrammar').textContent=block.grammar||'';
+    currentGrammar = block.grammar||'';
     document.getElementById('mLevel').textContent  =block.level||'';
     document.getElementById('mTopic').textContent  =block.topic||'';
     document.getElementById('mBlock').textContent  =block.blok||'';
     document.getElementById('mPattern').textContent=PAT_LABELS[sent.pattern]||sent.pattern||'';
-    document.getElementById('cardBadge').textContent='Blok '+(bPos%blockOrder.length+1)+'/'+blockOrder.length+' · Věta '+(sPos%so.length+1)+'/'+so.length;
     document.getElementById('sPos').textContent=(sPos%so.length+1)+'/'+so.length;
     document.getElementById('sentCZ').textContent=sent.cz||'';
-    enEl.textContent=sent.en||''; // nový EN text (stále opacity:0)
+    enEl.innerHTML=wrapWords(sent.en||''); // nový EN text (stále opacity:0)
     document.getElementById('sentNote').textContent=sent.note||'';
     const prog=total>0?(done/total)*100:0;
     document.getElementById('progressFill').style.width=Math.round(prog)+'%';
@@ -2034,6 +2930,8 @@ function rateSent(rating) {
   const sentId=sent.id?String(sent.id):null;
   recordRating(rating, block.grammar||'—', sentId);
   document.getElementById('ratingWrap').classList.add('rating-hidden');
+  // Zastav pokud smart mode právě dosáhl denního cíle
+  if(smart.enabled && smart.drillDone >= smart.drillGoal && !smart.extraAllowed) return;
   // Po hodnocení automaticky přejdi na další
   if(!document.getElementById('autoMode').checked) {
     nextSent();
@@ -2045,6 +2943,7 @@ function rateSent(rating) {
 // ══════════════════════════════════════════════════════════════════════════════
 function scheduleAutoNext() {
   if(!document.getElementById('autoMode').checked||autoPaused)return;
+  if(smart.enabled && smart.drillDone >= smart.drillGoal && !smart.extraAllowed)return;
   if(autoTimer)clearTimeout(autoTimer);
   const delay=(parseInt(document.getElementById('autoDelay').value)||3)*1000;
   let rem=Math.round(delay/1000);
@@ -2120,6 +3019,8 @@ function nextSent() {
   cancelSpeech();
   autoPaused=false;
   document.getElementById('autoPauseBtn').textContent='⏸ Pozastavit';
+  sentHistory.push({bPos, sPos, done});
+  if(sentHistory.length > 50) sentHistory.shift();
   done++;
   const bi=blockOrder[bPos%blockOrder.length];
   const so=sentOrders[bi];
@@ -2144,11 +3045,26 @@ function skipSent() {
   if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
   cancelSpeech();
   autoPaused=false;
+  sentHistory.push({bPos, sPos, done});
+  if(sentHistory.length > 50) sentHistory.shift();
   const bi=blockOrder[bPos%blockOrder.length];
   const so=sentOrders[bi];
   sPos++;
   if(sPos>=so.length){sPos=0;bPos++;if(bPos>=blockOrder.length){bPos=0;buildOrders();}}
   showCurrent();
+}
+
+function prevSent() {
+  if(sentHistory.length === 0) return;
+  if(pauseTimer){clearTimeout(pauseTimer);pauseTimer=null;}
+  if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
+  cancelSpeech();
+  autoPaused=false;
+  const snap = sentHistory.pop();
+  bPos = snap.bPos;
+  sPos = snap.sPos;
+  done = snap.done;
+  updateScores();showCurrent();
 }
 
 function updateScores() {
@@ -2163,6 +3079,7 @@ function updateScores() {
 document.addEventListener('keydown',e=>{
   if(e.target.tagName==='INPUT'||e.target.tagName==='SELECT')return;
   if(e.code==='Space'||e.code==='ArrowRight'){e.preventDefault();nextSent();}
+  else if(e.code==='ArrowLeft'){e.preventDefault();prevSent();}
   else if(e.key==='r'||e.key==='R')replayEN();
   else if(e.key==='c'||e.key==='C')replayCZ();
   else if(e.key==='s'||e.key==='S')skipSent();

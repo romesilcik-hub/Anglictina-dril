@@ -239,7 +239,7 @@
           Gramatický jev
           <span class="count-badge" id="gramCountBadge" style="display:none"></span>
         </label>
-        <select id="selGrammar" onchange="updateStats(); updateCountBadge(); applyGrammarPatternExclusion(); selectAllPat(true);">
+        <select id="selGrammar" onchange="updateStats(); updateCountBadge(); applyGrammarPatternExclusion(); selectAllPat(true); applyFreqMode();">
           <!-- Generuje JS -->
         </select>
       </div>
@@ -249,7 +249,7 @@
           Téma <span class="count-badge" id="topicCountBadge" style="display:none"></span>
         </label>
         <span id="topicSrc" style="font-size:.72rem;color:var(--color-text-light);margin-bottom:2px;display:block"></span>
-        <select id="selTopic" onchange="onTopicChange(); updateCountBadge();">
+        <select id="selTopic" onchange="onTopicChange(); updateCountBadge(); applyFreqMode();">
           <option>Obecné</option>
           <option>Práce a kancelář</option>
           <option>Každodenní rutina</option>
@@ -269,6 +269,20 @@
         <label>Počet bloků</label>
         <input type="number" id="selPocet" value="10" min="1" max="30" step="1"
                oninput="updateStats()" style="width:100%;padding:7px 11px;border-radius:var(--radius-sm);border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text);font-size:.85rem;font-family:var(--font);outline:none;box-sizing:border-box;">
+      </div>
+
+      <div class="field-group">
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;text-transform:none;font-size:.82rem;font-weight:600;">
+          <input type="checkbox" id="chkFreqMode" onchange="applyFreqMode()">
+          🎯 Frekvenční mód
+        </label>
+        <div id="freqModeInfo" style="display:none;font-size:.78rem;color:var(--color-text-muted);padding:5px 8px;background:var(--color-surface-alt);border-radius:var(--radius-sm);line-height:1.6;"></div>
+        <div id="suggestRow" style="display:none;gap:6px;align-items:center;margin-top:5px;flex-wrap:wrap;">
+          <button id="btnSuggest" onclick="suggestNextCombo(false)" style="padding:5px 12px;border-radius:var(--radius-xl);border:1px solid var(--color-primary);background:var(--color-primary-bg);color:var(--color-primary-text);font-size:.8rem;font-family:var(--font);cursor:pointer;font-weight:600;">⚡ Navrhnout</button>
+          <button id="btnSuggestNext" onclick="suggestNextCombo(true)" style="display:none;padding:5px 12px;border-radius:var(--radius-xl);border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text);font-size:.8rem;font-family:var(--font);cursor:pointer;font-weight:600;">→ Další</button>
+          <span id="suggestCounter" style="font-size:.75rem;color:var(--color-text-muted);"></span>
+          <button id="btnSuggestReset" onclick="resetSuggestSession()" style="display:none;padding:3px 8px;border-radius:var(--radius-xl);border:1px solid var(--color-border);background:none;color:var(--color-text-muted);font-size:.75rem;font-family:var(--font);cursor:pointer;" title="Začít od začátku">↺</button>
+        </div>
       </div>
 
       <div class="field-group">
@@ -536,6 +550,7 @@ const PATTERNS = [
   { key:'wh_question',   label:'WH otázka (co/kde/kdy...)',      def:true  },
   // A1
   { key:'imperative',    label:'Rozkaz',                          def:false },
+  { key:'agreement',     label:'Souhlasná reakce (So/Neither)',   def:false },
   // A2
   { key:'comparison',    label:'Srovnání',                        def:false },
   { key:'tag_question',  label:'Dovětek (že?)',                   def:false },
@@ -568,7 +583,7 @@ const GRAMMAR_FREQ = {
 // Frekvence typů vět v reálné angličtině (1=vzácné … 5=velmi časté)
 const PAT_FREQ = {
   affirmative:5, negative:4, question:3, wh_question:3,
-  imperative:2, comparison:2, time_clause:2, passive:2,
+  imperative:2, agreement:2, comparison:2, time_clause:2, passive:2,
   conditional:1, indirect:1, tag_question:1,
 };
 
@@ -586,20 +601,32 @@ function applyFreq(el, n) {
   el.title = '★'.repeat(n)+'☆'.repeat(5-n);
 }
 
-// Gramatiky, které samy definují formu věty — redundantní patterny se automaticky vyloučí
-const GRAMMAR_PATTERN_EXCLUDE = {
+// Patterny, které jsou samotnou gramatikou — automaticky zahrnout (locked+checked)
+const GRAMMAR_PATTERN_FORCE = {
   'Trpný rod':               ['passive'],
-  'Dovětky (question tags)': ['tag_question', 'question', 'wh_question'],
+  'Dovětky (question tags)': ['tag_question'],
   'Podmínka 1. typ':         ['conditional'],
-  'Podmínka 2. typ':         ['conditional', 'imperative'],
-  'Podmínka 3. typ':         ['conditional', 'imperative'],
+  'Podmínka 2. typ':         ['conditional'],
+  'Podmínka 3. typ':         ['conditional'],
   'Přímá a nepřímá řeč':     ['indirect'],
   'Rozkazy a návrhy':        ['imperative'],
+  'Have something done':     ['passive'],
+  'Souhlasné reakce':        ['agreement'],
+};
+
+// Patterny, které s touto gramatikou nedávají smysl — automaticky vyloučit (locked+unchecked)
+const GRAMMAR_PATTERN_FORBID = {
+  'Dovětky (question tags)': ['question', 'wh_question'],
+  'Podmínka 2. typ':         ['imperative'],
+  'Podmínka 3. typ':         ['imperative'],
   'Wish':                    ['imperative', 'passive', 'conditional'],
   'Would rather':            ['imperative'],
   "It's time":               ['imperative', 'conditional'],
-  'Have something done':     ['passive'],
-  'Předpřítomný průběhový':  ['passive'],
+  'Předpřítomný průběhový':  ['passive', 'comparison'],
+  'Přítomný čas průběhový':  ['comparison'],
+  'Minulý čas průběhový':    ['comparison'],
+  'Budoucí průběhový':       ['comparison'],
+  'Souhlasné reakce':        ['imperative', 'passive', 'indirect', 'conditional', 'time_clause', 'comparison'],
 };
 
 // Specifická pravidla pro generování VĚT — kde AI nejčastěji chybuje
@@ -867,6 +894,7 @@ const PAT_EXAMPLES = {
   third_person:  ['Zavolala kolegovi.', 'She called her colleague.'],
   plural:        ['Zavolali kolegovi.', 'They called their colleague.'],
   imperative:    ['Zavolej kolegovi!', 'Call your colleague!'],
+  agreement:     ['Já taky.', 'So do I. / Neither do I.'],
   passive:       ['Bylo mu zavoláno.', 'He was called.'],
   indirect:      ['Řekl, že zavolal.', 'He said that he had called.'],
   comparison:    ['Zavolal dříve než ona.', 'He called earlier than she did.'],
@@ -895,6 +923,7 @@ const PAT_NOTE_EN = {
   passive:       'passive voice: BE + past participle',
   indirect:      'reported speech: said that + past tense',
   comparison:    'comparison: more/less + than',
+  agreement:     'agreement: So + auxiliary + subject (positive) / Neither + auxiliary + subject (negative)',
   tag_question:  'tag: positive sentence → negative tag',
   conditional:   'condition: IF + tense → result',
   time_clause:   'time clause: when/after/before + present tense',
@@ -1175,6 +1204,7 @@ document.getElementById('dbJsonFile').addEventListener('change', function(e) {
 
 function parseDbStats(data) {
   dbStats = {};
+  resetSuggestSession();  // Nová DB = nová session navrhování
   dbTotalSents = 0;
   const blocks = data.blocks || [];
   blocks.forEach(b => {
@@ -1203,29 +1233,103 @@ function renderDbTable() {
   Object.values(dbStats).forEach(td => Object.keys(td).forEach(t => allTopics.add(t)));
   const topics = [...allTopics].sort();
 
+  // Průměrný počet vět na blok — z dat (Cestování, Každodenní rutina = 4 věty/blok)
+  const SENTS_PER_BLOCK = 4;
+
+  function topicTargetSents(g) {
+    return getTargetBlocks(g) * SENTS_PER_BLOCK;
+  }
+
+  function gramLevel(g) {
+    for (const [lvl, list] of Object.entries(GRAMMAR_BY_LEVEL)) {
+      if (list.includes(g)) return lvl;
+    }
+    return '?';
+  }
+
+  function freqStars(g) {
+    const f = GRAMMAR_FREQ[g] || 0;
+    return '★'.repeat(f) + '☆'.repeat(5 - f);
+  }
+
+  // Pokrytí témat pro gramatiku — věty vs. cílový počet vět na téma
+  function gramCoverage(g) {
+    if (!dbStats[g]) return { covered: 0, total: 0, target: topicTargetSents(g) };
+    const target  = topicTargetSents(g);
+    const entries = Object.values(dbStats[g]);
+    const covered = entries.filter(e => e.count >= target).length;
+    return { covered, total: entries.length, target };
+  }
+
+  function topicSentBadge(count, target) {
+    const pct = count / target;
+    const color = pct >= 1 ? '#16a34a' : pct >= 0.6 ? '#d97706' : '#dc2626';
+    return `<span style="color:${color};font-weight:700">${count}/${target} vět</span>`;
+  }
+
+  function statusBadge(covered, total) {
+    if (total === 0) return '<span style="color:var(--color-text-muted)">—</span>';
+    if (covered >= total) return '<span style="color:#16a34a;font-weight:700">✓ OK</span>';
+    if (covered > 0)      return '<span style="color:#d97706;font-weight:700">⚠ málo</span>';
+    return '<span style="color:#dc2626;font-weight:700">✗ chybí</span>';
+  }
+
   let html = '<div class="db-table-wrap"><table class="db-table"><thead><tr>';
-  html += '<th>Gramatika</th><th>Téma</th><th>Vět</th><th>Existující bloky</th>';
+  html += '<th>Gramatika</th><th>Úr.</th><th>Četnost</th><th>Vět</th><th>% celku</th><th>Cíl</th><th>Stav</th><th>Téma / Bloky</th>';
   html += '</tr></thead><tbody>';
 
   allGrams.forEach(g => {
     if (!dbStats[g]) return;
-    const gramTotal = Object.values(dbStats[g]).reduce((s, v) => s + v.count, 0);
-    html += `<tr class="db-gram-header"><td colspan="4">${g} — celkem ${gramTotal} vět</td></tr>`;
+    const gramTotal  = Object.values(dbStats[g]).reduce((s, v) => s + v.count, 0);
+    const pctTotal   = dbTotalSents > 0 ? (gramTotal / dbTotalSents * 100).toFixed(1) : '0.0';
+    const lvl        = gramLevel(g);
+    const stars      = freqStars(g);
+    const { covered, total, target } = gramCoverage(g);
+    const status     = statusBadge(covered, total);
+    const coverLabel = total > 0 ? `${covered}/${total} tém. · cíl ${target} vět` : '';
+
+    html += `<tr class="db-gram-header">
+      <td><strong>${g}</strong></td>
+      <td><span class="mb-level" style="padding:1px 6px;border-radius:8px;font-size:.72rem">${lvl}</span></td>
+      <td style="font-size:.8rem;color:#b45309;letter-spacing:1px" title="Frekvence v angličtině">${stars}</td>
+      <td><strong>${gramTotal}</strong></td>
+      <td style="color:var(--color-text-muted)">${pctTotal} %</td>
+      <td style="color:var(--color-text-muted);font-size:.8rem">${coverLabel}</td>
+      <td>${status}</td>
+      <td></td>
+    </tr>`;
+
     topics.forEach(t => {
       const entry = dbStats[g] && dbStats[g][t];
       if (!entry) return;
-      const blokList = entry.bloks.slice(0, 8).join(', ') + (entry.bloks.length > 8 ? '…' : '');
+      const blokList  = entry.bloks.slice(0, 8).join(', ') + (entry.bloks.length > 8 ? '…' : '');
+      const sentTarget = topicTargetSents(g);
+      const sentLabel  = topicSentBadge(entry.count, sentTarget);
       html += `<tr>
+        <td colspan="3" style="padding-left:1.5rem;color:var(--color-text-muted);font-size:.82rem">▸ <strong style="color:var(--color-text)">${t}</strong></td>
         <td></td>
-        <td>${t}</td>
-        <td class="db-count${entry.count === 0 ? ' zero' : ''}">${entry.count}</td>
-        <td><div class="db-bloks">${blokList}</div></td>
+        <td style="font-size:.78rem">${sentLabel}</td>
+        <td colspan="3" style="font-size:.78rem;color:var(--color-text-muted)">${blokList}</td>
       </tr>`;
     });
   });
 
   html += '</tbody></table></div>';
-  document.getElementById('dbTableWrap').innerHTML = html;
+
+  // Souhrn nahoře
+  const gramList = allGrams.filter(g => dbStats[g]);
+  const countOk   = gramList.filter(g => { const c=gramCoverage(g); return c.total>0 && c.covered>=c.total; }).length;
+  const countWarn = gramList.filter(g => { const c=gramCoverage(g); return c.total>0 && c.covered/c.total>=0.5 && c.covered<c.total; }).length;
+  const countLow  = gramList.filter(g => { const c=gramCoverage(g); return c.total===0 || c.covered/c.total<0.5; }).length;
+  const summary = `<div style="display:flex;gap:1.5rem;align-items:center;margin-bottom:.75rem;flex-wrap:wrap;font-size:.85rem">
+    <span>📚 <strong>${dbTotalSents}</strong> vět celkem</span>
+    <span>📋 <strong>${gramList.length}</strong> gramatik</span>
+    <span style="color:#16a34a">✓ OK: <strong>${countOk}</strong></span>
+    <span style="color:#d97706">⚠ málo: <strong>${countWarn}</strong></span>
+    <span style="color:#dc2626">✗ chybí: <strong>${countLow}</strong></span>
+  </div>`;
+
+  document.getElementById('dbTableWrap').innerHTML = summary + html;
 }
 
 function getExistingBloks(grammar, topic) {
@@ -1288,6 +1392,159 @@ function updateCountBadge() {
     topicBadge.className = 'count-badge none';
     topicBadge.style.display = '';
   }
+}
+
+// ── Frekvenční mód ────────────────────────────────────────────────────────────
+// Průměrný počet vět na blok (z dat: 4 věty/blok)
+const SENTS_PER_BLOCK = 4;
+
+// Cílový počet bloků pro gramatiku podle frekvence (GRAMMAR_FREQ škála 1–5)
+function getTargetBlocks(grammar) {
+  const f = GRAMMAR_FREQ[grammar] || 2;
+  if (f >= 5) return 30;
+  if (f >= 4) return 20;
+  if (f >= 3) return 15;
+  return 10;
+}
+
+// Cílový počet vět na jedno téma v dané gramatice
+function getTopicTargetSents(grammar) {
+  return getTargetBlocks(grammar) * SENTS_PER_BLOCK;
+}
+
+// Počet existujících vět pro gramatiku × téma z načtené DB
+function getExistingSentCount(grammar, topic) {
+  if (!dbStats || !dbStats[grammar]) return 0;
+  const entry = dbStats[grammar][topic];
+  return entry ? entry.count : 0;
+}
+
+// Zachováno pro zpětnou kompatibilitu (používá se jen pro blok list v přehledu)
+function getExistingBlockCount(grammar, topic) {
+  if (!dbStats || !dbStats[grammar]) return 0;
+  const entry = dbStats[grammar][topic];
+  return entry ? entry.bloks.length : 0;
+}
+
+// Aktualizuje selPocet a info panel podle frekvenčního gapu (věty)
+function applyFreqMode() {
+  const active = document.getElementById('chkFreqMode').checked;
+  const info   = document.getElementById('freqModeInfo');
+  const row    = document.getElementById('suggestRow');
+
+  row.style.display = (active && dbStats) ? 'flex' : 'none';
+
+  if (!active || !dbStats) {
+    info.style.display = 'none';
+    return;
+  }
+
+  const grammar  = document.getElementById('selGrammar').value;
+  const topic    = getSelectedTopic();
+  const target   = getTopicTargetSents(grammar);
+  const existing = getExistingSentCount(grammar, topic);
+  const gap      = Math.max(0, target - existing);
+  // Doporučený počet bloků k vygenerování (gap vět ÷ SENTS_PER_BLOCK, max 10)
+  const suggest  = Math.min(10, Math.ceil(gap / SENTS_PER_BLOCK));
+
+  if (gap > 0) {
+    document.getElementById('selPocet').value = suggest;
+    updateStats();
+  }
+
+  info.style.display = '';
+  if (gap === 0) {
+    info.innerHTML = 'Cíl: <b>' + target + '</b> vět &nbsp;·&nbsp; V DB: <b>' + existing + '</b> &nbsp;·&nbsp; <span style="color:#16a34a;font-weight:700">&#10003; pokryto</span>';
+  } else {
+    const gapColor = gap <= target * 0.4 ? '#d97706' : 'var(--color-text)';
+    info.innerHTML = 'Cíl: <b>' + target + '</b> vět &nbsp;·&nbsp; V DB: <b>' + existing + '</b> &nbsp;·&nbsp; Chybí: <b style="color:' + gapColor + '">' + gap + '</b> vět &nbsp;·&nbsp; Generuji: <b>' + suggest + '</b> bloků';
+  }
+}
+
+// Session stav navrhování — resetuje se načtením nové DB nebo manuálním resetem
+let suggestSession = {
+  used: new Set(),   // "grammar|topic" combos already suggested this session
+  count: 0,          // how many suggestions made
+};
+
+function resetSuggestSession() {
+  suggestSession.used.clear();
+  suggestSession.count = 0;
+  document.getElementById('btnSuggestNext').style.display = 'none';
+  document.getElementById('btnSuggestReset').style.display = 'none';
+  document.getElementById('suggestCounter').textContent = '';
+}
+
+// Najde gramatikou × téma s největším frekvenčním deficitem a nastaví selecty
+// skip=true → přeskočí již navržené combos (tlačítko Další)
+function suggestNextCombo(skip) {
+  if (!dbStats) { alert('Nejprve načti databázi JSON.'); return; }
+
+  const level    = document.getElementById('selLevel').value;
+  const grammars = GRAMMAR_BY_LEVEL[level] || [];
+
+  // Sesbírej témata ze selectu
+  const topics = [...document.querySelectorAll('#selTopic option')]
+    .map(o => o.dataset.base || o.value)
+    .filter(v => v && v !== '__vlastni__' && !v.startsWith('✎'));
+
+  // Seřaď všechny kombos podle priority (sestupně) — pracuje s větami, ne bloky
+  const ranked = [];
+  grammars.forEach(function(grammar) {
+    const freq   = GRAMMAR_FREQ[grammar] || 2;
+    const target = getTopicTargetSents(grammar);
+    topics.forEach(function(topic) {
+      const existing = getExistingSentCount(grammar, topic);
+      const gap      = target - existing;
+      if (gap <= 0) return;
+      const progressBonus = existing > 0 ? 200 : -100;
+      const priority      = progressBonus + gap * freq;
+      ranked.push({ grammar, topic, priority, gap, existing });
+    });
+  });
+  ranked.sort((a, b) => b.priority - a.priority);
+
+  // Pokud skip=true, přeskočíme již navržené; jinak bereme první v pořadí
+  let chosen = null;
+  if (skip) {
+    chosen = ranked.find(r => !suggestSession.used.has(r.grammar + '|' + r.topic));
+  } else {
+    // Reset session — začínáme nové kolo
+    resetSuggestSession();
+    chosen = ranked[0] || null;
+  }
+
+  if (!chosen) {
+    const msg = skip
+      ? 'Prošly všechny kombinace pro tuto úroveň. Klikni ↺ pro reset.'
+      : 'Všechny kombinace pro úroveň ' + level + ' jsou pokryty!';
+    alert(msg);
+    return;
+  }
+
+  // Zapamatuj si tuto kombinaci
+  const key = chosen.grammar + '|' + chosen.topic;
+  suggestSession.used.add(key);
+  suggestSession.count++;
+
+  // Zobraz počítadlo + tlačítka
+  const remaining = ranked.filter(r => !suggestSession.used.has(r.grammar + '|' + r.topic)).length;
+  document.getElementById('suggestCounter').textContent = '#' + suggestSession.count + (remaining > 0 ? ' · zbývá ' + remaining : ' · hotovo');
+  document.getElementById('btnSuggestNext').style.display = remaining > 0 ? '' : 'none';
+  document.getElementById('btnSuggestReset').style.display = suggestSession.count > 1 ? '' : 'none';
+
+  // Nastav gramatiku
+  const gramSel = document.getElementById('selGrammar');
+  gramSel.value = chosen.grammar;
+  updateStats(); updateCountBadge(); applyGrammarPatternExclusion(); selectAllPat(true);
+
+  // Nastav téma
+  const topicSel = document.getElementById('selTopic');
+  const matchOpt = [...topicSel.options].find(o => (o.dataset.base || o.value) === chosen.topic);
+  if (matchOpt) topicSel.value = matchOpt.value;
+  onTopicChange(); updateCountBadge();
+
+  applyFreqMode();
 }
 
 // ── Oddělovač ─────────────────────────────────────────────────────────────────
@@ -1452,8 +1709,9 @@ function applyLevelPatternRestriction() {
 }
 
 function applyGrammarPatternExclusion() {
-  const grammar     = document.getElementById('selGrammar').value;
-  const excludeKeys = GRAMMAR_PATTERN_EXCLUDE[grammar] || [];
+  const grammar    = document.getElementById('selGrammar').value;
+  const forceKeys  = GRAMMAR_PATTERN_FORCE[grammar]  || [];
+  const forbidKeys = GRAMMAR_PATTERN_FORBID[grammar] || [];
 
   document.querySelectorAll('#patternsGrid .pattern-item').forEach(item => {
     const cb  = item.querySelector('input[type=checkbox]');
@@ -1461,18 +1719,33 @@ function applyGrammarPatternExclusion() {
     const oldHint = item.querySelector('.pat-excluded-hint');
     if (oldHint) oldHint.remove();
 
-    // přeskočit pokud je zablokováno úrovní — nemaže level blok
+    // agreement je speciální — zobrazit POUZE pro "Souhlasné reakce"
+    if (key === 'agreement') {
+      item.style.display = (grammar === 'Souhlasné reakce') ? '' : 'none';
+    }
+
+    // přeskočit pokud je zablokováno úrovní
     if (cb && cb.dataset.levelBlocked === 'true') return;
 
-    if (key && excludeKeys.includes(key)) {
+    if (key && forceKeys.includes(key)) {
+      cb.checked  = true;
+      cb.disabled = true;
+      item.style.opacity = '0.6';
+      item.title = 'Tento typ věty je daný samotnou gramatikou — automaticky zahrnuto';
+      const hint = document.createElement('span');
+      hint.className = 'pat-excluded-hint';
+      hint.style.cssText = 'font-size:.72rem;color:var(--color-primary);margin-left:4px';
+      hint.textContent = '(vynuceno gramatikou)';
+      item.appendChild(hint);
+    } else if (key && forbidKeys.includes(key)) {
       cb.checked  = false;
       cb.disabled = true;
-      item.style.opacity = '0.45';
-      item.title = 'Tento typ věty je daný samotnou gramatikou — není třeba ho zadávat zvlášť';
+      item.style.opacity = '0.35';
+      item.title = 'Tento typ věty s touto gramatikou nedává smysl';
       const hint = document.createElement('span');
       hint.className = 'pat-excluded-hint';
       hint.style.cssText = 'font-size:.72rem;color:var(--color-text-light);margin-left:4px';
-      hint.textContent = '(dáno gramatikou)';
+      hint.textContent = '(nevhodné)';
       item.appendChild(hint);
     } else {
       cb.disabled = false;
@@ -1484,7 +1757,7 @@ function applyGrammarPatternExclusion() {
 }
 
 function getSelectedPatterns() {
-  return [...document.querySelectorAll('#patternsGrid input[type=checkbox]:checked:not(:disabled)')].map(cb => cb.value);
+  return [...document.querySelectorAll('#patternsGrid input[type=checkbox]:checked')].map(cb => cb.value);
 }
 
 function getPatLabel(key) {
@@ -1542,8 +1815,8 @@ function generatePrompt() {
     .flatMap(l => GRAMMAR_BY_LEVEL[l] || []);
   const levelGuard = forbidden.length > 0
     ? (lang === 'en'
-      ? `\nLEVEL RESTRICTION (strictly follow):\nSentences must match level ${level} — do not use any grammar constructions above this level.\nForbidden constructions for this level: ${forbidden.join(', ')}.\n`
-      : `\nOMEZENÍ ÚROVNĚ (striktně dodržuj):\nVěty musí odpovídat úrovni ${level} — nepoužívej žádné gramatické jevy nad tuto úroveň.\nZakázané konstrukce pro tuto úroveň: ${forbidden.join(', ')}.\n`)
+      ? `\nLEVEL RESTRICTION (strictly follow):\nSentences must match level ${level} — do not use any grammar constructions above this level.\nForbidden grammar topics for this level: ${forbidden.join(', ')}.\nIMPORTANT: sentence_type values (affirmative, negative, question, wh_question, time_clause, tag_question, imperative, etc.) are sentence structural patterns — they are NOT grammar topic names and are NOT subject to the grammar topic restriction above. Always generate all sentence types listed in the header row.\n`
+      : `\nOMEZENÍ ÚROVNĚ (striktně dodržuj):\nVěty musí odpovídat úrovni ${level} — nepoužívej žádné gramatické jevy nad tuto úroveň.\nZakázané gramatické jevy pro tuto úroveň: ${forbidden.join(', ')}.\nDŮLEŽITÉ: hodnoty sentence_type (affirmative, negative, question, wh_question, time_clause, tag_question, imperative atd.) jsou strukturální vzory vět — NEJSOU to názvy gramatických jevů a NEVZTAHUJE se na ně výše uvedené omezení. Vždy vygeneruj všechny typy vět uvedené v záhlaví.\n`)
     : '';
 
   const zahlaviRadek = zahlavi
@@ -1559,6 +1832,7 @@ function generatePrompt() {
     passive:       'trpný rod: BE + 3. tvar slovesa',
     indirect:      'nepřímá řeč: said that + minulý čas',
     comparison:    'srovnání: more/less + than',
+    agreement:     'souhlasná reakce: So + pomocné sloveso + podmět (kladná) / Neither + pomocné + podmět (záporná)',
     tag_question:  'dovětek: kladná věta → záporný dovětek',
     conditional:   'podmínka: IF + čas → výsledek',
     time_clause:   'časová věta: when/after/before + přít. čas',
@@ -1608,13 +1882,14 @@ ${patsSeznam}
 RULES:
 1. Each block = one specific situation or verb
 2. Each block must use a DIFFERENT base verb or situation — do not repeat
-3. For each block generate exactly ${pats.length} sentences — one for each type above, in the same order
-4. Sentences must be natural and practical for adult Czech speakers learning English
-5. The CZ column must be left EMPTY — do not generate Czech translations (they will be added automatically later)
-6. If a sentence type does not fit the grammar point, adapt it to the closest possible form
-7. Column "blok" = brief name of the situation in Czech (max 4 words, e.g. "zavolat kolegovi")
-8. Column "poznamka" = concise note for the student in Czech — explain the formation rule, key element or grammar trap specific to this sentence. Examples: "WOULD HAVE + 3rd form", "for = for a period / since = from when", "doesn't = 3rd person sing.", "HAD + 3rd form = past perfect". Each sentence in a block CAN have a different note. Max 1 short sentence or phrase.
-9. Column "person": for affirmative and negative sentences rotate through persons across blocks in this order: first → second → third_singular → plural → first → ... For all other patterns (question, wh_question, imperative, etc.) leave person empty ("").
+3. BLOCK CONSISTENCY (critical): All sentences within a block must be about the EXACT SAME situation or action. The block name must precisely match the content of EVERY sentence in the block — including negatives, questions and all other patterns. Do NOT switch to a different topic between sentence types. Example: if the block is "ordering coffee", every sentence (affirmative, negative, question, etc.) must be about ordering coffee — not about other drinks or situations.
+4. For each block generate exactly ${pats.length} sentences — one for each type above, in the same order
+5. Sentences must be natural and practical for adult Czech speakers learning English
+6. The CZ column must be left EMPTY — do not generate Czech translations (they will be added automatically later)
+7. If a sentence type does not fit the grammar point, adapt it to the closest possible form — but keep the same situation as the rest of the block
+8. Column "blok" = brief name of the situation in Czech (max 4 words, e.g. "objednat kávu") — must match ALL sentences in the block
+9. Column "poznamka" = concise note for the student in Czech — explain the formation rule, key element or grammar trap specific to this sentence. Examples: "WOULD HAVE + 3rd form", "for = for a period / since = from when", "doesn't = 3rd person sing.", "HAD + 3rd form = past perfect". Each sentence in a block CAN have a different note. Max 1 short sentence or phrase.
+10. Column "person": for affirmative and negative sentences rotate through persons across blocks in this order: first → second → third_singular → plural → first → ... For all other patterns (question, wh_question, imperative, etc.) leave person empty ("") — but still include the empty column so every row has exactly 9 columns.
 
 OUTPUT FORMAT:
 Separator between columns: ${sepLabel}
@@ -1656,13 +1931,14 @@ ${patsSeznam}
 PRAVIDLA:
 1. Každý blok = jedna konkrétní situace nebo sloveso
 2. Každý blok musí mít JINÉ základní sloveso nebo situaci — nepakuj je
-3. Ke každému bloku vygeneruj přesně ${pats.length} vět — jednu pro každý typ výše, ve stejném pořadí
-4. Věty musí být přirozené a praktické pro dospělé studenty češtiny učící se anglicky
-5. Sloupec CZ nech PRÁZDNÝ — česky překlady se doplní automaticky, negeneruj je
-6. Pokud typ věty neodpovídá danému gramatickému jevu, přizpůsob ho nejbližší možné formě
-7. Sloupec "blok" = stručný název situace česky (max 4 slova, např. "zavolat kolegovi")
-8. Sloupec "poznamka" = výstižná poznámka pro studenta česky — vysvětli pravidlo tvorby, klíčový prvek nebo gramatickou past specifickou pro tuto větu. Příklady: "WOULD HAVE + 3. tvar", "for = po dobu / since = od kdy", "doesn't = 3. os. sing.", "HAD + 3. tvar = předminulý". Každá věta v bloku MŮŽE mít jinou poznámku. Max 1 krátká věta nebo fráze.
-9. Sloupec "person": u affirmative a negative vět střídej osoby napříč bloky v tomto pořadí: first → second → third_singular → plural → first → ... U všech ostatních vzorů (question, wh_question, imperative atd.) nech person prázdné ("").
+3. KONZISTENCE BLOKU (kritické): Všechny věty v bloku musí být o STEJNÉ situaci nebo akci. Název bloku musí přesně odpovídat obsahu KAŽDÉ věty v bloku — včetně záporů, otázek a všech ostatních vzorů. Nepřecházej na jiné téma mezi typy vět. Příklad: pokud je blok "objednat kávu", každá věta (kladná, záporná, otázka atd.) musí být o objednávání kávy — ne o jiných nápojích nebo situacích.
+4. Ke každému bloku vygeneruj přesně ${pats.length} vět — jednu pro každý typ výše, ve stejném pořadí
+5. Věty musí být přirozené a praktické pro dospělé studenty češtiny učící se anglicky
+6. Sloupec CZ nech PRÁZDNÝ — česky překlady se doplní automaticky, negeneruj je
+7. Pokud typ věty neodpovídá danému gramatickému jevu, přizpůsob ho nejbližší možné formě — ale zachovej stejnou situaci jako zbytek bloku
+8. Sloupec "blok" = stručný název situace česky (max 4 slova, např. "objednat kávu") — musí odpovídat VŠEM větám v bloku
+9. Sloupec "poznamka" = výstižná poznámka pro studenta česky — vysvětli pravidlo tvorby, klíčový prvek nebo gramatickou past specifickou pro tuto větu. Příklady: "WOULD HAVE + 3. tvar", "for = po dobu / since = od kdy", "doesn't = 3. os. sing.", "HAD + 3. tvar = předminulý". Každá věta v bloku MŮŽE mít jinou poznámku. Max 1 krátká věta nebo fráze.
+10. Sloupec "person": u affirmative a negative vět střídej osoby napříč bloky v tomto pořadí: first → second → third_singular → plural → first → ... U všech ostatních vzorů (question, wh_question, imperative atd.) nech person prázdné ("") — ale sloupec tam musí být, každý řádek musí mít přesně 9 sloupců.
 
 VÝSTUPNÍ FORMÁT:
 Tabulka s oddělovačem: ${sepLabel}
