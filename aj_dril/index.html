@@ -290,6 +290,55 @@
     body.dark .voice-notice { background:#2a1d00; border-color:#92400e; color:#fcd34d; }
     body.dark .voice-notice a { color:#fbbf24; }
 
+    /* ── SCRAMBLE REŽIM ──────────────────────────────────────────── */
+    .scramble-btn { font-size:1rem; opacity:.45; transition:opacity .2s; }
+    .scramble-btn.active { opacity:1; filter:drop-shadow(0 0 4px #6366f1); }
+    #scrambleWrap { display:none; margin:.5rem 0; }
+    #scrambleWrap.visible { display:block; }
+    .scramble-answer {
+      min-height:2.6rem; border:2px dashed var(--color-border); border-radius:var(--radius-sm);
+      padding:.5rem .6rem; display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:.6rem;
+      background:var(--color-surface-alt); transition:border-color .2s, background .2s;
+    }
+    .scramble-answer.correct { border-color:#22c55e; background:#f0fdf4; }
+    .scramble-answer.wrong   { border-color:#ef4444; background:#fef2f2; }
+    body.dark .scramble-answer.correct { background:#052e16; }
+    body.dark .scramble-answer.wrong   { background:#2d0a0a; }
+    .scramble-bank { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .scr-word {
+      padding:.28rem .6rem; border-radius:var(--radius-sm); border:1px solid #cbd5e1;
+      background:#f1f5f9; cursor:pointer; font-size:.88rem; font-family:var(--font);
+      color:#1e293b; transition:background .15s, border-color .15s; user-select:none;
+    }
+    body.dark .scr-word { background:#1e293b; color:#e2e8f0; border-color:#334155; }
+    .scr-word:hover  { background:#dbeafe; border-color:#3b82f6; }
+    .scr-word.used   { opacity:.25; cursor:default; pointer-events:none; }
+    .scr-word.placed { background:#dbeafe; border-color:#3b82f6; color:#1d4ed8; }
+    body.dark .scr-word.placed { background:#1e3a5f; border-color:#3b82f6; color:#93c5fd; }
+    .drill-card.scramble-active { background: linear-gradient(135deg, var(--color-surface) 85%, #ede9fe 100%); }
+    body.dark .drill-card.scramble-active { background: linear-gradient(135deg, var(--color-surface) 85%, #1e1b4b 100%); }
+
+    /* ── REŽIM PSANÍ ──────────────────────────────────────────────── */
+    .write-btn { font-size:1rem; opacity:.45; transition:opacity .2s; }
+    .write-btn.active { opacity:1; filter:drop-shadow(0 0 4px #f59e0b); }
+    #writeWrap { display:none; margin:.5rem 0; }
+    #writeWrap.visible { display:block; }
+    .write-input-row { display:flex; gap:.4rem; align-items:center; }
+    .write-input {
+      flex:1; padding:.4rem .6rem; border-radius:var(--radius-sm);
+      border:2px solid var(--color-border); background:var(--color-surface);
+      color:var(--color-text); font-size:.95rem; font-family:var(--font);
+      outline:none; transition:border-color .2s;
+    }
+    .write-input:focus { border-color:#6366f1; }
+    .write-input.correct { border-color:#22c55e; }
+    .write-input.wrong   { border-color:#ef4444; }
+    .write-result { margin-top:.5rem; min-height:0; }
+    .write-result .wr-wrong  { opacity:.85; margin-bottom:.2rem; }
+    .write-result .wr-correct { font-weight:600; color:#16a34a; }
+    .drill-card.write-active { background: linear-gradient(135deg, var(--color-surface) 85%, #fef3c7 100%); }
+    body.dark .drill-card.write-active { background: linear-gradient(135deg, var(--color-surface) 85%, #2d1f00 100%); }
+
     /* ── CHYTRÝ REŽIM ─────────────────────────────────────────────── */
     .smart-btn { font-size:1.1rem; opacity:.45; transition:opacity .2s; }
     .smart-btn.active { opacity:1; filter:drop-shadow(0 0 4px #f59e0b); }
@@ -816,6 +865,8 @@
         <span class="meta-badge mb-pattern" id="mPattern"></span>
       </div>
       <button class="gram-btn" id="gramBtn" onclick="toggleGramTip()" title="Gramatický tip">📖</button>
+      <button class="gram-btn scramble-btn" id="scrambleBtn" onclick="toggleScrambleMode()" title="Scramble režim — skládání věty ze slov">🔀</button>
+      <button class="gram-btn write-btn" id="writeBtn" onclick="toggleWriteMode()" title="Režim psaní — napiš větu sám">✏️</button>
       <button class="fav-btn" id="favBtn" onclick="toggleFav()" title="Oblíbená věta">☆</button>
     </div>
     <div class="sentence-cz" id="sentCZ">—</div>
@@ -826,6 +877,20 @@
       <div class="gram-tip-title" id="gramTipTitle"></div>
       <p class="gram-tip-text" id="gramTipText"></p>
       <div class="gram-tip-formula" id="gramTipFormula"></div>
+    </div>
+    <!-- Režim psaní -->
+    <div id="writeWrap">
+      <div class="write-input-row">
+        <input type="text" id="writeInput" class="write-input" placeholder="Napiš anglickou větu…" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" oninput="writeInputChanged()" onkeydown="if(event.key==='Enter')checkWrite()">
+        <button class="btn btn-sm" id="writeAposBtn" onclick="writeInsertApos()" title="Vloží apostrof '">&#39;</button>
+        <button class="btn btn-primary btn-sm" id="writeCheckBtn" onclick="checkWrite()">OK</button>
+      </div>
+      <div class="write-result" id="writeResult"></div>
+    </div>
+    <!-- Scramble režim -->
+    <div id="scrambleWrap">
+      <div class="scramble-answer" id="scrambleAnswer"></div>
+      <div class="scramble-bank"   id="scrambleBank"></div>
     </div>
     <!-- Hodnocení -->
     <div class="rating-wrap rating-hidden" id="ratingWrap">
@@ -995,6 +1060,10 @@ function loadCfg() {
   if(cfg.autoMode) document.getElementById('autoDelayGroup').classList.remove('hidden');
   if(cfg.darkMode) document.body.classList.add('dark');
   applySentScale(cfg.sentScale||1);
+  cfg.scrambleMode = !!cfg.scrambleMode;
+  if(cfg.scrambleMode) document.getElementById('scrambleBtn').classList.add('active');
+  cfg.writeMode = !!cfg.writeMode;
+  if(cfg.writeMode) document.getElementById('writeBtn').classList.add('active');
 }
 
 function saveSetting(key,val) {
@@ -1596,6 +1665,269 @@ function hideGramTip() {
   const btn = document.getElementById('gramBtn');
   if(tip) tip.classList.remove('visible');
   if(btn) btn.classList.remove('active');
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// SCRAMBLE REŽIM — skládání věty ze slov
+// ══════════════════════════════════════════════════════════════════════════════
+let scrambleAnswer = [];     // indexy slov v pořadí jak je uživatel vybral
+let scrambleTokens = [];     // [{id, orig, display}] — originální tokeny věty
+let scrambleEnUnlocked = false; // true po zobrazení výsledku → povolí ↻ EN
+
+function toggleScrambleMode() {
+  cfg.scrambleMode = !cfg.scrambleMode;
+  try { localStorage.setItem(STORAGE_CFG, JSON.stringify(cfg)); } catch(e) {}
+  document.getElementById('scrambleBtn').classList.toggle('active', !!cfg.scrambleMode);
+  showCurrent();
+}
+
+function scrambleReset() {
+  scrambleAnswer = [];
+  scrambleTokens = [];
+  scrambleEnUnlocked = false;
+  const wrap = document.getElementById('scrambleWrap');
+  if(wrap) { wrap.classList.remove('visible'); }
+  const ansEl = document.getElementById('scrambleAnswer');
+  const bankEl = document.getElementById('scrambleBank');
+  if(ansEl) { ansEl.innerHTML = ''; ansEl.className = 'scramble-answer'; }
+  if(bankEl) bankEl.innerHTML = '';
+  const enEl = document.getElementById('sentEN');
+  if(enEl) enEl.style.display = '';
+  const card = document.getElementById('drillCard');
+  if(card) card.classList.remove('scramble-active');
+}
+
+function showScramble(sent) {
+  const text = (sent.en || '').trim();
+  if(!text) return;
+
+  // Odděl koncovou interpunkci (tečka, otazník, vykřičník)
+  const trailMatch = text.match(/([.?!]+)$/);
+  const punct = trailMatch ? trailMatch[1] : '';
+  const textClean = punct ? text.slice(0, -punct.length).trim() : text;
+
+  // Rozdělení na tokeny (slova včetně čárek atd. uvnitř věty)
+  const rawTokens = textClean.split(/\s+/).filter(Boolean);
+  if(rawTokens.length < 2) return; // příliš krátká věta — nescramblovat
+
+  scrambleTokens = rawTokens.map((w, i) => ({
+    id: i,
+    orig: w,          // původní podoba (pro kontrolu)
+    display: w.toLowerCase()  // zobrazení — vše malé
+  }));
+  scrambleAnswer = [];
+
+  // Zamíchej — zaručeně jinak než originál
+  let shuffled;
+  let attempts = 0;
+  do {
+    shuffled = [...scrambleTokens].sort(() => Math.random() - 0.5);
+    attempts++;
+  } while(attempts < 10 && shuffled.length > 1 && shuffled.every((w, i) => w.id === scrambleTokens[i].id));
+
+  // Schovej EN text, zobraz scramble UI
+  const enEl = document.getElementById('sentEN');
+  enEl.style.display = 'none';
+
+  const card = document.getElementById('drillCard');
+  card.classList.add('scramble-active');
+
+  const wrap = document.getElementById('scrambleWrap');
+  wrap.classList.add('visible');
+
+  const ansEl = document.getElementById('scrambleAnswer');
+  ansEl.className = 'scramble-answer';
+  ansEl.innerHTML = '';
+
+  const bankEl = document.getElementById('scrambleBank');
+  bankEl.innerHTML = shuffled.map(w =>
+    `<button class="scr-word" id="scr-w-${w.id}" onclick="scramblePick(${w.id})">${w.display}</button>`
+  ).join('');
+}
+
+function scramblePick(id) {
+  if(scrambleAnswer.includes(id)) return;
+  scrambleAnswer.push(id);
+
+  // Označ jako použité v bance
+  const btn = document.getElementById('scr-w-' + id);
+  if(btn) btn.classList.add('used');
+
+  // Přidej do odpovědní oblasti
+  const ansEl = document.getElementById('scrambleAnswer');
+  const w = scrambleTokens.find(x => x.id === id);
+  const span = document.createElement('span');
+  span.className = 'scr-word placed';
+  span.textContent = w.display;
+  span.dataset.id = id;
+  span.onclick = () => scrambleRemoveWord(id);
+  ansEl.appendChild(span);
+
+  // Zkontroluj jestli je věta kompletní
+  if(scrambleAnswer.length === scrambleTokens.length) {
+    checkScramble();
+  }
+}
+
+function scrambleRemoveWord(id) {
+  const idx = scrambleAnswer.indexOf(id);
+  if(idx === -1) return;
+  scrambleAnswer.splice(idx, 1);
+
+  // Vrať do banky
+  const btn = document.getElementById('scr-w-' + id);
+  if(btn) btn.classList.remove('used');
+
+  // Odstraň z odpovědní oblasti
+  const ansEl = document.getElementById('scrambleAnswer');
+  const span = ansEl.querySelector(`[data-id="${id}"]`);
+  if(span) span.remove();
+}
+
+function checkScramble() {
+  const normalize = s => s.toLowerCase().replace(/^[^a-zA-Z0-9']+|[^a-zA-Z0-9']+$/g, '');
+  const origOrder = scrambleTokens.map(w => normalize(w.orig));
+  const userOrder = scrambleAnswer.map(id => normalize(scrambleTokens.find(x => x.id === id).orig));
+  const correct = userOrder.length === origOrder.length && userOrder.every((w, i) => w === origOrder[i]);
+
+  const ansEl = document.getElementById('scrambleAnswer');
+
+  const sent = getCurrentSent();
+  if(correct) {
+    ansEl.classList.add('correct');
+    if(sent && document.getElementById('playEN').checked) {
+      playENRepeated(sent.en, null, 'en-GB');
+    }
+  } else {
+    ansEl.classList.add('wrong');
+    // Word diff: porovnej každé slovo — zelená = správná pozice, červená = špatná
+    const userWordSpans = scrambleAnswer.map((id, i) => {
+      const w = scrambleTokens.find(x => x.id === id).display;
+      const ok = normalize(scrambleTokens.find(x => x.id === id).orig) === origOrder[i];
+      const col = ok ? '#16a34a' : '#dc2626';
+      return `<span style="color:${col};font-weight:600">${w}</span>`;
+    }).join(' ');
+    ansEl.innerHTML =
+      `<div style="display:flex;flex-direction:column;gap:.25rem;width:100%">` +
+        `<div style="opacity:.85">${userWordSpans}</div>` +
+        `<div style="font-weight:600;color:#16a34a">${sent ? sent.en : ''}</div>` +
+      `</div>`;
+    // Přehraj správnou větu
+    if(sent && document.getElementById('playEN').checked) {
+      playENRepeated(sent.en, null, 'en-GB');
+    }
+  }
+  // Odblokuj ↻ EN pro opakované přehrání
+  scrambleEnUnlocked = true;
+}
+
+function scrambleNext() {
+  scrambleReset();
+  nextSent();
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// REŽIM PSANÍ — uživatel napíše EN větu sám
+// ══════════════════════════════════════════════════════════════════════════════
+let writeEnUnlocked = false;
+
+function toggleWriteMode() {
+  cfg.writeMode = !cfg.writeMode;
+  if(cfg.writeMode) cfg.scrambleMode = false; // vzájemně se vylučují
+  try { localStorage.setItem(STORAGE_CFG, JSON.stringify(cfg)); } catch(e) {}
+  document.getElementById('writeBtn').classList.toggle('active', !!cfg.writeMode);
+  document.getElementById('scrambleBtn').classList.toggle('active', !!cfg.scrambleMode);
+  showCurrent();
+}
+
+function writeReset() {
+  writeEnUnlocked = false;
+  const wrap = document.getElementById('writeWrap');
+  if(wrap) wrap.classList.remove('visible');
+  const inp = document.getElementById('writeInput');
+  if(inp) { inp.value = ''; inp.className = 'write-input'; inp.disabled = false; }
+  const res = document.getElementById('writeResult');
+  if(res) res.innerHTML = '';
+  const card = document.getElementById('drillCard');
+  if(card) card.classList.remove('write-active');
+}
+
+function showWrite() {
+  const wrap = document.getElementById('writeWrap');
+  if(!wrap) return;
+  writeReset();
+  wrap.classList.add('visible');
+  const card = document.getElementById('drillCard');
+  if(card) card.classList.add('write-active');
+  // Skryj EN větu
+  const enEl = document.getElementById('sentEN');
+  if(enEl) enEl.style.display = 'none';
+  setTimeout(() => { const inp = document.getElementById('writeInput'); if(inp) inp.focus(); }, 50);
+}
+
+function writeInsertApos() {
+  const inp = document.getElementById('writeInput');
+  if(!inp || inp.disabled) return;
+  const start = inp.selectionStart, end = inp.selectionEnd;
+  inp.value = inp.value.slice(0, start) + "'" + inp.value.slice(end);
+  inp.selectionStart = inp.selectionEnd = start + 1;
+  inp.focus();
+}
+
+function writeInputChanged() {
+  const inp = document.getElementById('writeInput');
+  if(inp) inp.className = 'write-input'; // smaž výsledkovou třídu při psaní
+}
+
+function checkWrite() {
+  const inp = document.getElementById('writeInput');
+  if(!inp || inp.disabled) return;
+  const normalize = s => s.toLowerCase()
+    .replace(/[´`''ʼ]/g, "'")        // sjednoť varianty apostrofu
+    .replace(/[.,!?;:]+$/g, '')       // odstraň koncovou interpunkci
+    .replace(/[^a-zA-Z0-9' ]+/g, '') // odstraň zbývající nealfanumerické znaky
+    .replace(/\s+/g, ' ').trim();
+  const sent = getCurrentSent();
+  if(!sent) return;
+  const correct = normalize(inp.value) === normalize(sent.en);
+  inp.disabled = true;
+  const res = document.getElementById('writeResult');
+  const nextWrap = document.getElementById('writeNextWrap');
+  if(correct) {
+    inp.classList.add('correct');
+    if(res) res.innerHTML = '';
+    if(sent && document.getElementById('playEN').checked) playENRepeated(sent.en, null, 'en-GB');
+  } else {
+    inp.classList.add('wrong');
+    // Diff: porovnej slovo po slovu
+    const userWords = inp.value.trim().split(/\s+/);
+    const origWords = sent.en.trim().split(/\s+/);
+    const userSpans = userWords.map((w, i) => {
+      const ok = normalize(w) === normalize(origWords[i] || '');
+      return `<span style="color:${ok ? '#16a34a' : '#dc2626'};font-weight:600">${w}</span>`;
+    }).join(' ');
+    if(res) res.innerHTML =
+      `<div class="wr-wrong">${userSpans}</div>` +
+      `<div class="wr-correct">${sent.en}</div>`;
+    if(sent && document.getElementById('playEN').checked) playENRepeated(sent.en, null, 'en-GB');
+  }
+  writeEnUnlocked = true;
+}
+
+function writeNext() {
+  writeReset();
+  nextSent();
+}
+
+function getCurrentSent() {
+  if(!activeBlocks || !activeBlocks.length) return null;
+  const bi = blockOrder[bPos % blockOrder.length];
+  if(bi >= activeBlocks.length) return null;
+  const block = activeBlocks[bi];
+  const so = sentOrders[bi];
+  if(!so) return null;
+  const si = so[sPos % so.length];
+  return block.sentences[si];
 }
 
 function loadGramTip(grammarName) {
@@ -2635,7 +2967,7 @@ function speak(text,voiceName,rate,cb,forceLang) {
 }
 
 function replayCZ(){speak(document.getElementById('sentCZ').textContent,document.getElementById('czVoice').value,cfg.czRate,null,'cs-CZ');}
-function replayEN(){document.getElementById('sentEN').classList.add('visible');playENRepeated(document.getElementById('sentEN').textContent,null,'en-GB');}
+function replayEN(){if((cfg.scrambleMode && !scrambleEnUnlocked)||(cfg.writeMode && !writeEnUnlocked))return;document.getElementById('sentEN').classList.add('visible');playENRepeated(document.getElementById('sentEN').textContent,null,'en-GB');}
 
 function wrapWords(text){
   if(!text) return '';
@@ -3049,6 +3381,8 @@ function showCurrent() {
   if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
   playToken++; // zneplatní všechny probíhající callbacky předchozí věty
   cancelSpeech();
+  scrambleReset(); // vyčisti scramble UI z předchozí věty
+  writeReset();    // vyčisti write UI z předchozí věty
   document.getElementById('ratingWrap').classList.add('rating-hidden');
   hideGramTip();
 
@@ -3112,9 +3446,23 @@ function showCurrent() {
 
 function scheduleEN(text,playEN2,token) {
   const myToken = (token !== undefined) ? token : playToken;
+
+  // ── SCRAMBLE REŽIM — žádná pauza, ukažeme UI ihned po CZ ──
+  if(cfg.scrambleMode) {
+    showScramble({en: text});
+    return;
+  }
+
+  // ── REŽIM PSANÍ — žádná pauza, zobrazíme input ihned po CZ ──
+  if(cfg.writeMode) {
+    showWrite();
+    return;
+  }
+
   const delay=parseInt(document.getElementById('pauseSec').value)*1000;
   pauseTimer=setTimeout(()=>{
     if(playToken !== myToken) return; // věta se mezitím změnila
+
     const el=document.getElementById('sentEN');
     // text je nastaven předem v showCurrent — stačí odhalit
     if(el.textContent !== text) el.textContent=text;
@@ -3141,13 +3489,11 @@ function rateSent(rating) {
   recordRating(rating, block.grammar||'—', sentId);
   document.getElementById('ratingWrap').classList.add('rating-hidden');
   // Zastav pokud smart mode právě dosáhl denního cíle
-  if(smart.enabled && smart.drillDone >= smart.drillGoal && !smart.extraAllowed) {
-    // Zruš auto timer — jinak by odpalil nextSent() ještě před "Další kolo"
-    if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
-    return;
+  if(smart.enabled && smart.drillDone >= smart.drillGoal && !smart.extraAllowed) return;
+  // Po hodnocení automaticky přejdi na další
+  if(!document.getElementById('autoMode').checked) {
+    nextSent();
   }
-  // Po hodnocení přejdi na další (v auto režimu přeskočí zbývající timer)
-  nextSent();
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
