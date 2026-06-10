@@ -324,6 +324,9 @@
     }
     #smartBar .smart-bar-fill-wrap { flex:1; height:5px; background:rgba(0,0,0,.12); border-radius:3px; }
     #smartBar .smart-bar-fill { height:100%; border-radius:3px; background:var(--color-primary); transition:width .3s; }
+    #smartStars { font-size:.95rem; letter-spacing:.05em; min-width:1em; }
+    @keyframes starPop { 0%{transform:scale(1)} 40%{transform:scale(1.7)} 100%{transform:scale(1)} }
+    .star-pop { animation:starPop .35s ease; }
 
     /* Banner návrhu úrovně */
     #levelSuggestBanner {
@@ -391,6 +394,17 @@
     </div>
   </div>
 
+  <!-- Overlay "Jsem připraven" — zobrazí se po načtení DB před prvním přehráním -->
+  <div class="welcome-overlay" id="readyOverlay" style="display:none">
+    <div class="welcome-card" style="text-align:center;padding:2rem 1.5rem">
+      <div style="font-size:2.5rem;margin-bottom:.75rem" id="readyIcon">🎙</div>
+      <div class="welcome-title" id="readyTitle">Připraveno!</div>
+      <p class="welcome-hint" id="readyHint">Aplikace je nachystaná. Klikni a začni drilovat.</p>
+      <button class="btn btn-primary welcome-start" id="readyBtn" onclick="startDrilling()">▶ Jsem připraven</button>
+      <button class="btn btn-ghost" id="readyAltBtn" onclick="startDrillingNormal()" style="display:none;margin-top:.5rem;width:100%">Normální dril</button>
+    </div>
+  </div>
+
   <!-- Chytrý režim — first launch overlay -->
   <div class="smart-overlay" id="smartOnboardOverlay">
     <div class="smart-box">
@@ -401,11 +415,11 @@
   <!-- Chytrý režim — dokončení drilu -->
   <div class="smart-overlay" id="smartDoneOverlay">
     <div class="smart-box" style="text-align:center">
-      <div style="font-size:2.5rem;margin-bottom:.5rem">🎉</div>
+      <div style="font-size:2.5rem;margin-bottom:.5rem" id="smartDoneIcon">🎉</div>
       <h2 id="smartDoneTitle">Výborně!</h2>
-      <p id="smartDoneText"></p>
+      <p id="smartDoneText" style="white-space:pre-line"></p>
       <div class="btn-row">
-        <button class="btn btn-primary" onclick="smartContinue()">Pokračovat dál</button>
+        <button class="btn btn-primary" onclick="smartContinueExtra()">⭐ Další kolo</button>
         <button class="btn btn-ghost" onclick="smartDoneClose()">Zavřít</button>
       </div>
     </div>
@@ -606,9 +620,26 @@
         <div class="stat-lbl">úspěšnost</div>
       </div>
     </div>
-    <div id="radarWrap" style="display:none;margin:.75rem 0">
+
+    <!-- ── Pokrok: série + zvládnuté věty ─────────────────────────────── -->
+    <div id="progressSection" style="margin:.75rem 0">
+      <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.75rem;padding:.6rem .75rem;background:var(--color-surface);border:1px solid var(--color-border);border-radius:8px">
+        <span style="font-size:1.6rem;line-height:1">🔥</span>
+        <div>
+          <span style="font-size:1.5rem;font-weight:700;line-height:1" id="streakNum">0</span>
+          <span style="font-size:.82rem;color:var(--color-text-muted)"> dní v řadě</span>
+        </div>
+        <div style="margin-left:auto;font-size:.72rem;color:var(--color-text-muted);text-align:right" id="streakHint"></div>
+      </div>
+      <div style="font-weight:600;font-size:.82rem;color:var(--color-secondary);margin-bottom:.4rem;letter-spacing:.03em">ZVLÁDNUTÉ VĚTY</div>
+      <div style="background:var(--color-border);border-radius:4px;height:8px;margin-bottom:.35rem;overflow:hidden">
+        <div id="masteryBar" style="height:100%;background:var(--color-primary);border-radius:4px;transition:width .5s;width:0%"></div>
+      </div>
+      <div style="font-size:.78rem;color:var(--color-text-muted)" id="masteryText">—</div>
+    </div>
+    <div id="radarWrap" style="display:none;margin:.75rem 0;padding:0 55px">
       <div style="font-size:.75rem;font-weight:700;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem">Radar — gramatika</div>
-      <svg id="radarSvg" viewBox="0 0 260 260" width="100%" style="max-width:260px;display:block;margin:0 auto"></svg>
+      <svg id="radarSvg" viewBox="0 0 260 260" width="100%" style="max-width:260px;display:block;margin:0 auto;overflow:visible"></svg>
     </div>
     <div style="font-size:.75rem;font-weight:700;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem">Nejslabší gramatika</div>
     <div class="weak-list" id="weakList"></div>
@@ -645,7 +676,7 @@
       <p style="margin:0 0 .75rem">Ikona <strong>📖</strong> na každé kartičce otevře stručné vysvětlení aktuálního gramatického jevu — popis, vzorec a příklad věty. Tip se automaticky zobrazí pokud opakovaně neznáš věty ze stejné gramatiky. Kliknutím ikonu znovu schováš.</p>
 
       <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">✓ Hodnocení</div>
-      <p style="margin:0 0 .75rem"><strong>✓ Uměl jsem</strong> — větu znáš dobře. <strong>~ Skoro</strong> — větu znáš částečně nebo jsi zaváhal. <strong>✗ Neuměl jsem</strong> — větu neznáš. Hodnocení se ukládá do statistik, které zobrazíš ikonou <strong>📈</strong>.</p>
+      <p style="margin:0 0 .75rem"><strong>✓ Uměl jsem</strong> — větu znáš dobře. <strong>~ Skoro</strong> — větu znáš částečně nebo jsi zaváhal (počítá se jako půl chyby ve statistikách). <strong>✗ Neuměl jsem</strong> — větu neznáš. Hodnocení se ukládá do statistik, které zobrazíš ikonou <strong>📈</strong>.</p>
 
       <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">💡 Chytrý režim</div>
       <p style="margin:0 0 .5rem">Ikona <strong>💡</strong> v horní liště zapne chytrý režim — aplikace sama rozhoduje co a v jakém pořadí procvičovat. Zobrazí se po prvních 20 větách.</p>
@@ -675,6 +706,7 @@
           <tr><td style="padding:3px 8px 3px 0;color:var(--color-primary);font-weight:700">R</td><td style="padding:3px 0">Přehrát anglickou větu</td></tr>
           <tr><td style="padding:3px 8px 3px 0;color:var(--color-primary);font-weight:700">C</td><td style="padding:3px 0">Přehrát českou větu</td></tr>
           <tr><td style="padding:3px 8px 3px 0;color:var(--color-primary);font-weight:700">S</td><td style="padding:3px 0">Přeskočit větu</td></tr>
+          <tr><td style="padding:3px 8px 3px 0;color:var(--color-primary);font-weight:700">B</td><td style="padding:3px 0">Další blok (přeskočit celé téma)</td></tr>
           <tr><td style="padding:3px 8px 3px 0;color:var(--color-primary);font-weight:700">A</td><td style="padding:3px 0">Zapnout / vypnout automatický režim</td></tr>
           <tr><td style="padding:3px 8px 3px 0;color:var(--color-primary);font-weight:700">P</td><td style="padding:3px 0">Pozastavit automatický režim</td></tr>
         </tbody>
@@ -683,8 +715,9 @@
       <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">⭐ Oblíbené věty</div>
       <p style="margin:0 0 .75rem">Hvězdička ☆ na kartě věty přidá/odebere větu z oblíbených. Oblíbené se ukládají v prohlížeči. Filtr <strong>⭐ Oblíbené</strong> zobrazí jen označené věty — vhodné pro opakování problematických vět.</p>
 
-      <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">📈 Statistiky a denní cíl</div>
-      <p style="margin:0 0 .5rem">Ikona <strong>📈</strong> zobrazí celkový počet procvičených vět, úspěšnost a nejslabší gramatické jevy. Denní cíl (počet vět) nastav v <strong>⚙ Nastavení</strong> — progress bar ho zobrazuje v horní části aplikace.</p>
+      <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">📈 Statistiky a pokrok</div>
+      <p style="margin:0 0 .5rem">Ikona <strong>📈</strong> zobrazí celkový počet procvičených vět, úspěšnost, sérii a nejslabší gramatické jevy. Denní cíl (počet vět) nastav v <strong>⚙ Nastavení</strong> — progress bar ho zobrazuje v horní části.</p>
+      <p style="margin:0 0 .5rem"><strong>🔥 Série</strong> — počet dní v řadě kdy jsi driloval. V chytrém režimu se zobrazuje přímo v liště. <strong>Zvládnuté věty</strong> — věta je zvládnutá po 2× hodnocení „Uměl jsem"; ukazuje kolik procent viděných vět skutečně ovládáš.</p>
       <p style="margin:0">Radar graf znázorňuje výkon per gramatický jev — okamžitě vidíš kde máš rezervy a co zvládáš dobře. Zobrazí se po prvních hodnoceních.</p>
 
     </div>
@@ -764,6 +797,7 @@
     <span id="smartBarLabel">Dril dne</span>
     <div class="smart-bar-fill-wrap"><div class="smart-bar-fill" id="smartBarFill" style="width:0%"></div></div>
     <span id="smartBarCount">0/20</span>
+    <span id="smartStreak" style="font-size:.85rem;min-width:2.5em;color:var(--color-text-muted)"></span>
   </div>
 
   <!-- Progress bar -->
@@ -1046,7 +1080,7 @@ function removeDb(name, e) {
     else {
       activeDbName=null; db=null;
       document.getElementById('loadPanel').style.display='';
-      ['settingsPanel','filterWrap','scoresWrap','progressBar','drillCard','controlsWrap','shortcutHint','autoIndicator','dailyBar']
+      ['settingsPanel','filterWrap','scoresWrap','drillCard','controlsWrap','shortcutHint','autoIndicator','dailyBar','smartBar']
         .forEach(id=>document.getElementById(id).style.display='none');
       document.getElementById('statsToggle').style.display='none';
       document.getElementById('dbOverviewToggle').style.display='none';
@@ -1181,6 +1215,13 @@ function saveStats() {
   try { localStorage.setItem(STORAGE_STAT,JSON.stringify(stats)); } catch(e){}
 }
 
+// „skoro" se počítá jako 0.5 chyby — vrací efektivní počty pro výpočty
+function gramEffective(v) {
+  const badEff = (v.bad||0) + (v.ok||0) * 0.5;
+  const total = (v.good||0) + badEff;
+  return { badEff, total };
+}
+
 function recordRating(rating, grammarName, sentId) {
   stats.total++;
   stats[rating]++;
@@ -1192,8 +1233,9 @@ function recordRating(rating, grammarName, sentId) {
   else if(stats.lastDate!==today) stats.streak=1;
   stats.lastDate=today;
   // Per gramatika
-  if(!stats.byGrammar[grammarName]) stats.byGrammar[grammarName]={good:0,bad:0};
+  if(!stats.byGrammar[grammarName]) stats.byGrammar[grammarName]={good:0,ok:0,bad:0};
   if(rating==='good') stats.byGrammar[grammarName].good++;
+  else if(rating==='ok') stats.byGrammar[grammarName].ok = (stats.byGrammar[grammarName].ok||0) + 1;
   else if(rating==='bad') stats.byGrammar[grammarName].bad++;
   // Per věta (SRS) — ulož výsledek s ID a posledním hodnocením
   if(sentId){
@@ -1235,8 +1277,7 @@ function fullReset() {
   // UI
   document.getElementById('smartBar').style.display='none';
   document.getElementById('levelSuggestBanner').classList.remove('visible');
-  document.getElementById('filterWrap').style.opacity='';
-  document.getElementById('filterWrap').style.pointerEvents='';
+  document.getElementById('filterWrap').style.display='';
   document.getElementById('smartToggleBtn').style.display='none';
   updateSmartBtn();
   localStorage.removeItem('aj_dril_setup_done');
@@ -1253,12 +1294,14 @@ function renderStats() {
   document.getElementById('statToday').textContent = stats.today;
   document.getElementById('statStreak').textContent= stats.streak;
   const pct = stats.total>0 ? Math.round(stats.good/stats.total*100)+'%' : '—';
-  document.getElementById('statPct').textContent   = pct;
+  document.getElementById('statPct').textContent = pct;
+  // Pokrok: série + zvládnuté věty
+  updateProgressSection();
   // Nejslabší gramatika
   const weakList = document.getElementById('weakList');
   const entries = Object.entries(stats.byGrammar)
-    .filter(([,v])=>v.good+v.bad>=3)
-    .map(([name,v])=>({name, pct:Math.round(v.bad/(v.good+v.bad)*100), total:v.good+v.bad}))
+    .filter(([,v])=>{ const e=gramEffective(v); return e.total>=3; })
+    .map(([name,v])=>{ const e=gramEffective(v); return {name, pct:Math.round(e.badEff/e.total*100), total:e.total}; })
     .sort((a,b)=>b.pct-a.pct)
     .slice(0,5);
   if(!entries.length) { weakList.innerHTML='<div style="font-size:.78rem;color:var(--color-text-light);padding:.25rem 0">Zatím žádná data — hodnoť věty tlačítky ✓/~/✗</div>'; }
@@ -1278,8 +1321,8 @@ function renderRadar() {
 
   // Sestaví data — min. 3 hodnocení na jev
   const items = Object.entries(stats.byGrammar)
-    .filter(([,v]) => v.good + v.bad >= 3)
-    .map(([name, v]) => ({ name, score: v.good / (v.good + v.bad) }));
+    .filter(([,v]) => { const e=gramEffective(v); return e.total>=3; })
+    .map(([name, v]) => { const e=gramEffective(v); return { name, score: (v.good||0)/e.total }; });
 
   if(items.length < 3) { wrap.style.display = 'none'; return; }
   wrap.style.display = '';
@@ -1591,6 +1634,10 @@ let smart = {
   testSents: [],
   testResults: [],
   testActive: false,
+  dailyStars: 0,       // hvězdičky získané dnes
+  maxStars: 0,         // rekord hvězdiček za jeden den (legacy, stále se aktualizuje)
+  maxStarsDate: '',    // datum rekordu (legacy)
+  starHistory: {},     // { "YYYY-MM-DD": počet_hvězdiček } — historie pro statistiky
 };
 
 function loadSmart() {
@@ -1671,8 +1718,8 @@ function activateSmartMode() {
   applySmartFilters();
   updateSmartBar();
   document.getElementById('smartBar').style.display = 'flex';
-  document.getElementById('filterWrap').style.opacity = '.35';
-  document.getElementById('filterWrap').style.pointerEvents = 'none';
+  document.getElementById('dailyBar').style.display = 'none';
+  document.getElementById('filterWrap').style.display = 'none';
 }
 
 function deactivateSmartMode() {
@@ -1680,34 +1727,128 @@ function deactivateSmartMode() {
   saveSmart();
   updateSmartBtn();
   document.getElementById('smartBar').style.display = 'none';
+  document.getElementById('dailyBar').style.display = '';
   document.getElementById('levelSuggestBanner').classList.remove('visible');
-  document.getElementById('filterWrap').style.opacity = '';
-  document.getElementById('filterWrap').style.pointerEvents = '';
+  document.getElementById('filterWrap').style.display = '';
   applyFilters(true);
 }
 
 // ── Aplikuj filtry pro chytrý režim (více úrovní) ─────────────────────────
-function applySmartFilters() {
+function applySmartFilters(autoShow=true) {
   if(!db) return;
   const levels = smart.levels;
   let filtered = db.blocks.filter(b => !b.level || levels.includes(b.level));
   activeBlocks = filtered;
   bPos=0; sPos=0; done=0;
   buildOrders(); updateScores();
-  if(activeBlocks.length) showCurrent();
+  if(autoShow && activeBlocks.length) showCurrent();
   document.getElementById('sTotal').textContent = activeBlocks.reduce((a,b)=>a+b.sentences.length,0);
   document.getElementById('sBlocks').textContent = activeBlocks.length;
+}
+
+// ── Mastery: věty s ≥2 hodnoceními "dobrá" ────────────────────────────────
+function calcMastery() {
+  const bySent = stats.bySent || {};
+  const seen = Object.keys(bySent).length;
+  const mastered = Object.values(bySent).filter(s => (s.good||0) >= 2).length;
+  return { mastered, seen };
+}
+
+// ── Aktualizuj sekci pokroku ve statistikách ──────────────────────────────
+function updateProgressSection() {
+  const streak = stats.streak || 0;
+  document.getElementById('streakNum').textContent = streak;
+  document.getElementById('streakHint').textContent =
+    streak === 0 ? 'začni dnes' :
+    streak === 1 ? 'první den!' :
+    streak < 7  ? 'pokračuj zítra' :
+    streak < 30 ? '🔥 skvělá série' : '🏆 výjimečná série';
+
+  const { mastered, seen } = calcMastery();
+  const pct = seen > 0 ? Math.round(mastered / seen * 100) : 0;
+  document.getElementById('masteryBar').style.width = pct + '%';
+  document.getElementById('masteryText').textContent = seen > 0
+    ? mastered + ' / ' + seen + ' viděných vět zvládnuto (' + pct + ' %)'
+    : 'Zatím žádná hodnocení';
+}
+
+// ── Hvězdičková série (počet po sobě jdoucích dní s ≥1 hvězdičkou) ────────
+function calcStarStreak(history) {
+  const today = new Date().toISOString().split('T')[0];
+  let streak = 0;
+  const startOff = (history[today] || 0) >= 1 ? 0 : 1; // začni od včerejška pokud dnes nic
+  for(let i = startOff; i < 366; i++) {
+    const d = new Date();
+    d.setDate(d.getDate() - i);
+    const key = d.toISOString().split('T')[0];
+    if((history[key] || 0) >= 1) streak++;
+    else break;
+  }
+  return streak;
+}
+
+// ── Zobrazit rozšířené hvězdičkové statistiky ─────────────────────────────
+function updateStarStats() {
+  const history = smart.starHistory || {};
+  const today = new Date().toISOString().split('T')[0];
+  const hasSomething = smart.dailyStars > 0 || Object.keys(history).length > 0;
+  document.getElementById('starStatsSection').style.display = hasSomething ? '' : 'none';
+  if(!hasSomething) return;
+
+  const entries = Object.entries(history); // [["YYYY-MM-DD", N], ...]
+
+  // Dnes — živá hodnota
+  const dnes = smart.dailyStars;
+  document.getElementById('ssDnes').textContent = dnes > 0
+    ? '⭐'.repeat(Math.min(dnes,5)) + (dnes>5?' ×'+dnes:'') : '0';
+
+  // Posledních 7 dní (rolling)
+  const tydenMs = Date.now() - 7*86400000;
+  const tyden = entries.filter(([d])=>new Date(d).getTime()>=tydenMs).reduce((s,[,v])=>s+v,0);
+  document.getElementById('ssTyden').textContent = tyden;
+
+  // Tento měsíc
+  const mPfx = today.slice(0,7);
+  const mesic = entries.filter(([d])=>d.startsWith(mPfx)).reduce((s,[,v])=>s+v,0);
+  document.getElementById('ssMesic').textContent = mesic;
+
+  // Celkem
+  const celkem = entries.reduce((s,[,v])=>s+v,0);
+  document.getElementById('ssCelkem').textContent = celkem;
+
+  // Rekord za jeden den (z historie i live dnes)
+  const rekordEntry = entries.reduce((m,[d,v])=>v>m.v?{d,v}:m, {d:'',v:0});
+  const rekordVal = Math.max(rekordEntry.v, dnes);
+  const rekordDat = rekordVal > 0
+    ? (dnes >= rekordVal && dnes >= rekordEntry.v ? today : rekordEntry.d)
+    : '';
+  document.getElementById('ssRekord').textContent = rekordVal > 0
+    ? '⭐'.repeat(Math.min(rekordVal,5)) + (rekordVal>5?' ×'+rekordVal:'') : '—';
+  const fmtDat = d => { const [y,m,dd]=d.split('-'); return dd+'.'+m+'.'+y; };
+  document.getElementById('ssRekordDatum').textContent = rekordDat
+    ? 'rekord ze dne ' + fmtDat(rekordDat) : '';
+
+  // Série
+  document.getElementById('ssSerie').textContent = calcStarStreak(history);
 }
 
 // ── Denní lišta ───────────────────────────────────────────────────────────
 function updateSmartBar() {
   const today = new Date().toISOString().split('T')[0];
-  if(smart.drillDate !== today) { smart.drillDone=0; smart.drillDate=today; smart.extraAllowed=false; saveSmart(); }
+  if(smart.drillDate !== today) {
+    smart.drillDone=0; smart.drillDate=today; smart.extraAllowed=false; smart.dailyStars=0; saveSmart();
+  } else if(smart.drillDone >= smart.drillGoal && !smart.extraAllowed) {
+    // Uživatel otevřel app znovu ve stejný den po splnění cíle — overlay už proběhlo, povolit pokračování
+    smart.extraAllowed = true; saveSmart();
+  }
   const goal = smart.drillGoal;
   const done2 = Math.min(smart.drillDone, goal);
   const pct = Math.round(done2/goal*100);
   document.getElementById('smartBarFill').style.width = pct+'%';
   document.getElementById('smartBarCount').textContent = smart.drillDone+'/'+goal;
+  // Série v smart baru
+  const streak = stats.streak || 0;
+  document.getElementById('smartStreak').textContent = streak > 0 ? '🔥'+streak : '';
 }
 
 // ── Zaznamenat hodnocení v chytrém režimu ─────────────────────────────────
@@ -1718,10 +1859,30 @@ function smartRecordRating(rating, grammar) {
   // Posledních 10 hodnocení pro auto-tiráž
   smart.recentRatings.push({grammar, rating});
   if(smart.recentRatings.length > 10) smart.recentRatings.shift();
+  // Hvězdička za každé dokončení cíle (první i další)
+  const prevStars = smart.dailyStars;
+  smart.dailyStars = Math.floor(smart.drillDone / smart.drillGoal);
+  const newStar = smart.dailyStars > prevStars;
+  // Aktualizuj rekord + historii
+  if(smart.dailyStars > (smart.maxStars||0)) {
+    smart.maxStars = smart.dailyStars;
+    smart.maxStarsDate = today;
+  }
+  if(!smart.starHistory) smart.starHistory = {};
+  smart.starHistory[today] = smart.dailyStars;
   saveSmart();
   updateSmartBar();
-  // Zkontrolovat dokončení drilu
-  if(smart.drillDone === smart.drillGoal && !smart.extraAllowed) {
+  if(newStar) {
+    // Animace hvězdičky
+    const starsEl = document.getElementById('smartStars');
+    starsEl.classList.remove('star-pop');
+    void starsEl.offsetWidth; // reflow
+    starsEl.classList.add('star-pop');
+  }
+  // Zkontrolovat dokončení kola — každý násobek cíle
+  if(newStar) {
+    smart.extraAllowed = false;
+    saveSmart();
     setTimeout(showSmartDone, 400);
   }
   // Auto gramatická tiráž
@@ -1785,16 +1946,32 @@ function smartDeclineLevel() {
 // ── Dokončení drilu ───────────────────────────────────────────────────────
 function showSmartDone() {
   const pct = stats.total>0 ? Math.round(stats.good/stats.total*100) : 0;
-  document.getElementById('smartDoneTitle').textContent = 'Výborně! Dril dne splněn 🔥';
+  const stars = smart.dailyStars;
+  const isExtra = stars > 1; // další kolo nad první
+  const starsStr = stars > 0 ? ' ' + '⭐'.repeat(Math.min(stars,5)) + (stars>5?' ×'+stars:'') : '';
+  document.getElementById('smartDoneTitle').textContent = isExtra
+    ? 'Fantastické! Další kolo splněno' + starsStr
+    : 'Výborně! Dril dne splněn 🔥';
   document.getElementById('smartDoneText').textContent =
-    'Dokončil/a jsi '+smart.drillGoal+' vět. Dnešní úspěšnost: '+pct+' %.';
+    'Dokončil/a jsi '+smart.drillGoal+' vět. Dnešní úspěšnost: '+pct+' %.'
+    + (stars > 1 ? '\nDnes celkem: ' + starsStr : '');
   document.getElementById('smartDoneOverlay').classList.add('visible');
+}
+
+function smartContinueExtra() {
+  // Povolí pokračování a okamžitě přejde na další větu
+  // (auto timer byl zablokovaný guardem — musíme ho nastartovat ručně)
+  smart.extraAllowed = true;
+  saveSmart();
+  document.getElementById('smartDoneOverlay').classList.remove('visible');
+  nextSent();
 }
 
 function smartContinue() {
   smart.extraAllowed = true;
   saveSmart();
   document.getElementById('smartDoneOverlay').classList.remove('visible');
+  nextSent();
 }
 
 function smartDoneClose() {
@@ -1973,9 +2150,9 @@ function smartInit() {
   updateSmartBtn();
   if(smart.enabled) {
     document.getElementById('smartBar').style.display = 'flex';
+    document.getElementById('dailyBar').style.display = 'none';
     updateSmartBar();
-    document.getElementById('filterWrap').style.opacity = '.35';
-    document.getElementById('filterWrap').style.pointerEvents = 'none';
+    document.getElementById('filterWrap').style.display = 'none';
     if(smart.pendingSuggestLevel) {
       document.getElementById('lsbText').textContent =
         smart.levels[smart.levels.length-1]+' zvládáš skvěle! Chceš přidat '+smart.pendingSuggestLevel+'?';
@@ -2112,9 +2289,7 @@ function blockWeight(grammar) {
 
   const g = stats.byGrammar && stats.byGrammar[grammar];
   let vykon = 0.5; // neutrální pokud žádná data
-  if (g && (g.good + g.bad) > 0) {
-    vykon = g.good / (g.good + g.bad);
-  }
+  if (g) { const e=gramEffective(g); if(e.total>0) vykon=(g.good||0)/e.total; }
 
   return freq * (1 - vykon);
 }
@@ -2792,8 +2967,9 @@ function reloadActive(){if(db)applyFilters(true);}
 // ══════════════════════════════════════════════════════════════════════════════
 function initApp(tryRestorePos) {
   document.getElementById('loadPanel').style.display='none';
-  ['settingsPanel','filterWrap','scoresWrap','progressBar','drillCard','controlsWrap','shortcutHint','dailyBar']
+  ['settingsPanel','filterWrap','scoresWrap','drillCard','controlsWrap','shortcutHint','dailyBar']
     .forEach(id=>document.getElementById(id).style.display='');
+  // progressBar schovaný vždy — nahrazen denním cílem / smartBarem
   document.getElementById('skipBlockWrap').style.display='';
   document.getElementById('statsToggle').style.display='';
   document.getElementById('dbOverviewToggle').style.display='';
@@ -2812,12 +2988,46 @@ function initApp(tryRestorePos) {
   smartInit();
   if(!localStorage.getItem('aj_dril_setup_done')) {
     document.getElementById('welcomeOverlay').style.display='flex';
-  } else if(smart.enabled) {
-    applySmartFilters();
   } else {
-    if(tryRestorePos&&loadPos()){updateScores();showCurrent();}
-    else{applyFilters(true);}
+    // Připrav věty ale nezačínej přehrávat — počkej na klik uživatele
+    if(smart.enabled) {
+      applySmartFilters(false); // false = nepřehrávej hned, čekáme na klik
+    } else {
+      if(tryRestorePos&&loadPos()){updateScores();}
+      else{applyFilters(false);} // false = nepřehrávej hned
+    }
+    // Zobraz "ready" overlay
+    const ro = document.getElementById('readyOverlay');
+    if(smart.enabled) {
+      const remaining = Math.max(0, smart.drillGoal - smart.drillDone);
+      document.getElementById('readyIcon').textContent = '💡';
+      document.getElementById('readyTitle').textContent = 'Chytrý režim';
+      document.getElementById('readyHint').textContent = remaining > 0
+        ? 'Zbývá ' + remaining + ' vět na dnešní dril.'
+        : 'Dnešní dril máš splněný! Můžeš pokračovat dál.';
+      document.getElementById('readyBtn').textContent = '▶ Pokračovat v chytrém režimu';
+      document.getElementById('readyAltBtn').style.display = '';
+    }
+    ro.style.display = 'flex';
   }
+}
+
+function closeReadyOverlay() {
+  const ro = document.getElementById('readyOverlay');
+  ro.style.opacity = '0';
+  ro.style.transition = 'opacity .2s ease';
+  setTimeout(() => { ro.style.display = 'none'; ro.style.opacity = ''; }, 200);
+}
+
+function startDrilling() {
+  closeReadyOverlay();
+  showCurrent();
+}
+
+function startDrillingNormal() {
+  // Vypne chytrý režim a spustí normální dril
+  deactivateSmartMode();
+  closeReadyOverlay();
 }
 
 function startFromWelcome() {
@@ -2931,11 +3141,13 @@ function rateSent(rating) {
   recordRating(rating, block.grammar||'—', sentId);
   document.getElementById('ratingWrap').classList.add('rating-hidden');
   // Zastav pokud smart mode právě dosáhl denního cíle
-  if(smart.enabled && smart.drillDone >= smart.drillGoal && !smart.extraAllowed) return;
-  // Po hodnocení automaticky přejdi na další
-  if(!document.getElementById('autoMode').checked) {
-    nextSent();
+  if(smart.enabled && smart.drillDone >= smart.drillGoal && !smart.extraAllowed) {
+    // Zruš auto timer — jinak by odpalil nextSent() ještě před "Další kolo"
+    if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
+    return;
   }
+  // Po hodnocení přejdi na další (v auto režimu přeskočí zbývající timer)
+  nextSent();
 }
 
 // ══════════════════════════════════════════════════════════════════════════════

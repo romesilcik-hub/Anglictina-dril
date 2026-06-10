@@ -1253,12 +1253,16 @@ function renderDbTable() {
   }
 
   // Pokrytí témat pro gramatiku — věty vs. cílový počet vět na téma
+  // Počítá VŠECHNA témata co jsou v DB (i ta co mají u této gramatiky 0 vět)
   function gramCoverage(g) {
-    if (!dbStats[g]) return { covered: 0, total: 0, target: topicTargetSents(g) };
     const target  = topicTargetSents(g);
-    const entries = Object.values(dbStats[g]);
-    const covered = entries.filter(e => e.count >= target).length;
-    return { covered, total: entries.length, target };
+    // Témata co mají u této gramatiky věty
+    const existing = dbStats[g] ? Object.values(dbStats[g]) : [];
+    const covered  = existing.filter(e => e.count >= target).length;
+    // Témata co jsou v DB u jiných gramatik ale u téhle chybí
+    const missingTopics = [...topics].filter(t => !(dbStats[g] && dbStats[g][t])).length;
+    const total = existing.length + missingTopics;
+    return { covered, total, target };
   }
 
   function topicSentBadge(count, target) {
@@ -1300,12 +1304,14 @@ function renderDbTable() {
     </tr>`;
 
     topics.forEach(t => {
-      const entry = dbStats[g] && dbStats[g][t];
-      if (!entry) return;
-      const blokList  = entry.bloks.slice(0, 8).join(', ') + (entry.bloks.length > 8 ? '…' : '');
+      const entry      = dbStats[g] && dbStats[g][t];
+      const sentCount  = entry ? entry.count : 0;
+      const blokList   = entry ? (entry.bloks.slice(0, 8).join(', ') + (entry.bloks.length > 8 ? '…' : '')) : '';
       const sentTarget = topicTargetSents(g);
-      const sentLabel  = topicSentBadge(entry.count, sentTarget);
-      html += `<tr>
+      const sentLabel  = topicSentBadge(sentCount, sentTarget);
+      // Přeskoč témata kde 0 vět A gramatika celkově nemá v DB žádné věty (ještě nezačata gramatika)
+      if (sentCount === 0 && !dbStats[g]) return;
+      html += `<tr${sentCount === 0 ? ' style="opacity:.6"' : ''}>
         <td colspan="3" style="padding-left:1.5rem;color:var(--color-text-muted);font-size:.82rem">▸ <strong style="color:var(--color-text)">${t}</strong></td>
         <td></td>
         <td style="font-size:.78rem">${sentLabel}</td>

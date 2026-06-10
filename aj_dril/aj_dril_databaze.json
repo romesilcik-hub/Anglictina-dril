@@ -1,138 +1,6 @@
 ﻿{
   "blocks": [
     {
-      "grammar": "Souhlasné reakce",
-      "level": "A1",
-      "blok": "souhlasit: je přátelský",
-      "topic": "Obecné",
-      "sentences": [
-        {"id": "6ade3208-a46e-4aed-bb59-84e8782cc9b9}", "cz": "A: Je přátelský.", "en": "A: He is friendly. – B: So is she.", "pattern": "affirmative", "person": "third_singular", "note": "So is she — is odpovídá be 3. os. sg.; pořadí: So + is + podmět"},
-        {"id": "16411ed4-b7bc-48a2-9ac4-32fe417c77f7}", "cz": "A: Není přátelský.", "en": "A: He isn't friendly. – B: Neither is she.", "pattern": "negative", "person": "third_singular", "note": "Neither is she — is zůstává; Neither místo So"}
-        ]
-      },
-    {
-      "grammar": "Souhlasné reakce",
-      "level": "A1",
-      "blok": "souhlasit: jsem hladový",
-      "topic": "Obecné",
-      "sentences": [
-        {"id": "f55b7bdc-3ff0-4ff0-9fe3-66078bb652f7}", "cz": "A: Mám hlad.", "en": "A: I am hungry. – B: So am I.", "pattern": "affirmative", "person": "first", "note": "So am I — am odpovídá slovesu be v přítomném čase 1. os. sg."},
-        {"id": "81908ff2-1149-4d24-b038-3a6f57dc6a00}", "cz": "A: Nemám hlad.", "en": "A: I am not hungry. – B: Neither am I.", "pattern": "negative", "person": "first", "note": "Neither am I — am zůstává; Neither místo So u záporné věty"}
-        ]
-      },
-    {
-      "grammar": "Souhlasné reakce",
-      "level": "A1",
-      "blok": "souhlasit: jsem unavený",
-      "topic": "Obecné",
-      "sentences": [
-        {"id": "5511fe6f-a8e4-49a0-a30f-535dce602abe}", "cz": "A: Nejsem unavený.", "en": "A: I am not tired. – B: Neither am I.", "pattern": "negative", "person": "first", "note": "Neither am I = souhlasím se záporným tvrzením; Neither + am + I"},
-        {"id": "91daf5ac-cb45-40a5-b869-573b2926ed40}", "cz": "A: Jsem unavený.", "en": "A: I am tired. – B: So am I.", "pattern": "affirmative", "person": "first", "note": "So am I = souhlasím s kladným tvrzením s be; pomocné sloveso odpovídá"}
-        ]
-      },
-    {
-      "grammar": "Souhlasné reakce",
-      "level": "A1",
-      "blok": "souhlasit: mám psa",
-      "topic": "Obecné",
-      "sentences": [
-        {"id": "4d6d1945-071e-4784-a493-8b747f82ac26}", "cz": "A: Nemám psa.", "en": "A: I don't have a dog. – B: Neither do I.", "pattern": "negative", "person": "second", "note": "Neither do I — don't signalizuje použití do v reakci"}
-        ]
-      },
-    {
-      "grammar": "Souhlasné reakce",
-      "level": "A1",
-      "blok": "souhlasit: znám ho",
-      "topic": "Obecné",
-      "sentences": [
-        {"id": "2d740baf-9256-4a57-8262-734a75bf09f7}", "cz": "A: Neznám ho.", "en": "A: I don't know him. – B: Neither do I.", "pattern": "negative", "person": "first", "note": "Neither do I — don't → pomocné do; Neither + do + I"}
-        ]
-      },
-    {
-      "grammar": "Souhlasné reakce",
-      "level": "A1",
-      "blok": "souhlasit: mám rád kávu",
-      "topic": "Obecné",
-      "sentences": [
-        {"id": "f0680c09-5fd8-4345-9f5d-a05688819cec}", "cz": "A: Nemám rád kávu.", "en": "A: I don't like coffee. – B: Neither do I.", "pattern": "negative", "person": "second", "note": "Neither do I = souhlasím se záporným tvrzením s don't"}
-        ]
-      },
-    {
-      "grammar": "Souhlasné reakce",
-      "level": "A1",
-      "blok": "souhlasit: bydlím tady",
-      "topic": "Obecné",
-      "sentences": [
-        {"id": "6d5d29bf-8b55-4a58-bfb2-730469f5c8ac}", "cz": "A: Já tady nebydlím.", "en": "A: I don't live here. – B: Neither do I.", "pattern": "negative", "person": "second", "note": "Neither do I — don't signalizuje pomocné do"}
-        ]
-      },
-    {
-      "grammar": "Souhlasné reakce",
-      "level": "A1",
-      "blok": "souhlasit: mám psa",
-      "topic": "Obecné",
-      "sentences": [
-        {"id": "a8ba6e33-1e6d-47a6-801f-4a4c678c94eb}", "cz": "A: Mám psa.", "en": "A: I have a dog. – B: So do I.", "pattern": "affirmative", "person": "second", "note": "So do I — have = hlavní sloveso; pomocné do"}
-        ]
-      },
-    {
-      "grammar": "Souhlasné reakce",
-      "level": "A1",
-      "blok": "souhlasit: znám ho",
-      "topic": "Obecné",
-      "sentences": [
-        {"id": "fb6d359e-f89b-41ca-ad74-aeeefa6652af}", "cz": "A: Znám ho.", "en": "A: I know him. – B: So do I.", "pattern": "affirmative", "person": "first", "note": "So do I — know = hlavní sloveso; pomocné do v přítomném čase"}
-        ]
-      },
-    {
-      "grammar": "Souhlasné reakce",
-      "level": "A1",
-      "blok": "souhlasit: mám rád kávu",
-      "topic": "Obecné",
-      "sentences": [
-        {"id": "0d3041fb-3823-41b5-bf9d-84fc41ac0f0a}", "cz": "A: Mám rád kávu.", "en": "A: I like coffee. – B: So do I.", "pattern": "affirmative", "person": "second", "note": "So do I = souhlasím s kladným tvrzením; do odpovídá přítomnosti"}
-        ]
-      },
-    {
-      "grammar": "Souhlasné reakce",
-      "level": "A1",
-      "blok": "souhlasit: bydlím tady",
-      "topic": "Obecné",
-      "sentences": [
-        {"id": "8d012d3f-978b-4921-a33c-b6501b33962a}", "cz": "A: Bydlím tady.", "en": "A: I live here. – B: So do I.", "pattern": "affirmative", "person": "second", "note": "So do I — live = hlavní sloveso; do v přítomném čase"}
-        ]
-      },
-    {
-      "grammar": "Souhlasné reakce",
-      "level": "A1",
-      "blok": "souhlasit: tvrdě pracuje",
-      "topic": "Obecné",
-      "sentences": [
-        {"id": "be036bf2-ca05-4bcb-979b-c6f4001f34a8}", "cz": "A: Nepracuje těžce.", "en": "A: She doesn't work hard. – B: Neither does he.", "pattern": "negative", "person": "third_singular", "note": "Neither does he = souhlas se záporným tvrzením 3. os. sg."},
-        {"id": "9e81f4d1-3159-4756-a20c-2c0d3dbd74ee}", "cz": "A: Tvrdě pracuje.", "en": "A: She works hard. – B: So does he.", "pattern": "affirmative", "person": "third_singular", "note": "So does he = souhlasím; does odpovídá 3. os. sg. přítomného času"}
-        ]
-      },
-    {
-      "grammar": "Souhlasné reakce",
-      "level": "A1",
-      "blok": "souhlasit: přijdou pozdě",
-      "topic": "Obecné",
-      "sentences": [
-        {"id": "8dafa447-0c9e-4178-a9d9-75ea7b4cd25f}", "cz": "A: Jdou pozdě.", "en": "A: They are late. – B: So are we.", "pattern": "affirmative", "person": "plural", "note": "So are we — are odpovídá be v množném čísle"},
-        {"id": "42d4e39f-7b00-4906-9ba9-e816f70ca4a6}", "cz": "A: Nepřijdou pozdě.", "en": "A: They aren't late. – B: Neither are we.", "pattern": "negative", "person": "plural", "note": "Neither are we — are zůstává; zápor signalizuje Neither"}
-        ]
-      },
-    {
-      "grammar": "Souhlasné reakce",
-      "level": "A1",
-      "blok": "souhlasit: mluví anglicky",
-      "topic": "Obecné",
-      "sentences": [
-        {"id": "969df0d8-88dd-4f4f-aafb-ee3ee31c1ff3}", "cz": "A: Nemluví anglicky.", "en": "A: They don't speak English. – B: Neither do we.", "pattern": "negative", "person": "plural", "note": "Neither do we = souhlas se záporným tvrzením v množném čísle"},
-        {"id": "582788c6-0bc8-4733-a37a-f06e558e9b69}", "cz": "A: Mluví anglicky.", "en": "A: They speak English. – B: So do we.", "pattern": "affirmative", "person": "plural", "note": "So do we = souhlas v množném čísle; do odpovídá přítomnosti"}
-        ]
-      },
-    {
       "grammar": "Gerundium",
       "level": "A2",
       "blok": "dokončit úklid",
@@ -48087,6 +47955,358 @@
         {"id": "618c0764-66f7-482a-8c99-d644f41b3c9a}", "cz": "Poté, co jsem deset minut meditoval, se cítím mnohem klidnější.", "en": "After I have been meditating for ten minutes, I feel much calmer.", "pattern": "time_clause", "person": "", "note": "after + předpřítomný průběhový (NE when!); for = délka"},
         {"id": "3cbc50a4-3450-4d4b-9580-683b8a7a3710}", "cz": "Řekla, že posledních šest týdnů každé ráno meditovala.", "en": "She said she had been meditating every morning for the past six weeks.", "pattern": "indirect", "person": "", "note": "nepřímá řeč: said + HAD BEEN + -ING (backshift); for = délka"},
         {"id": "eaac0094-dded-4959-8d47-d32fb9f4f1ec}", "cz": "Pokud byste meditovali déle, cítili byste se v práci méně vystresovaní.", "en": "If you had been meditating for longer, you would feel less stressed at work.", "pattern": "conditional", "person": "", "note": "podmínka 3. typu: IF + HAD BEEN + -ING → WOULD FEEL"}
+        ]
+      },
+    {
+      "grammar": "Budoucí průběhový",
+      "level": "B1",
+      "blok": "psát zprávy v práci",
+      "topic": "Každodenní rutina",
+      "sentences": [
+        {"id": "14681be4-7811-4e76-84f0-f8d35cdcb53f}", "cz": "Zítra celé dopoledne budu psát zprávy.", "en": "I will be writing reports all morning tomorrow.", "pattern": "affirmative", "person": "first", "note": "WILL BE + -ING — akce probíhá v konkrétní čas v budoucnosti"},
+        {"id": "0beb5e88-7f6a-4dbd-b450-2fa098bc277c}", "cz": "Zítra celé dopoledne nebudete psát zprávy.", "en": "You won't be writing reports all morning tomorrow.", "pattern": "negative", "person": "second", "note": "záporný tvar: WON'T BE + -ING"},
+        {"id": "cb13bcbb-fbad-455c-9312-3c435c375642}", "cz": "Bude zítra celé dopoledne psát zprávy?", "en": "Will she be writing reports all morning tomorrow?", "pattern": "question", "person": "", "note": "otázka: WILL + subject + BE + -ING"},
+        {"id": "f9d100ae-c8da-4c19-9594-9a88c2e1635c}", "cz": "Co bude zítra celé ráno psát?", "en": "What will she be writing all morning tomorrow?", "pattern": "wh_question", "person": "", "note": "WH slovo na začátku: What + WILL + subject + BE + -ING"},
+        {"id": "0c070d83-21c6-46dd-b305-517ba05e29af}", "cz": "Pamatujte, že budete psát zprávy celé dopoledne - nic jiného si neplánujte!", "en": "Remember, you will be writing reports all morning — don't schedule anything else!", "pattern": "imperative", "person": "", "note": "rozkaz s připomínkou kontextu: don't schedule = záporný rozkaz"},
+        {"id": "7b48fdbc-b6b8-48ef-b63a-1352c8ceec70}", "cz": "Zítra budeš celé dopoledne psát zprávy, že?", "en": "You will be writing reports all morning tomorrow, won't you?", "pattern": "tag_question", "person": "", "note": "dovětek: kladná věta → záporný dovětek won't you?"},
+        {"id": "9f08f073-703b-4f2d-bce8-e1f0089d92ce}", "cz": "Až zítra dorazíte do kanceláře, už budu psát zprávy.", "en": "When you arrive at the office tomorrow, I will already be writing the reports.", "pattern": "time_clause", "person": "", "note": "when + přítomný čas → budoucí průběhový v hlavní větě; already zdůrazňuje probíhající akci"},
+        {"id": "cbdc27bd-a0fb-4238-8a46-f197690f6267}", "cz": "Zprávy se budou psát celé zítra ráno.", "en": "The reports will be being written all morning tomorrow.", "pattern": "passive", "person": "", "note": "trpný rod budoucího průběhového: WILL BE BEING + 3rd form (v praxi se nahrazuje: the reports will be written)"},
+        {"id": "7c2ccc17-ce94-40d4-8a81-0c80c6e06486}", "cz": "Řekla, že další den bude psát zprávy celé dopoledne.", "en": "She said that she would be writing reports all morning the next day.", "pattern": "indirect", "person": "", "note": "nepřímá řeč: would be + -ING (časový posun z will be)"},
+        {"id": "16934c82-35b0-4249-a28f-f93b7a5f777d}", "cz": "Jestli zavoláš zítra ráno, budu psát zprávy a nebudu moct mluvit.", "en": "If you ring tomorrow morning, I will be writing reports and won't be able to talk.", "pattern": "conditional", "person": "", "note": "podmínková věta: IF + přítomný čas → WILL BE + -ING v hlavní větě"}
+        ]
+      },
+    {
+      "grammar": "Budoucí průběhový",
+      "level": "B1",
+      "blok": "čekat na autobus ráno",
+      "topic": "Každodenní rutina",
+      "sentences": [
+        {"id": "65281a9b-29bd-42c1-86ef-2edfffcf14c0}", "cz": "Zítra v půl osmé ráno budete čekat na autobus.", "en": "You will be waiting for the bus at half past seven tomorrow morning.", "pattern": "affirmative", "person": "second", "note": "WILL BE + -ING — akce probíhající v konkrétní čas"},
+        {"id": "7e3f06a6-d109-46e8-9c9e-5d0f7bea7cec}", "cz": "Zítra v půl osmé ráno nebude čekat na autobus.", "en": "He won't be waiting for the bus at half past seven tomorrow morning.", "pattern": "negative", "person": "third_singular", "note": "WON'T BE + -ING — záporný budoucí průběhový"},
+        {"id": "94027705-affe-4c47-9cce-aff593896954}", "cz": "Bude zítra ráno v půl osmé čekat na autobus?", "en": "Will she be waiting for the bus at half past seven tomorrow morning?", "pattern": "question", "person": "", "note": "otázka: WILL + subject + BE + -ING"},
+        {"id": "c76d1547-87e5-4a6d-b6e9-0cbda0188d08}", "cz": "Kde bude zítra ráno čekat na autobus?", "en": "Where will she be waiting for the bus tomorrow morning?", "pattern": "wh_question", "person": "", "note": "WH otázka: Where + WILL + subject + BE + -ING"},
+        {"id": "86e30052-5e5f-424e-a0b8-481abffc2875}", "cz": "Nepřijít pozdě - V půl osmé na vás budu čekat na autobusové zastávce!", "en": "Don't be late — I will be waiting for you at the bus stop at half past seven!", "pattern": "imperative", "person": "", "note": "don't + infinitiv = záporný rozkaz; kontext budoucí průběhový"},
+        {"id": "d8445e80-05b2-4563-9fab-3b57a9af7a36}", "cz": "V půl osmé bude čekat na autobus, ne?", "en": "He will be waiting for the bus at half past seven, won't he?", "pattern": "tag_question", "person": "", "note": "dovětek: third_singular → won't he?"},
+        {"id": "78433164-723d-4382-a5d8-5be9c761d8b4}", "cz": "Zítra touto dobou budu jako obvykle čekat na autobus.", "en": "This time tomorrow, I will be waiting for the bus as usual.", "pattern": "time_clause", "person": "", "note": "this time tomorrow = typický časový ukazatel budoucího průběhového"},
+        {"id": "16a870a9-a6fc-4712-8a02-f753ccdf064d}", "cz": "Na autobus budou zítra v tu dobu čekat desítky dojíždějících.", "en": "The bus will be being waited for by dozens of commuters at that time tomorrow.", "pattern": "passive", "person": "", "note": "trpný rod: WILL BE BEING + 3rd form; v praxi se říká: people will be waiting"},
+        {"id": "66f4637f-2bd4-4e73-bf6e-628ef282d2bf}", "cz": "Řekl mi, že bude druhý den ráno v půl osmé čekat na autobus.", "en": "He told me that he would be waiting for the bus at half past seven the next morning.", "pattern": "indirect", "person": "", "note": "nepřímá řeč: would be + -ING"},
+        {"id": "3e2f1141-ad50-4ba9-ac79-346c53b6c34c}", "cz": "Pokud má autobus zítra zpoždění, budu v půl osmé čekat v dešti.", "en": "If the bus is late tomorrow, I will be waiting in the rain at half past seven.", "pattern": "conditional", "person": "", "note": "IF + přítomný čas → WILL BE + -ING; podmínka v přítomném čase"}
+        ]
+      },
+    {
+      "grammar": "Budoucí průběhový",
+      "level": "B1",
+      "blok": "snídat v kavárně",
+      "topic": "Každodenní rutina",
+      "sentences": [
+        {"id": "1e72c17b-08ca-4f9d-b1ae-4938fda7b900}", "cz": "Zítra v devět hodin ráno budou snídat v kavárně.", "en": "They will be having breakfast at the café at nine o'clock tomorrow morning.", "pattern": "affirmative", "person": "plural", "note": "WILL BE + -ING — probíhá v konkrétní čas v budoucnosti"},
+        {"id": "4d440e71-91c5-4372-bf64-2478d394cff3}", "cz": "Zítra v devět ráno nebudu snídat v kavárně.", "en": "I won't be having breakfast at the café at nine o'clock tomorrow morning.", "pattern": "negative", "person": "first", "note": "WON'T BE + -ING — záporný tvar"},
+        {"id": "a89d4077-fc9b-470e-9a09-d3012f140370}", "cz": "Budou zítra v devět snídat v kavárně?", "en": "Will they be having breakfast at the café at nine o'clock tomorrow?", "pattern": "question", "person": "", "note": "otázka: WILL + subject + BE + -ING"},
+        {"id": "36ef1623-1cb3-4b2a-8b60-e4dd4191c6d9}", "cz": "Co budou zítra ráno snídat v kavárně?", "en": "What will they be having for breakfast at the café tomorrow morning?", "pattern": "wh_question", "person": "", "note": "WH otázka: What + WILL + subject + BE + -ING"},
+        {"id": "f82755c3-6f03-4046-90f4-0f6ab961d4ee}", "cz": "Přidejte se k nám - zítra v devět budeme snídat v kavárně-, tak přijďte!", "en": "Join us — we will be having breakfast at the café at nine tomorrow, so come along!", "pattern": "imperative", "person": "", "note": "pozvání s budoucím průběhovým kontextem: come along = pojď s námi (brit.)"},
+        {"id": "b98bc804-eb9d-448a-acf8-ca8ef33ed55f}", "cz": "Zítra v devět budou snídat v kavárně, že?", "en": "They will be having breakfast at the café at nine tomorrow, won't they?", "pattern": "tag_question", "person": "", "note": "dovětek: plural → won't they?"},
+        {"id": "f0ecaebe-1eba-4b68-a3c0-1b1733824ad4}", "cz": "Až tam v devět dorazíte, už budeme snídat v kavárně.", "en": "When you get there at nine, we will already be having breakfast at the café.", "pattern": "time_clause", "person": "", "note": "when + přítomný čas → WILL BE + -ING; already = už bude probíhat"},
+        {"id": "74596fb0-302a-48a7-8909-4cb80727b889}", "cz": "Až zítra ráno dorazíte, bude se v kavárně podávat snídaně.", "en": "Breakfast will be being served at the café when you arrive tomorrow morning.", "pattern": "passive", "person": "", "note": "trpný rod: WILL BE BEING + 3rd form; přirozená alternativa: breakfast will be served"},
+        {"id": "f29fa4fc-8572-4dff-97b8-9e505cbc3350}", "cz": "Řekla, že příštího dne v devět ráno budou snídat v kavárně.", "en": "She said that they would be having breakfast at the café at nine the next morning.", "pattern": "indirect", "person": "", "note": "nepřímá řeč: would be + -ING (will → would)"},
+        {"id": "2edc550b-bb1f-466f-bb05-262986b930d5}", "cz": "Pokud bude zítra kavárna otevřena, budeme tam snídat v devět hodin.", "en": "If the café is open tomorrow, we will be having breakfast there at nine o'clock.", "pattern": "conditional", "person": "", "note": "IF + přítomný čas → WILL BE + -ING v hlavní větě"}
+        ]
+      },
+    {
+      "grammar": "Budoucí průběhový",
+      "level": "B1",
+      "blok": "odpočívat po práci",
+      "topic": "Každodenní rutina",
+      "sentences": [
+        {"id": "38f74448-db21-4bf2-8ebd-e0c01299bba7}", "cz": "Dnes v sedm hodin večer budete odpočívat na pohovce.", "en": "You will be relaxing on the sofa at seven o'clock this evening.", "pattern": "affirmative", "person": "second", "note": "WILL BE + -ING — odpočinek probíhá v konkrétní čas večer"},
+        {"id": "3bdfbfa1-c205-4597-924b-19790f0d321d}", "cz": "Dnes v sedm hodin večer nebude odpočívat na pohovce.", "en": "She won't be relaxing on the sofa at seven o'clock this evening.", "pattern": "negative", "person": "third_singular", "note": "WON'T BE + -ING — záporný budoucí průběhový"},
+        {"id": "61c83325-82b2-42ad-9031-5b24e434f2ed}", "cz": "Bude dnes v sedm večer odpočívat na pohovce?", "en": "Will he be relaxing on the sofa at seven o'clock this evening?", "pattern": "question", "person": "", "note": "otázka: WILL + subject + BE + -ING"},
+        {"id": "09c92a1e-4f8c-4e17-8243-fa54fc77ef99}", "cz": "Kde bude dnes v sedm večer odpočívat?", "en": "Where will he be relaxing at seven o'clock this evening?", "pattern": "wh_question", "person": "", "note": "WH otázka: Where + WILL + subject + BE + -ING"},
+        {"id": "001174b0-4ae2-4f1d-ae1a-2b20d09324fa}", "cz": "Nerušte ji, dnes v sedm večer bude po práci odpočívat!", "en": "Don't disturb her — she will be relaxing after work at seven this evening!", "pattern": "imperative", "person": "", "note": "záporný rozkaz: Don't + infinitiv; kontext budoucího průběhového"},
+        {"id": "2e0f096a-a162-4997-95c6-c10bb141a0ab}", "cz": "Dnes večer budeš v sedm odpočívat, že?", "en": "You will be relaxing at seven this evening, won't you?", "pattern": "tag_question", "person": "", "note": "dovětek: kladná věta → záporný dovětek won't you?"},
+        {"id": "6501a0d4-06de-4853-b885-dbfd9fe4beee}", "cz": "Než se dnes večer vrátíš domů, budu odpočívat na pohovce.", "en": "By the time you get home this evening, I will be relaxing on the sofa.", "pattern": "time_clause", "person": "", "note": "by the time + přítomný čas → WILL BE + -ING"},
+        {"id": "b57933a4-a1dc-4962-a6d4-a0c8d7bed061}", "cz": "Pohovka se bude používat, až se dnes večer vrátíte domů.", "en": "The sofa will be being used when you get home this evening.", "pattern": "passive", "person": "", "note": "trpný rod: WILL BE BEING + 3rd form; přirozená alternativa: someone will be using the sofa"},
+        {"id": "78bf05b7-04be-4fd3-b19b-2b19469ca0ae}", "cz": "Řekl mi, že bude toho večera v sedm odpočívat na pohovce.", "en": "He told me that he would be relaxing on the sofa at seven that evening.", "pattern": "indirect", "person": "", "note": "nepřímá řeč: would be + -ING; that evening = časový posun z this evening"},
+        {"id": "808d2818-a20a-47eb-a899-4b04ca9866a8}", "cz": "Pokud přijdeš dnes v sedm večer, budu odpočívat a nebude se mi chtít ven.", "en": "If you come over at seven this evening, I will be relaxing and won't feel like going out.", "pattern": "conditional", "person": "", "note": "IF + přítomný čas → WILL BE + -ING; won't feel like = nebude se mi chtít"}
+        ]
+      },
+    {
+      "grammar": "Budoucí průběhový",
+      "level": "B1",
+      "blok": "jít na procházku po obědě",
+      "topic": "Každodenní rutina",
+      "sentences": [
+        {"id": "a6eaa097-221d-4a13-a552-0f791971b051}", "cz": "Dnes ve dvě hodiny odpoledne se budou procházet v parku.", "en": "They will be walking in the park at two o'clock this afternoon.", "pattern": "affirmative", "person": "plural", "note": "WILL BE + -ING — probíhá ve dvě hodiny odpoledne"},
+        {"id": "715d3269-b90f-472d-97fe-1cfc01efdab9}", "cz": "Nepůjdu dnes ve dvě odpoledne do parku.", "en": "I won't be walking in the park at two o'clock this afternoon.", "pattern": "negative", "person": "first", "note": "WON'T BE + -ING — záporný budoucí průběhový"},
+        {"id": "e9b1ba05-053a-4db7-8577-05e670c2b210}", "cz": "Budou se dnes ve dvě odpoledne procházet v parku?", "en": "Will they be walking in the park at two o'clock this afternoon?", "pattern": "question", "person": "", "note": "otázka: WILL + subject + BE + -ING"},
+        {"id": "49632b93-0b61-4f92-8de1-422da229938c}", "cz": "Kam budou chodit dnes ve dvě hodiny odpoledne?", "en": "Where will they be walking at two o'clock this afternoon?", "pattern": "wh_question", "person": "", "note": "WH otázka: Where + WILL + subject + BE + -ING"},
+        {"id": "772c472d-cd33-4d39-8b8f-6206500b86d0}", "cz": "Přijďte a přidejte se k nám - ve dvě odpoledne se projdeme parkem!", "en": "Come and join us — we will be walking in the park at two this afternoon!", "pattern": "imperative", "person": "", "note": "pozvání s budoucím průběhovým kontextem: Come and join us = brit. výraz"},
+        {"id": "a42e1116-4493-4047-a430-7a24d48270c9}", "cz": "Budou se dnes ve dvě odpoledne procházet v parku, že?", "en": "They will be walking in the park at two this afternoon, won't they?", "pattern": "tag_question", "person": "", "note": "dovětek: plural → won't they?"},
+        {"id": "d0c5f8ed-3774-47d1-99a2-e1c763872dc9}", "cz": "Až dokončíte oběd, budeme se již procházet v parku.", "en": "When you finish lunch, we will already be walking in the park.", "pattern": "time_clause", "person": "", "note": "when + přítomný čas → WILL BE + -ING; already = zdůraznění probíhající akce"},
+        {"id": "15864bcd-4e26-4217-bc56-bae7829bd163}", "cz": "Park si dnes ve dvě hodiny odpoledne užije spousta lidí.", "en": "The park will be being enjoyed by lots of people at two o'clock this afternoon.", "pattern": "passive", "person": "", "note": "trpný rod: WILL BE BEING + 3rd form; přirozená alternativa: lots of people will be using the park"},
+        {"id": "c1187f18-08fa-4673-a2fa-3235aeb5c4ce}", "cz": "Řekla, že se ve dvě hodiny odpoledne budou procházet v parku.", "en": "She said that they would be walking in the park at two o'clock that afternoon.", "pattern": "indirect", "person": "", "note": "nepřímá řeč: would be + -ING; that afternoon = časový posun"},
+        {"id": "3c992e5c-7ddc-419b-9b03-2ea34a9ae775}", "cz": "Pokud bude dnes odpoledne pěkné počasí, půjdeme ve dvě do parku.", "en": "If the weather is fine this afternoon, we will be walking in the park at two.", "pattern": "conditional", "person": "", "note": "IF + přítomný čas → WILL BE + -ING; podmínka počasí"}
+        ]
+      },
+    {
+      "grammar": "Budoucí průběhový",
+      "level": "B1",
+      "blok": "dělat domácí úkoly odpoledne",
+      "topic": "Každodenní rutina",
+      "sentences": [
+        {"id": "e59897f8-253d-4f60-945f-4cb3c1c3e8d1}", "cz": "Dnes ve čtyři odpoledne budeš dělat domácí úkoly.", "en": "You will be doing your homework at four o'clock this afternoon.", "pattern": "affirmative", "person": "second", "note": "WILL BE + -ING — akce probíhá ve čtyři odpoledne"},
+        {"id": "abff8f6b-677c-480d-b052-88ff29a4511e}", "cz": "Dnes ve čtyři odpoledne nebude dělat úkoly.", "en": "He won't be doing his homework at four o'clock this afternoon.", "pattern": "negative", "person": "third_singular", "note": "WON'T BE + -ING — záporný budoucí průběhový"},
+        {"id": "4bad8d82-343c-4000-9011-08856c5dff90}", "cz": "Bude dnes ve čtyři odpoledne dělat domácí úkoly?", "en": "Will she be doing her homework at four o'clock this afternoon?", "pattern": "question", "person": "", "note": "otázka: WILL + subject + BE + -ING"},
+        {"id": "ae8fbe57-29dc-42f8-87b5-eb28e33f4094}", "cz": "Co bude dělat dnes ve čtyři hodiny odpoledne?", "en": "What will she be doing at four o'clock this afternoon?", "pattern": "wh_question", "person": "", "note": "WH otázka: What + WILL + subject + BE + -ING"},
+        {"id": "2e004152-8e6c-4bd2-bd3e-85c07f415d2a}", "cz": "Nepřerušujte ji, dnes ve čtyři odpoledne bude dělat domácí úkoly!", "en": "Don't interrupt her — she will be doing her homework at four this afternoon!", "pattern": "imperative", "person": "", "note": "záporný rozkaz: Don't + infinitiv; kontext budoucí průběhový"},
+        {"id": "729ecccd-2ea2-4e24-befc-8f1067dc1b32}", "cz": "Dneska bude dělat domácí úkoly ve čtyři odpoledne, že?", "en": "She will be doing her homework at four this afternoon, won't she?", "pattern": "tag_question", "person": "", "note": "dovětek: third_singular → won't she?"},
+        {"id": "6a6abf37-736f-45bc-8bb4-6f57ae4e5da8}", "cz": "Když se dostanete domů ve čtyři, bude stále dělat domácí úkoly.", "en": "When you get home at four, she will still be doing her homework.", "pattern": "time_clause", "person": "", "note": "when + přítomný čas → WILL BE + -ING; still = stále bude probíhat"},
+        {"id": "1ced96ea-12b2-477e-aa09-3b1b64a735f7}", "cz": "Domácí úkoly se budou dělat dnes ve čtyři hodiny odpoledne.", "en": "The homework will be being done at four o'clock this afternoon.", "pattern": "passive", "person": "", "note": "trpný rod: WILL BE BEING + 3rd form; přirozená alternativa: she will be doing her homework"},
+        {"id": "c0cb23ac-49da-4f10-b0c4-72aded310b8c}", "cz": "Řekla mi, že bude dělat domácí úkoly ve čtyři hodiny odpoledne.", "en": "She told me that she would be doing her homework at four o'clock that afternoon.", "pattern": "indirect", "person": "", "note": "nepřímá řeč: would be + -ING; that afternoon = časový posun"},
+        {"id": "46c35002-3ee8-431d-a942-0e981fd6635c}", "cz": "Pokud zavoláte ve čtyři odpoledne, bude dělat domácí úkoly a nebude moci mluvit.", "en": "If you call at four this afternoon, she will be doing her homework and won't be able to talk.", "pattern": "conditional", "person": "", "note": "IF + přítomný čas → WILL BE + -ING; won't be able to = nebude moci"}
+        ]
+      },
+    {
+      "grammar": "Budoucí průběhový",
+      "level": "B1",
+      "blok": "sledovat seriál večer",
+      "topic": "Každodenní rutina",
+      "sentences": [
+        {"id": "e813a735-6dd3-4c10-95fe-364a1a5a9cd2}", "cz": "Dnes v devět hodin večer budou sledovat svůj oblíbený seriál.", "en": "They will be watching their favourite series at nine o'clock tonight.", "pattern": "affirmative", "person": "plural", "note": "WILL BE + -ING — akce probíhá v devět večer; favourite = brit. pravopis"},
+        {"id": "11eb7d25-a2cf-424b-8736-4dad623c5818}", "cz": "Dnes v devět večer nebudu sledovat svůj oblíbený seriál.", "en": "I won't be watching my favourite series at nine o'clock tonight.", "pattern": "negative", "person": "first", "note": "WON'T BE + -ING — záporný budoucí průběhový"},
+        {"id": "04bd171d-21a3-4dba-b305-1a467fa984a4}", "cz": "Budou se dnes v devět večer dívat na svůj oblíbený seriál?", "en": "Will they be watching their favourite series at nine o'clock tonight?", "pattern": "question", "person": "", "note": "otázka: WILL + subject + BE + -ING"},
+        {"id": "2551ef22-d0cd-4a84-b0a8-73b0f8594256}", "cz": "Na co se budou dívat dnes v devět hodin večer?", "en": "What will they be watching at nine o'clock tonight?", "pattern": "wh_question", "person": "", "note": "WH otázka: What + WILL + subject + BE + -ING"},
+        {"id": "f1d2a2a2-ae69-4d52-975c-c2f737a6297e}", "cz": "Dnes v devět nezvoňte - budeme sledovat náš oblíbený seriál!", "en": "Don't ring at nine tonight — we will be watching our favourite series!", "pattern": "imperative", "person": "", "note": "záporný rozkaz s vysvětlením: Don't ring = brit. don't call"},
+        {"id": "682cf92e-678c-406e-bce6-bbb5d3e9687f}", "cz": "Dnes v devět večer budou sledovat svůj seriál, že?", "en": "They will be watching their series at nine tonight, won't they?", "pattern": "tag_question", "person": "", "note": "dovětek: plural → won't they?"},
+        {"id": "02f1dde0-260b-41c0-bdb3-e4271e6c60d7}", "cz": "Když dnes večer pošlete tuto zprávu, budeme náš seriál sledovat a uvidíme ho až později.", "en": "When you post that message tonight, we will be watching our series and won't see it until later.", "pattern": "time_clause", "person": "", "note": "when + přítomný čas → WILL BE + -ING; post = brit. výraz pro send a message"},
+        {"id": "e789e218-6cfe-40af-988d-da408252c730}", "cz": "Seriál budou dnes v devět hodin večer sledovat miliony lidí.", "en": "The series will be being watched by millions of people at nine o'clock tonight.", "pattern": "passive", "person": "", "note": "trpný rod: WILL BE BEING + 3rd form; přirozená alternativa: millions will be watching"},
+        {"id": "6f3fd090-d385-4b59-a86a-c13885a5b3d8}", "cz": "Řekl, že v devět hodin večer budou sledovat svůj oblíbený seriál.", "en": "He said that they would be watching their favourite series at nine o'clock that night.", "pattern": "indirect", "person": "", "note": "nepřímá řeč: would be + -ING; that night = časový posun z tonight"},
+        {"id": "4c387b4e-2481-4e40-b66a-21429a5c030d}", "cz": "Pokud přijdete dnes v devět večer, budeme sledovat náš seriál - přinést nějaké sušenky!", "en": "If you come over at nine tonight, we will be watching our series — bring some biscuits!", "pattern": "conditional", "person": "", "note": "IF + přítomný čas → WILL BE + -ING; biscuits = brit. anglický výraz"}
+        ]
+      },
+    {
+      "grammar": "Budoucí průběhový",
+      "level": "B1",
+      "blok": "připravovat prezentaci dopoledne",
+      "topic": "Každodenní rutina",
+      "sentences": [
+        {"id": "fff58fec-3873-4764-b77a-a8c3019c2125}", "cz": "Ve čtvrtek budete celé dopoledne připravovat svou prezentaci.", "en": "You will be preparing your presentation all morning on Thursday.", "pattern": "affirmative", "person": "second", "note": "WILL BE + -ING — probíhá celé dopoledne ve čtvrtek"},
+        {"id": "ee00f6d1-3998-4a7f-990a-ae3fa21b9396}", "cz": "Ve čtvrtek nebude celé dopoledne připravovat svou prezentaci.", "en": "She won't be preparing her presentation all morning on Thursday.", "pattern": "negative", "person": "third_singular", "note": "WON'T BE + -ING — záporný budoucí průběhový"},
+        {"id": "f2267279-84f0-42d0-b784-ec26dc831e98}", "cz": "Bude ve čtvrtek celé dopoledne připravovat svou prezentaci?", "en": "Will he be preparing his presentation all morning on Thursday?", "pattern": "question", "person": "", "note": "otázka: WILL + subject + BE + -ING"},
+        {"id": "4177bcd2-41c3-4e11-a875-2f2abe3baf57}", "cz": "Co bude ve čtvrtek celé dopoledne připravovat?", "en": "What will he be preparing all morning on Thursday?", "pattern": "wh_question", "person": "", "note": "WH otázka: What + WILL + subject + BE + -ING"},
+        {"id": "1ec34110-dbdb-4979-a365-8cfdf035757b}", "cz": "Nerušte ho - ve čtvrtek bude celé dopoledne připravovat svou prezentaci!", "en": "Don't disturb him — he will be preparing his presentation all morning on Thursday!", "pattern": "imperative", "person": "", "note": "záporný rozkaz s budoucím průběhovým kontextem"},
+        {"id": "258473d4-30af-43ba-8ea4-5f43d779ee6d}", "cz": "Ve čtvrtek bude celé dopoledne připravovat svou prezentaci, že?", "en": "She will be preparing her presentation all morning on Thursday, won't she?", "pattern": "tag_question", "person": "", "note": "dovětek: third_singular → won't she?"},
+        {"id": "70d4463b-d9f8-4e27-802e-8abb004854d4}", "cz": "Až schůzka ve čtvrtek začne, bude ještě připravovat svou prezentaci.", "en": "When the meeting starts on Thursday, she will still be preparing her presentation.", "pattern": "time_clause", "person": "", "note": "when + přítomný čas → WILL BE + -ING; still = stále bude probíhat"},
+        {"id": "93ca7f10-0755-41ac-bfda-0bbe64c68245}", "cz": "Prezentace se bude připravovat celé čtvrteční dopoledne.", "en": "The presentation will be being prepared all morning on Thursday.", "pattern": "passive", "person": "", "note": "trpný rod: WILL BE BEING + 3rd form; přirozená alternativa: he will be preparing it"},
+        {"id": "0ea62e1a-6c08-4347-8f4b-34675261b315}", "cz": "Řekl mi, že bude ve čtvrtek celé dopoledne připravovat svou prezentaci.", "en": "He told me that he would be preparing his presentation all morning on Thursday.", "pattern": "indirect", "person": "", "note": "nepřímá řeč: would be + -ING (will → would)"},
+        {"id": "5240fc21-a4ca-48bf-9841-f3f1e7254db3}", "cz": "Pokud potřebujete pomoc ve čtvrtek ráno, bude připravovat svou prezentaci a nebude mít volno.", "en": "If you need help on Thursday morning, he will be preparing his presentation and won't be free.", "pattern": "conditional", "person": "", "note": "IF + přítomný čas → WILL BE + -ING; won't be free = nebude volný"}
+        ]
+      },
+    {
+      "grammar": "Budoucí průběhový",
+      "level": "B1",
+      "blok": "řídit auto na dálnici",
+      "topic": "Každodenní rutina",
+      "sentences": [
+        {"id": "c9c7d548-9a74-4bb9-ac19-2173b2ca1991}", "cz": "Zítra touto dobou pojedou po dálnici.", "en": "They will be driving on the motorway at this time tomorrow.", "pattern": "affirmative", "person": "plural", "note": "WILL BE + -ING — jízda probíhá v konkrétní čas; motorway = brit. výraz"},
+        {"id": "1ff01295-1474-4580-abc7-092bc7acde68}", "cz": "Zítra touto dobou nepojedu po dálnici.", "en": "I won't be driving on the motorway at this time tomorrow.", "pattern": "negative", "person": "first", "note": "WON'T BE + -ING — záporný budoucí průběhový"},
+        {"id": "ce42bd1f-5561-4a72-811b-03985308d2e0}", "cz": "Budou zítra jezdit po dálnici touto dobou?", "en": "Will they be driving on the motorway at this time tomorrow?", "pattern": "question", "person": "", "note": "otázka: WILL + subject + BE + -ING"},
+        {"id": "f1ae50d1-b4e1-46e8-82e3-e696b231822a}", "cz": "Kde budou zítra touto dobou jezdit?", "en": "Where will they be driving at this time tomorrow?", "pattern": "wh_question", "person": "", "note": "WH otázka: Where + WILL + subject + BE + -ING"},
+        {"id": "85af85fc-ba8d-4542-b2a5-676f412c3d5c}", "cz": "Nevolejte jim zítra v tuto dobu - pojedou po dálnici!", "en": "Don't ring them at this time tomorrow — they will be driving on the motorway!", "pattern": "imperative", "person": "", "note": "záporný rozkaz s vysvětlením; motorway = brit. výraz"},
+        {"id": "2f47ce23-065e-4008-98da-207c14738969}", "cz": "Zítra touhle dobou pojedou po dálnici, ne?", "en": "They will be driving on the motorway at this time tomorrow, won't they?", "pattern": "tag_question", "person": "", "note": "dovětek: plural → won't they?"},
+        {"id": "3600fc09-579c-48fc-b0ed-e960f7aef986}", "cz": "Až zítra přistanete na letišti, už pojedeme po dálnici vstříc.", "en": "When you land at the airport tomorrow, we will already be driving on the motorway to meet you.", "pattern": "time_clause", "person": "", "note": "when + přítomný čas → WILL BE + -ING; already = zdůraznění"},
+        {"id": "9efcde75-9dce-47ba-9237-f2a7dbb99092}", "cz": "Dálnici zítra touto dobou budou využívat tisíce řidičů.", "en": "The motorway will be being used by thousands of drivers at this time tomorrow.", "pattern": "passive", "person": "", "note": "trpný rod: WILL BE BEING + 3rd form; přirozená alternativa: thousands will be driving"},
+        {"id": "886c7839-c95b-4296-9bb3-da79a21fec73}", "cz": "Řekla, že druhý den v tu dobu pojedou po dálnici.", "en": "She said that they would be driving on the motorway at that time the next day.", "pattern": "indirect", "person": "", "note": "nepřímá řeč: would be + -ING; the next day = časový posun z tomorrow"},
+        {"id": "df4c794f-e4b2-4c6a-92e2-165a21990272}", "cz": "Pokud bude zítra špatný provoz, pojedeme hodiny po dálnici.", "en": "If the traffic is bad tomorrow, we will be driving on the motorway for hours.", "pattern": "conditional", "person": "", "note": "IF + přítomný čas → WILL BE + -ING; for hours = po celé hodiny"}
+        ]
+      },
+    {
+      "grammar": "Předminulý čas",
+      "level": "B1",
+      "blok": "uklidit pokoj před hosty",
+      "topic": "Každodenní rutina",
+      "sentences": [
+        {"id": "8a64b1a7-4360-463b-a083-9b59856b0c4c}", "cz": "Před příchodem hostů jsem pokoj uklidil.", "en": "I had tidied the room before the guests arrived.", "pattern": "affirmative", "person": "first", "note": "HAD + 3rd form — předminulý čas vyjadřuje dřívější akci"},
+        {"id": "bced03e4-0a9a-456f-87b9-933b3e477f23}", "cz": "Před příchodem hostů jste pokoj neuklidili.", "en": "You hadn't tidied the room before the guests arrived.", "pattern": "negative", "person": "second", "note": "záporný předminulý čas: HAD NOT (HADN'T) + 3rd form"},
+        {"id": "d26cbcac-70b6-41ed-80c1-c6cb178c2e4d}", "cz": "Uklidila pokoj před příchodem hostů?", "en": "Had she tidied the room before the guests arrived?", "pattern": "question", "person": "", "note": "otázka: HAD + subject + 3rd form"},
+        {"id": "f37cdbaf-20dd-4a9c-ae54-9f88f6520b4a}", "cz": "Co uklidila před příchodem hostů?", "en": "What had she tidied before the guests arrived?", "pattern": "wh_question", "person": "", "note": "WH slovo na začátku: What + HAD + subject + 3rd form"},
+        {"id": "0727d62f-1f56-47b2-8967-752716942358}", "cz": "Ujistěte se, že jste před příchodem hostů uklidili pokoj!", "en": "Make sure you have tidied the room before the guests arrive!", "pattern": "imperative", "person": "", "note": "rozkaz s předminulým kontextem: make sure you have + 3rd form"},
+        {"id": "9c39bae6-d09f-4adb-a6a7-0a0ba5798cac}", "cz": "Před příchodem hostů uklidila pokoj důkladněji než on.", "en": "She had tidied the room more thoroughly than he had before the guests arrived.", "pattern": "comparison", "person": "", "note": "srovnání: more + příslovce + than + had (zkrácená forma)"},
+        {"id": "cd68e764-3ea1-469f-8575-a0831993730b}", "cz": "Před příchodem hostů jste pokoj uklidili, že?", "en": "You had tidied the room before the guests arrived, hadn't you?", "pattern": "tag_question", "person": "", "note": "dovětek: kladná věta → záporný dovětek hadn't you?"},
+        {"id": "ff08edaa-0571-4f41-baf7-2aa59eba8b3c}", "cz": "Než přijeli hosté, pokoj jsem už uklidil.", "en": "By the time the guests arrived, I had already tidied the room.", "pattern": "time_clause", "person": "", "note": "by the time + minulý čas → předminulý čas v hlavní větě"},
+        {"id": "06aa54a6-c0cc-4872-acfa-fa9be814b74e}", "cz": "Před příchodem hostů byl pokoj uklizen.", "en": "The room had been tidied before the guests arrived.", "pattern": "passive", "person": "", "note": "trpný rod předminulého času: HAD BEEN + 3rd form"},
+        {"id": "21ee98dc-5e5b-4b9c-98a4-b82c9bf26a28}", "cz": "Řekla, že před příchodem hostů pokoj uklidila.", "en": "She said that she had tidied the room before the guests arrived.", "pattern": "indirect", "person": "", "note": "nepřímá řeč: said that + předminulý čas (časový posun)"},
+        {"id": "211648bd-f0c6-4554-878f-20ca08d85c07}", "cz": "Kdybych pokoj uklidil dříve, hosté by nebyli nepříjemní.", "en": "If I had tidied the room earlier, the guests wouldn't have been uncomfortable.", "pattern": "conditional", "person": "", "note": "3. kondicionál: IF + HAD + 3rd form → WOULD HAVE + 3rd form"}
+        ]
+      },
+    {
+      "grammar": "Předminulý čas",
+      "level": "B1",
+      "blok": "dočíst knihu před spaním",
+      "topic": "Každodenní rutina",
+      "sentences": [
+        {"id": "966fce2b-72ac-452e-a6d3-d8e92396ad16}", "cz": "Dopsal jsi knihu, než jsi šel spát.", "en": "You had finished the book before you went to bed.", "pattern": "affirmative", "person": "second", "note": "HAD + 3rd form — akce dokončená před jinou minulou akcí"},
+        {"id": "d80b523a-2f51-40d3-8766-56c6351bdfd2}", "cz": "Než šla spát, knihu nedočetla.", "en": "She hadn't finished the book before she went to bed.", "pattern": "negative", "person": "third_singular", "note": "záporný předminulý čas: HADN'T + 3rd form"},
+        {"id": "fb90e0c1-1f5c-47a0-872b-83d6125fc623}", "cz": "Dopsal knihu, než šel spát?", "en": "Had he finished the book before he went to bed?", "pattern": "question", "person": "", "note": "otázka předminulého času: HAD + subject + 3rd form"},
+        {"id": "504cee75-1e46-4d99-9360-ecd188886ec3}", "cz": "Kterou knihu dočetl, než šel spát?", "en": "Which book had he finished before he went to bed?", "pattern": "wh_question", "person": "", "note": "WH otázka: Which + HAD + subject + 3rd form"},
+        {"id": "3eb4db79-1e9c-4769-bf9a-687e8ece9156}", "cz": "Zkuste dočíst knihu, než půjdete spát!", "en": "Try to have finished your book before you go to bed!", "pattern": "imperative", "person": "", "note": "rozkaz s předminulým kontextem: try to have + 3rd form"},
+        {"id": "4eb77ea8-98f3-479a-a7c7-4b6093edcdab}", "cz": "Před spaním přečetla více stránek než on.", "en": "She had read more pages before bed than he had.", "pattern": "comparison", "person": "", "note": "srovnání: more + podstatné jméno + than + had"},
+        {"id": "8b7fa551-88a1-4f16-bba3-46616b3a2281}", "cz": "Dočetl jsi knihu, než jsi šel spát, že?", "en": "You had finished the book before you went to bed, hadn't you?", "pattern": "tag_question", "person": "", "note": "dovětek: kladná věta → hadn't you?"},
+        {"id": "9f009d37-f3df-48ba-9b23-32b05432db34}", "cz": "Když knihu dočetla, zhasla světlo a šla spát.", "en": "After she had finished the book, she turned off the light and went to sleep.", "pattern": "time_clause", "person": "", "note": "after + předminulý čas → minulý čas (after označuje pořadí akcí)"},
+        {"id": "a3d0af3b-14c6-478f-a389-934e6ddda2c4}", "cz": "Kniha byla hotová, než šla spát.", "en": "The book had been finished before she went to bed.", "pattern": "passive", "person": "", "note": "trpný rod: HAD BEEN + 3rd form"},
+        {"id": "ff0a2995-4778-429a-ae5a-5ac8e9eeadf7}", "cz": "Řekl, že knihu dokončil, než šel spát.", "en": "He said that he had finished the book before he went to bed.", "pattern": "indirect", "person": "", "note": "nepřímá řeč: said that + předminulý čas"},
+        {"id": "6eff31fe-9570-479f-9a04-ea765c3a364f}", "cz": "Kdyby knihu dokončila dříve, nezůstávala by tak dlouho vzhůru.", "en": "If she had finished the book earlier, she wouldn't have stayed up so late.", "pattern": "conditional", "person": "", "note": "3. kondicionál: IF + HAD + 3rd form → WOULDN'T HAVE + 3rd form"}
+        ]
+      },
+    {
+      "grammar": "Předminulý čas",
+      "level": "B1",
+      "blok": "zalít rostliny ráno",
+      "topic": "Každodenní rutina",
+      "sentences": [
+        {"id": "43dd213d-d745-429a-83b3-19b2c3588e8c}", "cz": "Před odchodem do práce rostliny zalili.", "en": "They had watered the plants before they left for work.", "pattern": "affirmative", "person": "plural", "note": "HAD + 3rd form — dokončeno před odchodem do práce"},
+        {"id": "e4120b66-28a7-4954-aa4a-74ca31cff0bb}", "cz": "Před odjezdem do práce jsem rostliny nezaléval.", "en": "I hadn't watered the plants before I left for work.", "pattern": "negative", "person": "first", "note": "záporný předminulý čas: HADN'T + 3rd form + before"},
+        {"id": "3d69b21d-f23e-4a71-8b2b-5b9f21b5b789}", "cz": "Zalili rostliny předtím, než odešli do práce?", "en": "Had they watered the plants before they left for work?", "pattern": "question", "person": "", "note": "otázka: HAD + subject + 3rd form + before"},
+        {"id": "3dd19d90-5d39-4efb-a1cb-fb2620d27876}", "cz": "Kdy zalili rostliny před odjezdem do práce?", "en": "When had they watered the plants before leaving for work?", "pattern": "wh_question", "person": "", "note": "WH otázka: When + HAD + subject + 3rd form"},
+        {"id": "7c5bfce7-3d58-45e9-87ea-631194a03dec}", "cz": "Ujistěte se, že jste rostliny před odjezdem do práce zalili!", "en": "Make sure you have watered the plants before you leave for work!", "pattern": "imperative", "person": "", "note": "make sure you have + 3rd form — předminulý kontext v rozkazu"},
+        {"id": "534ad8df-1f76-49a8-8c05-0f017a895ad3}", "cz": "Před odjezdem zalévala rostliny pečlivěji než její spolubydlící.", "en": "She had watered the plants more carefully than her flatmate had before leaving.", "pattern": "comparison", "person": "", "note": "srovnání: more carefully than + had (zkrácená forma)"},
+        {"id": "e431ccec-5727-4d18-b0f6-4a03d3c03e7b}", "cz": "Před odjezdem zalili rostliny, ne?", "en": "They had watered the plants before they left, hadn't they?", "pattern": "tag_question", "person": "", "note": "dovětek: plural → hadn't they?"},
+        {"id": "44c3e197-6f37-4413-aa38-5bc90d54ff89}", "cz": "Než jsem odešel do práce, už jsem všechny rostliny zalil.", "en": "Before I left for work, I had already watered all the plants.", "pattern": "time_clause", "person": "", "note": "before + minulý čas → předminulý čas vyjadřuje dřívější akci"},
+        {"id": "9afef87e-1cbf-4392-ae96-036552fed507}", "cz": "Rostliny byly zality, než někdo odešel do práce.", "en": "The plants had been watered before anyone left for work.", "pattern": "passive", "person": "", "note": "trpný rod: HAD BEEN + 3rd form"},
+        {"id": "eda3ebd1-a26f-4496-830a-c44c356c5a5d}", "cz": "Řekla mi, že rostliny před odjezdem do práce zalila.", "en": "She told me that she had watered the plants before leaving for work.", "pattern": "indirect", "person": "", "note": "nepřímá řeč: told me that + předminulý čas"},
+        {"id": "aefe02d2-8917-4bb7-a3a2-219d1097f586}", "cz": "Kdyby rostliny před odjezdem zalil, neuvadly by.", "en": "If he had watered the plants before leaving, they wouldn't have wilted.", "pattern": "conditional", "person": "", "note": "3. kondicionál: IF + HAD + 3rd form → WOULDN'T HAVE + 3rd form"}
+        ]
+      },
+    {
+      "grammar": "Předminulý čas",
+      "level": "B1",
+      "blok": "sprchovat se před prací",
+      "topic": "Každodenní rutina",
+      "sentences": [
+        {"id": "59969e3f-18dc-4940-a83b-a270027bebd8}", "cz": "Osprchoval ses, než jsi stihl autobus do práce.", "en": "You had showered before you caught the bus to work.", "pattern": "affirmative", "person": "second", "note": "HAD + 3rd form — dokončeno před nastoupením do autobusu"},
+        {"id": "272126d8-b8f0-4a18-9e76-041cea175e0f}", "cz": "Než stihl autobus do práce, nesprchoval se.", "en": "He hadn't showered before he caught the bus to work.", "pattern": "negative", "person": "third_singular", "note": "HADN'T + 3rd form — záporný předminulý čas"},
+        {"id": "03be81f7-c0f0-4c28-bbed-282290d5e543}", "cz": "Osprchovala se, než stihla autobus do práce?", "en": "Had she showered before she caught the bus to work?", "pattern": "question", "person": "", "note": "otázka: HAD + subject + 3rd form"},
+        {"id": "2ead18e8-f0cd-4524-9d9e-d589f6f9ccb1}", "cz": "Proč se neosprchoval, než stihl autobus do práce?", "en": "Why hadn't he showered before he caught the bus to work?", "pattern": "wh_question", "person": "", "note": "záporná WH otázka: Why + HADN'T + subject + 3rd form"},
+        {"id": "82e468d1-a5d1-47fb-bae8-cf7d9534cb1a}", "cz": "Ujistěte se, že jste se osprchovali, než stihnete autobus!", "en": "Make sure you have showered before you catch the bus!", "pattern": "imperative", "person": "", "note": "make sure you have + 3rd form v rozkazu"},
+        {"id": "77991a73-bddc-40cc-a2ac-79a2ec75abd5}", "cz": "Než stihla autobus, sprchovala se rychleji než její bratr.", "en": "She had showered more quickly than her brother had before catching the bus.", "pattern": "comparison", "person": "", "note": "srovnání: more quickly than + had"},
+        {"id": "10974926-6831-4f55-a4eb-5e05de31877a}", "cz": "Před odjezdem se osprchoval, ne?", "en": "He had showered before he left, hadn't he?", "pattern": "tag_question", "person": "", "note": "dovětek: third_singular → hadn't he?"},
+        {"id": "0d8c8179-2b43-4c20-9ebe-add5678b8ca4}", "cz": "Když odešel z bytu, už se osprchoval a oblékl.", "en": "By the time he left the flat, he had already showered and dressed.", "pattern": "time_clause", "person": "", "note": "by the time + minulý čas → předminulý čas (already zdůrazňuje dokončenost)"},
+        {"id": "c06b02d7-0fd3-4b0b-9ca3-80099e6a9844}", "cz": "Sprcha byla použita dvakrát, než odešel do práce.", "en": "The shower had been used twice before he left for work.", "pattern": "passive", "person": "", "note": "trpný rod: HAD BEEN + 3rd form"},
+        {"id": "cfe222ea-746c-4d0c-be52-acaf40353688}", "cz": "Řekla, že se před autobusem do práce osprchovala.", "en": "She said that she had showered before catching the bus to work.", "pattern": "indirect", "person": "", "note": "nepřímá řeč: said that + předminulý čas"},
+        {"id": "82029f89-a026-4a00-a94b-96e1d2e92653}", "cz": "Kdyby se před odjezdem osprchoval, necítil by se v autobuse tak nepříjemně.", "en": "If he had showered before leaving, he wouldn't have felt so uncomfortable on the bus.", "pattern": "conditional", "person": "", "note": "3. kondicionál: IF + HAD + 3rd form → WOULDN'T HAVE + 3rd form"}
+        ]
+      },
+    {
+      "grammar": "Předminulý čas",
+      "level": "B1",
+      "blok": "naplánovat týden v neděli",
+      "topic": "Každodenní rutina",
+      "sentences": [
+        {"id": "6fbef162-006d-47bb-8b08-0811f1be4094}", "cz": "Plánovali celý týden, než přišlo pondělní ráno.", "en": "They had planned the whole week before Monday morning arrived.", "pattern": "affirmative", "person": "plural", "note": "HAD + 3rd form — plánování dokončeno před začátkem týdne"},
+        {"id": "e56e169e-8ae4-4288-8ee3-1542daa27251}", "cz": "Týden před příchodem pondělního rána jsem to neplánoval.", "en": "I hadn't planned the week before Monday morning arrived.", "pattern": "negative", "person": "first", "note": "HADN'T + 3rd form — záporný předminulý čas"},
+        {"id": "4c54ec8e-97f3-4d78-bbcd-9ccd7127ae8d}", "cz": "Plánovala týden před příchodem pondělního rána?", "en": "Had she planned the week before Monday morning arrived?", "pattern": "question", "person": "", "note": "otázka: HAD + subject + 3rd form + before"},
+        {"id": "b6f616f8-fd84-4bfc-a5df-d8250a60c3c7}", "cz": "Jak plánovali týden před příchodem pondělního rána?", "en": "How had they planned the week before Monday morning arrived?", "pattern": "wh_question", "person": "", "note": "WH otázka: How + HAD + subject + 3rd form"},
+        {"id": "98a9f3c4-1bf2-4777-8e63-def5f4163ffd}", "cz": "Zkuste si naplánovat týden, než přijde pondělní ráno!", "en": "Try to have planned your week before Monday morning comes!", "pattern": "imperative", "person": "", "note": "try to have + 3rd form — předminulý kontext v rozkazu"},
+        {"id": "da0ca3e5-3eb0-48f5-a708-b4b8bf1036c4}", "cz": "Svůj týden si naplánovala pečlivěji než její kolega před začátkem nového měsíce.", "en": "She had planned her week more carefully than her colleague had before the new month started.", "pattern": "comparison", "person": "", "note": "srovnání: more carefully than + had (zkrácená forma)"},
+        {"id": "9f59407e-7630-45de-9ace-1837a7a46285}", "cz": "Naplánovali si týden na víkend, ne?", "en": "They had planned the week at the weekend, hadn't they?", "pattern": "tag_question", "person": "", "note": "dovětek: plural → hadn't they? | at the weekend = brit. angličtina"},
+        {"id": "9b33c8bb-f8e0-44d9-8f5e-214f45645d57}", "cz": "Poté, co si týden naplánovali, se v pondělí cítili mnohem méně vystresovaní.", "en": "After they had planned the week, they felt much less stressed on Monday.", "pattern": "time_clause", "person": "", "note": "after + předminulý čas → minulý čas (pořadí akcí)"},
+        {"id": "5c97f79e-46c4-4160-bded-524b4c2d1e9a}", "cz": "Než přišlo pondělní ráno, byl celý týden naplánován.", "en": "The whole week had been planned before Monday morning arrived.", "pattern": "passive", "person": "", "note": "trpný rod: HAD BEEN + 3rd form"},
+        {"id": "ffa37caa-f892-4132-88a3-8921a3383e41}", "cz": "Řekl mi, že plánoval týden před příchodem pondělí.", "en": "He told me that he had planned the week before Monday arrived.", "pattern": "indirect", "person": "", "note": "nepřímá řeč: told me that + předminulý čas"},
+        {"id": "db16daa1-125b-4fba-826c-367b28a70194}", "cz": "Kdybych si ten týden pořádně naplánoval, na schůzku bych nezapomněl.", "en": "If I had planned the week properly, I wouldn't have forgotten the meeting.", "pattern": "conditional", "person": "", "note": "3. kondicionál: IF + HAD + 3rd form → WOULDN'T HAVE + 3rd form"}
+        ]
+      },
+    {
+      "grammar": "Předminulý čas",
+      "level": "B1",
+      "blok": "připravit oblečení večer",
+      "topic": "Každodenní rutina",
+      "sentences": [
+        {"id": "be83d9ae-1cd0-4da8-acd0-011751dc5ccf}", "cz": "Večer před nástupem do nové práce jste si rozložili oblečení.", "en": "You had laid out your clothes the evening before you started your new job.", "pattern": "affirmative", "person": "second", "note": "HAD + 3rd form — oblečení připraveno večer před důležitým dnem"},
+        {"id": "7c482b46-a820-4059-8bd5-a1d439a3fdd0}", "cz": "Večer před nástupem do nové práce si nerozložila oblečení.", "en": "She hadn't laid out her clothes the evening before she started her new job.", "pattern": "negative", "person": "third_singular", "note": "HADN'T + 3rd form — záporný předminulý čas"},
+        {"id": "661c4c14-e53c-4e06-9108-fc41b745bed3}", "cz": "Rozložil si oblečení večer před nástupem do nové práce?", "en": "Had he laid out his clothes the evening before he started his new job?", "pattern": "question", "person": "", "note": "otázka: HAD + subject + 3rd form"},
+        {"id": "26bf2f38-f1d8-49b5-a783-556e5ba6f488}", "cz": "Co si připravila večer před nástupem do nové práce?", "en": "What had she laid out the evening before she started her new job?", "pattern": "wh_question", "person": "", "note": "WH otázka: What + HAD + subject + 3rd form"},
+        {"id": "9344b528-3bc2-4184-bb40-154ee45e849c}", "cz": "Ujistěte se, že jste si večer před důležitým dnem rozložili oblečení!", "en": "Make sure you have laid out your clothes the evening before an important day!", "pattern": "imperative", "person": "", "note": "make sure you have + 3rd form — předminulý kontext v rozkazu"},
+        {"id": "b45485aa-b267-4d05-a936-1eed4be1dbe1}", "cz": "Svůj outfit si připravila pečlivěji než její spolubydlící večer předtím.", "en": "She had prepared her outfit more carefully than her flatmate had the evening before.", "pattern": "comparison", "person": "", "note": "srovnání: more carefully than + had"},
+        {"id": "cab448c3-22ca-4a13-a53b-df2a97c06d6d}", "cz": "Večer předtím jsi si rozložil oblečení, že?", "en": "You had laid out your clothes the evening before, hadn't you?", "pattern": "tag_question", "person": "", "note": "dovětek: kladná věta → záporný dovětek hadn't you?"},
+        {"id": "1d404f1a-3361-4c2a-8db7-92caf585f95f}", "cz": "Když se probudila, uvědomila si, že si večer předtím nerozložila oblečení.", "en": "When she woke up, she realised she hadn't laid out her clothes the evening before.", "pattern": "time_clause", "person": "", "note": "when + minulý čas → předminulý čas vyjadřuje dřívější (nenastalou) akci"},
+        {"id": "3876eda7-017a-468c-ae65-9773c1b184aa}", "cz": "Její šaty byly rozložené večer před nástupem do nové práce.", "en": "Her clothes had been laid out the evening before she started her new job.", "pattern": "passive", "person": "", "note": "trpný rod: HAD BEEN + 3rd form"},
+        {"id": "d3f58a1d-2ad9-4daf-984f-fb768dfd2795}", "cz": "Řekla, že si večer před nástupem do nové práce rozložila oblečení.", "en": "She said that she had laid out her clothes the evening before starting her new job.", "pattern": "indirect", "person": "", "note": "nepřímá řeč: said that + předminulý čas"},
+        {"id": "37c7a7ed-ecd5-4775-ad72-c9f7bea9fb6e}", "cz": "Kdyby si večer předtím rozložil oblečení, nepřišel by pozdě.", "en": "If he had laid out his clothes the evening before, he wouldn't have been late.", "pattern": "conditional", "person": "", "note": "3. kondicionál: IF + HAD + 3rd form → WOULDN'T HAVE + 3rd form"}
+        ]
+      },
+    {
+      "grammar": "Předminulý čas",
+      "level": "B1",
+      "blok": "vyvenčit psa před prací",
+      "topic": "Každodenní rutina",
+      "sentences": [
+        {"id": "b8da08db-5ca0-4e72-80f4-c3507ea72b12}", "cz": "Než ráno odjeli do práce, venčili psa.", "en": "They had walked the dog before they left for work that morning.", "pattern": "affirmative", "person": "plural", "note": "HAD + 3rd form — venčení dokončeno před odchodem"},
+        {"id": "4192ce86-563d-48ff-ad8c-2b4e0e74c1cb}", "cz": "Než jsem ráno odjela do práce, psa jsem nevenčila.", "en": "I hadn't walked the dog before I left for work that morning.", "pattern": "negative", "person": "first", "note": "HADN'T + 3rd form — záporný předminulý čas"},
+        {"id": "84112a47-ffc4-45f6-add7-60b1cd118e21}", "cz": "Venčila psa, než ráno odešla do práce?", "en": "Had she walked the dog before she left for work that morning?", "pattern": "question", "person": "", "note": "otázka: HAD + subject + 3rd form + before"},
+        {"id": "2c79001d-d936-475d-8010-fc21660fa15d}", "cz": "Kde venčili psa, než odešli do práce?", "en": "Where had they walked the dog before they left for work?", "pattern": "wh_question", "person": "", "note": "WH otázka: Where + HAD + subject + 3rd form"},
+        {"id": "b9d46091-36da-4cbc-8125-6ad7cb894245}", "cz": "Před odchodem do práce se ujistěte, že jste psa venčili!", "en": "Make sure you have walked the dog before you leave for work!", "pattern": "imperative", "person": "", "note": "make sure you have + 3rd form — předminulý kontext v rozkazu"},
+        {"id": "d46f614a-8d3b-4730-9554-22d79ef2cc4c}", "cz": "Před odchodem do práce vyvenčila psa dál než její manžel.", "en": "She had walked the dog further than her husband had before leaving for work.", "pattern": "comparison", "person": "", "note": "srovnání: further than + had (zkrácená forma)"},
+        {"id": "8bbb3f40-fa93-4205-86e7-75a9c2ce4484}", "cz": "Před odjezdem venčili psa, že?", "en": "They had walked the dog before leaving, hadn't they?", "pattern": "tag_question", "person": "", "note": "dovětek: plural → hadn't they?"},
+        {"id": "33bf8c37-f686-4ac0-9407-01370958e5f4}", "cz": "Než odešla do práce, už dvakrát venčila psa.", "en": "Before she left for work, she had already walked the dog twice.", "pattern": "time_clause", "person": "", "note": "before + minulý čas → předminulý čas + already zdůrazňuje dokončenost"},
+        {"id": "d2d0e546-1590-47cf-af99-c38a3748a66b}", "cz": "Pes byl venčen, než kdokoli odešel do práce.", "en": "The dog had been walked before anyone left for work.", "pattern": "passive", "person": "", "note": "trpný rod: HAD BEEN + 3rd form"},
+        {"id": "f117bde9-83bc-4fa1-ab00-a90cf6f95e1a}", "cz": "Řekl mi, že před odchodem do práce venčil psa.", "en": "He told me that he had walked the dog before leaving for work.", "pattern": "indirect", "person": "", "note": "nepřímá řeč: told me that + předminulý čas"},
+        {"id": "99ba0f46-6aea-40e1-8ae6-4d2fef3b935e}", "cz": "Kdyby před odjezdem venčili psa, nebyl by celý den tak neklidný.", "en": "If they had walked the dog before leaving, it wouldn't have been so restless all day.", "pattern": "conditional", "person": "", "note": "3. kondicionál: IF + HAD + 3rd form → WOULDN'T HAVE + 3rd form"}
+        ]
+      },
+    {
+      "grammar": "Předminulý čas",
+      "level": "B1",
+      "blok": "zkontrolovat jízdní řád",
+      "topic": "Každodenní rutina",
+      "sentences": [
+        {"id": "12207753-70b6-4e9a-adbb-ec094ccfae66}", "cz": "Než jsi odešel z domu, zkontroloval jsi jízdní řád vlaku.", "en": "You had checked the train timetable before you left the house.", "pattern": "affirmative", "person": "second", "note": "HAD + 3rd form — zkontrolováno před odchodem z domu"},
+        {"id": "9160efe2-6df3-42b6-9299-9ab588c81440}", "cz": "Než odešel z domu, nezkontroloval jízdní řád vlaku.", "en": "He hadn't checked the train timetable before he left the house.", "pattern": "negative", "person": "third_singular", "note": "HADN'T + 3rd form — záporný předminulý čas"},
+        {"id": "760090e0-dc4a-483c-939d-44aa5ae0fa6c}", "cz": "Zkontrolovala jízdní řád vlaku, než odešla z domu?", "en": "Had she checked the train timetable before she left the house?", "pattern": "question", "person": "", "note": "otázka: HAD + subject + 3rd form + before"},
+        {"id": "64b6deb4-e713-406b-9434-e5c3fd7436f3}", "cz": "Proč nezkontroloval jízdní řád, než odešel z domu?", "en": "Why hadn't he checked the train timetable before he left the house?", "pattern": "wh_question", "person": "", "note": "záporná WH otázka: Why + HADN'T + subject + 3rd form"},
+        {"id": "16eb8ffc-9ad3-470b-b3f1-3e96c89735fd}", "cz": "Než odejdete z domu, zkontrolujte si jízdní řád vlaku!", "en": "Make sure you have checked the train timetable before you leave the house!", "pattern": "imperative", "person": "", "note": "make sure you have + 3rd form — předminulý kontext v rozkazu"},
+        {"id": "c072c98a-39ea-4429-8b24-0c6630684e74}", "cz": "Před odjezdem kontrolovala jízdní řád důkladněji než její kolega.", "en": "She had checked the timetable more thoroughly than her colleague had before leaving.", "pattern": "comparison", "person": "", "note": "srovnání: more thoroughly than + had"},
+        {"id": "f93e70d6-79c1-4216-b296-b7e3c0bac6d5}", "cz": "Před odjezdem jste zkontroloval jízdní řád, že?", "en": "You had checked the timetable before leaving, hadn't you?", "pattern": "tag_question", "person": "", "note": "dovětek: kladná věta → záporný dovětek hadn't you?"},
+        {"id": "61a900fd-0a6e-4a1c-97bd-7232c6a3c68b}", "cz": "Když dorazil na nádraží, zkontroloval již jízdní řád online.", "en": "By the time he arrived at the station, he had already checked the timetable online.", "pattern": "time_clause", "person": "", "note": "by the time + minulý čas → předminulý čas + already"},
+        {"id": "2ee77e46-016f-47d7-beba-9f05ebafdcf1}", "cz": "Než odešla z domu, zkontrolovali jízdní řád.", "en": "The timetable had been checked before she left the house.", "pattern": "passive", "person": "", "note": "trpný rod: HAD BEEN + 3rd form"},
+        {"id": "86278760-abb8-4101-a036-7bc7a4056d57}", "cz": "Řekla mi, že před odchodem z domu zkontrolovala jízdní řád.", "en": "She told me that she had checked the timetable before leaving the house.", "pattern": "indirect", "person": "", "note": "nepřímá řeč: told me that + předminulý čas"},
+        {"id": "fadb37d3-2621-4c43-9fdf-1422c781f7d6}", "cz": "Kdyby si před odjezdem zkontroloval jízdní řád, vlak by mu neušel.", "en": "If he had checked the timetable before leaving, he wouldn't have missed the train.", "pattern": "conditional", "person": "", "note": "3. kondicionál: IF + HAD + 3rd form → WOULDN'T HAVE + 3rd form"}
+        ]
+      },
+    {
+      "grammar": "Předminulý čas",
+      "level": "B1",
+      "blok": "dát dětem snídani",
+      "topic": "Každodenní rutina",
+      "sentences": [
+        {"id": "7b831b9a-f731-40ec-a064-b176e2a0546e}", "cz": "Před začátkem školního běhu dali dětem snídani.", "en": "They had given the children breakfast before the school run started.", "pattern": "affirmative", "person": "plural", "note": "HAD + 3rd form — snídaně podána před odvozem do školy"},
+        {"id": "13255b47-ba9b-4693-9370-77df602d2b7b}", "cz": "Před začátkem školního běhu jsem dětem nedal snídani.", "en": "I hadn't given the children breakfast before the school run started.", "pattern": "negative", "person": "first", "note": "HADN'T + 3rd form — záporný předminulý čas"},
+        {"id": "5ab0a756-df6d-4704-b34a-1f8bda448572}", "cz": "Dala dětem snídani před začátkem školního běhu?", "en": "Had she given the children breakfast before the school run started?", "pattern": "question", "person": "", "note": "otázka: HAD + subject + 3rd form + before"},
+        {"id": "9ae41218-3b86-427d-a257-193fb979b126}", "cz": "Co dala dětem před začátkem školního běhu?", "en": "What had she given the children before the school run started?", "pattern": "wh_question", "person": "", "note": "WH otázka: What + HAD + subject + 3rd form"},
+        {"id": "e2bfc088-7472-4913-83fd-20242a40a28b}", "cz": "Ujistěte se, že jste dali dětem snídani před školním během!", "en": "Make sure you have given the children breakfast before the school run!", "pattern": "imperative", "person": "", "note": "make sure you have + 3rd form — předminulý kontext v rozkazu"},
+        {"id": "354483f7-0b5b-4ace-aa7f-cb110b187b57}", "cz": "Dala dětem výživnější snídani, než měla její sousedka před začátkem školy.", "en": "She had given the children a more nutritious breakfast than her neighbour had before the school run.", "pattern": "comparison", "person": "", "note": "srovnání: more nutritious than + had"},
+        {"id": "229642ce-1034-41e2-9dc2-1e8139a02f19}", "cz": "Před odjezdem dali dětem snídani, ne?", "en": "They had given the children breakfast before leaving, hadn't they?", "pattern": "tag_question", "person": "", "note": "dovětek: plural → hadn't they?"},
+        {"id": "85672c37-b2de-4df8-9a70-7e44a35447ff}", "cz": "Poté, co dala dětem snídani, pomohla jim připravit se do školy.", "en": "After she had given the children breakfast, she helped them get ready for school.", "pattern": "time_clause", "person": "", "note": "after + předminulý čas → minulý čas (pořadí akcí)"},
+        {"id": "9331cdc1-b7ce-4ad4-b769-a4a56fe78ac4}", "cz": "Děti dostaly snídani před začátkem školního běhu.", "en": "The children had been given breakfast before the school run started.", "pattern": "passive", "person": "", "note": "trpný rod: HAD BEEN + 3rd form"},
+        {"id": "43533beb-7c4e-4b5f-8a24-ccd7f5c00003}", "cz": "Řekl, že před začátkem školního běhu dal dětem snídani.", "en": "He said that he had given the children breakfast before the school run started.", "pattern": "indirect", "person": "", "note": "nepřímá řeč: said that + předminulý čas"},
+        {"id": "a9f96cb9-d42e-4a7b-8ae1-3b1dfc2d2969}", "cz": "Kdyby dali dětem snídani dříve, ráno by nebylo tak uspěchané.", "en": "If they had given the children breakfast earlier, the morning wouldn't have been so rushed.", "pattern": "conditional", "person": "", "note": "3. kondicionál: IF + HAD + 3rd form → WOULDN'T HAVE + 3rd form"}
+        ]
+      },
+    {
+      "grammar": "Předminulý čas",
+      "level": "B1",
+      "blok": "nabít telefon přes noc",
+      "topic": "Každodenní rutina",
+      "sentences": [
+        {"id": "956bca4a-b3ba-4407-b8f6-5a7ed61b6da3}", "cz": "Nabíjeli jste telefon přes noc, než jste si uvědomili, že je nabíječka rozbitá.", "en": "You had charged your phone overnight before you realised the charger was broken.", "pattern": "affirmative", "person": "second", "note": "HAD + 3rd form — nabití dokončeno před zjištěním problému"},
+        {"id": "a3fbf870-b0c0-4fa1-b9da-15d273d3478a}", "cz": "Nenabila si telefon přes noc, než odešla na ranní směnu.", "en": "She hadn't charged her phone overnight before she left for her early shift.", "pattern": "negative", "person": "third_singular", "note": "HADN'T + 3rd form — záporný předminulý čas"},
+        {"id": "7c392a47-7952-4ff6-a3a8-9a767c1ef1b3}", "cz": "Nabil si telefon přes noc, než odešel na ranní směnu?", "en": "Had he charged his phone overnight before he left for his early shift?", "pattern": "question", "person": "", "note": "otázka: HAD + subject + 3rd form + before"},
+        {"id": "9c702138-1202-434d-992f-db0bbf2e8afd}", "cz": "Jak dlouho nabíjela svůj telefon, než si uvědomila, že nabíječka je vadná?", "en": "How long had she charged her phone before she realised the charger was faulty?", "pattern": "wh_question", "person": "", "note": "WH otázka: How long + HAD + subject + 3rd form"},
+        {"id": "88a95a6f-2e5f-402e-bda6-4ca514047514}", "cz": "Před odjezdem na ranní směnu se ujistěte, že máte nabitý telefon!", "en": "Make sure you have charged your phone before you leave for your early shift!", "pattern": "imperative", "person": "", "note": "make sure you have + 3rd form — předminulý kontext v rozkazu"},
+        {"id": "8d27935f-9c23-488d-a856-983e3893d548}", "cz": "Před dlouhou cestou měl nabitý telefon víc než jeho kolega.", "en": "He had charged his phone more fully than his colleague had before the long journey.", "pattern": "comparison", "person": "", "note": "srovnání: more fully than + had (zkrácená forma)"},
+        {"id": "dfea1c9e-b90c-49d8-b799-c0239e6e9a24}", "cz": "Přes noc si nabila telefon, že?", "en": "She had charged her phone overnight, hadn't she?", "pattern": "tag_question", "person": "", "note": "dovětek: third_singular → hadn't she?"},
+        {"id": "064b4275-77d2-4522-9055-ef8674026087}", "cz": "Když se probudila, její telefon už byl nabitý na sto procent.", "en": "By the time she woke up, her phone had already charged to one hundred per cent.", "pattern": "time_clause", "person": "", "note": "by the time + minulý čas → předminulý čas + already"},
+        {"id": "9bba78e3-b3e4-49e4-9c96-f0c6a26ccf79}", "cz": "Telefon byl přes noc nabitý, než odešla na ranní směnu.", "en": "The phone had been charged overnight before she left for her early shift.", "pattern": "passive", "person": "", "note": "trpný rod: HAD BEEN + 3rd form"},
+        {"id": "891521ce-0aa1-43be-80ed-de27fabb8028}", "cz": "Řekl mi, že si nabil telefon přes noc, než odešel do práce.", "en": "He told me that he had charged his phone overnight before leaving for work.", "pattern": "indirect", "person": "", "note": "nepřímá řeč: told me that + předminulý čas"},
+        {"id": "2eb74247-f931-4d1f-9eeb-6c4850588e93}", "cz": "Kdyby si přes noc nabila telefon, neumřel by na dálnici.", "en": "If she had charged her phone overnight, it wouldn't have died on the motorway.", "pattern": "conditional", "person": "", "note": "3. kondicionál: IF + HAD + 3rd form → WOULDN'T HAVE + 3rd form | motorway = brit. angličtina"}
         ]
       }
   ]
