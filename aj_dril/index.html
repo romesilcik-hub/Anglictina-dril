@@ -121,7 +121,7 @@
     /* Info badgy + ikony karty */
     .card-top-row { display:flex; flex-direction:column; gap:4px; margin-bottom:.4rem; }
     .card-meta { display:flex; gap:4px; flex-wrap:wrap; }
-    .card-icons { display:flex; align-items:center; gap:4px; align-self:flex-end; }
+    .card-icons { display:flex; align-items:center; gap:4px; align-self:flex-end; flex-wrap:wrap; justify-content:flex-end; }
     .meta-badge { font-size:.7rem; font-weight:600; padding:2px 9px; border-radius:10px; font-family:var(--font); }
     .mb-grammar { background:var(--color-primary-bg); color:var(--color-primary-text); }
     .mb-level   { background:#f0f8e8; color:#2d6a2d; }
@@ -323,6 +323,52 @@
     .drill-card.scramble-active { background: linear-gradient(135deg, var(--color-surface) 85%, #ede9fe 100%); }
     body.dark .drill-card.scramble-active { background: linear-gradient(135deg, var(--color-surface) 85%, #1e1b4b 100%); }
 
+
+    /* ── DIKTÁT ───────────────────────────────────────────────────── */
+    .dict-btn { font-size:1rem; opacity:.45; transition:opacity .2s; }
+    .dict-btn.active { opacity:1; filter:drop-shadow(0 0 4px #0891b2); }
+    #dictWrap { display:none; margin:.5rem 0; }
+    #dictWrap.visible { display:block; }
+    .dict-hint { font-size:.78rem; color:var(--color-text-muted); margin-bottom:.4rem; display:flex; align-items:center; gap:.4rem; }
+    .dict-replay { background:none; border:1px solid var(--color-border); border-radius:6px; padding:2px 8px; cursor:pointer; font-size:.85rem; }
+    .dict-replay:hover { background:var(--color-surface); }
+
+    /* ── MULTIPLE CHOICE ──────────────────────────────────────────── */
+    .mc-btn-icon { font-size:1rem; opacity:.45; transition:opacity .2s; }
+    .mc-btn-icon.active { opacity:1; filter:drop-shadow(0 0 4px #7c3aed); }
+    #mcWrap { display:none; margin:.5rem 0; }
+    #mcWrap.visible { display:block; }
+    .mc-options { display:flex; flex-direction:column; gap:.35rem; }
+    .mc-option {
+      width:100%; text-align:left; padding:.5rem .75rem;
+      border:1.5px solid var(--color-border); border-radius:8px;
+      background:var(--color-surface); cursor:pointer;
+      font-size:.9rem; color:var(--color-text); transition:border-color .15s, background .15s;
+    }
+    .mc-option:hover:not(:disabled) { border-color:var(--color-primary); background:var(--color-primary-bg); }
+    .mc-option.mc-correct { border-color:#16a34a; background:#f0fdf4; color:#15803d; font-weight:600; }
+    .mc-option.mc-wrong   { border-color:#dc2626; background:#fef2f2; color:#b91c1c; }
+    .mc-option:disabled   { cursor:default; opacity:.85; }
+
+    /* ── DOPLŇOVÁNÍ MEZER ─────────────────────────────────────────── */
+    .fill-btn { font-size:1rem; opacity:.45; transition:opacity .2s; }
+    .fill-btn.active { opacity:1; filter:drop-shadow(0 0 4px #d97706); }
+    #fillWrap { display:none; margin:.5rem 0; }
+    #fillWrap.visible { display:block; }
+    .fill-sentence { font-size:1rem; line-height:1.6; margin-bottom:.5rem; color:var(--color-text); }
+    .fill-blank { display:inline-block; min-width:5rem; border-bottom:2px solid var(--color-primary); margin:0 .15rem; }
+    .fill-input-row { display:flex; gap:.4rem; align-items:center; }
+    .fill-input { flex:1; }
+
+    /* ── OPRAVA CHYBY ─────────────────────────────────────────────── */
+    .error-btn { font-size:1rem; opacity:.45; transition:opacity .2s; }
+    .error-btn.active { opacity:1; filter:drop-shadow(0 0 4px #dc2626); }
+    #errorWrap { display:none; margin:.5rem 0; }
+    #errorWrap.visible { display:block; }
+    .error-wrong-sent { font-size:.95rem; color:#b91c1c; background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:.4rem .65rem; margin-bottom:.5rem; line-height:1.5; }
+    .error-label { font-size:.72rem; font-weight:700; color:var(--color-text-muted); text-transform:uppercase; letter-spacing:.05em; margin-bottom:.25rem; }
+
+
     /* ── REŽIM PSANÍ ──────────────────────────────────────────────── */
     .write-btn { font-size:1rem; opacity:.45; transition:opacity .2s; }
     .write-btn.active { opacity:1; filter:drop-shadow(0 0 4px #f59e0b); }
@@ -345,6 +391,14 @@
     .write-result .wr-correct { font-weight:600; color:#16a34a; }
     .drill-card.write-active { background: linear-gradient(135deg, var(--color-surface) 85%, #fef3c7 100%); }
     body.dark .drill-card.write-active { background: linear-gradient(135deg, var(--color-surface) 85%, #2d1f00 100%); }
+    .drill-card.dict-active  { background: linear-gradient(135deg, var(--color-surface) 85%, #cffafe 100%); }
+    body.dark .drill-card.dict-active  { background: linear-gradient(135deg, var(--color-surface) 85%, #083344 100%); }
+    .drill-card.mc-active    { background: linear-gradient(135deg, var(--color-surface) 85%, #ede9fe 100%); }
+    body.dark .drill-card.mc-active    { background: linear-gradient(135deg, var(--color-surface) 85%, #1e1b4b 100%); }
+    .drill-card.fill-active  { background: linear-gradient(135deg, var(--color-surface) 85%, #fef9c3 100%); }
+    body.dark .drill-card.fill-active  { background: linear-gradient(135deg, var(--color-surface) 85%, #2d2000 100%); }
+    .drill-card.error-active { background: linear-gradient(135deg, var(--color-surface) 85%, #fee2e2 100%); }
+    body.dark .drill-card.error-active { background: linear-gradient(135deg, var(--color-surface) 85%, #2d0a0a 100%); }
 
     /* ── CHYTRÝ REŽIM ─────────────────────────────────────────────── */
     .smart-btn { font-size:1.1rem; opacity:.45; transition:opacity .2s; }
@@ -697,31 +751,77 @@
       <div style="font-size:.75rem;font-weight:700;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem">Radar — gramatika</div>
       <svg id="radarSvg" viewBox="0 0 260 260" width="100%" style="max-width:260px;display:block;margin:0 auto;overflow:visible"></svg>
     </div>
-    <!-- Statistiky aktivních režimů (write / scramble) -->
-    <div id="modeStatsSection" style="display:none">
-      <div style="font-size:.75rem;font-weight:700;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.05em;margin:.85rem 0 .5rem">Aktivní procvičování</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:.85rem">
-        <div class="stat-card" style="text-align:center">
-          <div style="font-size:.75rem;font-weight:700;color:var(--color-text-muted);margin-bottom:.35rem">✏️ Psaní</div>
-          <div style="display:flex;align-items:baseline;justify-content:center;gap:.3rem">
-            <span class="stat-num" id="writeStatTotal">0</span>
-            <span class="stat-lbl">vět</span>
-          </div>
-          <div style="font-size:1rem;font-weight:700;margin-top:.2rem" id="writeStatPct">—</div>
-          <div class="stat-lbl">správně</div>
-          <div style="font-size:.72rem;color:var(--color-text-muted);margin-top:.35rem" id="writeStatToday"></div>
-        </div>
-        <div class="stat-card" style="text-align:center">
-          <div style="font-size:.75rem;font-weight:700;color:var(--color-text-muted);margin-bottom:.35rem">🔀 Skládání</div>
-          <div style="display:flex;align-items:baseline;justify-content:center;gap:.3rem">
-            <span class="stat-num" id="scrambleStatTotal">0</span>
-            <span class="stat-lbl">vět</span>
-          </div>
-          <div style="font-size:1rem;font-weight:700;margin-top:.2rem" id="scrambleStatPct">—</div>
-          <div class="stat-lbl">správně</div>
-          <div style="font-size:.72rem;color:var(--color-text-muted);margin-top:.35rem" id="scrambleStatToday"></div>
-        </div>
-      </div>
+    <!-- Statistiky aktivních režimů — tabulka -->
+    <div id="modeStatsSection" style="display:none;margin:.85rem 0">
+      <div style="font-size:.75rem;font-weight:700;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem">Aktivní procvičování</div>
+      <table id="modeStatsTable" style="width:100%;border-collapse:collapse;font-size:.76rem;margin-bottom:.85rem">
+        <thead>
+          <tr>
+            <th style="padding:.3rem .5rem .3rem 0;border-bottom:2px solid var(--color-border)"></th>
+            <th colspan="2" style="text-align:center;padding:.25rem .3rem;background:rgba(234,88,12,.09);border-radius:4px 4px 0 0;color:#c2410c;font-size:.72rem;font-weight:700;letter-spacing:.03em;border-bottom:2px solid #f97316">Dnes</th>
+            <th style="width:.6rem;border-bottom:2px solid var(--color-border)"></th>
+            <th colspan="2" style="text-align:center;padding:.25rem .3rem;background:rgba(37,99,235,.07);border-radius:4px 4px 0 0;color:var(--color-primary);font-size:.72rem;font-weight:700;letter-spacing:.03em;border-bottom:2px solid var(--color-primary)">Celkem</th>
+          </tr>
+          <tr style="border-bottom:1px solid var(--color-border)">
+            <th style="text-align:left;padding:.25rem .5rem .25rem 0;color:var(--color-text-muted);font-weight:600;white-space:nowrap;font-size:.72rem">Karta</th>
+            <th style="text-align:right;padding:.25rem .3rem;color:#c2410c;font-weight:600;font-size:.72rem;background:rgba(234,88,12,.05)">Vět</th>
+            <th style="text-align:right;padding:.25rem .4rem .25rem .3rem;color:#c2410c;font-weight:600;font-size:.72rem;background:rgba(234,88,12,.05)">Správně</th>
+            <th style="width:.6rem"></th>
+            <th style="text-align:right;padding:.25rem .3rem;color:var(--color-primary);font-weight:600;font-size:.72rem;background:rgba(37,99,235,.05)">Vět</th>
+            <th style="text-align:right;padding:.25rem 0 .25rem .3rem;color:var(--color-primary);font-weight:600;font-size:.72rem;background:rgba(37,99,235,.05)">Správně</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id="tbr-write" style="display:none;border-bottom:.5px solid var(--color-border)">
+            <td style="padding:.32rem .5rem .32rem 0;white-space:nowrap">✏️ Psaní</td>
+            <td style="text-align:right;padding:.32rem .3rem;background:rgba(234,88,12,.04)" id="tb-write-tod">—</td>
+            <td style="text-align:right;padding:.32rem .4rem .32rem .3rem;font-weight:600;background:rgba(234,88,12,.04)" id="tb-write-todpct">—</td>
+            <td></td>
+            <td style="text-align:right;padding:.32rem .3rem;background:rgba(37,99,235,.04)" id="tb-write-tot">—</td>
+            <td style="text-align:right;padding:.32rem 0 .32rem .3rem;font-weight:600;background:rgba(37,99,235,.04)" id="tb-write-pct">—</td>
+          </tr>
+          <tr id="tbr-scramble" style="display:none;border-bottom:.5px solid var(--color-border)">
+            <td style="padding:.32rem .5rem .32rem 0;white-space:nowrap">🔀 Skládání</td>
+            <td style="text-align:right;padding:.32rem .3rem;background:rgba(234,88,12,.04)" id="tb-scramble-tod">—</td>
+            <td style="text-align:right;padding:.32rem .4rem .32rem .3rem;font-weight:600;background:rgba(234,88,12,.04)" id="tb-scramble-todpct">—</td>
+            <td></td>
+            <td style="text-align:right;padding:.32rem .3rem;background:rgba(37,99,235,.04)" id="tb-scramble-tot">—</td>
+            <td style="text-align:right;padding:.32rem 0 .32rem .3rem;font-weight:600;background:rgba(37,99,235,.04)" id="tb-scramble-pct">—</td>
+          </tr>
+          <tr id="tbr-dict" style="display:none;border-bottom:.5px solid var(--color-border)">
+            <td style="padding:.32rem .5rem .32rem 0;white-space:nowrap">🎧 Diktát</td>
+            <td style="text-align:right;padding:.32rem .3rem;background:rgba(234,88,12,.04)" id="tb-dict-tod">—</td>
+            <td style="text-align:right;padding:.32rem .4rem .32rem .3rem;font-weight:600;background:rgba(234,88,12,.04)" id="tb-dict-todpct">—</td>
+            <td></td>
+            <td style="text-align:right;padding:.32rem .3rem;background:rgba(37,99,235,.04)" id="tb-dict-tot">—</td>
+            <td style="text-align:right;padding:.32rem 0 .32rem .3rem;font-weight:600;background:rgba(37,99,235,.04)" id="tb-dict-pct">—</td>
+          </tr>
+          <tr id="tbr-mc" style="display:none;border-bottom:.5px solid var(--color-border)">
+            <td style="padding:.32rem .5rem .32rem 0;white-space:nowrap">📋 Výběr</td>
+            <td style="text-align:right;padding:.32rem .3rem;background:rgba(234,88,12,.04)" id="tb-mc-tod">—</td>
+            <td style="text-align:right;padding:.32rem .4rem .32rem .3rem;font-weight:600;background:rgba(234,88,12,.04)" id="tb-mc-todpct">—</td>
+            <td></td>
+            <td style="text-align:right;padding:.32rem .3rem;background:rgba(37,99,235,.04)" id="tb-mc-tot">—</td>
+            <td style="text-align:right;padding:.32rem 0 .32rem .3rem;font-weight:600;background:rgba(37,99,235,.04)" id="tb-mc-pct">—</td>
+          </tr>
+          <tr id="tbr-fill" style="display:none;border-bottom:.5px solid var(--color-border)">
+            <td style="padding:.32rem .5rem .32rem 0;white-space:nowrap">⬜ Mezera</td>
+            <td style="text-align:right;padding:.32rem .3rem;background:rgba(234,88,12,.04)" id="tb-fill-tod">—</td>
+            <td style="text-align:right;padding:.32rem .4rem .32rem .3rem;font-weight:600;background:rgba(234,88,12,.04)" id="tb-fill-todpct">—</td>
+            <td></td>
+            <td style="text-align:right;padding:.32rem .3rem;background:rgba(37,99,235,.04)" id="tb-fill-tot">—</td>
+            <td style="text-align:right;padding:.32rem 0 .32rem .3rem;font-weight:600;background:rgba(37,99,235,.04)" id="tb-fill-pct">—</td>
+          </tr>
+          <tr id="tbr-err" style="display:none;border-bottom:.5px solid var(--color-border)">
+            <td style="padding:.32rem .5rem .32rem 0;white-space:nowrap">🔧 Oprava</td>
+            <td style="text-align:right;padding:.32rem .3rem;background:rgba(234,88,12,.04)" id="tb-err-tod">—</td>
+            <td style="text-align:right;padding:.32rem .4rem .32rem .3rem;font-weight:600;background:rgba(234,88,12,.04)" id="tb-err-todpct">—</td>
+            <td></td>
+            <td style="text-align:right;padding:.32rem .3rem;background:rgba(37,99,235,.04)" id="tb-err-tot">—</td>
+            <td style="text-align:right;padding:.32rem 0 .32rem .3rem;font-weight:600;background:rgba(37,99,235,.04)" id="tb-err-pct">—</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <div style="font-size:.75rem;font-weight:700;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem">Nejslabší gramatika</div>
@@ -739,6 +839,12 @@
       <button class="btn btn-sm btn-ghost" onclick="toggleHelp()">✕</button>
     </div>
     <div style="font-size:.83rem;color:var(--color-text);line-height:1.55">
+
+      <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">🎯 Jak to celé funguje</div>
+      <p style="margin:0 0 .5rem">Aplikace má <strong>dva způsoby výběru vět</strong> — jinak řečeno, dva režimy v jakém pořadí a co procvičuješ:</p>
+      <p style="margin:0 0 .25rem"><strong>🔍 Normální režim</strong> — ty rozhoduješ. Pomocí filtrů (Úroveň, Gramatika, Téma, Typ věty) si vybereš co chceš procvičovat a aplikace ti zobrazuje věty z tohoto výběru. Hodí se pokud chceš procvičit konkrétní gramatický jev nebo téma.</p>
+      <p style="margin:0 0 .75rem"><strong>💡 Chytrý režim</strong> — aplikace rozhoduje za tebe. Na základě tvého výkonu sama sestaví denní dril, prioritizuje věty které neumíš a přizpůsobí obtížnost. Filtry se nepoužívají. Zapneš ikonou <strong>💡</strong> v horní liště.</p>
+      <p style="margin:0 0 .75rem">V <strong>obou režimech</strong> fungují všechny způsoby procvičování — skládání, psaní, diktát, výběr odpovědi, doplňování mezer i oprava chyby. Karty se na přepínají ikonami přímo na kartičce věty.</p>
 
       <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">📂 Načtení databáze</div>
       <p style="margin:0 0 .75rem">Aplikace automaticky stáhne databázi ze serveru při každém spuštění. Pokud není internet, použije naposledy uloženou verzi z prohlížeče. Vlastní JSON soubor lze načíst přes <strong>⚙ Nastavení → Přidat JSON soubor</strong>.</p>
@@ -799,7 +905,21 @@
       <p style="margin:0 0 .75rem">Tlačítko <strong>🔀</strong> na kartě zapne režim skládání. Po přečtení české věty se zobrazí zamíchané anglické karty — klikáním na ně skládáš větu ve správném pořadí. Správně složená věta zezelená, špatně červená. Tlačítko <strong>EN</strong> (přehrát) se odemkne až po zodpovězení. Hodnocení Uměl/Skoro/Neuměl se zobrazí po potvrzení odpovědi.</p>
 
       <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">✏️ Režim psaní</div>
-      <p style="margin:0 0 .75rem">Tlačítko <strong>✏️</strong> na kartě zapne režim psaní. Po přečtení české věty napíšeš anglický překlad do políčka a potvrdíš klávesou Enter nebo tlačítkem <strong>OK</strong>. Aplikace barevně vyznačí kde je chyba — přesahy červeně, správné části zeleně, a zobrazí správnou větu. Tlačítko <strong>EN</strong> se odemkne po odeslání. Pokud potřebuješ apostrof (don't, I'm…), použij tlačítko <strong>'</strong> vedle políčka. Oba rozšířené režimy se navzájem vylučují — lze zapnout vždy jen jeden.</p>
+      <p style="margin:0 0 .75rem">Tlačítko <strong>✏️</strong> na kartě zapne režim psaní. Po přečtení české věty napíšeš anglický překlad do políčka a potvrdíš klávesou Enter nebo tlačítkem <strong>OK</strong>. Aplikace barevně vyznačí kde je chyba — přesahy červeně, správné části zeleně, a zobrazí správnou větu. Tlačítko <strong>EN</strong> se odemkne po odeslání. Pokud potřebuješ apostrof (don't, I'm…), použij tlačítko <strong>'</strong> vedle políčka.</p>
+
+      <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">🎧 Diktát</div>
+      <p style="margin:0 0 .75rem">Tlačítko <strong>🎧</strong> zapne diktát. Po přečtení české věty aplikace <strong>přehraje anglickou větu nahlas</strong> (místo zobrazení textu) — ty napíšeš co jsi slyšel/a. Procvičuješ tak zároveň poslech i pravopis. Tlačítko <strong>↻ EN</strong> přehraje větu znovu kdykoli potřebuješ. Po odeslání se zobrazí barevné porovnání s originálem.</p>
+
+      <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">📋 Výběr správné odpovědi</div>
+      <p style="margin:0 0 .75rem">Tlačítko <strong>📋</strong> zobrazí 4 anglické věty — jen jedna je správný překlad české věty. Ostatní tři jsou záměrně podobné: stejný typ věty (otázka / výrok), podobná délka i gramatika. Kliknutím vyber správnou odpověď. Zelená = správně, červená = špatně (a zobrazí se správná odpověď).</p>
+
+      <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">⬜ Doplň chybějící slovo</div>
+      <p style="margin:0 0 .75rem">Tlačítko <strong>⬜</strong> zobrazí anglickou větu s jedním chybějícím slovem (typicky pomocné sloveso nebo klíčové gramatické slovo). Napíšeš chybějící slovo a potvrdíš Enterem nebo tlačítkem <strong>OK</strong>. Snadnější než psaní celé věty — soustředíš se na konkrétní gramatický jev.</p>
+
+      <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">🔧 Oprav chybu ve větě</div>
+      <p style="margin:0 0 .75rem">Tlačítko <strong>🔧</strong> zobrazí anglickou větu s úmyslnou chybou (přehozené slovo, chybějící slovo, duplicita). Napíšeš správnou verzi věty. Procvičuješ tak schopnost rozpoznat co je špatně a formulovat správnou větu. Aplikace po odeslání barevně ukáže rozdíly.</p>
+
+      <p style="margin:0 0 .75rem;font-size:.78rem;color:var(--color-text-muted)">💡 Všechny režimy se navzájem vylučují — lze zapnout vždy jen jeden. Přepínáš ikonami přímo na kartičce věty. Zvoleným režim si aplikace pamatuje i po zavření.</p>
 
       <div style="font-weight:700;color:var(--color-text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;margin-bottom:.4rem">⭐ Oblíbené věty</div>
       <p style="margin:0 0 .75rem">Hvězdička ☆ na kartě věty přidá/odebere větu z oblíbených. Oblíbené se ukládají v prohlížeči. Filtr <strong>⭐ Oblíbené</strong> zobrazí jen označené věty — vhodné pro opakování problematických vět.</p>
@@ -906,8 +1026,12 @@
       </div>
       <div class="card-icons">
         <button class="gram-btn" id="gramBtn" onclick="toggleGramTip()" title="Gramatický tip">📖</button>
-        <button class="gram-btn scramble-btn" id="scrambleBtn" onclick="toggleScrambleMode()" title="Scramble režim — skládání věty ze slov">🔀</button>
-        <button class="gram-btn write-btn" id="writeBtn" onclick="toggleWriteMode()" title="Režim psaní — napiš větu sám">✏️</button>
+        <button class="gram-btn scramble-btn" id="scrambleBtn" onclick="toggleScrambleMode()" title="Skládání věty ze slov">🔀</button>
+        <button class="gram-btn write-btn"   id="writeBtn"   onclick="toggleWriteMode()"   title="Psaní věty">✏️</button>
+        <button class="gram-btn dict-btn"    id="dictBtn"    onclick="toggleDictMode()"    title="Diktát — napiš co slyšíš">🎧</button>
+        <button class="gram-btn mc-btn-icon" id="mcBtn"      onclick="toggleMcMode()"      title="Výběr správné odpovědi">📋</button>
+        <button class="gram-btn fill-btn"    id="fillBtn"    onclick="toggleFillMode()"    title="Doplň chybějící slovo">⬜</button>
+        <button class="gram-btn error-btn"   id="errorBtn"   onclick="toggleErrorMode()"   title="Oprav chybu ve větě">🔧</button>
         <button class="fav-btn" id="favBtn" onclick="toggleFav()" title="Oblíbená věta">☆</button>
       </div>
     </div>
@@ -935,6 +1059,48 @@
     <div id="scrambleWrap">
       <div class="scramble-answer" id="scrambleAnswer"></div>
       <div class="scramble-bank"   id="scrambleBank"></div>
+    </div>
+    <!-- Diktát -->
+    <div id="dictWrap">
+      <div class="dict-hint">
+        <span>🎧 Přehráváme větu — napiš co slyšíš</span>
+        <button class="dict-replay" onclick="dictReplay()" title="Přehrát znovu">↻ Znovu</button>
+      </div>
+      <div class="write-input-row">
+        <input type="text" id="dictInput" class="write-input" placeholder="Napiš anglickou větu…" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" oninput="dictInputChanged()" onkeydown="if(event.key==='Enter')checkDict()">
+        <div class="write-input-btns">
+          <button class="btn btn-sm" onclick="writeInsertAposTo('dictInput')" title="Vloží apostrof '">&#39;</button>
+          <button class="btn btn-primary btn-sm" onclick="checkDict()">OK</button>
+        </div>
+      </div>
+      <div class="write-result" id="dictResult"></div>
+    </div>
+    <!-- Multiple choice -->
+    <div id="mcWrap">
+      <div class="mc-options" id="mcOptions"></div>
+      <div id="mcResult" style="margin-top:.4rem;font-size:.85rem"></div>
+    </div>
+    <!-- Doplňování mezer -->
+    <div id="fillWrap">
+      <div class="fill-sentence" id="fillSentence"></div>
+      <div class="fill-input-row">
+        <input type="text" id="fillInput" class="write-input fill-input" placeholder="Chybějící slovo…" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" onkeydown="if(event.key==='Enter')checkFill()">
+        <button class="btn btn-primary btn-sm" onclick="checkFill()">OK</button>
+      </div>
+      <div class="fill-result" id="fillResult"></div>
+    </div>
+    <!-- Oprava chyby -->
+    <div id="errorWrap">
+      <div class="error-label">Tato věta obsahuje chybu — oprav ji:</div>
+      <div class="error-wrong-sent" id="errorWrongSent"></div>
+      <div class="write-input-row">
+        <input type="text" id="errorInput" class="write-input" placeholder="Napiš správnou větu…" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" oninput="errorInputChanged()" onkeydown="if(event.key==='Enter')checkError()">
+        <div class="write-input-btns">
+          <button class="btn btn-sm" onclick="writeInsertAposTo('errorInput')" title="Vloží apostrof '">&#39;</button>
+          <button class="btn btn-primary btn-sm" onclick="checkError()">OK</button>
+        </div>
+      </div>
+      <div class="error-result" id="errorResult"></div>
     </div>
     <!-- Hodnocení -->
     <div class="rating-wrap rating-hidden" id="ratingWrap">
@@ -1075,7 +1241,9 @@ let cfg = {
   autoMode:false, autoDelay:3,
   showRating:true, dailyGoal:20,
   sentScale:1,
-  darkMode:false
+  darkMode:false,
+  scrambleMode:false, writeMode:false,
+  dictMode:false, mcMode:false, fillMode:false, errorMode:false
 };
 
 function applySentScale(val) {
@@ -1114,11 +1282,12 @@ function loadCfg() {
   if(cfg.autoMode) document.getElementById('autoDelayGroup').classList.remove('hidden');
   if(cfg.darkMode) document.body.classList.add('dark');
   applySentScale(cfg.sentScale||1);
-  cfg.scrambleMode = !!cfg.scrambleMode;
-  if(cfg.scrambleMode) document.getElementById('scrambleBtn').classList.add('active');
-  cfg.writeMode = !!cfg.writeMode;
-  if(cfg.writeMode) document.getElementById('writeBtn').classList.add('active');
-  if(cfg.scrambleMode || cfg.writeMode) document.getElementById('ratingWrap').style.display = 'none';
+  const modeMap = {scramble:'scrambleBtn', write:'writeBtn', dict:'dictBtn', mc:'mcBtn', fill:'fillBtn', error:'errorBtn'};
+  Object.entries(modeMap).forEach(([m, btnId]) => {
+    cfg[m+'Mode'] = !!cfg[m+'Mode'];
+    if(cfg[m+'Mode']) { const b = document.getElementById(btnId); if(b) b.classList.add('active'); }
+  });
+  if(anyModeActive()) document.getElementById('ratingWrap').style.display = 'none';
 }
 
 function saveSetting(key,val) {
@@ -1328,7 +1497,11 @@ function updateFavBtn() {
 // ══════════════════════════════════════════════════════════════════════════════
 let stats = { total:0, good:0, ok:0, bad:0, today:0, todayDate:'', streak:0, lastDate:'', byGrammar:{},
   writeAttempts:0, writeCorrect:0, writeToday:0, writeTodayCorrect:0,
-  scrambleAttempts:0, scrambleCorrect:0, scrambleToday:0, scrambleTodayCorrect:0 };
+  scrambleAttempts:0, scrambleCorrect:0, scrambleToday:0, scrambleTodayCorrect:0,
+  dictAttempts:0, dictCorrect:0, dictToday:0, dictTodayCorrect:0,
+  mcAttempts:0, mcCorrect:0, mcToday:0, mcTodayCorrect:0,
+  fillAttempts:0, fillCorrect:0, fillToday:0, fillTodayCorrect:0,
+  errAttempts:0, errCorrect:0, errToday:0, errTodayCorrect:0 };
 
 function loadStats() {
   try { const s=localStorage.getItem(STORAGE_STAT); if(s) stats={...stats,...JSON.parse(s)}; } catch(e){}
@@ -1338,6 +1511,10 @@ function loadStats() {
     stats.today=0; stats.todayDate=today;
     stats.writeToday=0; stats.writeTodayCorrect=0;
     stats.scrambleToday=0; stats.scrambleTodayCorrect=0;
+    stats.dictToday=0; stats.dictTodayCorrect=0;
+    stats.mcToday=0; stats.mcTodayCorrect=0;
+    stats.fillToday=0; stats.fillTodayCorrect=0;
+    stats.errToday=0; stats.errTodayCorrect=0;
     saveStats();
   }
 }
@@ -1451,28 +1628,35 @@ function renderStats() {
 }
 
 function renderModeStats() {
-  const wa = stats.writeAttempts    || 0;
-  const wc = stats.writeCorrect     || 0;
-  const wt = stats.writeToday       || 0;
-  const wtc= stats.writeTodayCorrect|| 0;
-  const sa = stats.scrambleAttempts    || 0;
-  const sc = stats.scrambleCorrect     || 0;
-  const st = stats.scrambleToday       || 0;
-  const stc= stats.scrambleTodayCorrect|| 0;
-
-  const hasData = wa > 0 || sa > 0;
+  const modes = [
+    { a:stats.writeAttempts||0,    c:stats.writeCorrect||0,    t:stats.writeToday||0,    tc:stats.writeTodayCorrect||0,    card:'msc-write',    tot:'writeStatTotal',    pct:'writeStatPct',    tod:'writeStatToday',    tbr:'tbr-write',    tbtot:'tb-write-tot',    tbpct:'tb-write-pct',    tbtod:'tb-write-tod',    tbtodpct:'tb-write-todpct' },
+    { a:stats.scrambleAttempts||0, c:stats.scrambleCorrect||0, t:stats.scrambleToday||0, tc:stats.scrambleTodayCorrect||0, card:'msc-scramble', tot:'scrambleStatTotal', pct:'scrambleStatPct', tod:'scrambleStatToday', tbr:'tbr-scramble', tbtot:'tb-scramble-tot', tbpct:'tb-scramble-pct', tbtod:'tb-scramble-tod', tbtodpct:'tb-scramble-todpct' },
+    { a:stats.dictAttempts||0,     c:stats.dictCorrect||0,     t:stats.dictToday||0,     tc:stats.dictTodayCorrect||0,     card:'msc-dict',     tot:'dictStatTotal',     pct:'dictStatPct',     tod:'dictStatToday',     tbr:'tbr-dict',     tbtot:'tb-dict-tot',     tbpct:'tb-dict-pct',     tbtod:'tb-dict-tod',     tbtodpct:'tb-dict-todpct' },
+    { a:stats.mcAttempts||0,       c:stats.mcCorrect||0,       t:stats.mcToday||0,       tc:stats.mcTodayCorrect||0,       card:'msc-mc',       tot:'mcStatTotal',       pct:'mcStatPct',       tod:'mcStatToday',       tbr:'tbr-mc',       tbtot:'tb-mc-tot',       tbpct:'tb-mc-pct',       tbtod:'tb-mc-tod',       tbtodpct:'tb-mc-todpct' },
+    { a:stats.fillAttempts||0,     c:stats.fillCorrect||0,     t:stats.fillToday||0,     tc:stats.fillTodayCorrect||0,     card:'msc-fill',     tot:'fillStatTotal',     pct:'fillStatPct',     tod:'fillStatToday',     tbr:'tbr-fill',     tbtot:'tb-fill-tot',     tbpct:'tb-fill-pct',     tbtod:'tb-fill-tod',     tbtodpct:'tb-fill-todpct' },
+    { a:stats.errAttempts||0,      c:stats.errCorrect||0,      t:stats.errToday||0,      tc:stats.errTodayCorrect||0,      card:'msc-err',      tot:'errStatTotal',      pct:'errStatPct',      tod:'errStatToday',      tbr:'tbr-err',      tbtot:'tb-err-tot',      tbpct:'tb-err-pct',      tbtod:'tb-err-tod',      tbtodpct:'tb-err-todpct' },
+  ];
+  const hasData = modes.some(m => m.a > 0);
   const sec = document.getElementById('modeStatsSection');
   if(sec) sec.style.display = hasData ? '' : 'none';
-  if(!hasData) return;
-
-  document.getElementById('writeStatTotal').textContent   = wa;
-  document.getElementById('scrambleStatTotal').textContent= sa;
-
-  document.getElementById('writeStatPct').textContent    = wa > 0 ? Math.round(wc/wa*100)+' %' : '—';
-  document.getElementById('scrambleStatPct').textContent = sa > 0 ? Math.round(sc/sa*100)+' %' : '—';
-
-  document.getElementById('writeStatToday').textContent   = 'dnes: '+wt+' vět'+(wt>0?' ('+Math.round(wtc/wt*100)+' %)':'');
-  document.getElementById('scrambleStatToday').textContent= 'dnes: '+st+' vět'+(st>0?' ('+Math.round(stc/st*100)+' %)':'');
+  const pct = (c,a) => a>0 ? Math.round(c/a*100)+' %' : '—';
+  modes.forEach(m => {
+    // karty (stávající)
+    const cardEl = document.getElementById(m.card);
+    if(cardEl) cardEl.style.display = m.a > 0 ? '' : 'none';
+    const tEl = document.getElementById(m.tot), pEl = document.getElementById(m.pct), dEl = document.getElementById(m.tod);
+    if(tEl) tEl.textContent = m.a;
+    if(pEl) pEl.textContent = pct(m.c, m.a);
+    if(dEl) dEl.textContent = 'dnes: '+m.t+' vět'+(m.t>0?' ('+Math.round(m.tc/m.t*100)+' %)':'');
+    // tabulka (nová)
+    const trEl = document.getElementById(m.tbr);
+    if(trEl) trEl.style.display = m.a > 0 ? '' : 'none';
+    const set = (id, val) => { const el=document.getElementById(id); if(el) el.textContent=val; };
+    set(m.tbtot,    m.a > 0 ? m.a+' vět' : '—');
+    set(m.tbpct,    pct(m.c, m.a));
+    set(m.tbtod,    m.t > 0 ? m.t+' vět' : '—');
+    set(m.tbtodpct, pct(m.tc, m.t));
+  });
 }
 
 function renderRadar() {
@@ -1768,15 +1952,10 @@ let scrambleEnUnlocked = false; // true po zobrazení výsledku → povolí ↻ 
 
 function toggleScrambleMode() {
   cfg.scrambleMode = !cfg.scrambleMode;
-  if(cfg.scrambleMode) {
-    cfg.writeMode = false;
-    // Scramble vyžaduje interakci — auto mode je neslučitelný
-    if(document.getElementById('autoMode').checked) toggleAutoMode(true);
-  }
-  try { localStorage.setItem(STORAGE_CFG, JSON.stringify(cfg)); } catch(e) {}
+  if(cfg.scrambleMode) disableOtherModes('scramble');
+  saveCfgModes();
   document.getElementById('scrambleBtn').classList.toggle('active', !!cfg.scrambleMode);
-  document.getElementById('writeBtn').classList.toggle('active', !!cfg.writeMode);
-  document.getElementById('ratingWrap').style.display = (cfg.scrambleMode || cfg.writeMode) ? 'none' : '';
+  updateRatingVisibility();
   showCurrent();
 }
 
@@ -1953,15 +2132,10 @@ let writeEnUnlocked = false;
 
 function toggleWriteMode() {
   cfg.writeMode = !cfg.writeMode;
-  if(cfg.writeMode) {
-    cfg.scrambleMode = false; // vzájemně se vylučují
-    // Psaní vyžaduje interakci — auto mode je neslučitelný
-    if(document.getElementById('autoMode').checked) toggleAutoMode(true);
-  }
-  try { localStorage.setItem(STORAGE_CFG, JSON.stringify(cfg)); } catch(e) {}
+  if(cfg.writeMode) disableOtherModes('write');
+  saveCfgModes();
   document.getElementById('writeBtn').classList.toggle('active', !!cfg.writeMode);
-  document.getElementById('scrambleBtn').classList.toggle('active', !!cfg.scrambleMode);
-  document.getElementById('ratingWrap').style.display = (cfg.scrambleMode || cfg.writeMode) ? 'none' : '';
+  updateRatingVisibility();
   showCurrent();
 }
 
@@ -2011,8 +2185,10 @@ function showWrite(pending) {
   }
 }
 
-function writeInsertApos() {
-  const inp = document.getElementById('writeInput');
+function writeInsertApos() { writeInsertAposTo('writeInput'); }
+
+function writeInsertAposTo(inputId) {
+  const inp = document.getElementById(inputId);
   if(!inp || inp.disabled) return;
   const start = inp.selectionStart, end = inp.selectionEnd;
   inp.value = inp.value.slice(0, start) + "'" + inp.value.slice(end);
@@ -2071,6 +2247,376 @@ function writeNext() {
   writeReset();
   nextSent();
 }
+
+// ══════════════════════════════════════════════════════════════════════════════
+// SDÍLENÉ POMOCNÉ FUNKCE — nové procvičovací režimy
+// ══════════════════════════════════════════════════════════════════════════════
+
+function normalizeEn(s) {
+  return s.toLowerCase()
+    .replace(/[´`''ʼ]/g,"'").replace(/[.,!?;:]+$/g,'')
+    .replace(/[^a-zA-Z0-9' ]+/g,'').replace(/\s+/g,' ').trim();
+}
+
+function buildDiff(userVal, correctEn) {
+  const userWords = userVal.trim().split(/\s+/);
+  const origWords = correctEn.trim().split(/\s+/);
+  const spans = userWords.map((w,i) => {
+    const ok = normalizeEn(w) === normalizeEn(origWords[i]||'');
+    return `<span style="color:${ok?'#16a34a':'#dc2626'};font-weight:600">${w}</span>`;
+  }).join(' ');
+  return `<div class="wr-wrong">${spans}</div><div class="wr-correct">${correctEn}</div>`;
+}
+
+function generateError(en) {
+  const words = en.split(/\s+/);
+  const rnd = a => a[Math.floor(Math.random()*a.length)];
+  const groups = [];
+
+  // 1. Smazat libovolné slovo (ne první — zachovat velké písmeno)
+  if(words.length>=3){
+    const g=[];
+    for(let i=1;i<words.length;i++){const r=[...words];r.splice(i,1);g.push(r.join(' '));}
+    groups.push(g);
+  }
+
+  // 2. Prohodit libovolná dvě slova (i vzdálená, ne první)
+  if(words.length>=3){
+    const g=[];
+    for(let i=1;i<words.length;i++) for(let j=i+1;j<words.length;j++){const r=[...words];[r[i],r[j]]=[r[j],r[i]];g.push(r.join(' '));}
+    groups.push(g);
+  }
+
+  // 3. Vložit duplicitu — vzít slovo z věty a vložit ho na jinou pozici
+  if(words.length>=3){
+    const g=[];
+    for(let i=1;i<words.length;i++) for(let j=1;j<=words.length;j++){if(j===i||j===i+1)continue;const r=[...words];r.splice(j,0,words[i]);g.push(r.join(' '));}
+    groups.push(g);
+  }
+
+  if(!groups.length){
+    if(words.length>=2){const r=[...words];const l=r.length-1;[r[l-1],r[l]]=[r[l],r[l-1]];return r.join(' ');}
+    return en;
+  }
+  return rnd(rnd(groups));
+}
+
+function pickBlankWord(en) {
+  const words = en.split(/\s+/);
+  const aux = ['is','are','am','was','were','do','does','did','have','has','had','will','would','can','could','should','must','might','shall','been','be','being','not'];
+  for(let i=0;i<words.length;i++){const w=words[i].toLowerCase().replace(/[^a-z']/g,'');if(aux.includes(w))return{index:i,word:words[i]};}
+  const stop=new Set(['a','an','the','i','you','he','she','it','we','they','in','on','at','to','for','of','with','by','from','and','but','or','so','my','your','his','her','our','their','its']);
+  for(let i=1;i<words.length;i++){const w=words[i].toLowerCase().replace(/[^a-z]/g,'');if(w.length>=4&&!stop.has(w))return{index:i,word:words[i]};}
+  return words.length>=2?{index:1,word:words[1]}:{index:0,word:words[0]};
+}
+
+function getMcDistractors(correctEn, grammarName, count) {
+  const sentType = correctEn.trim().slice(-1); // '?', '!', '.'
+  const SKIP = new Set(['a','an','the']);
+  function cLen(s){ return s.toLowerCase().replace(/[^a-z\s]/g,'').split(/\s+/).filter(w=>w&&!SKIP.has(w)).length; }
+  const correctLen = cLen(correctEn);
+  // p1: stejný typ + gramatika + délka; p2: stejný typ + délka; p3: stejný typ; p4: fallback
+  const p1=[],p2=[],p3=[],p4=[];
+  for(const block of activeBlocks){
+    for(const s of block.sentences){
+      if(s.en===correctEn) continue;
+      const sameType = s.en.trim().slice(-1)===sentType;
+      const sameGram = block.grammar===grammarName;
+      const simLen  = Math.abs(cLen(s.en)-correctLen)<=2;
+      if(sameType && sameGram && simLen) p1.push(s.en);
+      else if(sameType && simLen)        p2.push(s.en);
+      else if(sameType)                  p3.push(s.en);
+      else                               p4.push(s.en);
+    }
+  }
+  [p1,p2,p3,p4].forEach(p=>{for(let i=p.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[p[i],p[j]]=[p[j],p[i]];}});
+  return [...p1,...p2,...p3,...p4].slice(0,count);
+}
+
+function hideEnEl(){const el=document.getElementById('sentEN');if(el)el.style.display='none';}
+// Pro procvičovací režimy: EN zůstane v layoutu (zabírá místo), jen neviditelné
+function hideEnElInFlow(){const el=document.getElementById('sentEN');if(el){el.style.display='';el.style.visibility='hidden';el.style.opacity='0';}}
+function revealEnEl(text){const el=document.getElementById('sentEN');if(!el)return;el.style.display='';el.style.visibility='';el.style.opacity='';if(text)el.innerHTML=wrapWords(text);el.classList.add('visible');}
+function modeNext(resetFn){resetFn();nextSent();}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// DIKTÁT
+// ══════════════════════════════════════════════════════════════════════════════
+let dictEnUnlocked = false, _dictCurrentEn = '';
+let _mcPreOptions = null;  // předgenerované možnosti pro MC
+let _errorPreWrong = null; // předgenerovaná chybná věta
+
+function toggleDictMode() {
+  cfg.dictMode = !cfg.dictMode;
+  if(cfg.dictMode) disableOtherModes('dict');
+  saveCfgModes();
+  document.getElementById('dictBtn').classList.toggle('active', !!cfg.dictMode);
+  updateRatingVisibility(); showCurrent();
+}
+function dictReset() {
+  dictEnUnlocked=false; _dictCurrentEn='';
+  const wrap=document.getElementById('dictWrap'); if(wrap){wrap.classList.remove('visible');wrap.style.minHeight='';}
+  const inp=document.getElementById('dictInput'); if(inp){inp.value='';inp.className='write-input';inp.disabled=false;}
+  const res=document.getElementById('dictResult'); if(res)res.innerHTML='';
+  const card=document.getElementById('drillCard'); if(card)card.classList.remove('dict-active');
+}
+function showDict(en, pending) {
+  const card=document.getElementById('drillCard'); if(card)card.classList.add('dict-active');
+  const wrap=document.getElementById('dictWrap'); if(!wrap)return;
+  const inp=document.getElementById('dictInput');
+  const res=document.getElementById('dictResult');
+  if(pending) {
+    dictEnUnlocked=false;
+    hideEnElInFlow(); // EN v layoutu, ale neviditelné — výška karty se nezmění při odhalení
+    wrap.style.minHeight='';
+    if(inp){inp.value='';inp.className='write-input';inp.disabled=true;}
+    // Předplň result oblast maximální velikostí (2 řádky diff) — skrytě
+    if(res)res.innerHTML='<div class="wr-wrong" style="visibility:hidden;font-size:.82rem;line-height:1.5">placeholder</div><div class="wr-correct" style="visibility:hidden;font-size:.82rem;line-height:1.5">placeholder</div>';
+    wrap.classList.add('visible');
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      wrap.style.minHeight=wrap.scrollHeight+'px';
+      if(window._magneticSnap)window._magneticSnap();
+    }));
+    return;
+  }
+  // Aktivace po CZ — odblokuj input, přehraj EN
+  _dictCurrentEn=en;
+  if(inp){inp.disabled=false;}
+  if(res)res.innerHTML=''; // vymaž placeholder
+  playENRepeated(en,null,'en-GB');
+  setTimeout(()=>{if(inp&&!inp.disabled)inp.focus();},600);
+  if(window._magneticSnap)window._magneticSnap();
+}
+function dictReplay(){if(_dictCurrentEn)playENRepeated(_dictCurrentEn,null,'en-GB');}
+function dictInputChanged(){const inp=document.getElementById('dictInput');if(inp)inp.className='write-input';}
+function checkDict() {
+  const inp=document.getElementById('dictInput'); if(!inp||inp.disabled)return;
+  const sent=getCurrentSent(); if(!sent)return;
+  const correct=normalizeEn(inp.value)===normalizeEn(sent.en);
+  inp.disabled=true;
+  const res=document.getElementById('dictResult');
+  if(correct){inp.classList.add('correct');if(res)res.innerHTML='';}
+  else{inp.classList.add('wrong');if(res)res.innerHTML=buildDiff(inp.value,sent.en);}
+  revealEnEl(sent.en);
+  if(document.getElementById('playEN').checked)playENRepeated(sent.en,null,'en-GB');
+  stats.dictAttempts=(stats.dictAttempts||0)+1; stats.dictToday=(stats.dictToday||0)+1;
+  if(correct){stats.dictCorrect=(stats.dictCorrect||0)+1;stats.dictTodayCorrect=(stats.dictTodayCorrect||0)+1;}
+  saveStats(); dictEnUnlocked=true;
+  if(window._magneticSnap)window._magneticSnap();
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MULTIPLE CHOICE
+// ══════════════════════════════════════════════════════════════════════════════
+function toggleMcMode() {
+  cfg.mcMode = !cfg.mcMode;
+  if(cfg.mcMode) disableOtherModes('mc');
+  saveCfgModes();
+  document.getElementById('mcBtn').classList.toggle('active', !!cfg.mcMode);
+  updateRatingVisibility(); showCurrent();
+}
+function mcReset() {
+  _mcPreOptions=null;
+  const wrap=document.getElementById('mcWrap'); if(wrap)wrap.classList.remove('visible');
+  const opts=document.getElementById('mcOptions'); if(opts)opts.innerHTML='';
+  const res=document.getElementById('mcResult'); if(res)res.innerHTML='';
+  const card=document.getElementById('drillCard'); if(card)card.classList.remove('mc-active');
+}
+function showMc(en, grammarName, pending) {
+  const card=document.getElementById('drillCard'); if(card)card.classList.add('mc-active');
+  const wrap=document.getElementById('mcWrap'); if(!wrap)return;
+  const optsEl=document.getElementById('mcOptions');
+  const resEl=document.getElementById('mcResult');
+  if(pending) {
+    hideEnElInFlow();
+    const distractors=getMcDistractors(en,grammarName,3);
+    _mcPreOptions=[en,...distractors].slice(0,4);
+    for(let i=_mcPreOptions.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[_mcPreOptions[i],_mcPreOptions[j]]=[_mcPreOptions[j],_mcPreOptions[i]];}
+    if(optsEl)optsEl.innerHTML=_mcPreOptions.map(opt=>`<button class="mc-option" disabled style="opacity:.55">${opt}</button>`).join('');
+    if(resEl)resEl.innerHTML='<span style="visibility:hidden;font-weight:600;display:block">✓ Správně!</span>';
+    wrap.style.minHeight='';
+    wrap.classList.add('visible');
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      wrap.style.minHeight=wrap.scrollHeight+'px';
+      if(window._magneticSnap)window._magneticSnap();
+    }));
+    return;
+  }
+  const options=_mcPreOptions||[en,...getMcDistractors(en,grammarName,3)].slice(0,4);
+  _mcPreOptions=null;
+  if(!optsEl)return;
+  if(resEl)resEl.innerHTML='';
+  optsEl.innerHTML=options.map(opt=>`<button class="mc-option" onclick="checkMc(this,${opt===en})">${opt}</button>`).join('');
+  wrap.classList.add('visible');
+  if(window._magneticSnap)window._magneticSnap();
+}
+function checkMc(btn, isCorrect) {
+  document.querySelectorAll('.mc-option').forEach(b=>b.disabled=true);
+  const sent=getCurrentSent();
+  btn.classList.add(isCorrect?'mc-correct':'mc-wrong');
+  if(!isCorrect){document.querySelectorAll('.mc-option').forEach(b=>{if(b.textContent===(sent?sent.en:''))b.classList.add('mc-correct');});}
+  if(sent&&document.getElementById('playEN').checked)playENRepeated(sent.en,null,'en-GB');
+  revealEnEl(sent?sent.en:'');
+  const res=document.getElementById('mcResult');
+  if(res)res.innerHTML=(isCorrect?'<span style="color:#16a34a;font-weight:600">✓ Správně!</span>':'<span style="color:#dc2626;font-weight:600">✗ Špatně</span>');
+  stats.mcAttempts=(stats.mcAttempts||0)+1; stats.mcToday=(stats.mcToday||0)+1;
+  if(isCorrect){stats.mcCorrect=(stats.mcCorrect||0)+1;stats.mcTodayCorrect=(stats.mcTodayCorrect||0)+1;}
+  saveStats();
+  if(window._magneticSnap)window._magneticSnap();
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// DOPLŇOVÁNÍ MEZER
+// ══════════════════════════════════════════════════════════════════════════════
+let _fillBlank = null;
+
+function toggleFillMode() {
+  cfg.fillMode = !cfg.fillMode;
+  if(cfg.fillMode) disableOtherModes('fill');
+  saveCfgModes();
+  document.getElementById('fillBtn').classList.toggle('active', !!cfg.fillMode);
+  updateRatingVisibility(); showCurrent();
+}
+function fillReset() {
+  _fillBlank=null;
+  const wrap=document.getElementById('fillWrap'); if(wrap)wrap.classList.remove('visible');
+  const inp=document.getElementById('fillInput'); if(inp){inp.value='';inp.className='write-input fill-input';inp.disabled=false;}
+  const res=document.getElementById('fillResult'); if(res)res.innerHTML='';
+  const card=document.getElementById('drillCard'); if(card)card.classList.remove('fill-active');
+}
+function showFill(en, pending) {
+  const card=document.getElementById('drillCard'); if(card)card.classList.add('fill-active');
+  const wrap=document.getElementById('fillWrap'); if(!wrap)return;
+  const inp=document.getElementById('fillInput');
+  const res=document.getElementById('fillResult');
+  const sentEl=document.getElementById('fillSentence');
+  if(pending) {
+    hideEnElInFlow();
+    _fillBlank=pickBlankWord(en);
+    const words=en.split(/\s+/);
+    const sentHtml=words.map((w,i)=>i===_fillBlank.index?`<span class="fill-blank" style="min-width:${Math.max(3,w.length)*0.7}rem">&nbsp;&nbsp;&nbsp;</span>`:w).join(' ');
+    if(sentEl)sentEl.innerHTML=sentHtml;
+    if(res)res.innerHTML='<span style="visibility:hidden;font-weight:600;display:block">✓ Správně!</span>';
+    wrap.style.minHeight='';
+    if(inp){inp.value='';inp.className='write-input fill-input';inp.disabled=true;}
+    wrap.classList.add('visible');
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      wrap.style.minHeight=wrap.scrollHeight+'px';
+      if(window._magneticSnap)window._magneticSnap();
+    }));
+    return;
+  }
+  if(!_fillBlank){
+    _fillBlank=pickBlankWord(en);
+    const words=en.split(/\s+/);
+    const sentHtml=words.map((w,i)=>i===_fillBlank.index?`<span class="fill-blank" style="min-width:${Math.max(3,w.length)*0.7}rem">&nbsp;&nbsp;&nbsp;</span>`:w).join(' ');
+    if(sentEl)sentEl.innerHTML=sentHtml;
+  }
+  if(res)res.innerHTML='';
+  if(inp){inp.value='';inp.className='write-input fill-input';inp.disabled=false;}
+  wrap.classList.add('visible');
+  setTimeout(()=>{if(inp)inp.focus();},100);
+  if(window._magneticSnap)window._magneticSnap();
+}
+function checkFill() {
+  const inp=document.getElementById('fillInput'); if(!inp||inp.disabled||!_fillBlank)return;
+  const sent=getCurrentSent(); if(!sent)return;
+  const correct=normalizeEn(inp.value)===normalizeEn(_fillBlank.word);
+  inp.disabled=true;
+  const res=document.getElementById('fillResult');
+  if(correct){inp.classList.add('correct');if(res)res.innerHTML='<span style="color:#16a34a;font-weight:600">✓ Správně!</span>';}
+  else{inp.classList.add('wrong');if(res)res.innerHTML=`<span style="color:#dc2626;font-weight:600">✗ Správně: <em>${_fillBlank.word}</em></span>`;}
+  revealEnEl(sent.en);
+  if(document.getElementById('playEN').checked)playENRepeated(sent.en,null,'en-GB');
+  stats.fillAttempts=(stats.fillAttempts||0)+1; stats.fillToday=(stats.fillToday||0)+1;
+  if(correct){stats.fillCorrect=(stats.fillCorrect||0)+1;stats.fillTodayCorrect=(stats.fillTodayCorrect||0)+1;}
+  saveStats();
+  if(window._magneticSnap)window._magneticSnap();
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// OPRAVA CHYBY
+// ══════════════════════════════════════════════════════════════════════════════
+let errorEnUnlocked = false;
+
+function toggleErrorMode() {
+  cfg.errorMode = !cfg.errorMode;
+  if(cfg.errorMode) disableOtherModes('error');
+  saveCfgModes();
+  document.getElementById('errorBtn').classList.toggle('active', !!cfg.errorMode);
+  updateRatingVisibility(); showCurrent();
+}
+function errorReset() {
+  errorEnUnlocked=false; _errorPreWrong=null;
+  const wrap=document.getElementById('errorWrap'); if(wrap)wrap.classList.remove('visible');
+  const inp=document.getElementById('errorInput'); if(inp){inp.value='';inp.className='write-input';inp.disabled=false;}
+  const res=document.getElementById('errorResult'); if(res)res.innerHTML='';
+  const wrong=document.getElementById('errorWrongSent'); if(wrong)wrong.textContent='';
+  const card=document.getElementById('drillCard'); if(card)card.classList.remove('error-active');
+}
+function showError(en, pending) {
+  const card=document.getElementById('drillCard'); if(card)card.classList.add('error-active');
+  const wrap=document.getElementById('errorWrap'); if(!wrap)return;
+  const inp=document.getElementById('errorInput');
+  const res=document.getElementById('errorResult');
+  const wrongEl=document.getElementById('errorWrongSent');
+  if(pending) {
+    hideEnElInFlow();
+    errorEnUnlocked=false;
+    _errorPreWrong=generateError(en);
+    if(wrongEl)wrongEl.textContent=_errorPreWrong;
+    if(res)res.innerHTML='<div class="wr-wrong" style="visibility:hidden;font-size:.82rem;line-height:1.5">placeholder</div><div class="wr-correct" style="visibility:hidden;font-size:.82rem;line-height:1.5">placeholder</div>';
+    wrap.style.minHeight='';
+    if(inp){inp.value='';inp.className='write-input';inp.disabled=true;}
+    wrap.classList.add('visible');
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      wrap.style.minHeight=wrap.scrollHeight+'px';
+      if(window._magneticSnap)window._magneticSnap();
+    }));
+    return;
+  }
+  if(wrongEl)wrongEl.textContent=_errorPreWrong||generateError(en);
+  _errorPreWrong=null;
+  if(res)res.innerHTML='';
+  if(inp){inp.value='';inp.className='write-input';inp.disabled=false;}
+  wrap.classList.add('visible');
+  setTimeout(()=>{if(inp)inp.focus();},100);
+  if(window._magneticSnap)window._magneticSnap();
+}
+function errorInputChanged(){const inp=document.getElementById('errorInput');if(inp)inp.className='write-input';}
+function checkError() {
+  const inp=document.getElementById('errorInput'); if(!inp||inp.disabled)return;
+  const sent=getCurrentSent(); if(!sent)return;
+  const correct=normalizeEn(inp.value)===normalizeEn(sent.en);
+  inp.disabled=true;
+  const res=document.getElementById('errorResult');
+  if(correct){inp.classList.add('correct');if(res)res.innerHTML='<span style="color:#16a34a;font-weight:600">✓ Správně!</span>';}
+  else{inp.classList.add('wrong');if(res)res.innerHTML=buildDiff(inp.value,sent.en);}
+  revealEnEl(sent.en);
+  if(document.getElementById('playEN').checked)playENRepeated(sent.en,null,'en-GB');
+  stats.errAttempts=(stats.errAttempts||0)+1; stats.errToday=(stats.errToday||0)+1;
+  if(correct){stats.errCorrect=(stats.errCorrect||0)+1;stats.errTodayCorrect=(stats.errTodayCorrect||0)+1;}
+  saveStats(); errorEnUnlocked=true;
+  if(window._magneticSnap)window._magneticSnap();
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// SPRÁVA REŽIMŮ
+// ══════════════════════════════════════════════════════════════════════════════
+const ALL_MODES = ['scramble','write','dict','mc','fill','error'];
+
+function disableOtherModes(keep) {
+  if(keep!=='scramble'&&cfg.scrambleMode){cfg.scrambleMode=false;const b=document.getElementById('scrambleBtn');if(b)b.classList.remove('active');scrambleReset();}
+  if(keep!=='write'&&cfg.writeMode){cfg.writeMode=false;const b=document.getElementById('writeBtn');if(b)b.classList.remove('active');writeReset();}
+  if(keep!=='dict'&&cfg.dictMode){cfg.dictMode=false;const b=document.getElementById('dictBtn');if(b)b.classList.remove('active');dictReset();}
+  if(keep!=='mc'&&cfg.mcMode){cfg.mcMode=false;const b=document.getElementById('mcBtn');if(b)b.classList.remove('active');mcReset();}
+  if(keep!=='fill'&&cfg.fillMode){cfg.fillMode=false;const b=document.getElementById('fillBtn');if(b)b.classList.remove('active');fillReset();}
+  if(keep!=='error'&&cfg.errorMode){cfg.errorMode=false;const b=document.getElementById('errorBtn');if(b)b.classList.remove('active');errorReset();}
+  if(document.getElementById('autoMode')&&document.getElementById('autoMode').checked)toggleAutoMode(true);
+}
+function anyModeActive(){return cfg.scrambleMode||cfg.writeMode||cfg.dictMode||cfg.mcMode||cfg.fillMode||cfg.errorMode;}
+function updateRatingVisibility(){document.getElementById('ratingWrap').style.display=anyModeActive()?'none':'';}
+function saveCfgModes(){try{localStorage.setItem(STORAGE_CFG,JSON.stringify(cfg));}catch(e){}}
 
 function getCurrentSent() {
   if(!activeBlocks || !activeBlocks.length) return null;
@@ -3121,7 +3667,12 @@ function speak(text,voiceName,rate,cb,forceLang) {
 }
 
 function replayCZ(){speak(document.getElementById('sentCZ').textContent,document.getElementById('czVoice').value,cfg.czRate,null,'cs-CZ');}
-function replayEN(){if((cfg.scrambleMode && !scrambleEnUnlocked)||(cfg.writeMode && !writeEnUnlocked))return;document.getElementById('sentEN').classList.add('visible');playENRepeated(document.getElementById('sentEN').textContent,null,'en-GB');}
+function replayEN(){
+  const locked=(cfg.scrambleMode&&!scrambleEnUnlocked)||(cfg.writeMode&&!writeEnUnlocked)||(cfg.dictMode&&!dictEnUnlocked)||(cfg.errorMode&&!errorEnUnlocked)||cfg.mcMode||cfg.fillMode;
+  if(locked)return;
+  document.getElementById('sentEN').classList.add('visible');
+  playENRepeated(document.getElementById('sentEN').textContent,null,'en-GB');
+}
 
 function wrapWords(text){
   if(!text) return '';
@@ -3535,8 +4086,8 @@ function showCurrent() {
   if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
   playToken++; // zneplatní všechny probíhající callbacky předchozí věty
   cancelSpeech();
-  scrambleReset(); // vyčisti scramble UI z předchozí věty
-  writeReset();    // vyčisti write UI z předchozí věty
+  scrambleReset(); writeReset();
+  dictReset(); mcReset(); fillReset(); errorReset();
   document.getElementById('ratingWrap').classList.add('rating-hidden');
   hideGramTip();
 
@@ -3562,7 +4113,8 @@ function showCurrent() {
   // Schovat EN okamžitě (bez čekání na animaci) a ihned nastavit nový obsah
   const enEl=document.getElementById('sentEN');
   enEl.classList.remove('visible');
-  enEl.innerHTML=wrapWords(sent.en||''); // nový EN text (stále opacity:0)
+  enEl.style.visibility=''; enEl.style.opacity=''; enEl.style.display='';
+  enEl.innerHTML=wrapWords(sent.en||''); // nový EN text (stále opacity:0 přes CSS)
 
   document.getElementById('mGrammar').textContent=block.grammar||'';
   currentGrammar = block.grammar||'';
@@ -3577,9 +4129,13 @@ function showCurrent() {
   document.getElementById('progressFill').style.width=Math.round(prog)+'%';
   updateFavBtn();
   savePos();
-  // V scramble/write režimu připrav UI hned (rezervuj místo) — aktivace proběhne po dočtení CZ
+  // Připrav UI hned (rezervuj místo před přehráním CZ) — aktivace proběhne po dočtení CZ
   if(cfg.scrambleMode) showScramble({en: sent.en, pending: true});
-  if(cfg.writeMode) showWrite(true);
+  if(cfg.writeMode)    showWrite(true);
+  if(cfg.dictMode)     showDict(sent.en, true);
+  if(cfg.mcMode)       showMc(sent.en, block.grammar, true);
+  if(cfg.fillMode)     showFill(sent.en, true);
+  if(cfg.errorMode)    showError(sent.en, true);
   if(window._magneticSnap) window._magneticSnap();
 
   const myToken = playToken;
@@ -3599,17 +4155,27 @@ function showCurrent() {
 function scheduleEN(text,playEN2,token) {
   const myToken = (token !== undefined) ? token : playToken;
 
-  // ── SCRAMBLE REŽIM — žádná pauza, ukažeme UI ihned po CZ ──
-  if(cfg.scrambleMode) {
-    showScramble({en: text});
+  // ── SCRAMBLE REŽIM ──
+  if(cfg.scrambleMode) { showScramble({en: text}); return; }
+
+  // ── REŽIM PSANÍ ──
+  if(cfg.writeMode) { showWrite(false); return; }
+
+  // ── DIKTÁT ──
+  if(cfg.dictMode) { showDict(text); return; }
+
+  // ── MULTIPLE CHOICE ──
+  if(cfg.mcMode) {
+    const block = activeBlocks[blockOrder[bPos % blockOrder.length]];
+    showMc(text, block ? block.grammar : '');
     return;
   }
 
-  // ── REŽIM PSANÍ — aktivuj input po dočtení CZ (UI bylo připraveno v showCurrent) ──
-  if(cfg.writeMode) {
-    showWrite(false);
-    return;
-  }
+  // ── DOPLŇOVÁNÍ MEZER ──
+  if(cfg.fillMode) { showFill(text); return; }
+
+  // ── OPRAVA CHYBY ──
+  if(cfg.errorMode) { showError(text); return; }
 
   const delay=parseInt(document.getElementById('pauseSec').value)*1000;
   pauseTimer=setTimeout(()=>{
@@ -3676,16 +4242,15 @@ function toggleAutoMode(forceOff) {
   else if(forceOff===undefined) cb.checked=!cb.checked; // přepnutí z tlačítka
   const isAuto=cb.checked;
   saveSetting('autoMode',isAuto);
-  // Auto mode vyžaduje pasivní poslech — scramble/write jsou neslučitelné
-  if(isAuto && (cfg.scrambleMode || cfg.writeMode)) {
-    cfg.scrambleMode = false;
-    cfg.writeMode = false;
+  // Auto mode vyžaduje pasivní poslech — všechny interaktivní režimy jsou neslučitelné
+  if(isAuto && anyModeActive()) {
+    ALL_MODES.forEach(m => { cfg[m+'Mode'] = false; });
     try { localStorage.setItem(STORAGE_CFG, JSON.stringify(cfg)); } catch(e) {}
-    document.getElementById('scrambleBtn').classList.remove('active');
-    document.getElementById('writeBtn').classList.remove('active');
+    ['scrambleBtn','writeBtn','dictBtn','mcBtn','fillBtn','errorBtn'].forEach(id => {
+      const el = document.getElementById(id); if(el) el.classList.remove('active');
+    });
     document.getElementById('ratingWrap').style.display = '';
-    scrambleReset();
-    writeReset();
+    scrambleReset(); writeReset(); dictReset(); mcReset(); fillReset(); errorReset();
   }
   const adg=document.getElementById('autoDelayGroup');
   if(isAuto)adg.classList.remove('hidden');else adg.classList.add('hidden');
