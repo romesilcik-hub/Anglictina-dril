@@ -13117,7 +13117,7 @@
       "blok": "být učitel",
       "topic": "Obecné",
       "sentences": [
-        {"id": "c23435bf-af7c-4ee0-9f10-5f0935f06e32}", "cz": "Co to je?", "en": "What is he?", "pattern": "wh_question", "person": "", "note": "What = co / jaký"}
+        {"id": "c23435bf-af7c-4ee0-9f10-5f0935f06e32}", "cz": "Kdo je to? (Čím je)", "en": "What is he?", "pattern": "wh_question", "person": "", "note": "What = co / jaký"}
         ]
       },
     {
@@ -20191,7 +20191,7 @@
         {"id": "2b0398df-a591-4b7f-8b7f-56a4c4101d33}", "cz": "To jsou krabice.", "en": "These are boxes.", "pattern": "affirmative", "person": "third_singular", "note": "mn.č. -x → +es: box → boxes"},
         {"id": "90579528-7b2c-4875-b03c-6c40b88fb2f6}", "cz": "To nejsou krabice.", "en": "These are not boxes.", "pattern": "negative", "person": "third_singular", "note": "These are not = These aren't; mn.č. zůstává"},
         {"id": "ca72622f-b4ec-45d2-9703-abd347c52632}", "cz": "Jsou to krabice?", "en": "Are these boxes?", "pattern": "question", "person": "", "note": "Are + these + mn.č. podstatné jméno?"},
-        {"id": "f2efcb70-6385-4bad-876a-432f37b95a9c}", "cz": "Co to je?", "en": "What are these?", "pattern": "wh_question", "person": "", "note": "What = co jsou; -x → +es v mn.č."}
+        {"id": "f2efcb70-6385-4bad-876a-432f37b95a9c}", "cz": "Co jsou tyhle?", "en": "What are these?", "pattern": "wh_question", "person": "", "note": "What = co jsou; -x → +es v mn.č."}
         ]
       },
     {
@@ -20239,7 +20239,7 @@
         {"id": "bbb2a189-1cec-49b5-8edd-0615ea324e9f}", "cz": "To jsou hodinky.", "en": "These are watches.", "pattern": "affirmative", "person": "third_singular", "note": "mn.č. -ch → +es: watch → watches"},
         {"id": "416b66d0-da2d-40f8-9b5d-24cce10072e9}", "cz": "Nejsou to hodinky.", "en": "These are not watches.", "pattern": "negative", "person": "third_singular", "note": "These aren't; -ch → +es i v záporu"},
         {"id": "34821a0b-6e61-4d4f-ac25-b5cebd4c7b69}", "cz": "Jsou to hodinky?", "en": "Are these watches?", "pattern": "question", "person": "", "note": "Are + these + mn.č. (-ch → +es)?"},
-        {"id": "5b73215f-6e1a-46ff-91b4-eeecf782494d}", "cz": "Co to je?", "en": "What are those?", "pattern": "wh_question", "person": "", "note": "What = co jsou; -ch → +es v mn.č."}
+        {"id": "5b73215f-6e1a-46ff-91b4-eeecf782494d}", "cz": "Co jsou tamty?", "en": "What are those?", "pattern": "wh_question", "person": "", "note": "What = co jsou; -ch → +es v mn.č."}
         ]
       },
     {
@@ -20467,7 +20467,7 @@
         {"id": "6abc5fd4-c3ed-4fb6-95ea-a1957ff0c36a}", "cz": "Toto je váš klíč.", "en": "This is your key.", "pattern": "affirmative", "person": "second", "note": "Your = přivlastňovací zájmeno (2. os.)"},
         {"id": "bac26c5c-375f-40d4-9e57-581fd325ace9}", "cz": "Toto není váš klíč.", "en": "This is not your key.", "pattern": "negative", "person": "second", "note": "This isn't; your zůstává v záporu"},
         {"id": "5e192852-0f25-4252-bf20-bcaf5d57dc8e}", "cz": "Je to váš klíč?", "en": "Is this your key?", "pattern": "question", "person": "", "note": "Is this + your + podstatné jméno?"},
-        {"id": "80d0dac7-fae1-4a4e-a6aa-532181617a85}", "cz": "Co to je?", "en": "What is this?", "pattern": "wh_question", "person": "", "note": "What = co je to; your = přivlastňovací v odpovědi"}
+        {"id": "80d0dac7-fae1-4a4e-a6aa-532181617a85}", "cz": "Co je toto?", "en": "What is this?", "pattern": "wh_question", "person": "", "note": "What = co je to; your = přivlastňovací v odpovědi"}
         ]
       },
     {
@@ -24517,7 +24517,7 @@
         {"id": "00482c52-4c1d-43e5-9df7-fb1dcd5e19e8}", "cz": "Tohle jsou moje kufry.", "en": "These are my suitcases.", "pattern": "affirmative", "person": "first", "note": "suitcase + s = suitcases; pravidelná přípona -s"},
         {"id": "eed82a6e-56b4-4fad-8cd9-28087382db65}", "cz": "To nejsou vaše kufry.", "en": "Those are not your suitcases.", "pattern": "negative", "person": "second", "note": "záporné ARE NOT; those = tamty věci (dál od mluvčího)"},
         {"id": "713e43c8-19a6-4b4e-a9f7-18752a32da2d}", "cz": "Jsou to kufry?", "en": "Are these suitcases?", "pattern": "question", "person": "", "note": "otázka: ARE + these + podstatné jméno v množném čísle"},
-        {"id": "323643d6-c50c-4a5c-aa0e-1160fe0ab9ee}", "cz": "Co to je?", "en": "What are these?", "pattern": "wh_question", "person": "", "note": "WH otázka: WHAT + ARE + these (ukazovací zájmeno v množném čísle)"}
+        {"id": "323643d6-c50c-4a5c-aa0e-1160fe0ab9ee}", "cz": "Co jsou tyhle?", "en": "What are these?", "pattern": "wh_question", "person": "", "note": "WH otázka: WHAT + ARE + these (ukazovací zájmeno v množném čísle)"}
         ]
       },
     {
@@ -24529,7 +24529,7 @@
         {"id": "293b095d-5b56-4252-bd64-6de36451dd48}", "cz": "To jsou autobusy.", "en": "These are buses.", "pattern": "affirmative", "person": "third_singular", "note": "bus + es = buses; přípona -es po koncovém -s (bus → buses)"},
         {"id": "3f1a311c-ee5e-41a9-a970-ad606b8b7d35}", "cz": "To nejsou autobusy.", "en": "Those are not buses.", "pattern": "negative", "person": "plural", "note": "ARE NOT + podstatné jméno v množném čísle; those = tamty věci"},
         {"id": "e2a5108b-56dd-4caf-aee0-c4b819ec5730}", "cz": "Jsou to autobusy?", "en": "Are these buses?", "pattern": "question", "person": "", "note": "otázka: ARE + these + množné číslo na -es"},
-        {"id": "5c9e02cb-ac1f-4a4d-b556-af7da834cc0b}", "cz": "Co to je?", "en": "What are those?", "pattern": "wh_question", "person": "", "note": "WHAT + ARE + those; those = tamty věci (dál od mluvčího)"}
+        {"id": "5c9e02cb-ac1f-4a4d-b556-af7da834cc0b}", "cz": "Co jsou tamty?", "en": "What are those?", "pattern": "wh_question", "person": "", "note": "WHAT + ARE + those; those = tamty věci (dál od mluvčího)"}
         ]
       },
     {
@@ -24553,7 +24553,7 @@
         {"id": "898bad3b-d371-4277-afe5-e0c8f3032f22}", "cz": "To jsou pláže.", "en": "These are beaches.", "pattern": "affirmative", "person": "third_singular", "note": "beach + es = beaches; přípona -es po -ch (beach → beaches)"},
         {"id": "697e31c1-38ac-49c8-baf1-0d26dcfcc91f}", "cz": "To nejsou pláže.", "en": "Those are not beaches.", "pattern": "negative", "person": "plural", "note": "záporné ARE NOT; those = tamty věci (dál)"},
         {"id": "f05fa03f-4ad7-463e-af2c-c9713e2b07e1}", "cz": "Jsou to pláže?", "en": "Are these beaches?", "pattern": "question", "person": "", "note": "otázka: ARE + these + množné číslo na -es"},
-        {"id": "b7f32eab-9760-4303-a1c4-285687030827}", "cz": "Co to je?", "en": "What are those?", "pattern": "wh_question", "person": "", "note": "WHAT + ARE + those; jednoduché WH; those = tamty věci"}
+        {"id": "b7f32eab-9760-4303-a1c4-285687030827}", "cz": "Co jsou tamty?", "en": "What are those?", "pattern": "wh_question", "person": "", "note": "WHAT + ARE + those; jednoduché WH; those = tamty věci"}
         ]
       },
     {
@@ -36462,7 +36462,7 @@
         {"id": "af4b7852-4001-4868-ac54-0a71acbfc6eb}", "cz": "Tohle je káva.", "en": "This is a coffee.", "pattern": "affirmative", "person": "first", "note": "a = neurčitý člen; první zmínka"},
         {"id": "abfa783f-31d5-4971-83d6-1f51268eb8dc}", "cz": "Tohle není káva.", "en": "This is not a coffee.", "pattern": "negative", "person": "first", "note": "a = neurčitý člen i v záporné větě"},
         {"id": "1dd0a42d-53c9-427b-8401-9876ad7088ca}", "cz": "Je to káva?", "en": "Is this the coffee?", "pattern": "question", "person": "", "note": "the = určitý člen; mluvíme o konkrétní (naší) kávě"},
-        {"id": "452c1623-ef85-4567-8231-e07b9b9e7ce3}", "cz": "Co to je?", "en": "What is this?", "pattern": "wh_question", "person": "", "note": "bez členu u 'this'; demonstrativní zájmeno"}
+        {"id": "452c1623-ef85-4567-8231-e07b9b9e7ce3}", "cz": "Co je toto?", "en": "What is this?", "pattern": "wh_question", "person": "", "note": "bez členu u 'this'; demonstrativní zájmeno"}
         ]
       },
     {
@@ -36474,7 +36474,7 @@
         {"id": "8c1d6af9-1c40-44a4-af10-5e57ebcc050c}", "cz": "To je čaj.", "en": "That is a tea.", "pattern": "affirmative", "person": "second", "note": "a = neurčitý člen; první zmínka"},
         {"id": "8567750b-b608-4fd5-a9e6-ea934827f10c}", "cz": "To není čaj.", "en": "That is not the tea.", "pattern": "negative", "person": "second", "note": "the = určitý člen; mluvíme o konkrétním čaji"},
         {"id": "a0ca3988-dca9-4919-a3cb-55f5e4229311}", "cz": "Je to čaj?", "en": "Is that a tea?", "pattern": "question", "person": "", "note": "a = neurčitý člen; první zmínka v otázce"},
-        {"id": "6f89c295-df92-40ed-bc35-ac2a0dd72b84}", "cz": "Co to je?", "en": "What is that?", "pattern": "wh_question", "person": "", "note": "bez členu u 'that'; demonstrativní zájmeno"}
+        {"id": "6f89c295-df92-40ed-bc35-ac2a0dd72b84}", "cz": "Co je toto?", "en": "What is that?", "pattern": "wh_question", "person": "", "note": "bez členu u 'that'; demonstrativní zájmeno"}
         ]
       },
     {
@@ -36498,7 +36498,7 @@
         {"id": "a123a80a-183a-4cf9-a747-5d7996abd4c4}", "cz": "To jsou tašky.", "en": "These are bags.", "pattern": "affirmative", "person": "plural", "note": "množné č. bez členu = neurčitý nulový člen"},
         {"id": "2586360d-cba2-4bd8-baca-20dc5e34b4cf}", "cz": "To nejsou tašky.", "en": "These are not the bags.", "pattern": "negative", "person": "plural", "note": "the = určitý člen i u množného čísla"},
         {"id": "a09b6dc5-efbe-4a3a-a610-320a425d72ff}", "cz": "To jsou tašky?", "en": "Are these the bags?", "pattern": "question", "person": "", "note": "the = určitý člen; víme o čem mluvíme"},
-        {"id": "7cc9076c-4f19-4c81-85f8-e75fa31548dd}", "cz": "Co to je?", "en": "What are these?", "pattern": "wh_question", "person": "", "note": "bez členu u 'these'; demonstrativní zájmeno"}
+        {"id": "7cc9076c-4f19-4c81-85f8-e75fa31548dd}", "cz": "Co jsou tyhle?", "en": "What are these?", "pattern": "wh_question", "person": "", "note": "bez členu u 'these'; demonstrativní zájmeno"}
         ]
       },
     {
@@ -36546,7 +36546,7 @@
         {"id": "03b4e986-eecb-4a1f-aac6-896adac9f635}", "cz": "To jsou auta.", "en": "These are cars.", "pattern": "affirmative", "person": "plural", "note": "množné č. bez členu = neurčitý nulový člen"},
         {"id": "6cd307ce-dfc7-4523-88a1-e6bc7ffa66f3}", "cz": "To nejsou auta.", "en": "These are not the cars.", "pattern": "negative", "person": "plural", "note": "the = určitý člen i u množného čísla"},
         {"id": "5dc150da-cf1b-4682-a6d0-a9794376868c}", "cz": "To jsou auta?", "en": "Are these the cars?", "pattern": "question", "person": "", "note": "the = určitý člen; víme o čem mluvíme"},
-        {"id": "8182b92c-f9ff-4b15-864d-79d3ace5c37b}", "cz": "Co to je?", "en": "What are these?", "pattern": "wh_question", "person": "", "note": "bez členu u 'these'; demonstrativní zájmeno"}
+        {"id": "8182b92c-f9ff-4b15-864d-79d3ace5c37b}", "cz": "Co jsou tyhle?", "en": "What are these?", "pattern": "wh_question", "person": "", "note": "bez členu u 'these'; demonstrativní zájmeno"}
         ]
       },
     {
@@ -36582,7 +36582,7 @@
         {"id": "7ac9fca3-e2a0-44c2-8e57-b26c592ba21f}", "cz": "Toto jsou moje knihy.", "en": "These are my books.", "pattern": "affirmative", "person": "first", "note": "book → books; pravidelné množné číslo (+s)"},
         {"id": "e9bb368a-bd71-4f66-835a-16d7d6308c03}", "cz": "To nejsou moje knihy.", "en": "These are not my books.", "pattern": "negative", "person": "first", "note": "záporná: are NOT; BOOKS zůstává v množném čísle"},
         {"id": "f743d012-708f-4ea5-b042-4dcea488aa09}", "cz": "Jsou to knihy?", "en": "Are these books?", "pattern": "question", "person": "", "note": "otázka: ARE + subject; ARE pro množné číslo"},
-        {"id": "e0e5f8d2-5417-4e1a-b3ab-fb9077bbe75f}", "cz": "Co to je?", "en": "What are these?", "pattern": "wh_question", "person": "", "note": "WH + ARE + subject; množné číslo → ARE"}
+        {"id": "e0e5f8d2-5417-4e1a-b3ab-fb9077bbe75f}", "cz": "Co jsou tyhle?", "en": "What are these?", "pattern": "wh_question", "person": "", "note": "WH + ARE + subject; množné číslo → ARE"}
         ]
       },
     {
@@ -36606,7 +36606,7 @@
         {"id": "3ff36411-e640-4cc0-8a21-0890bfbd36f4}", "cz": "Toto jsou jeho klíče.", "en": "These are his keys.", "pattern": "affirmative", "person": "third_singular", "note": "key → keys; samohláska+y → +s (ne +ies)"},
         {"id": "ba260db6-252b-46d4-a362-f6b9eccfb0a6}", "cz": "To nejsou jeho klíče.", "en": "These are not his keys.", "pattern": "negative", "person": "third_singular", "note": "záporná: are NOT; KEYS = množné číslo"},
         {"id": "e0748100-cdcd-4142-b61e-80e398350c65}", "cz": "Jsou to jeho klíče?", "en": "Are these his keys?", "pattern": "question", "person": "", "note": "otázka: ARE + subject"},
-        {"id": "652c4cae-9b36-44c7-801f-8d9a744bcbbb}", "cz": "Co to je?", "en": "What are these?", "pattern": "wh_question", "person": "", "note": "WH + ARE; množné číslo → ARE"}
+        {"id": "652c4cae-9b36-44c7-801f-8d9a744bcbbb}", "cz": "Co jsou tyhle?", "en": "What are these?", "pattern": "wh_question", "person": "", "note": "WH + ARE; množné číslo → ARE"}
         ]
       },
     {
@@ -36618,7 +36618,7 @@
         {"id": "a3811a2c-89a9-4c30-8af5-88934c78b3ff}", "cz": "To jsou jejich tašky.", "en": "These are their bags.", "pattern": "affirmative", "person": "plural", "note": "bag → bags; pravidelné množné číslo (+s)"},
         {"id": "677a9eed-d90e-4af7-87b1-ff6e7423c7cd}", "cz": "To nejsou jejich tašky.", "en": "These are not their bags.", "pattern": "negative", "person": "plural", "note": "záporná: are NOT"},
         {"id": "e53831fe-9617-4009-ae4c-267dda89b13a}", "cz": "Jsou to tašky?", "en": "Are these bags?", "pattern": "question", "person": "", "note": "otázka: ARE + subject; ARE pro množné číslo"},
-        {"id": "0e949945-e4ab-49be-989a-ff4f40f6b592}", "cz": "Co to je?", "en": "What are these?", "pattern": "wh_question", "person": "", "note": "WH + ARE + subject; množné číslo → ARE"}
+        {"id": "0e949945-e4ab-49be-989a-ff4f40f6b592}", "cz": "Co jsou tyhle?", "en": "What are these?", "pattern": "wh_question", "person": "", "note": "WH + ARE + subject; množné číslo → ARE"}
         ]
       },
     {
@@ -36642,7 +36642,7 @@
         {"id": "b8204be8-8e68-4d53-8128-4f6bd1c0a120}", "cz": "Toto jsou vaše štětce.", "en": "These are your brushes.", "pattern": "affirmative", "person": "second", "note": "brush → brushes; +es po -sh, -ch, -x, -s, -z"},
         {"id": "03ba02d9-e676-4bfe-b5cb-7c68dc5c078e}", "cz": "To nejsou vaše štětce.", "en": "These are not your brushes.", "pattern": "negative", "person": "second", "note": "záporná: are NOT; BRUSHES = množné číslo"},
         {"id": "cf6ed8a5-a6d1-43fe-b289-44ae1cb73083}", "cz": "Jsou to štětce?", "en": "Are these brushes?", "pattern": "question", "person": "", "note": "otázka: ARE + subject"},
-        {"id": "cf9d1ace-8dc1-4daa-a271-0949c19adb06}", "cz": "Co to je?", "en": "What are these?", "pattern": "wh_question", "person": "", "note": "WH + ARE; množné číslo → ARE"}
+        {"id": "cf9d1ace-8dc1-4daa-a271-0949c19adb06}", "cz": "Co jsou tyhle?", "en": "What are these?", "pattern": "wh_question", "person": "", "note": "WH + ARE; množné číslo → ARE"}
         ]
       },
     {
@@ -41751,7 +41751,7 @@
         {"id": "90101152-f38c-4e8f-b004-dd125cf06aa0}", "cz": "Je architekt.", "en": "He is an architect.", "pattern": "affirmative", "person": "third_singular", "note": "an = neurčitý člen před samohláskou (a, e, i, o, u)"},
         {"id": "8cc33bf2-e3e1-4f1e-aee1-276924d01398}", "cz": "Není architekt.", "en": "He is not an architect.", "pattern": "negative", "person": "third_singular", "note": "an zůstává i v záporu — začíná samohláskou"},
         {"id": "f6eeea6f-d27b-4b01-97d1-c9d41c328d02}", "cz": "Je to architekt?", "en": "Is he an architect?", "pattern": "question", "person": "", "note": "Is + he + an + samohláska?"},
-        {"id": "197fd864-c39b-4947-932f-70b3dfe4c30f}", "cz": "Co to je?", "en": "What is he?", "pattern": "wh_question", "person": "", "note": "What + is + he?"}
+        {"id": "197fd864-c39b-4947-932f-70b3dfe4c30f}", "cz": "Kdo je to? (Čím je)", "en": "What is he?", "pattern": "wh_question", "person": "", "note": "What + is + he?"}
         ]
       },
     {
@@ -41835,7 +41835,7 @@
         {"id": "68cf7f1a-61d9-47b9-af79-2aa3b5630558}", "cz": "Vy jste mechanik.", "en": "You are a mechanic.", "pattern": "affirmative", "person": "second", "note": "a = neurčitý člen; povolání — první zmínka"},
         {"id": "0dcd8fe0-ab98-4392-a035-90de84c8ddd6}", "cz": "Nejste mechanik.", "en": "You are not a mechanic.", "pattern": "negative", "person": "second", "note": "a mechanic — člen zůstává i v záporu"},
         {"id": "cc0a6ade-17cd-4244-b91a-717d41ca4008}", "cz": "Je to mechanik?", "en": "Is he a mechanic?", "pattern": "question", "person": "", "note": "Is + he + a + povolání?"},
-        {"id": "12e5e879-d40c-45d4-b188-d4fcaa3ec94f}", "cz": "Co to je?", "en": "What is he?", "pattern": "wh_question", "person": "", "note": "What + is + he?"}
+        {"id": "12e5e879-d40c-45d4-b188-d4fcaa3ec94f}", "cz": "Kdo je to? (Čím je)", "en": "What is he?", "pattern": "wh_question", "person": "", "note": "What + is + he?"}
         ]
       },
     {
@@ -43631,7 +43631,7 @@
         {"id": "6fc7080f-15cd-4bc1-9042-37be52c9f356}", "cz": "Je otcem.", "en": "He is a father.", "pattern": "affirmative", "person": "third_singular", "note": "a = neurčitý člen, obecná role/povolání"},
         {"id": "5ae15cec-dfb0-4559-9817-da30d51cb94d}", "cz": "Není otcem.", "en": "He is not a father.", "pattern": "negative", "person": "third_singular", "note": "a = neurčitý člen i v záporné větě"},
         {"id": "fa2f6ab2-b4ca-4c76-800a-c6a1e602b673}", "cz": "Je to otec?", "en": "Is he a father?", "pattern": "question", "person": "", "note": "a = neurčitý člen u role nebo povolání"},
-        {"id": "3fb5cb88-b00b-473c-89c7-e1cbbda15187}", "cz": "Co to je?", "en": "What is he?", "pattern": "wh_question", "person": "", "note": "bez členu v otázce na roli/povolání"}
+        {"id": "3fb5cb88-b00b-473c-89c7-e1cbbda15187}", "cz": "Kdo je to? (Čím je)", "en": "What is he?", "pattern": "wh_question", "person": "", "note": "bez členu v otázce na roli/povolání"}
         ]
       },
     {

@@ -1704,7 +1704,11 @@ let scrambleEnUnlocked = false; // true po zobrazení výsledku → povolí ↻ 
 
 function toggleScrambleMode() {
   cfg.scrambleMode = !cfg.scrambleMode;
-  if(cfg.scrambleMode) cfg.writeMode = false;
+  if(cfg.scrambleMode) {
+    cfg.writeMode = false;
+    // Scramble vyžaduje interakci — auto mode je neslučitelný
+    if(document.getElementById('autoMode').checked) toggleAutoMode(true);
+  }
   try { localStorage.setItem(STORAGE_CFG, JSON.stringify(cfg)); } catch(e) {}
   document.getElementById('scrambleBtn').classList.toggle('active', !!cfg.scrambleMode);
   document.getElementById('writeBtn').classList.toggle('active', !!cfg.writeMode);
@@ -1879,7 +1883,11 @@ let writeEnUnlocked = false;
 
 function toggleWriteMode() {
   cfg.writeMode = !cfg.writeMode;
-  if(cfg.writeMode) cfg.scrambleMode = false; // vzájemně se vylučují
+  if(cfg.writeMode) {
+    cfg.scrambleMode = false; // vzájemně se vylučují
+    // Psaní vyžaduje interakci — auto mode je neslučitelný
+    if(document.getElementById('autoMode').checked) toggleAutoMode(true);
+  }
   try { localStorage.setItem(STORAGE_CFG, JSON.stringify(cfg)); } catch(e) {}
   document.getElementById('writeBtn').classList.toggle('active', !!cfg.writeMode);
   document.getElementById('scrambleBtn').classList.toggle('active', !!cfg.scrambleMode);
@@ -2274,11 +2282,13 @@ function smartRecordRating(rating, grammar) {
   saveSmart();
   updateSmartBar();
   if(newStar) {
-    // Animace hvězdičky
+    // Animace hvězdičky (element nemusí existovat — ochrana před null)
     const starsEl = document.getElementById('smartStars');
-    starsEl.classList.remove('star-pop');
-    void starsEl.offsetWidth; // reflow
-    starsEl.classList.add('star-pop');
+    if(starsEl) {
+      starsEl.classList.remove('star-pop');
+      void starsEl.offsetWidth; // reflow
+      starsEl.classList.add('star-pop');
+    }
   }
   // Zkontrolovat dokončení kola — každý násobek cíle
   if(newStar) {
@@ -2354,8 +2364,7 @@ function showSmartDone() {
     ? 'Fantastické! Další kolo splněno' + starsStr
     : 'Výborně! Dril dne splněn 🔥';
   document.getElementById('smartDoneText').textContent =
-    'Dokončil/a jsi '+smart.drillGoal+' vět. Dnešní úspěšnost: '+pct+' %.'
-    + (stars > 1 ? '\nDnes celkem: ' + starsStr : '');
+    'Dokončil/a jsi '+smart.drillGoal+' vět. Dnešní úspěšnost: '+pct+' %.';
   document.getElementById('smartDoneOverlay').classList.add('visible');
 }
 
@@ -3591,6 +3600,17 @@ function toggleAutoMode(forceOff) {
   else if(forceOff===undefined) cb.checked=!cb.checked; // přepnutí z tlačítka
   const isAuto=cb.checked;
   saveSetting('autoMode',isAuto);
+  // Auto mode vyžaduje pasivní poslech — scramble/write jsou neslučitelné
+  if(isAuto && (cfg.scrambleMode || cfg.writeMode)) {
+    cfg.scrambleMode = false;
+    cfg.writeMode = false;
+    try { localStorage.setItem(STORAGE_CFG, JSON.stringify(cfg)); } catch(e) {}
+    document.getElementById('scrambleBtn').classList.remove('active');
+    document.getElementById('writeBtn').classList.remove('active');
+    document.getElementById('ratingWrap').style.display = '';
+    scrambleReset();
+    writeReset();
+  }
   const adg=document.getElementById('autoDelayGroup');
   if(isAuto)adg.classList.remove('hidden');else adg.classList.add('hidden');
   document.getElementById('autoIndicator').style.display=isAuto?'flex':'none';
