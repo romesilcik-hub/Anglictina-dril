@@ -697,6 +697,33 @@
       <div style="font-size:.75rem;font-weight:700;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem">Radar — gramatika</div>
       <svg id="radarSvg" viewBox="0 0 260 260" width="100%" style="max-width:260px;display:block;margin:0 auto;overflow:visible"></svg>
     </div>
+    <!-- Statistiky aktivních režimů (write / scramble) -->
+    <div id="modeStatsSection" style="display:none">
+      <div style="font-size:.75rem;font-weight:700;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.05em;margin:.85rem 0 .5rem">Aktivní procvičování</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:.85rem">
+        <div class="stat-card" style="text-align:center">
+          <div style="font-size:.75rem;font-weight:700;color:var(--color-text-muted);margin-bottom:.35rem">✏️ Psaní</div>
+          <div style="display:flex;align-items:baseline;justify-content:center;gap:.3rem">
+            <span class="stat-num" id="writeStatTotal">0</span>
+            <span class="stat-lbl">vět</span>
+          </div>
+          <div style="font-size:1rem;font-weight:700;margin-top:.2rem" id="writeStatPct">—</div>
+          <div class="stat-lbl">správně</div>
+          <div style="font-size:.72rem;color:var(--color-text-muted);margin-top:.35rem" id="writeStatToday"></div>
+        </div>
+        <div class="stat-card" style="text-align:center">
+          <div style="font-size:.75rem;font-weight:700;color:var(--color-text-muted);margin-bottom:.35rem">🔀 Skládání</div>
+          <div style="display:flex;align-items:baseline;justify-content:center;gap:.3rem">
+            <span class="stat-num" id="scrambleStatTotal">0</span>
+            <span class="stat-lbl">vět</span>
+          </div>
+          <div style="font-size:1rem;font-weight:700;margin-top:.2rem" id="scrambleStatPct">—</div>
+          <div class="stat-lbl">správně</div>
+          <div style="font-size:.72rem;color:var(--color-text-muted);margin-top:.35rem" id="scrambleStatToday"></div>
+        </div>
+      </div>
+    </div>
+
     <div style="font-size:.75rem;font-weight:700;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem">Nejslabší gramatika</div>
     <div class="weak-list" id="weakList"></div>
     <div style="display:flex;gap:.5rem;margin-top:.75rem;flex-wrap:wrap">
@@ -1299,13 +1326,20 @@ function updateFavBtn() {
 // ══════════════════════════════════════════════════════════════════════════════
 // STATISTIKY
 // ══════════════════════════════════════════════════════════════════════════════
-let stats = { total:0, good:0, ok:0, bad:0, today:0, todayDate:'', streak:0, lastDate:'', byGrammar:{} };
+let stats = { total:0, good:0, ok:0, bad:0, today:0, todayDate:'', streak:0, lastDate:'', byGrammar:{},
+  writeAttempts:0, writeCorrect:0, writeToday:0, writeTodayCorrect:0,
+  scrambleAttempts:0, scrambleCorrect:0, scrambleToday:0, scrambleTodayCorrect:0 };
 
 function loadStats() {
   try { const s=localStorage.getItem(STORAGE_STAT); if(s) stats={...stats,...JSON.parse(s)}; } catch(e){}
   // Resetuj dnešní počet pokud je jiný den
   const today=new Date().toDateString();
-  if(stats.todayDate !== today) { stats.today=0; stats.todayDate=today; saveStats(); }
+  if(stats.todayDate !== today) {
+    stats.today=0; stats.todayDate=today;
+    stats.writeToday=0; stats.writeTodayCorrect=0;
+    stats.scrambleToday=0; stats.scrambleTodayCorrect=0;
+    saveStats();
+  }
 }
 
 function saveStats() {
@@ -1355,14 +1389,18 @@ function recordRating(rating, grammarName, sentId) {
 
 function clearStats() {
   if(!confirm('Smazat všechny statistiky?')) return;
-  stats={total:0,good:0,ok:0,bad:0,today:0,todayDate:new Date().toDateString(),streak:0,lastDate:'',byGrammar:{}};
+  stats={total:0,good:0,ok:0,bad:0,today:0,todayDate:new Date().toDateString(),streak:0,lastDate:'',byGrammar:{},
+    writeAttempts:0,writeCorrect:0,writeToday:0,writeTodayCorrect:0,
+    scrambleAttempts:0,scrambleCorrect:0,scrambleToday:0,scrambleTodayCorrect:0};
   saveStats(); renderStats(); updateDailyBar();
 }
 
 function fullReset() {
   if(!confirm('Plný reset pokroku — smaže statistiky, SRS historii, oblíbené věty, pozici v drilování a stav chytrého režimu.\n\nNastavení hlasů a databáze zůstanou.\n\nPokračovat?')) return;
   // Statistiky
-  stats={total:0,good:0,ok:0,bad:0,today:0,todayDate:new Date().toDateString(),streak:0,lastDate:'',byGrammar:{},bySent:{}};
+  stats={total:0,good:0,ok:0,bad:0,today:0,todayDate:new Date().toDateString(),streak:0,lastDate:'',byGrammar:{},bySent:{},
+    writeAttempts:0,writeCorrect:0,writeToday:0,writeTodayCorrect:0,
+    scrambleAttempts:0,scrambleCorrect:0,scrambleToday:0,scrambleTodayCorrect:0};
   saveStats();
   // Pozice
   try{localStorage.removeItem(STORAGE_POS);}catch(e){}
@@ -1408,7 +1446,33 @@ function renderStats() {
       <div class="weak-bar-wrap"><div class="weak-bar" style="width:${e.pct}%"></div></div>
       <span class="weak-pct">${e.pct}% chyb</span>
     </div>`).join(''); }
+  renderModeStats();
   renderRadar();
+}
+
+function renderModeStats() {
+  const wa = stats.writeAttempts    || 0;
+  const wc = stats.writeCorrect     || 0;
+  const wt = stats.writeToday       || 0;
+  const wtc= stats.writeTodayCorrect|| 0;
+  const sa = stats.scrambleAttempts    || 0;
+  const sc = stats.scrambleCorrect     || 0;
+  const st = stats.scrambleToday       || 0;
+  const stc= stats.scrambleTodayCorrect|| 0;
+
+  const hasData = wa > 0 || sa > 0;
+  const sec = document.getElementById('modeStatsSection');
+  if(sec) sec.style.display = hasData ? '' : 'none';
+  if(!hasData) return;
+
+  document.getElementById('writeStatTotal').textContent   = wa;
+  document.getElementById('scrambleStatTotal').textContent= sa;
+
+  document.getElementById('writeStatPct').textContent    = wa > 0 ? Math.round(wc/wa*100)+' %' : '—';
+  document.getElementById('scrambleStatPct').textContent = sa > 0 ? Math.round(sc/sa*100)+' %' : '—';
+
+  document.getElementById('writeStatToday').textContent   = 'dnes: '+wt+' vět'+(wt>0?' ('+Math.round(wtc/wt*100)+' %)':'');
+  document.getElementById('scrambleStatToday').textContent= 'dnes: '+st+' vět'+(st>0?' ('+Math.round(stc/st*100)+' %)':'');
 }
 
 function renderRadar() {
@@ -1866,6 +1930,12 @@ function checkScramble() {
       playENRepeated(sent.en, null, 'en-GB');
     }
   }
+  // Statistiky scramble
+  stats.scrambleAttempts = (stats.scrambleAttempts||0) + 1;
+  stats.scrambleToday    = (stats.scrambleToday||0) + 1;
+  if(correct) { stats.scrambleCorrect      = (stats.scrambleCorrect||0) + 1;
+                stats.scrambleTodayCorrect = (stats.scrambleTodayCorrect||0) + 1; }
+  saveStats();
   // Odblokuj ↻ EN pro opakované přehrání
   scrambleEnUnlocked = true;
   if(window._magneticSnap) window._magneticSnap();
@@ -1987,6 +2057,12 @@ function checkWrite() {
       `<div class="wr-correct">${sent.en}</div>`;
     if(sent && document.getElementById('playEN').checked) playENRepeated(sent.en, null, 'en-GB');
   }
+  // Statistiky write
+  stats.writeAttempts = (stats.writeAttempts||0) + 1;
+  stats.writeToday    = (stats.writeToday||0) + 1;
+  if(correct) { stats.writeCorrect      = (stats.writeCorrect||0) + 1;
+                stats.writeTodayCorrect = (stats.writeTodayCorrect||0) + 1; }
+  saveStats();
   writeEnUnlocked = true;
   if(window._magneticSnap) window._magneticSnap();
 }
