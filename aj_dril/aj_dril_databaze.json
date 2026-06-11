@@ -30725,8 +30725,7 @@
         {"id": "eb76d1d1-8e60-409c-b175-922f87c3b2d1}", "cz": "Jedu vlakem.", "en": "I travel by train.", "pattern": "affirmative", "person": "first", "note": "oznamovací věta, přítomný čas prostý"},
         {"id": "265dfc8e-042f-48e5-9be5-1a0ace3e99fc}", "cz": "Nejezdím vlakem.", "en": "I don't travel by train.", "pattern": "negative", "person": "first", "note": "záporný tvar: don't + základní tvar slovesa"},
         {"id": "f04cde8f-b973-42f9-b40d-efaf4ebb56fa}", "cz": "Jezdíte vlakem?", "en": "Do you travel by train?", "pattern": "question", "person": "", "note": "do + podmět + základní tvar slovesa"},
-        {"id": "9079127e-28b9-4f62-8b2e-c27ffe37bf37}", "cz": "Jak cestujete do centra města?", "en": "How do you travel to the city centre?", "pattern": "wh_question", "person": "", "note": "WH + do + podmět + sloveso"},
-        {"id": "134216fc-af3b-4bcd-884d-c4aabd72bd6b}", "cz": "Já taky. / Já taky ne.", "en": "So do I. / Neither do I.", "pattern": "agreement", "person": "", "note": "So do I = kladná shoda; Neither do I = záporná shoda; auxiliary = do"}
+        {"id": "9079127e-28b9-4f62-8b2e-c27ffe37bf37}", "cz": "Jak cestujete do centra města?", "en": "How do you travel to the city centre?", "pattern": "wh_question", "person": "", "note": "WH + do + podmět + sloveso"}
         ]
       },
     {
@@ -30738,8 +30737,7 @@
         {"id": "586ac390-f6c1-4a59-a262-91f9d6f32267}", "cz": "Máte rádi letadla.", "en": "You like planes.", "pattern": "affirmative", "person": "second", "note": "oznamovací věta, 2. osoba"},
         {"id": "25d6fe4e-a4db-409b-bbf1-40b33d61c224}", "cz": "Nemáš rád letadla.", "en": "You don't like planes.", "pattern": "negative", "person": "second", "note": "don't + základní tvar slovesa"},
         {"id": "a75da0e9-ec92-4938-8187-84239640a837}", "cz": "Máte rádi letadla?", "en": "Do you like planes?", "pattern": "question", "person": "", "note": "do + podmět + sloveso"},
-        {"id": "4b1830aa-017e-4947-a852-875cb2491bf4}", "cz": "Co se ti líbí na letadlech?", "en": "What do you like about planes?", "pattern": "wh_question", "person": "", "note": "What + do + podmět + sloveso"},
-        {"id": "3dd8ea09-7312-4778-8ee9-90b5943d4669}", "cz": "Já taky. / Já taky ne.", "en": "So do I. / Neither do I.", "pattern": "agreement", "person": "", "note": "auxiliary musí souhlasit se slovesem ve větě (like → do)"}
+        {"id": "4b1830aa-017e-4947-a852-875cb2491bf4}", "cz": "Co se ti líbí na letadlech?", "en": "What do you like about planes?", "pattern": "wh_question", "person": "", "note": "What + do + podmět + sloveso"}
         ]
       },
     {
@@ -30751,8 +30749,7 @@
         {"id": "b9c5b326-3b67-4ea5-99d5-c5624bf25cc8}", "cz": "Je v hotelu.", "en": "She is at the hotel.", "pattern": "affirmative", "person": "third_singular", "note": "BE + příslovce místa; 3. os. jedn. č. = is"},
         {"id": "ecaf642d-91eb-4091-b6cc-b25499da4d1f}", "cz": "Není v hotelu.", "en": "He is not at the hotel.", "pattern": "negative", "person": "third_singular", "note": "záporný tvar BE: is not (isn't)"},
         {"id": "19e15c02-2b5f-4836-b62c-b18dbd809e9b}", "cz": "Je v hotelu?", "en": "Is she at the hotel?", "pattern": "question", "person": "", "note": "otázka s BE: is + podmět"},
-        {"id": "6e96bf86-aff2-40cc-8302-0675d1696172}", "cz": "Kde je v hotelu?", "en": "Where is she at the hotel?", "pattern": "wh_question", "person": "", "note": "Where + is + podmět"},
-        {"id": "4bd0a45c-a855-4c7f-b719-7a118fb7995f}", "cz": "Já taky. / Já taky ne.", "en": "So am I. / Neither am I.", "pattern": "agreement", "person": "", "note": "BE věta → So am I / Neither am I (ne So do I!)"}
+        {"id": "6e96bf86-aff2-40cc-8302-0675d1696172}", "cz": "Kde je v hotelu?", "en": "Where is she at the hotel?", "pattern": "wh_question", "person": "", "note": "Where + is + podmět"}
         ]
       },
     {
@@ -30764,8 +30761,7 @@
         {"id": "bfb9b238-d373-4f60-ba1b-78c15281e936}", "cz": "Čekají na letišti.", "en": "They wait at the airport.", "pattern": "affirmative", "person": "plural", "note": "množné číslo, přítomný čas prostý"},
         {"id": "be3f657d-7c23-4f4f-b872-9514ae1fe266}", "cz": "Nečekají na letišti.", "en": "They don't wait at the airport.", "pattern": "negative", "person": "plural", "note": "don't + základní tvar, množné číslo"},
         {"id": "17299a49-20ea-4a14-96b7-558df86b158a}", "cz": "Čekají na letišti?", "en": "Do they wait at the airport?", "pattern": "question", "person": "", "note": "do + podmět + sloveso"},
-        {"id": "48f5bdc4-4771-4900-a322-d4a4580c1cc1}", "cz": "Kde čekají na letišti?", "en": "Where do they wait at the airport?", "pattern": "wh_question", "person": "", "note": "Where + do + podmět + sloveso"},
-        {"id": "3c23cee9-41f2-4d32-9cbb-34e0220ac46c}", "cz": "Já taky. / Já taky ne.", "en": "So do I. / Neither do I.", "pattern": "agreement", "person": "", "note": "wait → auxiliary = do; shoda se zápornou větou = Neither do I"}
+        {"id": "48f5bdc4-4771-4900-a322-d4a4580c1cc1}", "cz": "Kde čekají na letišti?", "en": "Where do they wait at the airport?", "pattern": "wh_question", "person": "", "note": "Where + do + podmět + sloveso"}
         ]
       },
     {
@@ -30777,8 +30773,7 @@
         {"id": "69b368f2-55d5-4873-9942-7e903a5517ef}", "cz": "Mám velký kufr.", "en": "I have got a big suitcase.", "pattern": "affirmative", "person": "first", "note": "have got = brit. angl. alternativa k have; přítomný čas"},
         {"id": "a418e161-9d25-4601-b803-ef14a1edef79}", "cz": "Nemám velký kufr.", "en": "I haven't got a big suitcase.", "pattern": "negative", "person": "first", "note": "záporný tvar have got: haven't got"},
         {"id": "be2e0d09-44ea-49d4-8954-24e750e454b8}", "cz": "Máte velký kufr?", "en": "Have you got a big suitcase?", "pattern": "question", "person": "", "note": "otázka s have got: have + podmět + got"},
-        {"id": "20962bfc-c69b-470c-a815-00e520b05c3b}", "cz": "Co máš v kufru?", "en": "What have you got in your suitcase?", "pattern": "wh_question", "person": "", "note": "What + have + podmět + got"},
-        {"id": "9aef3bc8-7d1e-4986-a0b6-2318cc53a3d0}", "cz": "Já taky. / Já taky ne.", "en": "So have I. / Neither have I.", "pattern": "agreement", "person": "", "note": "have got → auxiliary = have; So have I / Neither have I"}
+        {"id": "20962bfc-c69b-470c-a815-00e520b05c3b}", "cz": "Co máš v kufru?", "en": "What have you got in your suitcase?", "pattern": "wh_question", "person": "", "note": "What + have + podmět + got"}
         ]
       },
     {
@@ -30790,8 +30785,7 @@
         {"id": "eab00976-2c47-4518-b734-7222b587cb74}", "cz": "Tuto zemi dobře znáte.", "en": "You know this country well.", "pattern": "affirmative", "person": "second", "note": "oznamovací věta, 2. osoba"},
         {"id": "fe41b993-7fbd-46ce-b9af-ed0446ff0941}", "cz": "Neznáte tuto zemi.", "en": "You don't know this country.", "pattern": "negative", "person": "second", "note": "don't + základní tvar slovesa"},
         {"id": "0ce482ae-f9fa-4139-964f-3bbd9dec3da5}", "cz": "Znáte tuto zemi?", "en": "Do you know this country?", "pattern": "question", "person": "", "note": "do + podmět + sloveso"},
-        {"id": "b166500b-0747-49a5-a8a6-58422dd10f0c}", "cz": "Jak tuto zemi znáte?", "en": "How do you know this country?", "pattern": "wh_question", "person": "", "note": "How + do + podmět + sloveso"},
-        {"id": "309f9c76-2818-4369-9792-e9d53c6ab0c0}", "cz": "Já taky. / Já taky ne.", "en": "So do I. / Neither do I.", "pattern": "agreement", "person": "", "note": "know → auxiliary = do; shoda kopíruje kladnost/zápornost"}
+        {"id": "b166500b-0747-49a5-a8a6-58422dd10f0c}", "cz": "Jak tuto zemi znáte?", "en": "How do you know this country?", "pattern": "wh_question", "person": "", "note": "How + do + podmět + sloveso"}
         ]
       },
     {
@@ -30803,8 +30797,7 @@
         {"id": "9426caf0-cd39-42d5-bf95-46926c4b6685}", "cz": "Po letu je unavený.", "en": "He is tired after the flight.", "pattern": "affirmative", "person": "third_singular", "note": "BE + adjektivum; 3. os. jedn. č. = is"},
         {"id": "54fa7af8-ae74-4d44-a03f-cabb74b80926}", "cz": "Po letu není unavená.", "en": "She is not tired after the flight.", "pattern": "negative", "person": "third_singular", "note": "záporný tvar BE: is not (isn't)"},
         {"id": "6366f960-80df-4676-97c8-9a2c582670f2}", "cz": "Je po letu unavený?", "en": "Is he tired after the flight?", "pattern": "question", "person": "", "note": "otázka s BE: is + podmět + adjektivum"},
-        {"id": "e80184f4-50ce-4f8a-8869-fd564e8df909}", "cz": "Proč je po letu unavený?", "en": "Why is he tired after the flight?", "pattern": "wh_question", "person": "", "note": "Why + is + podmět + adjektivum"},
-        {"id": "80ff368c-fa5c-4419-ae81-1c42db97da76}", "cz": "Já taky. / Já taky ne.", "en": "So am I. / Neither am I.", "pattern": "agreement", "person": "", "note": "BE věta → So am I / Neither am I (ne So do I!)"}
+        {"id": "e80184f4-50ce-4f8a-8869-fd564e8df909}", "cz": "Proč je po letu unavený?", "en": "Why is he tired after the flight?", "pattern": "wh_question", "person": "", "note": "Why + is + podmět + adjektivum"}
         ]
       },
     {
@@ -30816,8 +30809,7 @@
         {"id": "482d6171-9317-428f-8e6c-8e4fcdfae522}", "cz": "Platí se v hotovosti v hotelu.", "en": "They pay in cash at the hotel.", "pattern": "affirmative", "person": "plural", "note": "množné číslo, přítomný čas prostý"},
         {"id": "4aa3f6ab-c251-45b6-b29f-b6099b45b746}", "cz": "Na letišti neplatí v hotovosti.", "en": "They don't pay in cash at the airport.", "pattern": "negative", "person": "plural", "note": "don't + základní tvar slovesa"},
         {"id": "839f19d3-fd88-41c4-a5f4-e77c5df1e6bc}", "cz": "Platí se v hotovosti?", "en": "Do they pay in cash?", "pattern": "question", "person": "", "note": "do + podmět + sloveso"},
-        {"id": "56ed433f-9b50-4937-ba9c-c227cc77e822}", "cz": "Kde platí v hotovosti?", "en": "Where do they pay in cash?", "pattern": "wh_question", "person": "", "note": "Where + do + podmět + sloveso"},
-        {"id": "dbaebca9-cac0-4626-b539-13d05876fd44}", "cz": "Já taky. / Já taky ne.", "en": "So do I. / Neither do I.", "pattern": "agreement", "person": "", "note": "pay → auxiliary = do; agreement kopíruje kladnost/zápornost věty"}
+        {"id": "56ed433f-9b50-4937-ba9c-c227cc77e822}", "cz": "Kde platí v hotovosti?", "en": "Where do they pay in cash?", "pattern": "wh_question", "person": "", "note": "Where + do + podmět + sloveso"}
         ]
       },
     {
@@ -30829,8 +30821,7 @@
         {"id": "097a7af2-d82c-4b08-810d-1ca4492681b3}", "cz": "Na dovolené mluvím anglicky.", "en": "I speak English on holiday.", "pattern": "affirmative", "person": "first", "note": "oznamovací věta, 1. osoba"},
         {"id": "291632ba-4ca1-4ba8-87bf-004e1d6f8d92}", "cz": "Doma nemluvím anglicky.", "en": "I don't speak English at home.", "pattern": "negative", "person": "first", "note": "don't + základní tvar slovesa"},
         {"id": "ea8c3b46-93ff-4416-96e5-e306e754862a}", "cz": "Mluvíte na dovolené anglicky?", "en": "Do you speak English on holiday?", "pattern": "question", "person": "", "note": "do + podmět + sloveso"},
-        {"id": "b5665f47-f551-4c33-bc56-48d80211cdb8}", "cz": "Kde mluvíš anglicky?", "en": "Where do you speak English?", "pattern": "wh_question", "person": "", "note": "Where + do + podmět + sloveso"},
-        {"id": "07ae8490-98e8-437c-8c4d-2f77b3ac3dc7}", "cz": "Já taky. / Já taky ne.", "en": "So do I. / Neither do I.", "pattern": "agreement", "person": "", "note": "speak → auxiliary = do; pozor: So do I (ne So speak I!)"}
+        {"id": "b5665f47-f551-4c33-bc56-48d80211cdb8}", "cz": "Kde mluvíš anglicky?", "en": "Where do you speak English?", "pattern": "wh_question", "person": "", "note": "Where + do + podmět + sloveso"}
         ]
       },
     {
@@ -30842,8 +30833,7 @@
         {"id": "567ae45d-233f-49ce-9b7c-50f354476682}", "cz": "Jste na cestách šťastní.", "en": "You are happy on your travels.", "pattern": "affirmative", "person": "second", "note": "BE + adjektivum; 2. osoba = are"},
         {"id": "92be0c24-5fb0-4c6c-871c-55f15726e712}", "cz": "Na dlouhých cestách nejste šťastní.", "en": "You are not happy on long journeys.", "pattern": "negative", "person": "second", "note": "záporný tvar BE: are not (aren't)"},
         {"id": "e56ddc1d-d76d-4f9f-a35f-2e3cbab02272}", "cz": "Jste na cestách spokojeni?", "en": "Are you happy on your travels?", "pattern": "question", "person": "", "note": "otázka s BE: are + podmět + adjektivum"},
-        {"id": "56218e30-4c8f-43ef-8dbb-288a8ad2602d}", "cz": "Proč jsi na cestách šťastný?", "en": "Why are you happy on your travels?", "pattern": "wh_question", "person": "", "note": "Why + are + podmět + adjektivum"},
-        {"id": "e0483dff-bff1-444e-a21f-3f8be17b408e}", "cz": "Já taky. / Já taky ne.", "en": "So am I. / Neither am I.", "pattern": "agreement", "person": "", "note": "BE věta → So am I / Neither am I; pozor na záměnu s do!"}
+        {"id": "56218e30-4c8f-43ef-8dbb-288a8ad2602d}", "cz": "Proč jsi na cestách šťastný?", "en": "Why are you happy on your travels?", "pattern": "wh_question", "person": "", "note": "Why + are + podmět + adjektivum"}
         ]
       },
     {
@@ -30855,8 +30845,7 @@
         {"id": "bee33336-ed89-4d8b-9a95-b927b210e953}", "cz": "Líbí se mi tento hotel.", "en": "I like this hotel.", "pattern": "affirmative", "person": "first", "note": "prostý přítomný čas; I like = 1. os. j.č."},
         {"id": "32d10b0f-d180-459e-beb2-dc4017a68d71}", "cz": "Tento hotel se mi nelíbí.", "en": "I don't like this hotel.", "pattern": "negative", "person": "first", "note": "don't like = záporný tvar; 1. os. j.č."},
         {"id": "2fbbd3bb-8a64-4a90-9cc7-47b961d445d0}", "cz": "Líbí se vám tento hotel?", "en": "Do you like this hotel?", "pattern": "question", "person": "", "note": "Do you like...? = yes/no otázka"},
-        {"id": "968e7545-0b32-48fd-8ed9-7d4a0608aff3}", "cz": "Co se vám na tomto hotelu líbí?", "en": "What do you like about this hotel?", "pattern": "wh_question", "person": "", "note": "What do you like...? = WH otázka"},
-        {"id": "f822ae54-5d2f-47e9-a817-f09ed72a590c}", "cz": "Já taky. / Já taky ne.", "en": "So do I. / Neither do I.", "pattern": "agreement", "person": "", "note": "So do I. = souhlas kladný; Neither do I. = souhlas záporný; auxiliary = do"}
+        {"id": "968e7545-0b32-48fd-8ed9-7d4a0608aff3}", "cz": "Co se vám na tomto hotelu líbí?", "en": "What do you like about this hotel?", "pattern": "wh_question", "person": "", "note": "What do you like...? = WH otázka"}
         ]
       },
     {
@@ -30868,8 +30857,7 @@
         {"id": "69e1ec0f-81e3-4a2b-b3ed-9f4ddfd72bb9}", "cz": "Do centra města cestujete vlakem.", "en": "You travel by train to the city centre.", "pattern": "affirmative", "person": "second", "note": "prostý přítomný čas; you travel = 2. os."},
         {"id": "f4b0abbb-c928-4d01-a1d5-96ba46a6c0ce}", "cz": "Vlakem do centra města nejezdíte.", "en": "You don't travel by train to the city centre.", "pattern": "negative", "person": "second", "note": "don't travel = záporný tvar; 2. os."},
         {"id": "5c00a009-51ac-4a1b-8538-133e4486a207}", "cz": "Jezdíte vlakem do centra města?", "en": "Do you travel by train to the city centre?", "pattern": "question", "person": "", "note": "Do you travel...? = yes/no otázka"},
-        {"id": "14682d63-069a-44cc-9bc3-1f8e37a6d4b7}", "cz": "Jak cestujete do centra města?", "en": "How do you travel to the city centre?", "pattern": "wh_question", "person": "", "note": "How do you travel...? = WH otázka na způsob"},
-        {"id": "ac93e5f3-a145-4007-8126-7914931ce256}", "cz": "Já taky. / Já taky ne.", "en": "So do I. / Neither do I.", "pattern": "agreement", "person": "", "note": "So do I. = souhlas kladný; Neither do I. = souhlas záporný; auxiliary = do"}
+        {"id": "14682d63-069a-44cc-9bc3-1f8e37a6d4b7}", "cz": "Jak cestujete do centra města?", "en": "How do you travel to the city centre?", "pattern": "wh_question", "person": "", "note": "How do you travel...? = WH otázka na způsob"}
         ]
       },
     {
@@ -30881,8 +30869,7 @@
         {"id": "fa35015a-542e-43be-a6f9-a98ef26d6b18}", "cz": "Odjela na dovolenou do Španělska.", "en": "She went on holiday to Spain.", "pattern": "affirmative", "person": "third_singular", "note": "go → went (minulý čas nepravidelný)"},
         {"id": "5526c37b-fa15-4e77-a2b5-d16a9a6538d1}", "cz": "Na dovolenou do Španělska nejela.", "en": "She didn't go on holiday to Spain.", "pattern": "negative", "person": "third_singular", "note": "didn't go = záporný minulý; základní tvar po didn't"},
         {"id": "b8acd66f-d5d7-4825-a4fe-980dc92ea95e}", "cz": "Jela na dovolenou do Španělska?", "en": "Did she go on holiday to Spain?", "pattern": "question", "person": "", "note": "Did she go...? = otázka v minulém čase"},
-        {"id": "cbe8ac5f-6f69-46f4-b5df-46e132701ab9}", "cz": "Kam jela na dovolenou?", "en": "Where did she go on holiday?", "pattern": "wh_question", "person": "", "note": "Where did she go...? = WH otázka v minulém čase"},
-        {"id": "55d7ce02-01ec-4b69-827e-f6418732e0ec}", "cz": "Já taky. / Já taky ne.", "en": "So did I. / Neither did I.", "pattern": "agreement", "person": "", "note": "So did I. = souhlas v minulém čase; auxiliary = did (ne: do)"}
+        {"id": "cbe8ac5f-6f69-46f4-b5df-46e132701ab9}", "cz": "Kam jela na dovolenou?", "en": "Where did she go on holiday?", "pattern": "wh_question", "person": "", "note": "Where did she go...? = WH otázka v minulém čase"}
         ]
       },
     {
@@ -30894,8 +30881,7 @@
         {"id": "25c34bd2-72cc-41a3-b288-3f0fd74ba902}", "cz": "Viděli zámek v Praze.", "en": "They saw the castle in Prague.", "pattern": "affirmative", "person": "plural", "note": "see → saw (minulý čas nepravidelný)"},
         {"id": "01769137-32c9-4eff-8f65-e47447b5bc85}", "cz": "Zámek v Praze neviděli.", "en": "They didn't see the castle in Prague.", "pattern": "negative", "person": "plural", "note": "didn't see = záporný minulý; základní tvar po didn't"},
         {"id": "a78f77ed-4c9f-4c2b-9028-010b3255c616}", "cz": "Viděli hrad v Praze?", "en": "Did they see the castle in Prague?", "pattern": "question", "person": "", "note": "Did they see...? = otázka v minulém čase"},
-        {"id": "dda9388c-6dd9-487d-a7ae-6570bce9f554}", "cz": "Co viděli v Praze?", "en": "What did they see in Prague?", "pattern": "wh_question", "person": "", "note": "What did they see...? = WH otázka v minulém čase"},
-        {"id": "0f4c1348-5aa8-4997-abea-e05200b35e39}", "cz": "Já taky. / Já taky ne.", "en": "So did I. / Neither did I.", "pattern": "agreement", "person": "", "note": "So did I. = souhlas v minulém čase; auxiliary = did (ne: do)"}
+        {"id": "dda9388c-6dd9-487d-a7ae-6570bce9f554}", "cz": "Co viděli v Praze?", "en": "What did they see in Prague?", "pattern": "wh_question", "person": "", "note": "What did they see...? = WH otázka v minulém čase"}
         ]
       },
     {
@@ -30907,8 +30893,7 @@
         {"id": "37f3f62e-9e95-4557-8369-3d4c93c24014}", "cz": "Jsem po letu unavený.", "en": "I am tired after the flight.", "pattern": "affirmative", "person": "first", "note": "I am = sloveso BE v 1. os. j.č."},
         {"id": "449461d7-685a-4851-afa1-edd295f9cfbb}", "cz": "Po letu nejsem unavený.", "en": "I am not tired after the flight.", "pattern": "negative", "person": "first", "note": "am not = záporný tvar BE; ne: I don't am"},
         {"id": "91738ad4-b696-4ba1-95ef-dbb3662d37e9}", "cz": "Jste po letu unavení?", "en": "Are you tired after the flight?", "pattern": "question", "person": "", "note": "Are you...? = otázka se slovesem BE"},
-        {"id": "3ab36f19-0c0f-4d1e-ac67-c3b60e3792ed}", "cz": "Jak se máš po letu?", "en": "How are you after the flight?", "pattern": "wh_question", "person": "", "note": "How are you...? = WH otázka se slovesem BE"},
-        {"id": "680c9f2e-3630-4526-a4b8-1828d59ed2da}", "cz": "Já taky. / Já taky ne.", "en": "So am I. / Neither am I.", "pattern": "agreement", "person": "", "note": "So am I. = souhlas s BE; auxiliary = am (ne: So do I.)"}
+        {"id": "3ab36f19-0c0f-4d1e-ac67-c3b60e3792ed}", "cz": "Jak se máš po letu?", "en": "How are you after the flight?", "pattern": "wh_question", "person": "", "note": "How are you...? = WH otázka se slovesem BE"}
         ]
       },
     {
@@ -30920,8 +30905,7 @@
         {"id": "395f0468-3eeb-4f25-b26b-f77596b984d7}", "cz": "Jste na dovolené v Itálii.", "en": "You are on holiday in Italy.", "pattern": "affirmative", "person": "second", "note": "You are = sloveso BE v 2. os."},
         {"id": "4c9d3f32-fa1f-4263-af5a-0bc5931cd668}", "cz": "Nejste na dovolené v Itálii.", "en": "You are not on holiday in Italy.", "pattern": "negative", "person": "second", "note": "are not = záporný tvar BE (nebo: aren't)"},
         {"id": "c202bfd0-d8dc-4b8a-b5d9-9c78fb2800c4}", "cz": "Jste na dovolené v Itálii?", "en": "Are you on holiday in Italy?", "pattern": "question", "person": "", "note": "Are you...? = otázka se slovesem BE"},
-        {"id": "b32b23b3-449d-49b4-9a9a-aa8b99bd9fff}", "cz": "Kde jsi na dovolené?", "en": "Where are you on holiday?", "pattern": "wh_question", "person": "", "note": "Where are you...? = WH otázka se slovesem BE"},
-        {"id": "784e7e08-2f3e-423b-b179-369d2dc71ed9}", "cz": "Já taky. / Já taky ne.", "en": "So am I. / Neither am I.", "pattern": "agreement", "person": "", "note": "So am I. = souhlas s BE; auxiliary = am (z pohledu mluvčího)"}
+        {"id": "b32b23b3-449d-49b4-9a9a-aa8b99bd9fff}", "cz": "Kde jsi na dovolené?", "en": "Where are you on holiday?", "pattern": "wh_question", "person": "", "note": "Where are you...? = WH otázka se slovesem BE"}
         ]
       },
     {
@@ -30933,8 +30917,7 @@
         {"id": "4f61f98c-c6bf-457a-a0a4-6e2b1f162138}", "cz": "Včera byl v hotelu.", "en": "He was in the hotel yesterday.", "pattern": "affirmative", "person": "third_singular", "note": "was = minulý tvar BE pro 1./3. os. j.č."},
         {"id": "4e6cbab7-9679-4ae3-ae90-efdca912c1a8}", "cz": "Včera v hotelu nebyl.", "en": "He wasn't in the hotel yesterday.", "pattern": "negative", "person": "third_singular", "note": "wasn't = was not (záporný tvar minulého BE)"},
         {"id": "0d11342d-f512-4dad-a5ee-d1aed14dca6d}", "cz": "Byl včera v hotelu?", "en": "Was he in the hotel yesterday?", "pattern": "question", "person": "", "note": "Was he...? = otázka s minulým BE"},
-        {"id": "3f67984d-7d1e-4a7e-8de8-6d8b92eec8e8}", "cz": "Kde byl včera?", "en": "Where was he yesterday?", "pattern": "wh_question", "person": "", "note": "Where was he...? = WH otázka s minulým BE"},
-        {"id": "9a07145e-dba0-4d4f-a4ab-b5ef2e5c99e8}", "cz": "Tak jsem byl já. / Já taky nebyl.", "en": "So was I. / Neither was I.", "pattern": "agreement", "person": "", "note": "So was I. = souhlas s minulým BE; auxiliary = was (ne: did)"}
+        {"id": "3f67984d-7d1e-4a7e-8de8-6d8b92eec8e8}", "cz": "Kde byl včera?", "en": "Where was he yesterday?", "pattern": "wh_question", "person": "", "note": "Where was he...? = WH otázka s minulým BE"}
         ]
       },
     {
@@ -30946,8 +30929,7 @@
         {"id": "bebcd98a-270e-455b-8e69-beb00a4d94b9}", "cz": "V sobotu byli na pláži.", "en": "They were at the beach on Saturday.", "pattern": "affirmative", "person": "plural", "note": "were = minulý tvar BE pro mn. číslo"},
         {"id": "033062f1-648a-41ce-a20c-add36dcf208d}", "cz": "V sobotu nebyli na pláži.", "en": "They weren't at the beach on Saturday.", "pattern": "negative", "person": "plural", "note": "weren't = were not (záporný tvar minulého BE)"},
         {"id": "95f00919-2060-4529-b708-1cf6c499ff60}", "cz": "Byli v sobotu na pláži?", "en": "Were they at the beach on Saturday?", "pattern": "question", "person": "", "note": "Were they...? = otázka s minulým BE; mn. číslo"},
-        {"id": "3c66d1c3-252c-4433-970b-f43e2c7f78e8}", "cz": "Kde byli v sobotu?", "en": "Where were they on Saturday?", "pattern": "wh_question", "person": "", "note": "Where were they...? = WH otázka s minulým BE"},
-        {"id": "90ae5a22-08c3-46af-906b-1313733a12fc}", "cz": "Tak jsem byl já. / Já taky nebyl.", "en": "So was I. / Neither was I.", "pattern": "agreement", "person": "", "note": "So was I. = souhlas mluvčího (1. os. j.č.); were = mn. číslo ve větě"}
+        {"id": "3c66d1c3-252c-4433-970b-f43e2c7f78e8}", "cz": "Kde byli v sobotu?", "en": "Where were they on Saturday?", "pattern": "wh_question", "person": "", "note": "Where were they...? = WH otázka s minulým BE"}
         ]
       },
     {
@@ -30959,8 +30941,7 @@
         {"id": "7b2cce06-a1ac-4501-af02-e680bda0c75e}", "cz": "Mám pas.", "en": "I have a passport.", "pattern": "affirmative", "person": "first", "note": "prostý přítomný čas; I have = 1. os. j.č."},
         {"id": "715578c2-7ae5-46c6-9308-f8dee4bf6b87}", "cz": "Nemám pas.", "en": "I don't have a passport.", "pattern": "negative", "person": "first", "note": "don't have = záporný tvar; 1. os. j.č."},
         {"id": "2913fbb0-bda8-4e72-92b5-b6e9c3a8afb7}", "cz": "Máte cestovní pas?", "en": "Do you have a passport?", "pattern": "question", "person": "", "note": "Do you have...? = yes/no otázka"},
-        {"id": "345081d3-85ef-4d92-81fa-10b2a646c5cf}", "cz": "Jaké máte doklady?", "en": "What documents do you have?", "pattern": "wh_question", "person": "", "note": "What documents do you have? = WH otázka"},
-        {"id": "84545cb0-3ca0-4779-9bbc-8ca296e294bd}", "cz": "Já taky. / Já taky ne.", "en": "So do I. / Neither do I.", "pattern": "agreement", "person": "", "note": "So do I. = souhlas kladný; Neither do I. = souhlas záporný; auxiliary = do"}
+        {"id": "345081d3-85ef-4d92-81fa-10b2a646c5cf}", "cz": "Jaké máte doklady?", "en": "What documents do you have?", "pattern": "wh_question", "person": "", "note": "What documents do you have? = WH otázka"}
         ]
       },
     {
@@ -30972,8 +30953,7 @@
         {"id": "35ce1212-c194-49c0-b0fa-ee7fcab8a629}", "cz": "Koupili jste si lístek na vlak na nádraží.", "en": "You bought a train ticket at the station.", "pattern": "affirmative", "person": "second", "note": "buy → bought (minulý čas nepravidelný)"},
         {"id": "d90967be-2c57-4498-9e34-2807d973b00e}", "cz": "Nekoupil sis lístek na vlak na nádraží.", "en": "You didn't buy a train ticket at the station.", "pattern": "negative", "person": "second", "note": "didn't buy = záporný minulý; základní tvar po didn't"},
         {"id": "13762ff7-8084-4ff5-ab71-6dd5a0d4f1a5}", "cz": "Koupili jste si lístek na vlak na nádraží?", "en": "Did you buy a train ticket at the station?", "pattern": "question", "person": "", "note": "Did you buy...? = otázka v minulém čase"},
-        {"id": "0b25bf1d-372a-4dc9-a59f-9015e5530ed1}", "cz": "Co jsi koupil na nádraží?", "en": "What did you buy at the station?", "pattern": "wh_question", "person": "", "note": "What did you buy...? = WH otázka v minulém čase"},
-        {"id": "fe70269e-3a59-4881-853b-26e14ca7974e}", "cz": "Já taky. / Já taky ne.", "en": "So did I. / Neither did I.", "pattern": "agreement", "person": "", "note": "So did I. = souhlas v minulém čase; auxiliary = did (ne: do)"}
+        {"id": "0b25bf1d-372a-4dc9-a59f-9015e5530ed1}", "cz": "Co jsi koupil na nádraží?", "en": "What did you buy at the station?", "pattern": "wh_question", "person": "", "note": "What did you buy...? = WH otázka v minulém čase"}
         ]
       },
     {
@@ -50658,6 +50638,456 @@
         {"id": "5764404f-4f35-45c6-83c6-37a136cc9052}", "cz": "Byla by raději, kdyby byla ložnice rozdělena na dvě samostatné místnosti.", "en": "She'd rather the bedroom were split into two separate rooms.", "pattern": "passive", "person": "", "note": "jiný podmět: WOULD RATHER + the bedroom + were + 3rd form (subjunktiv)"},
         {"id": "e9c81c94-ed32-4c9b-b8f8-21ffe10e49ac}", "cz": "Řekl, že by raději měla vlastní pokoj, než by se měla dělit se svou sestrou.", "en": "He said she'd rather have her own room than share with her sister.", "pattern": "indirect", "person": "", "note": "nepřímá řeč: said she'd rather (would se nemění); than zachováno"},
         {"id": "271084ea-0bc1-408a-bccf-7a5409365c1d}", "cz": "Kdyby byl byt větší, raději by měla vlastní pokoj.", "en": "If the flat were bigger, she'd rather have a room of her own.", "pattern": "conditional", "person": "", "note": "podmínková věta: If + minulý čas (were) → would rather + bare inf."}
+        ]
+      },
+    {
+      "grammar": "Minulý čas prostý",
+      "level": "A1",
+      "blok": "umýt okna",
+      "topic": "Domov a rodina",
+      "sentences": [
+        {"id": "b21636af-16f7-49b8-b474-99f41af72d25}", "cz": "Včera jsem myla okna.", "en": "I washed the windows yesterday.", "pattern": "affirmative", "person": "first", "note": "wash → washed; pravidelné sloveso (+ed)"},
+        {"id": "9da775a8-0c13-4f1b-aa4d-4072323d4d4f}", "cz": "Minulý týden jsi neumýval okna.", "en": "You didn't wash the windows last week.", "pattern": "negative", "person": "second", "note": "didn't + základní tvar: didn't wash (ne didn't washed)"},
+        {"id": "45054a43-5071-46fc-8ee0-2b3f6ab7a794}", "cz": "Myli jste o víkendu okna?", "en": "Did you wash the windows at the weekend?", "pattern": "question", "person": "", "note": "otázka: Did + subject + základní tvar slovesa"},
+        {"id": "597f1895-c213-48d8-9ee1-35c94667eac5}", "cz": "Kdy jste myli okna?", "en": "When did you wash the windows?", "pattern": "wh_question", "person": "", "note": "WH: When + did + subject + základní tvar"},
+        {"id": "2aba39cc-05c7-4bfc-91b7-57ffef969aae}", "cz": "Před příchodem hostů umyjte okna.", "en": "Wash the windows before your guests arrive.", "pattern": "imperative", "person": "", "note": "rozkaz: základní tvar slovesa na začátku"}
+        ]
+      },
+    {
+      "grammar": "Minulý čas prostý",
+      "level": "A1",
+      "blok": "vzít si volno",
+      "topic": "Domov a rodina",
+      "sentences": [
+        {"id": "e92d1055-f0a7-49fe-8c8f-91c47f3a531b}", "cz": "Můj táta si vzal minulý pátek volno.", "en": "My dad took a day off last Friday.", "pattern": "affirmative", "person": "third_singular", "note": "take → took; nepravidelné sloveso (2. tvar)"},
+        {"id": "489e8bc1-f5e4-41c0-b8fc-ce3c2e27247a}", "cz": "Moji rodiče si minulý měsíc nevzali ani den volna.", "en": "My parents didn't take a day off last month.", "pattern": "negative", "person": "plural", "note": "didn't + základní tvar: didn't take"},
+        {"id": "80ebc29a-5c49-434e-b148-f075281f5307}", "cz": "Vzala si tvoje máma minulý týden volno?", "en": "Did your mum take a day off last week?", "pattern": "question", "person": "", "note": "Did + subject + základní tvar slovesa"},
+        {"id": "2d554d6a-9f7a-4f42-a3d6-500b003774f3}", "cz": "Kdy si vzal tvůj táta volno?", "en": "When did your dad take a day off?", "pattern": "wh_question", "person": "", "note": "WH: When + did + subject + základní tvar"},
+        {"id": "192d1f93-94de-4822-a97e-70aa640feb41}", "cz": "Udělejte si den volna, když se cítíte unavení.", "en": "Take a day off when you feel tired.", "pattern": "imperative", "person": "", "note": "rozkaz: Take + předmět"}
+        ]
+      },
+    {
+      "grammar": "Minulý čas prostý",
+      "level": "A1",
+      "blok": "dát dárek",
+      "topic": "Domov a rodina",
+      "sentences": [
+        {"id": "4ee0e4bb-ad88-413e-9384-53fc172c4a92}", "cz": "Minulou neděli jsem dal své sestře dárek k narozeninám.", "en": "I gave my sister a birthday present last Sunday.", "pattern": "affirmative", "person": "first", "note": "give → gave; nepravidelné sloveso (2. tvar)"},
+        {"id": "2aeb5d4c-6916-45a3-8186-c292927a4dfa}", "cz": "Minulý rok jsi svému bratrovi nedal dárek.", "en": "You didn't give your brother a present last year.", "pattern": "negative", "person": "second", "note": "didn't + základní tvar: didn't give (ne didn't gave)"},
+        {"id": "edb000ea-0213-4372-8683-77eccf0af000}", "cz": "Dal jsi mámě dárek k narozeninám?", "en": "Did you give your mum a present for her birthday?", "pattern": "question", "person": "", "note": "Did + subject + základní tvar slovesa"},
+        {"id": "295960f7-d0ae-4e96-8825-55c325b89e5c}", "cz": "Co jsi dal tátovi k narozeninám?", "en": "What did you give your dad for his birthday?", "pattern": "wh_question", "person": "", "note": "WH: What + did + subject + základní tvar"},
+        {"id": "c701574c-dab9-4d10-977a-ad3055378ee6}", "cz": "Dejte babičce dárek k narozeninám.", "en": "Give your grandmother a present on her birthday.", "pattern": "imperative", "person": "", "note": "rozkaz: Give + předmět"}
+        ]
+      },
+    {
+      "grammar": "Minulý čas prostý",
+      "level": "A1",
+      "blok": "snídat doma",
+      "topic": "Domov a rodina",
+      "sentences": [
+        {"id": "6f9627a5-88ac-4412-8fa1-2ef200c8f5f8}", "cz": "Můj bratr dnes ráno doma snídal.", "en": "My brother had breakfast at home this morning.", "pattern": "affirmative", "person": "third_singular", "note": "have → had; nepravidelné sloveso (2. tvar)"},
+        {"id": "b32a386d-ee7c-48c7-8028-13044452eda8}", "cz": "Moje děti včera doma nesnídaly.", "en": "My children didn't have breakfast at home yesterday.", "pattern": "negative", "person": "plural", "note": "didn't + základní tvar: didn't have (ne didn't had)"},
+        {"id": "609089ad-afb6-4ae7-8744-dcd4d9f82446}", "cz": "Snídala vaše rodina dnes ráno společně?", "en": "Did your family have breakfast together this morning?", "pattern": "question", "person": "", "note": "Did + subject + základní tvar slovesa"},
+        {"id": "ade03e6f-e36f-46c4-8ea9-4df8e4f25678}", "cz": "Co měl tvůj bratr k snídani?", "en": "What did your brother have for breakfast?", "pattern": "wh_question", "person": "", "note": "WH: What + did + subject + základní tvar"},
+        {"id": "e6e2a61f-5499-4213-9f2d-cb54d594ecb7}", "cz": "Před odjezdem si dejte snídani doma.", "en": "Have breakfast at home before you leave.", "pattern": "imperative", "person": "", "note": "rozkaz: Have + předmět"}
+        ]
+      },
+    {
+      "grammar": "Minulý čas prostý",
+      "level": "A1",
+      "blok": "psát pohlednici",
+      "topic": "Domov a rodina",
+      "sentences": [
+        {"id": "295b1e98-d760-42d9-81fd-62f0f2c21bcc}", "cz": "Loni v létě jsem rodičům napsal pohlednici.", "en": "I wrote a postcard to my parents last summer.", "pattern": "affirmative", "person": "first", "note": "write → wrote; nepravidelné sloveso (2. tvar); post (BrE)"},
+        {"id": "7fe4ef83-8310-4066-8b5c-6a60586ee0a1}", "cz": "Minulý rok jsi nenapsal pohlednici svým prarodičům.", "en": "You didn't write a postcard to your grandparents last year.", "pattern": "negative", "person": "second", "note": "didn't + základní tvar: didn't write"},
+        {"id": "b7a2ba42-87fb-4cdb-ac1b-92c81e37a97a}", "cz": "Napsali jste rodině z dovolené pohlednici?", "en": "Did you write a postcard to your family on holiday?", "pattern": "question", "person": "", "note": "Did + subject + základní tvar slovesa"},
+        {"id": "9810675a-4d41-48d3-af55-1553b57a0c21}", "cz": "Komu jsi minulé léto napsal pohlednici?", "en": "Who did you write a postcard to last summer?", "pattern": "wh_question", "person": "", "note": "WH: Who + did + subject + základní tvar"},
+        {"id": "b2e9a54d-1fd6-477c-a76c-fedb4bba4258}", "cz": "Když jste na dovolené, napište pohlednici své rodině.", "en": "Write a postcard to your family when you are on holiday.", "pattern": "imperative", "person": "", "note": "rozkaz: Write + předmět"}
+        ]
+      },
+    {
+      "grammar": "Minulý čas prostý",
+      "level": "A1",
+      "blok": "najít klíče",
+      "topic": "Domov a rodina",
+      "sentences": [
+        {"id": "0a67431c-8c9f-4264-b6f1-90cca687f513}", "cz": "Moje máma včera našla klíče v kuchyni.", "en": "My mum found her keys in the kitchen yesterday.", "pattern": "affirmative", "person": "third_singular", "note": "find → found; nepravidelné sloveso (2. tvar)"},
+        {"id": "9e17746f-4d08-43ff-97f7-cc30638455da}", "cz": "Moji rodiče včera večer nenašli klíče.", "en": "My parents didn't find their keys last night.", "pattern": "negative", "person": "plural", "note": "didn't + základní tvar: didn't find (ne didn't found)"},
+        {"id": "48652542-0ae7-4b7e-95fe-c1908053ab31}", "cz": "Našli jste klíče ve svém bytě?", "en": "Did you find the keys in your flat?", "pattern": "question", "person": "", "note": "flat (BrE); Did + subject + základní tvar"},
+        {"id": "42be0c02-a9e2-44e0-8d82-4afade646abd}", "cz": "Kde tvoje máma našla klíče?", "en": "Where did your mum find her keys?", "pattern": "wh_question", "person": "", "note": "WH: Where + did + subject + základní tvar"},
+        {"id": "08383d9e-8413-4493-9af9-7599a3fbb004}", "cz": "Než odejdete z domu, hledejte své klíče.", "en": "Look for your keys before you leave the house.", "pattern": "imperative", "person": "", "note": "rozkaz: Look for + předmět"}
+        ]
+      },
+    {
+      "grammar": "Minulý čas prostý",
+      "level": "A1",
+      "blok": "hrát s rodinou",
+      "topic": "Domov a rodina",
+      "sentences": [
+        {"id": "5524c32b-2af7-4bd9-8a9a-bb748e5deebf}", "cz": "Minulou sobotu jsem s rodinou hrál deskovou hru.", "en": "I played a board game with my family last Saturday.", "pattern": "affirmative", "person": "first", "note": "play → played; pravidelné sloveso (+ed)"},
+        {"id": "2f90681a-39f2-4d38-b06b-5ce914f6b704}", "cz": "Minulý víkend jste si se svými dětmi nehráli.", "en": "You didn't play with your children last weekend.", "pattern": "negative", "person": "second", "note": "didn't + základní tvar: didn't play"},
+        {"id": "60a3f04b-85d2-4f7a-a2aa-f2f90021d31b}", "cz": "Hráli jste o víkendu hry s rodinou?", "en": "Did you play games with your family at the weekend?", "pattern": "question", "person": "", "note": "at the weekend (BrE); Did + subject + základní tvar"},
+        {"id": "10417d7a-20ed-4c1f-8f37-04b7e3644e18}", "cz": "Co jste si včera večer hráli s rodinou?", "en": "What did you play with your family last evening?", "pattern": "wh_question", "person": "", "note": "WH: What + did + subject + základní tvar"},
+        {"id": "4075fa35-f4df-4234-a9d2-1289bb2b2d03}", "cz": "Zahrajte si dnes večer hru se svými dětmi.", "en": "Play a game with your children this evening.", "pattern": "imperative", "person": "", "note": "rozkaz: Play + předmět"}
+        ]
+      },
+    {
+      "grammar": "Minulý čas prostý",
+      "level": "A1",
+      "blok": "spát dlouho",
+      "topic": "Domov a rodina",
+      "sentences": [
+        {"id": "a9b297d5-1185-4dd3-b718-6bbcf5e7d244}", "cz": "Moje sestra minulou neděli spala do deseti hodin.", "en": "My sister slept until ten o'clock last Sunday.", "pattern": "affirmative", "person": "third_singular", "note": "sleep → slept; nepravidelné sloveso (2. tvar)"},
+        {"id": "797399b4-f358-4fab-a546-8beef8fe334c}", "cz": "Moje děti včera v noci špatně spaly.", "en": "My kids didn't sleep well last night.", "pattern": "negative", "person": "plural", "note": "didn't + základní tvar: didn't sleep (ne didn't slept)"},
+        {"id": "f7663ff1-df5a-41c8-8c36-e3b6de50ed2a}", "cz": "Spali jste včera v noci dobře?", "en": "Did you sleep well last night?", "pattern": "question", "person": "", "note": "Did + subject + základní tvar slovesa"},
+        {"id": "8ec37a10-a11b-4bb5-af7c-2f356ebeced0}", "cz": "Jak dlouho spala tvoje sestra minulou sobotu?", "en": "How long did your sister sleep last Saturday?", "pattern": "wh_question", "person": "", "note": "WH: How long + did + subject + základní tvar"},
+        {"id": "61c29da2-4d49-4e20-b9db-e158b343a8a9}", "cz": "Dobře se vyspěte a odpočiňte si před náročným týdnem.", "en": "Sleep well and rest before the busy week.", "pattern": "imperative", "person": "", "note": "rozkaz: Sleep + doplnění"}
+        ]
+      },
+    {
+      "grammar": "Minulý čas prostý",
+      "level": "A1",
+      "blok": "pomoct doma",
+      "topic": "Domov a rodina",
+      "sentences": [
+        {"id": "6e1bdaf3-a0ed-437c-8f31-804e827685da}", "cz": "Minulý víkend jsem pomáhal mámě doma.", "en": "I helped my mum at home last weekend.", "pattern": "affirmative", "person": "first", "note": "help → helped; pravidelné sloveso (+ed)"},
+        {"id": "00a4cb5a-504e-4ed8-a2c5-8f2ef31e775e}", "cz": "Loni na podzim jsi nepomáhal tátovi na zahradě.", "en": "You didn't help your dad in the garden last autumn.", "pattern": "negative", "person": "second", "note": "didn't + základní tvar: didn't help; autumn (BrE)"},
+        {"id": "27057edb-6cff-44a5-8b58-3939780a4c61}", "cz": "Pomáhal jsi minulý týden rodičům doma?", "en": "Did you help your parents at home last week?", "pattern": "question", "person": "", "note": "Did + subject + základní tvar slovesa"},
+        {"id": "ca63f9f1-523d-422b-8f6d-94bcce0027ca}", "cz": "Komu jsi minulou sobotu doma pomáhal?", "en": "Who did you help at home last Saturday?", "pattern": "wh_question", "person": "", "note": "WH: Who + did + subject + základní tvar"},
+        {"id": "a0e886a3-c852-4472-a51e-8573666a612e}", "cz": "Pomáhejte svým rodičům doma každý týden.", "en": "Help your parents at home every week.", "pattern": "imperative", "person": "", "note": "rozkaz: Help + předmět"}
+        ]
+      },
+    {
+      "grammar": "Minulý čas prostý",
+      "level": "A1",
+      "blok": "přijít domů",
+      "topic": "Domov a rodina",
+      "sentences": [
+        {"id": "e01abaf4-724a-47ef-94f5-ac85d0d265bf}", "cz": "Můj otec se včera pozdě večer vrátil domů.", "en": "My dad came home late last night.", "pattern": "affirmative", "person": "third_singular", "note": "come → came; nepravidelné sloveso (2. tvar)"},
+        {"id": "125011ea-012f-4e77-8f56-486f899b4d48}", "cz": "Moji bratři minulý pátek nepřišli domů na večeři.", "en": "My brothers didn't come home for dinner last Friday.", "pattern": "negative", "person": "plural", "note": "didn't + základní tvar: didn't come (ne didn't came)"},
+        {"id": "fe794f94-279c-4d8a-b9e1-7f89a8315530}", "cz": "Přišla tvoje máma včera domů brzy?", "en": "Did your mum come home early yesterday?", "pattern": "question", "person": "", "note": "Did + subject + základní tvar slovesa"},
+        {"id": "730d3616-7ef8-4151-ac77-8c34ee7e59b6}", "cz": "Kdy se tvůj táta včera večer vrátil domů?", "en": "When did your dad come home last night?", "pattern": "wh_question", "person": "", "note": "WH: When + did + subject + základní tvar"},
+        {"id": "7ae3287e-d4f0-462b-8221-548e0ee0d202}", "cz": "Přijď domů dnes před devátou hodinou večer.", "en": "Come home before nine o'clock tonight.", "pattern": "imperative", "person": "", "note": "rozkaz: Come + doplnění"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "snídaně doma",
+      "topic": "Domov a rodina",
+      "sentences": [
+        {"id": "4fb1b51c-275c-4aa8-99d7-2eeb6835bb89}", "cz": "Každé ráno snídám doma.", "en": "I have breakfast at home every morning.", "pattern": "affirmative", "person": "first", "note": "have = mít/jíst; rutina každého rána"},
+        {"id": "51d17f14-95b9-42c9-85b0-a6996604a78e}", "cz": "Doma nesnídáte.", "en": "You don't have breakfast at home.", "pattern": "negative", "person": "second", "note": "don't = záporný pomocný tvar pro I/you/we/they"},
+        {"id": "751a165f-77c7-46bd-9345-05a84a58d729}", "cz": "Snídáte doma?", "en": "Do you have breakfast at home?", "pattern": "question", "person": "", "note": "otázka: Do + subject + základní tvar slovesa"},
+        {"id": "958bd14b-2b0b-4a36-a27c-079e79af074d}", "cz": "Kde snídáte?", "en": "Where do you have breakfast?", "pattern": "wh_question", "person": "", "note": "WH otázka: Where + do + subject + sloveso"},
+        {"id": "e3097f70-3bc6-46e2-a251-e75387b46a8b}", "cz": "Než vyrazíte ven, snídejte doma.", "en": "Have breakfast at home before you go out.", "pattern": "imperative", "person": "", "note": "rozkaz: základní tvar slovesa na začátku"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "hrát si děti",
+      "topic": "Domov a rodina",
+      "sentences": [
+        {"id": "7e70f0e7-9f20-4aed-945b-7c8394f83552}", "cz": "Moje sestra si každé odpoledne hraje s dětmi.", "en": "My sister plays with her children every afternoon.", "pattern": "affirmative", "person": "third_singular", "note": "3. os. sg.: plays (přidáme -s)"},
+        {"id": "b156bbb8-350c-41ba-a4a6-760d19255aca}", "cz": "Děti si v zimě venku nehrají.", "en": "The children don't play outside in winter.", "pattern": "negative", "person": "plural", "note": "don't = záporný pomocný tvar; plural"},
+        {"id": "89ebd80b-6c2d-4ab4-8c11-a8621da311e1}", "cz": "Hrají si děti na zahradě?", "en": "Do the children play in the garden?", "pattern": "question", "person": "", "note": "Do + subject + základní tvar"},
+        {"id": "0139fdd1-f2d3-42fc-a7e6-e48d9fc6d671}", "cz": "Kde si děti hrají po škole?", "en": "Where do the children play after school?", "pattern": "wh_question", "person": "", "note": "WH: Where do the children..."},
+        {"id": "466898ca-aefb-408b-83c0-a5c9501e3c6e}", "cz": "Hrajte si s dětmi každý den venku.", "en": "Play outside with your children every day.", "pattern": "imperative", "person": "", "note": "rozkaz: Play + doplnění"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "chodit spát",
+      "topic": "Domov a rodina",
+      "sentences": [
+        {"id": "2091b108-2a05-4f64-abe0-4c6a8f2a61fa}", "cz": "Chodím spát v deset hodin večer.", "en": "I go to bed at ten o'clock every night.", "pattern": "affirmative", "person": "first", "note": "rutina: every night; go to bed = jít spát"},
+        {"id": "cedd8bfb-3a0c-4981-ba80-e145fdcb4e08}", "cz": "O víkendu nechodíte brzy spát.", "en": "You don't go to bed early at the weekend.", "pattern": "negative", "person": "second", "note": "at the weekend (BrE); don't go"},
+        {"id": "74b88b02-b676-4171-9c27-1a094281e3e5}", "cz": "Chodíte ve všední dny spát pozdě?", "en": "Do you go to bed late on weekdays?", "pattern": "question", "person": "", "note": "Do + you + základní tvar slovesa"},
+        {"id": "ee47fc75-1219-48a5-995a-99b10bb210e4}", "cz": "V kolik chodíš spát?", "en": "What time do you go to bed?", "pattern": "wh_question", "person": "", "note": "WH: What time do you..."},
+        {"id": "d97f2544-c652-43a8-9a73-13574b5a2d67}", "cz": "Jděte spát před jedenáctou večer ve škole.", "en": "Go to bed before eleven on school nights.", "pattern": "imperative", "person": "", "note": "rozkaz: Go to bed + čas"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "krmit domácí zvíře",
+      "topic": "Domov a rodina",
+      "sentences": [
+        {"id": "26d2c2e5-d030-489b-8490-ea223199dd69}", "cz": "Můj bratr krmí kočku každé ráno.", "en": "My brother feeds the cat every morning.", "pattern": "affirmative", "person": "third_singular", "note": "3. os. sg.: feeds; every morning = rutina"},
+        {"id": "416ca2f8-ba3b-4536-a6ea-e0a06e84db15}", "cz": "Moji rodiče psa večer nekrmí.", "en": "My parents don't feed the dog in the evening.", "pattern": "negative", "person": "plural", "note": "don't = záporný pomocný tvar pro plural"},
+        {"id": "8bfa40f0-64ed-4ef9-8fef-02cef536439c}", "cz": "Krmí vaše sestra kočku?", "en": "Does your sister feed the cat?", "pattern": "question", "person": "", "note": "3. os. sg. otázka: Does + subject + základní tvar"},
+        {"id": "792cf16e-27ab-4684-b603-52f163263d4e}", "cz": "Kdy tvůj bratr krmí psa?", "en": "When does your brother feed the dog?", "pattern": "wh_question", "person": "", "note": "WH: When does + 3. os. sg. + základní tvar"},
+        {"id": "5f9f57f0-d1df-44e5-82b0-14614ab45aaa}", "cz": "Než odejdete z domu, nakrmte kočku.", "en": "Feed the cat before you leave the house.", "pattern": "imperative", "person": "", "note": "rozkaz: Feed + předmět"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "psát seznam",
+      "topic": "Domov a rodina",
+      "sentences": [
+        {"id": "92902ca6-0a7e-4353-9913-b96b69718f6b}", "cz": "Každý týden si píšu nákupní seznam.", "en": "I write a shopping list every week.", "pattern": "affirmative", "person": "first", "note": "rutina: every week; write = psát"},
+        {"id": "9ce57e63-f113-4480-aa1f-9a67d0757013}", "cz": "Před nákupem si nepíšete seznam.", "en": "You don't write a list before you go shopping.", "pattern": "negative", "person": "second", "note": "don't write; vyjadřuje zvyk (nebo jeho absenci)"},
+        {"id": "4983d95a-8bc0-4357-8892-94c50698adf7}", "cz": "Píšete seznam pro supermarket?", "en": "Do you write a list for the supermarket?", "pattern": "question", "person": "", "note": "Do + you + základní tvar slovesa"},
+        {"id": "cc304d69-e7af-47aa-a81d-9c330b932b04}", "cz": "Co si píšete na svůj nákupní seznam?", "en": "What do you write on your shopping list?", "pattern": "wh_question", "person": "", "note": "WH: What do you write..."},
+        {"id": "e8979a9a-e693-4b65-a6fb-d14a3093ca04}", "cz": "Než půjdete do obchodu, napište si seznam.", "en": "Write a list before you go to the shop.", "pattern": "imperative", "person": "", "note": "rozkaz: Write + předmět"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "žehlit oblečení",
+      "topic": "Domov a rodina",
+      "sentences": [
+        {"id": "086f3471-50e9-4755-bdc1-530fb433e5b7}", "cz": "Moje máma žehlí oblečení o víkendu.", "en": "My mum irons the clothes at the weekend.", "pattern": "affirmative", "person": "third_singular", "note": "3. os. sg.: irons; at the weekend (BrE)"},
+        {"id": "995ef01c-759f-4f24-9974-96b4fc50a759}", "cz": "Moji rodiče si nežehlí oblečení každý den.", "en": "My parents don't iron their clothes every day.", "pattern": "negative", "person": "plural", "note": "don't iron; každodenní rutina (nebo absence)"},
+        {"id": "eee93723-b61f-4dbc-8326-cc88d93733d8}", "cz": "Žehlí vaše maminka v neděli prádlo?", "en": "Does your mum iron the clothes on Sunday?", "pattern": "question", "person": "", "note": "Does + 3. os. sg. + základní tvar"},
+        {"id": "1e901a2e-5534-4fd7-ae8e-ac252bf14eb3}", "cz": "Kdy si tvůj táta žehlí košile?", "en": "When does your dad iron his shirts?", "pattern": "wh_question", "person": "", "note": "When does + 3. os. sg."},
+        {"id": "2f468881-819d-4d14-a480-3be92e83db47}", "cz": "Vyžehlete si oblečení večer před prací.", "en": "Iron your clothes the night before work.", "pattern": "imperative", "person": "", "note": "rozkaz: Iron + předmět"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "otevírat okna",
+      "topic": "Domov a rodina",
+      "sentences": [
+        {"id": "805a8aa1-a235-4d44-8eee-0f4db14eb7a7}", "cz": "Každé ráno otevírám okna, abych dovnitř vpustil čerstvý vzduch.", "en": "I open the windows every morning to let in fresh air.", "pattern": "affirmative", "person": "first", "note": "rutina: every morning; open = otevírat"},
+        {"id": "2968e73e-c2da-45e9-9fe4-9a0c7654133e}", "cz": "V zimě okna neotevíráte.", "en": "You don't open the windows in winter.", "pattern": "negative", "person": "second", "note": "don't open; vyjadřuje zvyk (nebo jeho absenci)"},
+        {"id": "b82b522f-f91a-4570-a152-0fc0210892f9}", "cz": "Otevíráte před spaním okna?", "en": "Do you open the windows before bed?", "pattern": "question", "person": "", "note": "Do + you + základní tvar"},
+        {"id": "e7d77bd9-8474-40fa-9721-65002229c15d}", "cz": "Proč každé ráno otevíráš okna?", "en": "Why do you open the windows every morning?", "pattern": "wh_question", "person": "", "note": "WH: Why do you open..."},
+        {"id": "ac6f733e-e3b6-42f9-9db5-76a3f0eb9d59}", "cz": "Otevřete okna, když je uvnitř horko.", "en": "Open the windows when it is hot inside.", "pattern": "imperative", "person": "", "note": "rozkaz: Open + předmět"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "zalévat rostliny",
+      "topic": "Domov a rodina",
+      "sentences": [
+        {"id": "10427e3e-6571-4cc1-be21-41b395caba03}", "cz": "Moje babička zalévá své rostliny každý den.", "en": "My grandmother waters her plants every day.", "pattern": "affirmative", "person": "third_singular", "note": "3. os. sg.: waters; every day = rutina"},
+        {"id": "b5c1aba1-2bf9-4f57-8900-5e1aef50cc71}", "cz": "Moje děti rostliny v zimě nezalévají.", "en": "My children don't water the plants in winter.", "pattern": "negative", "person": "plural", "note": "don't water; plural záporný tvar"},
+        {"id": "aac41c4a-aaaa-48c0-aa24-55a7803dfbad}", "cz": "Zalévá vaše maminka o víkendu rostliny?", "en": "Does your mum water the plants at the weekend?", "pattern": "question", "person": "", "note": "Does + 3. os. sg. + základní tvar"},
+        {"id": "6f509808-b1f9-4a96-a283-a613e57ad032}", "cz": "Jak často tvůj táta zalévá rostliny?", "en": "How often does your dad water the plants?", "pattern": "wh_question", "person": "", "note": "How often does + 3. os. sg."},
+        {"id": "5e96be82-1769-4426-823f-ae29d547ea83}", "cz": "Rostliny zalévejte dvakrát týdně.", "en": "Water the plants twice a week.", "pattern": "imperative", "person": "", "note": "rozkaz: Water + předmět; twice a week = dvakrát týdně"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "ukládat děti",
+      "topic": "Domov a rodina",
+      "sentences": [
+        {"id": "acde7116-e56a-40f3-b5f6-8b59ccfca5a1}", "cz": "Děti dávám spát každý večer v osm.", "en": "I put the children to bed at eight every evening.", "pattern": "affirmative", "person": "first", "note": "put to bed = uložit spát; rutina each evening"},
+        {"id": "eac6b3bd-a02b-4d58-bb98-e4478b547800}", "cz": "Děti neukládáte spát před sedmou.", "en": "You don't put the children to bed before seven.", "pattern": "negative", "person": "second", "note": "don't put; záporná rutina"},
+        {"id": "bdfa4067-e07d-4caf-8c5f-31110496e951}", "cz": "Ukládáte děti spát každý večer ve stejnou dobu?", "en": "Do you put the children to bed at the same time every night?", "pattern": "question", "person": "", "note": "Do + you + základní tvar slovesa"},
+        {"id": "2879c10c-5550-43c3-abba-f9258534b835}", "cz": "V kolik ukládáte děti spát?", "en": "What time do you put the children to bed?", "pattern": "wh_question", "person": "", "note": "WH: What time do you..."},
+        {"id": "71316464-2a31-4ebf-ac79-db9a591c1690}", "cz": "Dejte děti spát před devátou hodinou.", "en": "Put the children to bed before nine o'clock.", "pattern": "imperative", "person": "", "note": "rozkaz: Put + předmět + to bed"}
+        ]
+      },
+    {
+      "grammar": "Přítomný čas prostý",
+      "level": "A1",
+      "blok": "prostírat stůl",
+      "topic": "Domov a rodina",
+      "sentences": [
+        {"id": "22240f6a-14e7-4ed6-aa4e-e3637b8f0f93}", "cz": "Moje dcera prostírá stůl před každým jídlem.", "en": "My daughter sets the table before every meal.", "pattern": "affirmative", "person": "third_singular", "note": "3. os. sg.: sets; set the table = prostřít stůl"},
+        {"id": "e624e670-c300-47c7-a762-0497f3473605}", "cz": "Moji bratři doma stůl neprostřelují.", "en": "My brothers don't set the table at home.", "pattern": "negative", "person": "plural", "note": "don't set; záporný tvar pro plural"},
+        {"id": "8c9d5f2f-b648-45c6-9e71-1b2e2a97fbff}", "cz": "Prostírá váš syn stůl k večeři?", "en": "Does your son set the table for dinner?", "pattern": "question", "person": "", "note": "Does + 3. os. sg. + základní tvar"},
+        {"id": "318d0b0a-414f-4e8f-847e-67ff6b76db4c}", "cz": "Kdo ve vaší rodině prostírá stůl?", "en": "Who sets the table in your family?", "pattern": "wh_question", "person": "", "note": "WH: Who + sets (kladný tvar, 3. os.); sets = 3. os. sg."},
+        {"id": "35973524-e734-4b47-afae-01c0d891da9f}", "cz": "Prostřete stůl, než se vaši rodiče vrátí domů.", "en": "Set the table before your parents come home.", "pattern": "imperative", "person": "", "note": "rozkaz: Set the table + podmínka"}
+        ]
+      },
+    {
+      "grammar": "Podmínka 1. typ",
+      "level": "B1",
+      "blok": "přijít včas",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "fe10a843-1c09-4965-a60f-f5f022c5db2c}", "cz": "Když teď odejdu, přijdu včas.", "en": "If I leave now, I will arrive on time.", "pattern": "affirmative", "person": "first", "note": "IF + přítomný čas → WILL + infinitiv; reálná podmínka"},
+        {"id": "3ea007c8-01dd-432d-9b1c-ec57afbe7fd5}", "cz": "Pokud si nepospíšíte, nedorazíte včas.", "en": "If you don't hurry up, you won't arrive on time.", "pattern": "negative", "person": "second", "note": "záporná forma: won't = will not"},
+        {"id": "239b909f-4844-4f20-b81a-45a91c589351}", "cz": "Přijedete včas, když pojedete po dálnici?", "en": "Will you arrive on time if you take the motorway?", "pattern": "question", "person": "", "note": "otázka: WILL + subject + infinitiv; IF clause na konci"},
+        {"id": "d22a2a17-3488-4b24-9306-5fa257ee75e7}", "cz": "V kolik přijedeš, když odejdeš v sedm?", "en": "What time will you arrive if you leave at seven?", "pattern": "wh_question", "person": "", "note": "WH otázka na začátku; IF clause na konci"},
+        {"id": "77e7abc4-8eb2-4545-97bc-1c9ee0131400}", "cz": "Pokud chcete dorazit včas, odejděte dříve.", "en": "Leave early if you want to arrive on time.", "pattern": "imperative", "person": "", "note": "rozkaz + podmínka; rozkaz nemá IF v první části"},
+        {"id": "83849a67-d110-4bb8-bf97-6d48e2d356cd}", "cz": "Pokud odejde dříve než on, dorazí dříve.", "en": "If she leaves earlier than he does, she will arrive on time sooner.", "pattern": "comparison", "person": "", "note": "srovnání: earlier than"},
+        {"id": "dc7e71f3-cae9-4714-9d65-54c0bd53da65}", "cz": "Když si pospíšíme, dorazíme včas, ne?", "en": "If we hurry, we'll arrive on time, won't we?", "pattern": "tag_question", "person": "", "note": "dovětek: kladná věta → záporný tag"},
+        {"id": "596e3a9e-3d01-46a8-bfe0-50251a5e24cd}", "cz": "Přijedeme včas, pokud stihneme další vlak, až přijede.", "en": "We will arrive on time if we catch the next train when it comes.", "pattern": "time_clause", "person": "", "note": "time clause: when + přítomný čas (ne will)"},
+        {"id": "7f4fb002-aa33-4428-8649-5f5efb1956c2}", "cz": "Pokud vlak nebude mít zpoždění, přijedeme včas.", "en": "If the train is not delayed, we will arrive on time.", "pattern": "passive", "person": "", "note": "trpný rod v IF clause: is + příčestí"},
+        {"id": "651f9a01-106e-4cb0-9cc6-494f97e43005}", "cz": "Řekla, že pokud okamžitě odejdou, dorazí včas.", "en": "She said that if they left immediately, they would arrive on time.", "pattern": "indirect", "person": "", "note": "nepřímá řeč: said that; will → would"},
+        {"id": "b19c452e-7aa7-4800-87d7-5dce689d4907}", "cz": "Pokud stihne brzký autobus, určitě dorazí včas.", "en": "If he catches the early bus, he will definitely arrive on time.", "pattern": "conditional", "person": "", "note": "klasická 1. podmínka: IF + present simple → will"}
+        ]
+      },
+    {
+      "grammar": "Podmínka 1. typ",
+      "level": "B1",
+      "blok": "zapomenout klíče",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "85d622da-ffdc-4c79-98bc-3ddfd3c9b1e4}", "cz": "Pokud zapomene klíče, bude muset zazvonit.", "en": "If she forgets her keys, she will have to ring the bell.", "pattern": "affirmative", "person": "third_singular", "note": "3. osoba: forgets (ne forget); will have to = bude muset"},
+        {"id": "8e0fd332-fe82-49a8-8ba9-7fbc33c4c6b6}", "cz": "Pokud si nezapomenou klíče, nebudou uzamčeni.", "en": "If they don't forget their keys, they won't be locked out.", "pattern": "negative", "person": "plural", "note": "záporná: don't forget; won't be locked out"},
+        {"id": "c872e007-23cb-4f3b-a2e1-fee278e336b2}", "cz": "Budete uzamčeni, když zapomenete klíče?", "en": "Will you be locked out if you forget your keys?", "pattern": "question", "person": "", "note": "otázka: will na začátku"},
+        {"id": "ef9b2db3-119f-4d70-be52-64cad24c1182}", "cz": "Co uděláš, když zapomeneš klíče?", "en": "What will you do if you forget your keys?", "pattern": "wh_question", "person": "", "note": "WH: What will you do if..."},
+        {"id": "d469cf98-5712-4ce7-ba0c-536c1459f20d}", "cz": "Pokud jdete ven sami, nezapomeňte si klíče.", "en": "Don't forget your keys if you're going out alone.", "pattern": "imperative", "person": "", "note": "rozkaz záporný: Don't + infinitiv"},
+        {"id": "9d769b5f-0a57-4b77-abfd-d24bb960e092}", "cz": "Pokud zapomene klíče častěji než on, bude potřebovat náhradní sadu.", "en": "If she forgets her keys more often than he does, she will need a spare set.", "pattern": "comparison", "person": "", "note": "srovnání: more often than"},
+        {"id": "17e5d34f-c78f-4f45-9d76-e012acfabbe3}", "cz": "Když si zapomene klíče, zavolá ti, ne?", "en": "If he forgets his keys, he'll call you, won't he?", "pattern": "tag_question", "person": "", "note": "dovětek: he'll → won't he?"},
+        {"id": "f208b330-4cde-4a92-bd93-92a2b8fa8e72}", "cz": "Když si uvědomí, že zapomněla klíče, okamžitě se vrátí.", "en": "When she realises she has forgotten her keys, she will turn back immediately.", "pattern": "time_clause", "person": "", "note": "when + present perfect → will; time clause bez will"},
+        {"id": "d918dc6f-20ab-46f5-9bc2-c8b0637855f6}", "cz": "Pokud klíče zůstanou uvnitř, bude muset dveře otevřít zámečník.", "en": "If the keys are left inside, the door will have to be opened by a locksmith.", "pattern": "passive", "person": "", "note": "dvojitý trpný rod; will have to be + příčestí"},
+        {"id": "1bbdb541-0ebe-42cb-8084-7dcdd1cb074c}", "cz": "Řekl mi, že když zapomene klíče, zavolá mu.", "en": "He told me that if she forgot her keys, she would call him.", "pattern": "indirect", "person": "", "note": "nepřímá řeč: told me that; will → would"},
+        {"id": "33f54e99-bb06-44f4-b095-4def35fc1ef3}", "cz": "Pokud znovu zapomenete klíče, budete si muset pořídit jeden náhradní.", "en": "If you forget your keys again, you will have to get a spare one cut.", "pattern": "conditional", "person": "", "note": "get something done = nechat udělat"}
+        ]
+      },
+    {
+      "grammar": "Podmínka 1. typ",
+      "level": "B1",
+      "blok": "rezervovat stůl",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "cb5c878c-d93e-4977-a028-64853a551e0f}", "cz": "Pokud si předem zarezervuji stůl, dostaneme lepší místo.", "en": "If I book a table in advance, we will get a better seat.", "pattern": "affirmative", "person": "first", "note": "in advance = předem; will get"},
+        {"id": "07fd21cd-e119-49b2-98d7-34b389142320}", "cz": "Pokud si nezarezervujete stůl, nebudeme moci spolu sedět.", "en": "If you don't book a table, we won't be able to sit together.", "pattern": "negative", "person": "second", "note": "won't be able to = nebude možné"},
+        {"id": "2839d00f-8fc4-40b7-bef8-d5184f70d0f6}", "cz": "Dostaneme stůl, když si ho zarezervujeme na sobotní večer?", "en": "Will we get a table if we book it for Saturday evening?", "pattern": "question", "person": "", "note": "at the weekend → pozor: British English"},
+        {"id": "c4229a50-b7d3-486d-859d-435e3dd9d541}", "cz": "Kde budeme sedět, když si předem nezarezervujeme stůl?", "en": "Where will we sit if we don't book a table in advance?", "pattern": "wh_question", "person": "", "note": "WH: Where will we sit if..."},
+        {"id": "ed20473b-6984-408c-92e8-8fb735bf95c3}", "cz": "Zarezervujte si stůl, pokud se chcete vyhnout čekání.", "en": "Book a table if you want to avoid waiting.", "pattern": "imperative", "person": "", "note": "rozkaz: Book + podmínka"},
+        {"id": "2bba028d-dc41-4334-bcbe-8d86296ecf07}", "cz": "Pokud si zarezervujeme dříve než oni, dostaneme lepší stůl.", "en": "If we book earlier than they do, we will get a better table.", "pattern": "comparison", "person": "", "note": "srovnání: earlier than they do"},
+        {"id": "e5459579-d668-4de9-a0fc-a395520fb724}", "cz": "Když si zarezervujeme teď, dostaneme dobrý stůl, ne?", "en": "If we book now, we'll get a good table, won't we?", "pattern": "tag_question", "person": "", "note": "dovětek: we'll → won't we"},
+        {"id": "820293cd-bc9f-4a16-848d-ddf6a753615c}", "cz": "Jakmile dorazíme, zeptáme se, zda je pro nás rezervován stůl.", "en": "As soon as we arrive, we will ask if a table has been reserved for us.", "pattern": "time_clause", "person": "", "note": "as soon as + present simple → will"},
+        {"id": "c2743617-2c50-4dc8-8e82-b62f4a1a39ac}", "cz": "Pokud je stůl rezervován předem, budou hostům nabídnuta lepší místa.", "en": "If a table is booked in advance, better seats will be offered to guests.", "pattern": "passive", "person": "", "note": "trpný rod v obou větách"},
+        {"id": "ea4debc7-c73e-4368-a580-f90013ebca9f}", "cz": "Řekla, že kdybychom si rezervovali stůl, měli bychom mnohem lepší večer.", "en": "She said that if we booked a table, we would have a much better evening.", "pattern": "indirect", "person": "", "note": "said that; will → would; booked (backshift)"},
+        {"id": "8fc9fb2a-6df4-42b7-97ae-729849e92d77}", "cz": "Pokud si zarezervují stůl pro osm osob, bude restaurace potřebovat zvláštní upozornění.", "en": "If they book a table for eight people, the restaurant will need extra notice.", "pattern": "conditional", "person": "", "note": "reálná situace; extra notice = předchozí upozornění"}
+        ]
+      },
+    {
+      "grammar": "Podmínka 1. typ",
+      "level": "B1",
+      "blok": "učit se na zkoušku",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "82b04650-e25a-4447-b473-42fa64e2b108}", "cz": "Pokud se bude učit každý den, snadno složí zkoušku.", "en": "If she studies every day, she will pass her exam easily.", "pattern": "affirmative", "person": "third_singular", "note": "studies = 3. osoba; will pass"},
+        {"id": "a1583fe4-0445-4571-8339-c1fa2129db15}", "cz": "Pokud dostatečně nezopakují, zkoušku nesloží.", "en": "If they don't revise enough, they won't pass the exam.", "pattern": "negative", "person": "plural", "note": "revise = opakovat látku (BrE); won't pass"},
+        {"id": "bea02e38-543a-4573-9f5c-8671cda4a9b6}", "cz": "Složíte zkoušku, pokud dnes začnete revidovat?", "en": "Will you pass the exam if you start revising today?", "pattern": "question", "person": "", "note": "otázka: will + subject; IF clause na konci"},
+        {"id": "0fc6afdb-6553-4c8b-872a-f299ed71daf5}", "cz": "Kolik hodin se budete učit, pokud bude zkouška příští týden?", "en": "How many hours will you study if the exam is next week?", "pattern": "wh_question", "person": "", "note": "WH: How many hours..."},
+        {"id": "c81081b7-6ca6-4e7f-852d-a29fba551390}", "cz": "Opravte si své poznámky, pokud chcete zkoušku složit.", "en": "Revise your notes if you want to pass the exam.", "pattern": "imperative", "person": "", "note": "Revise = BrE výraz pro opakování"},
+        {"id": "f3d92d7f-5fb5-4a46-ba19-7296266ffb3b}", "cz": "Pokud opraví více než její spolužáci, dostane vyšší známku.", "en": "If she revises more than her classmates, she will get a higher mark.", "pattern": "comparison", "person": "", "note": "srovnání: more than; higher mark"},
+        {"id": "ef4c8a31-d71b-4696-9645-05de636028b0}", "cz": "Když budeš pilně studovat, tak to zvládneš, ne?", "en": "If you study hard, you'll pass, won't you?", "pattern": "tag_question", "person": "", "note": "dovětek: you'll → won't you"},
+        {"id": "fdd7f484-83a1-4a07-9931-cf5f222f1d8e}", "cz": "Před začátkem zkoušky si ještě jednou zkontroluje poznámky, pokud má čas.", "en": "Before the exam starts, she will check her notes one more time if she has time.", "pattern": "time_clause", "person": "", "note": "before + present simple → will; time clause bez will"},
+        {"id": "89df64f1-0d1f-41c6-8747-cd5c42c963bc}", "cz": "V případě odložení zkoušky budou studenti informováni emailem.", "en": "If the exam is postponed, students will be informed by email.", "pattern": "passive", "person": "", "note": "trpný rod v result clause; will be informed"},
+        {"id": "2dd1095e-ecd7-4b58-927f-0c62a714d4ff}", "cz": "Učitel řekl, že pokud budou studenti pravidelně opakovat, budou mít lepší výkon.", "en": "The teacher said that if students revised regularly, they would perform better.", "pattern": "indirect", "person": "", "note": "said that; will → would; revised (backshift)"},
+        {"id": "c234a30c-13c1-439a-9fb4-9cbfcc0f1782}", "cz": "Pokud dnes večer zreviduje klíčová témata, zítra se bude cítit jistěji.", "en": "If he revises the key topics tonight, he will feel more confident tomorrow.", "pattern": "conditional", "person": "", "note": "feel confident = cítit se jistě; reálná 1. podmínka"}
+        ]
+      },
+    {
+      "grammar": "Podmínka 1. typ",
+      "level": "B1",
+      "blok": "koupit nový telefon",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "0d5fa2c6-2361-4c12-8088-25bbfaa6846c}", "cz": "Pokud našetřím dost peněz, příští měsíc si koupím nový telefon.", "en": "If I save enough money, I will buy a new phone next month.", "pattern": "affirmative", "person": "first", "note": "IF + present simple → will + infinitiv"},
+        {"id": "23baea62-9dcd-4c46-b9ec-fddb59c990b7}", "cz": "Pokud nebudete porovnávat ceny, nedostanete nejlepší nabídku.", "en": "If you don't compare prices, you won't get the best deal.", "pattern": "negative", "person": "second", "note": "compare prices = porovnat ceny; won't get"},
+        {"id": "ae910619-a738-41d1-9da8-66ba1a12cb23}", "cz": "Koupíte si nový telefon, pokud se tento rozbije?", "en": "Will you buy a new phone if this one breaks down?", "pattern": "question", "person": "", "note": "breaks down = přestane fungovat"},
+        {"id": "8837b393-7190-4787-bb72-fa5dda6f49b5}", "cz": "Který telefon si koupíte, pokud vám zvýší plat?", "en": "Which phone will you buy if you get a pay rise?", "pattern": "wh_question", "person": "", "note": "WH: Which phone will you buy if..."},
+        {"id": "659c4aca-e466-470f-b15b-8ac629add6af}", "cz": "Kupte si nový telefon, pokud váš starý již nefunguje správně.", "en": "Buy a new phone if your old one is no longer working properly.", "pattern": "imperative", "person": "", "note": "rozkaz + podmínka; no longer = už ne"},
+        {"id": "53c3cca7-89a1-460f-85ad-28a78b5eda66}", "cz": "Pokud si koupí dražší telefon než ona, získá lepší funkce.", "en": "If he buys a more expensive phone than she does, he will get better features.", "pattern": "comparison", "person": "", "note": "srovnání: more expensive than"},
+        {"id": "498d8526-ba83-476d-9310-11c7fe39089f}", "cz": "Když dostanete slevu, tak si to koupíte, ne?", "en": "If you get a discount, you'll buy it, won't you?", "pattern": "tag_question", "person": "", "note": "dovětek: you'll → won't you"},
+        {"id": "51ad8ffb-fcfd-44bb-8f1a-64f0184b7adf}", "cz": "Jakmile dostatečně našetří, půjde do obchodu a koupí si nový telefon.", "en": "Once she saves enough, she will go to the shop and buy a new phone.", "pattern": "time_clause", "person": "", "note": "once + present simple → will; once = jakmile"},
+        {"id": "a528a37c-90af-4266-8af7-e7eb8434be18}", "cz": "Pokud je telefon objednán online, bude doručen do dvou dnů.", "en": "If the phone is ordered online, it will be delivered within two days.", "pattern": "passive", "person": "", "note": "trpný rod v obou větách; within = do"},
+        {"id": "f212abd3-db12-4afb-bc9d-6170a29dda26}", "cz": "Řekl, že pokud bude mít dost peněz, koupí si rovnou nový telefon.", "en": "He said that if he had enough money, he would buy a new phone straightaway.", "pattern": "indirect", "person": "", "note": "said that; will → would; straightaway = ihned (BrE)"},
+        {"id": "82111280-a3ff-4766-a53e-507557a3b8c9}", "cz": "Pokud se nejnovější model dostane do prodeje, určitě jeho koupi zvážím.", "en": "If the latest model goes on sale, I will definitely consider buying it.", "pattern": "conditional", "person": "", "note": "go on sale = jít do prodeje; consider + -ing"}
+        ]
+      },
+    {
+      "grammar": "Podmínka 1. typ",
+      "level": "B1",
+      "blok": "změnit práci",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "a3fd021d-7858-4373-a32a-ea03a2ee71d6}", "cz": "Pokud se o tuto práci uchází, bude mít velkou šanci ji získat.", "en": "If he applies for that job, he will have a good chance of getting it.", "pattern": "affirmative", "person": "third_singular", "note": "have a good chance of = mít dobrou šanci"},
+        {"id": "0cef14ec-bf56-45e5-94f0-8f20d14e751d}", "cz": "Pokud své životopisy neaktualizují, nebudou na danou pozici bráni v úvahu.", "en": "If they don't update their CVs, they won't be considered for the position.", "pattern": "negative", "person": "plural", "note": "CV = životopis (BrE); won't be considered"},
+        {"id": "b7a4b3a5-f81d-4933-8ae0-3b6bfb4e3115}", "cz": "Budete si hledat nové zaměstnání, pokud se situace v práci nezlepší?", "en": "Will you look for a new job if the situation at work doesn't improve?", "pattern": "question", "person": "", "note": "doesn't improve = 3. os. sg. záporná"},
+        {"id": "9cda9378-ca6b-4599-940d-e0627c3454a6}", "cz": "Kde budete pracovat, pokud se rozhodnete změnit zaměstnání?", "en": "Where will you work if you decide to change jobs?", "pattern": "wh_question", "person": "", "note": "WH: Where will you work if..."},
+        {"id": "f45094bf-9218-493d-8fe5-990d484db7c6}", "cz": "Požádejte o práci, pokud cítíte, že jste připraveni na změnu.", "en": "Apply for the job if you feel you are ready for a change.", "pattern": "imperative", "person": "", "note": "rozkaz + podmínka; feel ready for"},
+        {"id": "31735fc7-bf59-479a-b082-3e7bc5a51d33}", "cz": "Pokud dostane lepší nabídku, než je její současný plat, okamžitě změní práci.", "en": "If she gets a better offer than her current salary, she will change jobs immediately.", "pattern": "comparison", "person": "", "note": "srovnání: better than; current salary"},
+        {"id": "83f9ee36-6ba2-4c72-b068-b6a72ae119f2}", "cz": "Pokud tu práci dostane, podá výpověď, ne?", "en": "If he gets the job, he'll hand in his notice, won't he?", "pattern": "tag_question", "person": "", "note": "hand in notice = dát výpověď (BrE)"},
+        {"id": "392f8397-6c5f-4f25-9cf5-d3f3c9731ab5}", "cz": "Jakmile najde vhodnou pozici, zašle svou žádost.", "en": "As soon as she finds a suitable position, she will send in her application.", "pattern": "time_clause", "person": "", "note": "as soon as + present simple → will"},
+        {"id": "39040e8f-fc64-4c7b-91c9-988bc57ea83e}", "cz": "Pokud bude příspěvek inzerován příští týden, bude přijato mnoho žádostí.", "en": "If the post is advertised next week, many applications will be received.", "pattern": "passive", "person": "", "note": "post = pracovní místo (BrE); will be received"},
+        {"id": "5066d2b3-0e50-4c31-9ec8-804b3d958908}", "cz": "Řekla mi, že pokud najde lepší práci, podá výpověď.", "en": "She told me that if she found a better job, she would hand in her notice.", "pattern": "indirect", "person": "", "note": "told me that; will → would; found (backshift)"},
+        {"id": "3664bc94-69d8-4028-8a02-4871b6917ddc}", "cz": "Pokud se přihlásíte včas, budete mít větší šanci než ostatní uchazeči.", "en": "If you apply early, you will have a better chance than the other candidates.", "pattern": "conditional", "person": "", "note": "apply early = přihlásit se brzy; srovnání šancí"}
+        ]
+      },
+    {
+      "grammar": "Podmínka 1. typ",
+      "level": "B1",
+      "blok": "jet na dovolenou",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "60d8bf97-d367-47fa-927b-d22d020647b7}", "cz": "Pokud si dovolenou zarezervujeme dříve, dostaneme mnohem levnější nabídku.", "en": "If we book the holiday early, we will get a much cheaper deal.", "pattern": "affirmative", "person": "first", "note": "holiday (BrE) vs vacation (AmE); cheaper deal"},
+        {"id": "21c4847a-2a30-4a16-9954-91ed3551e261}", "cz": "Pokud se nepodíváte na předpověď počasí, nebudete připraveni na déšť.", "en": "If you don't check the weather forecast, you won't be prepared for rain.", "pattern": "negative", "person": "second", "note": "check the forecast = zkontrolovat předpověď"},
+        {"id": "3915fd9f-e652-4c43-b691-ef41b94d443c}", "cz": "Pojedete do zahraničí, když budete mít letos na podzim našetřeno dost peněz?", "en": "Will you travel abroad if you have enough money saved this autumn?", "pattern": "question", "person": "", "note": "autumn (BrE) vs fall (AmE)"},
+        {"id": "9c8e30a9-6e8d-4cfa-aceb-0472aadb4b78}", "cz": "Kam pojedete, pokud se letos rozhodnete pro dovolenou?", "en": "Where will you go if you decide to take a holiday this year?", "pattern": "wh_question", "person": "", "note": "WH: Where will you go if..."},
+        {"id": "1036f2c5-239a-407b-ae7f-5e64cc0bc250}", "cz": "Pokud se chcete vyhnout platbám za zavazadla, přibalte si lehké věci.", "en": "Pack light if you want to avoid paying extra for luggage.", "pattern": "imperative", "person": "", "note": "pack light = balit málo; avoid + -ing"},
+        {"id": "5f591784-f271-4eda-b234-66869eb9c55a}", "cz": "Pokud pojedou dál než my, utratí za lety více.", "en": "If they travel further than us, they will spend more on flights.", "pattern": "comparison", "person": "", "note": "srovnání: further than; spend more on"},
+        {"id": "1334ba3d-45fc-4e1a-a778-80994cf48d69}", "cz": "Když bude pěkné počasí, tak si dovolenou užijete, ne?", "en": "If the weather is nice, you'll enjoy the holiday, won't you?", "pattern": "tag_question", "person": "", "note": "dovětek: you'll → won't you"},
+        {"id": "367a2fc8-3f13-4313-9497-7fe381c4d1a6}", "cz": "Než vyrazí, ujistí se, že jsou všechna opatření v pořádku.", "en": "Before they set off, they will make sure all the arrangements are in order.", "pattern": "time_clause", "person": "", "note": "before + present simple → will; set off = vyrazit"},
+        {"id": "700275d3-2055-49b9-9c7b-10fd8420d1a5}", "cz": "Pokud budou lety zrušeny, bude všem cestujícím nabídnuta plná náhrada.", "en": "If the flights are cancelled, all passengers will be offered a full refund.", "pattern": "passive", "person": "", "note": "trpný rod v obou větách; full refund = plná náhrada"},
+        {"id": "fbcfaea1-fc9b-4977-9f4d-6cbbfe9ca0ce}", "cz": "Řekl, že pokud bude dobré počasí, půjdou na pobřeží.", "en": "He said that if the weather was good, they would go to the coast.", "pattern": "indirect", "person": "", "note": "said that; will → would; was (backshift)"},
+        {"id": "5481d024-25c6-4659-9b2e-bd9e6acc8b52}", "cz": "Pokud si vezme volno v srpnu, bude si muset rezervovat s dostatečným předstihem.", "en": "If she takes time off in August, she will need to book well in advance.", "pattern": "conditional", "person": "", "note": "take time off = vzít si volno; well in advance"}
+        ]
+      },
+    {
+      "grammar": "Podmínka 1. typ",
+      "level": "B1",
+      "blok": "opravit auto",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "c9da1e0c-3e2c-483b-8a74-3a83fb823df3}", "cz": "Pokud dnes odveze auto do garáže, bude hotové do pátku.", "en": "If he takes the car to the garage today, it will be ready by Friday.", "pattern": "affirmative", "person": "third_singular", "note": "takes (3. os. sg.); by Friday = do pátku"},
+        {"id": "e81a3f8b-f0f0-42bc-8256-34084270b3b8}", "cz": "Pokud auto neopraví, nebudou ho moci o víkendu používat.", "en": "If they don't get the car repaired, they won't be able to use it at the weekend.", "pattern": "negative", "person": "plural", "note": "at the weekend (BrE); get + repaired = nechat opravit"},
+        {"id": "c23c1571-8820-4737-b41e-ac17c4e35771}", "cz": "Bude auto opraveno včas, když ho zítra odvezete do garáže?", "en": "Will the car be fixed in time if you take it to the garage tomorrow?", "pattern": "question", "person": "", "note": "will the car be fixed = otázka v trpném rodě"},
+        {"id": "400af67a-ff0a-4019-be7d-074caab3adae}", "cz": "Jak dlouho bude oprava trvat, když mechanik začne dnes?", "en": "How long will the repair take if the mechanic starts today?", "pattern": "wh_question", "person": "", "note": "WH: How long will it take if..."},
+        {"id": "4fd00ce8-5cf1-44ae-88d0-dfd41a84c4a2}", "cz": "Pokud se rozsvítí kontrolka motoru, odvezte auto do garáže.", "en": "Take the car to the garage if the engine light comes on.", "pattern": "imperative", "person": "", "note": "comes on = rozsvítí se (kontrolka)"},
+        {"id": "279dfe85-aa84-45c6-9d50-8716cce1c506}", "cz": "Pokud si nechá opravit auto dříve než on, ušetří více peněz.", "en": "If she gets her car repaired sooner than he does, she will save more money.", "pattern": "comparison", "person": "", "note": "sooner than he does; save more money"},
+        {"id": "af8dd8a5-7129-453e-a7d3-e674074480dc}", "cz": "Když auto rychle opraví, bude to levnější, ne?", "en": "If they fix the car quickly, it'll be cheaper, won't it?", "pattern": "tag_question", "person": "", "note": "dovětek: it'll → won't it"},
+        {"id": "c37f31c8-807b-45a5-805b-3b741d2f163f}", "cz": "Jakmile mechanik dokončí kontrolu, sdělí nám cenu.", "en": "Once the mechanic finishes the inspection, he will let us know the cost.", "pattern": "time_clause", "person": "", "note": "once + present simple → will; let us know = dát vědět"},
+        {"id": "e1072c5c-f3fd-4900-b6d2-106ab081324d}", "cz": "Pokud je vůz řádně opraven, bude vrácen majiteli ještě tentýž den.", "en": "If the car is repaired properly, it will be returned to the owner the same day.", "pattern": "passive", "person": "", "note": "trpný rod v obou větách; returned to the owner"},
+        {"id": "59873de3-5fa0-4e69-9f46-966c263d387b}", "cz": "Mechanik řekl, že pokud bude díl k dispozici, bude auto hotové do čtvrtka.", "en": "The mechanic said that if the part was available, the car would be ready by Thursday.", "pattern": "indirect", "person": "", "note": "said that; will → would; was (backshift)"},
+        {"id": "30a5d554-089b-477a-bf06-6fe90c7c4334}", "cz": "Pokud bude oprava stát víc, než se očekávalo, bude muset své možnosti přehodnotit.", "en": "If the repair costs more than expected, he will have to reconsider his options.", "pattern": "conditional", "person": "", "note": "costs more than expected; will have to = bude muset"}
+        ]
+      },
+    {
+      "grammar": "Podmínka 1. typ",
+      "level": "B1",
+      "blok": "přestěhovat se",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "475b2e41-c11f-4802-ac1a-084e21caae35}", "cz": "Pokud najdu vhodný byt v centru města, na jaře se tam přestěhuji.", "en": "If I find a suitable flat in the city centre, I will move there in spring.", "pattern": "affirmative", "person": "first", "note": "flat (BrE) vs apartment (AmE); centre (BrE)"},
+        {"id": "014dc4ef-fa96-4ee0-9884-ed781d363919}", "cz": "Pokud si stěhování pečlivě nenaplánujete, nebudete před zimou zabydlení.", "en": "If you don't plan the move carefully, you won't be settled in before winter.", "pattern": "negative", "person": "second", "note": "won't be settled in = nenastěhujete se"},
+        {"id": "5df23fdc-0398-4195-863e-bbe4c5380edc}", "cz": "Přestěhujete se do jiné oblasti, pokud se nájemné opět zvýší?", "en": "Will you move to a different area if rents go up again?", "pattern": "question", "person": "", "note": "go up = zdražit; different from/to (BrE)"},
+        {"id": "31eff333-c639-4d6e-be8c-2fe48a126810}", "cz": "Kam se přestěhujete, pokud se rozhodnete opustit svůj současný byt?", "en": "Where will you move if you decide to leave your current flat?", "pattern": "wh_question", "person": "", "note": "WH: Where will you move if..."},
+        {"id": "65063fd8-9b41-4b80-93ff-fa0ea83d2df4}", "cz": "Pokud potřebujete více prostoru pro domácí kancelář, přesuňte se do většího bytu.", "en": "Move to a bigger flat if you need more space for your home office.", "pattern": "imperative", "person": "", "note": "rozkaz + podmínka; home office = pracovna doma"},
+        {"id": "d88364fe-e224-49da-a162-04474f7e4066}", "cz": "Pokud si najde lepší byt, než je ten současný, bude se co nejdříve stěhovat.", "en": "If she finds a better flat than her current one, she will move as soon as possible.", "pattern": "comparison", "person": "", "note": "better than her current one; as soon as possible"},
+        {"id": "f0414831-d95b-4ab1-97f6-8d84b9939eca}", "cz": "Když najdou byt s výtahem, tak ho vezmou, ne?", "en": "If they find a flat with a lift, they'll take it, won't they?", "pattern": "tag_question", "person": "", "note": "lift (BrE) vs elevator (AmE); dovětek: they'll"},
+        {"id": "649b2d5d-9549-4b8b-b5b2-a877db1312b6}", "cz": "Po podpisu smlouvy začnou balit a zařizovat stěhování.", "en": "After they sign the contract, they will start packing and arranging the move.", "pattern": "time_clause", "person": "", "note": "after + present simple → will; sign the contract"},
+        {"id": "794a4841-aa6d-4082-b262-bda29a9cedcf}", "cz": "Pokud bude byt před nastěhováním zrekonstruován, budou velmi spokojeni.", "en": "If the flat is renovated before they move in, they will be very pleased.", "pattern": "passive", "person": "", "note": "renovated = zrekonstruovaný; will be pleased"},
+        {"id": "3cad4d80-4cf5-487d-9dbf-36d2a063ad49}", "cz": "Řekla, že pokud najde hezčí byt, do konce roku se odstěhuje.", "en": "She said that if she found a nicer flat, she would move by the end of the year.", "pattern": "indirect", "person": "", "note": "said that; will → would; found (backshift)"},
+        {"id": "77f0fe74-9d46-4c2a-8b29-16127d71379a}", "cz": "Pokud pronajímatel souhlasí se snížením nájemného, okamžitě podepíše nájemní smlouvu.", "en": "If the landlord agrees to lower the rent, they will sign the lease immediately.", "pattern": "conditional", "person": "", "note": "landlord = pronajímatel; sign the lease = podepsat nájemní smlouvu"}
+        ]
+      },
+    {
+      "grammar": "Podmínka 1. typ",
+      "level": "B1",
+      "blok": "začít cvičit",
+      "topic": "Obecné",
+      "sentences": [
+        {"id": "f0e0a665-ab16-4cfa-b450-18c32bd7ed85}", "cz": "Pokud tento měsíc nastoupí do posilovny, bude se v létě cítit mnohem zdravěji.", "en": "If she joins a gym this month, she will feel much healthier by summer.", "pattern": "affirmative", "person": "third_singular", "note": "joins (3. os. sg.); feel healthier = cítit se zdravěji"},
+        {"id": "defffb4e-d48f-41ac-ab79-e75305ca6fc7}", "cz": "Pokud nebudou pravidelně cvičit, neuvidí žádné skutečné zlepšení.", "en": "If they don't exercise regularly, they won't see any real improvement.", "pattern": "negative", "person": "plural", "note": "regularly = pravidelně; won't see improvement"},
+        {"id": "9565d1f9-f738-4c7f-8f86-922247215692}", "cz": "Budete chodit do posilovny častěji, když si koupíte členství?", "en": "Will you go to the gym more often if you buy a membership?", "pattern": "question", "person": "", "note": "membership = členství; will you go more often"},
+        {"id": "816caeb6-2326-4ab0-a9ca-9179f06a8ef9}", "cz": "Jak často budete cvičit, když se přihlásíte na fitness hodinu?", "en": "How often will you exercise if you sign up for a fitness class?", "pattern": "wh_question", "person": "", "note": "WH: How often will you..."},
+        {"id": "08cd529a-4cfa-4129-be8b-86e5024f1a13}", "cz": "Přihlaste se na fitness třídu, pokud je pro vás těžké zůstat motivovaný sám.", "en": "Sign up for a fitness class if you find it hard to stay motivated alone.", "pattern": "imperative", "person": "", "note": "sign up for = přihlásit se; stay motivated"},
+        {"id": "32443f16-fd04-440e-831c-94f9815ab2af}", "cz": "Pokud bude trénovat tvrději než dříve, dostane se do kondice rychleji, než se očekávalo.", "en": "If he trains harder than before, he will get fit more quickly than expected.", "pattern": "comparison", "person": "", "note": "harder than before; more quickly than expected"},
+        {"id": "3d1e4a98-8dcb-4a94-8cfa-17de9a1e7749}", "cz": "Pokud začne chodit do posilovny, bude se cítit lépe, ne?", "en": "If she starts going to the gym, she'll feel better, won't she?", "pattern": "tag_question", "person": "", "note": "dovětek: she'll → won't she"},
+        {"id": "8bede563-b7b0-4b49-8141-f3abe26ae928}", "cz": "Až dnes večer skončí v práci, půjde rovnou do posilovny.", "en": "When he finishes work this evening, he will go straight to the gym.", "pattern": "time_clause", "person": "", "note": "when + present simple → will; go straight to"},
+        {"id": "03995fe3-69dd-4f31-82cf-c0db6f94c82f}", "cz": "Pokud si najmete osobního trenéra, dosáhnete lepších výsledků rychleji.", "en": "If a personal trainer is hired, better results will be achieved more quickly.", "pattern": "passive", "person": "", "note": "hire a trainer → trainer is hired; trpný rod"},
+        {"id": "d5daa7e4-1487-484c-8166-f057673867d4}", "cz": "Doktor říkal, že když bude více cvičit, bude se cítit výrazně lépe.", "en": "The doctor said that if she exercised more, she would feel significantly better.", "pattern": "indirect", "person": "", "note": "said that; will → would; exercised (backshift)"},
+        {"id": "5878e475-af75-4dcf-b24a-c6ed331f1c06}", "cz": "Pokud si nastavíte pravidelný režim, bude pro vás mnohem snazší pokračovat.", "en": "If you set a regular routine, you will find it much easier to keep going.", "pattern": "conditional", "person": "", "note": "set a routine = nastavit rutinu; keep going = vydržet"}
         ]
       }
   ]
