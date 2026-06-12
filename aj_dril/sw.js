@@ -1,6 +1,6 @@
 // AJ Dril — Service Worker
 // Verze cache — změň číslo když aktualizuješ aplikaci
-const CACHE_NAME = 'aj-dril-v23';
+const CACHE_NAME = 'aj-dril-v24';
 
 const ASSETS = [
   './',
@@ -35,6 +35,15 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   // JSON databázi vždy ze sítě (nebo nech prohlížeči)
   if (event.request.url.includes('.json') && !event.request.url.includes('manifest')) {
+    return;
+  }
+  // Firebase / Google requesty nikdy necachovat — přeskočit
+  const url = event.request.url;
+  if (url.includes('firestore.googleapis.com') ||
+      url.includes('firebase') ||
+      url.includes('googleapis.com') ||
+      url.includes('gstatic.com') ||
+      url.includes('accounts.google.com')) {
     return;
   }
 
